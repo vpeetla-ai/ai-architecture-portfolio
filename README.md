@@ -47,6 +47,7 @@ Six questions every enterprise agent program must answer — each mapped to a li
 | 4 | How do we operate agent fleets? | **AegisLoop** — missions, traces, eval gates | [aegisloop-agentops-workbench.vercel.app](https://aegisloop-agentops-workbench.vercel.app) | [aegisloop](https://github.com/vpeetla-ai/aegisloop-agentops-workbench) |
 | 5 | What do they produce? | **AI Content Factory** — governed publish pipeline | [ai-content-factory-iota.vercel.app](https://ai-content-factory-iota.vercel.app) | [ai-content-factory](https://github.com/vpeetla-ai/ai-content-factory) |
 | 6 | **How do agents improve?** | **LoopForge** — LangGraph repo fix → PR, harness, memory | [demo-omega-taupe.vercel.app](https://demo-omega-taupe.vercel.app) · [API](https://loopforge-api.onrender.com) | [loop-engine-agent-platform](https://github.com/vpeetla-ai/loop-engine-agent-platform) |
+| 7 | **How do we serve LLMs?** | **vLLM Architecture Lab** — PagedAttention, batching, KV budget | [vllm-architecture-lab.vercel.app](https://vllm-architecture-lab.vercel.app) · [API](https://vllm-architecture-lab-api.onrender.com) | [vllm-architecture-lab](https://github.com/vpeetla-ai/vllm-architecture-lab) |
 
 **Canonical essay:** [From Multi-Agent OS to Agent Governance](case-studies/from-multi-agent-os-to-agent-governance.md)
 
@@ -61,6 +62,7 @@ Each includes architecture context, key decisions, trade-offs, and links to live
 | Project | Domain | Key outcome | Case study |
 |---------|--------|-------------|------------|
 | **LoopForge** | Loop engineering | Self-improving harness — ODAEU, MCP, RAG tuning | [case-studies/loopforge-self-improving-harness.md](case-studies/loopforge-self-improving-harness.md) |
+| **vLLM Architecture Lab** | LLM inference | PagedAttention · continuous batching · KV simulator | [vllm-architecture-lab/docs/ARCHITECTURE.md](https://github.com/vpeetla-ai/vllm-architecture-lab/blob/main/docs/ARCHITECTURE.md) |
 | **AegisAI** | Agent governance | Runtime control plane — gateway, HITL, signed audit | [case-studies/aegisai-agent-governance.md](case-studies/aegisai-agent-governance.md) |
 | **Venkat AI Platform** | Multi-agent orchestration | 3 LangGraph orchestrators · 7 RAG strategies | [case-studies/venkat-ai-platform.md](case-studies/venkat-ai-platform.md) |
 | **Enterprise RAG** | Knowledge layer | Authorization before ranking · hybrid retrieval | [case-studies/enterprise-rag-platform.md](case-studies/enterprise-rag-platform.md) |
