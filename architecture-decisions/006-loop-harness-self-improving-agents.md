@@ -35,4 +35,4 @@ Add a sixth reference layer: **LoopForge** — Agent → Harness → Loops → M
 
 ## Proof
 
-[loop-engine-agent-platform.vercel.app](https://loop-engine-agent-platform.vercel.app)
+[demo-omega-taupe.vercel.app](https://demo-omega-taupe.vercel.app) · [loopforge-api.onrender.com](https://loopforge-api.onrender.com)

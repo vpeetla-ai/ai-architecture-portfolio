@@ -31,10 +31,10 @@ Six questions every enterprise agent program must answer — each mapped to a li
 |---|----------|--------|-----------|--------|
 | 1 | What should agents do? | **Venkat AI Platform** — multi-agent OS | [venkat-ai-platform.vercel.app](https://venkat-ai-platform.vercel.app) | [venkat-ai-platform](https://github.com/vpeetla-ai/venkat-ai-platform) |
 | 2 | What are agents allowed to do? | **AegisAI** — gateway, policy, HITL, audit | [aegisai-enterprise-agent-platform.vercel.app](https://aegisai-enterprise-agent-platform.vercel.app) | [aegisai](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform) |
-| 3 | What knowledge can they use? | **Enterprise RAG** — access-before-ranking | [demo-omega-taupe.vercel.app](https://demo-omega-taupe.vercel.app) | [enterprise_rag_platform](https://github.com/vpeetla-ai/enterprise_rag_platform) |
+| 3 | What knowledge can they use? | **Enterprise RAG** — access-before-ranking | [enterprise-rag-platform.vercel.app](https://enterprise-rag-platform.vercel.app) | [enterprise_rag_platform](https://github.com/vpeetla-ai/enterprise_rag_platform) |
 | 4 | How do we operate agent fleets? | **AegisLoop** — missions, traces, eval gates | [aegisloop-agentops-workbench.vercel.app](https://aegisloop-agentops-workbench.vercel.app) | [aegisloop](https://github.com/vpeetla-ai/aegisloop-agentops-workbench) |
 | 5 | What do they produce? | **AI Content Factory** — governed publish pipeline | [ai-content-factory-iota.vercel.app](https://ai-content-factory-iota.vercel.app) | [ai-content-factory](https://github.com/vpeetla-ai/ai-content-factory) |
-| 6 | **How do agents improve?** | **LoopForge** — loop harness, RAG tuning, memory | [loop-engine-agent-platform.vercel.app](https://loop-engine-agent-platform.vercel.app) | [loop-engine-agent-platform](https://github.com/vpeetla-ai/loop-engine-agent-platform) |
+| 6 | **How do agents improve?** | **LoopForge** — LangGraph repo fix → PR, harness, memory | [demo-omega-taupe.vercel.app](https://demo-omega-taupe.vercel.app) · [API](https://loopforge-api.onrender.com) | [loop-engine-agent-platform](https://github.com/vpeetla-ai/loop-engine-agent-platform) |
 
 **Canonical essay:** [From Multi-Agent OS to Agent Governance](case-studies/from-multi-agent-os-to-agent-governance.md)
 
