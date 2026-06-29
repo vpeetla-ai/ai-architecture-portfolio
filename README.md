@@ -9,7 +9,7 @@
 ---
 
 **Venkata Peetla** — Principal AI Architect · Lucid Motors  
-*19 years enterprise delivery · 10 live reference systems · 11 open-source repos*
+*19 years enterprise delivery · 11 live reference systems · 12 open-source repos*
 
 [Live demos](https://venkat-ai.com/work) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai)
 
@@ -17,15 +17,15 @@
 
 ## Impact at a Glance
 
-| **10→2** | **Multi-$M** | **10 live systems** | **5-layer stack** |
+| **10→2** | **Multi-$M** | **11 live systems** | **6-layer stack** |
 |----------|--------------|---------------------|-------------------|
-| Agent ops staffing reduction (targeted supply-chain flows) | Revenue & savings — payments, subscriptions, EDI | Governance, orchestration, RAG, AgentOps, content | Wired together, not isolated demos |
+| Agent ops staffing reduction (targeted supply-chain flows) | Revenue & savings — payments, subscriptions, EDI | Governance, orchestration, RAG, AgentOps, content, **loop engineering** | Wired together, not isolated demos |
 
 ---
 
 ## Governed AI Reference Stack
 
-Five questions every enterprise agent program must answer — each mapped to a live repo and demo.
+Six questions every enterprise agent program must answer — each mapped to a live repo and demo.
 
 | # | Question | System | Live demo | Source |
 |---|----------|--------|-----------|--------|
@@ -34,6 +34,7 @@ Five questions every enterprise agent program must answer — each mapped to a l
 | 3 | What knowledge can they use? | **Enterprise RAG** — access-before-ranking | [demo-omega-taupe.vercel.app](https://demo-omega-taupe.vercel.app) | [enterprise_rag_platform](https://github.com/vpeetla-ai/enterprise_rag_platform) |
 | 4 | How do we operate agent fleets? | **AegisLoop** — missions, traces, eval gates | [aegisloop-agentops-workbench.vercel.app](https://aegisloop-agentops-workbench.vercel.app) | [aegisloop](https://github.com/vpeetla-ai/aegisloop-agentops-workbench) |
 | 5 | What do they produce? | **AI Content Factory** — governed publish pipeline | [ai-content-factory-iota.vercel.app](https://ai-content-factory-iota.vercel.app) | [ai-content-factory](https://github.com/vpeetla-ai/ai-content-factory) |
+| 6 | **How do agents improve?** | **LoopForge** — loop harness, RAG tuning, memory | [loop-engine-agent-platform.vercel.app](https://loop-engine-agent-platform.vercel.app) | [loop-engine-agent-platform](https://github.com/vpeetla-ai/loop-engine-agent-platform) |
 
 **Canonical essay:** [From Multi-Agent OS to Agent Governance](case-studies/from-multi-agent-os-to-agent-governance.md)
 
@@ -47,6 +48,7 @@ Each includes architecture context, key decisions, trade-offs, and links to live
 
 | Project | Domain | Key outcome | Case study |
 |---------|--------|-------------|------------|
+| **LoopForge** | Loop engineering | Self-improving harness — ODAEU, MCP, RAG tuning | [case-studies/loopforge-self-improving-harness.md](case-studies/loopforge-self-improving-harness.md) |
 | **AegisAI** | Agent governance | Runtime control plane — gateway, HITL, signed audit | [case-studies/aegisai-agent-governance.md](case-studies/aegisai-agent-governance.md) |
 | **Venkat AI Platform** | Multi-agent orchestration | 3 LangGraph orchestrators · 7 RAG strategies | [case-studies/venkat-ai-platform.md](case-studies/venkat-ai-platform.md) |
 | **Enterprise RAG** | Knowledge layer | Authorization before ranking · hybrid retrieval | [case-studies/enterprise-rag-platform.md](case-studies/enterprise-rag-platform.md) |
@@ -74,6 +76,7 @@ Real decisions from production systems — not theoretical patterns.
 | [ADR-002](architecture-decisions/002-authorization-before-ranking-rag.md) | Authorization before ranking | RAG is an access-controlled intelligence layer, not a vector DB wrapper |
 | [ADR-003](architecture-decisions/003-mission-based-agentops.md) | Mission-based AgentOps | Bounded missions with eval gates — fleets survive production, not monolithic prompts |
 | [ADR-004](architecture-decisions/004-gateway-hitl-side-effects.md) | Gateway + HITL for side effects | Side-effecting tool calls require policy + human approval + signed audit |
+| [ADR-006](architecture-decisions/006-loop-harness-self-improving-agents.md) | Loop harness for self-improvement | Agent → Harness → Loops → Memory — RAG evolves on eval failure |
 | [ADR-005](architecture-decisions/005-reference-stack-free-tier.md) | Reference stack on free tier | Vercel + Render + Groq — production boundaries without enterprise budget on day one |
 
 ---
