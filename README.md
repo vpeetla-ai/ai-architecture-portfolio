@@ -21,17 +21,17 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 ---
 
 **Venkata Peetla** — Principal AI Architect · Lucid Motors  
-*19 years enterprise delivery · 11 live reference systems · 12 open-source repos*
+*19 years enterprise delivery · **12 live demos** · **15 open-source repos**
 
-[Live demos](https://venkat-ai.com/work) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai)
+[Live demos](https://venkat-ai.com/work) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai) · [Improvement plan 2026](docs/ORG_IMPROVEMENT_PLAN_2026.md)
 
 ---
 
 ## Impact at a Glance
 
-| **10→2** | **Multi-$M** | **11 live systems** | **6-layer stack** |
-|----------|--------------|---------------------|-------------------|
-| Agent ops staffing reduction (targeted supply-chain flows) | Revenue & savings — payments, subscriptions, EDI | Governance, orchestration, RAG, AgentOps, content, **loop engineering** | Wired together, not isolated demos |
+| **10→2** | **Multi-$M** | **12 live demos** | **7-layer stack + skills** |
+|----------|--------------|---------------------|---------------------------|
+| Agent ops staffing reduction (targeted supply-chain flows) | Revenue & savings — payments, subscriptions, EDI | Platform + pattern demos on Vercel/Render | Wired together — [improvement plan](docs/ORG_IMPROVEMENT_PLAN_2026.md) |
 
 ---
 
@@ -90,6 +90,7 @@ Real decisions from production systems — not theoretical patterns.
 | [ADR-002](architecture-decisions/002-authorization-before-ranking-rag.md) | Authorization before ranking | RAG is an access-controlled intelligence layer, not a vector DB wrapper |
 | [ADR-003](architecture-decisions/003-mission-based-agentops.md) | Mission-based AgentOps | Bounded missions with eval gates — fleets survive production, not monolithic prompts |
 | [ADR-004](architecture-decisions/004-gateway-hitl-side-effects.md) | Gateway + HITL for side effects | Side-effecting tool calls require policy + human approval + signed audit |
+| [ADR-007](adr/ADR-007-2026-agent-protocol-stack.md) | 2026 agent protocol stack | Skills → MCP → Gateway → Observability (ADR-007) |
 | [ADR-006](architecture-decisions/006-loop-harness-self-improving-agents.md) | Loop harness for self-improvement | Agent → Harness → Loops → Memory — RAG evolves on eval failure |
 | [ADR-005](architecture-decisions/005-reference-stack-free-tier.md) | Reference stack on free tier | Vercel + Render + Groq — production boundaries without enterprise budget on day one |
 
