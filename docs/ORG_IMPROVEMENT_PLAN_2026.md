@@ -90,14 +90,14 @@ Patterns (×5)                  → composable units    [stub-first traces]
 
 | 2026 trend | Current strength | Gap |
 |------------|------------------|-----|
-| MCP tool standardization | LoopForge MCP bridge | VAP, Content Factory need MCP docs/servers |
-| Agent skills (SKILL.md) | vpeetla-ai-skills org-wide | Versioning + CI smoke tests |
-| Gateway governance | AegisAI core | LoopForge git push; pattern repos N/A |
-| HITL before side effects | AegisAI + Content Factory | VAP notify only partial |
-| Evals + regression | Enterprise RAG, AegisLoop | Content Factory pytest gap |
-| Observability (OTel/Langfuse) | 4/7 platforms | LoopForge, vLLM lab |
-| Inference optimization | vLLM lab (edu) | Not wired to VAP router |
-| Honest implementation tables | 5/7 platforms | LoopForge, patterns, skills |
+| MCP tool standardization | LoopForge + Content Factory + VAP docs | Stdio MCP server packaging (Phase 3) |
+| Agent skills (SKILL.md) | vpeetla-ai-skills org-wide (19 skills) | Versioning semver |
+| Gateway governance | AegisAI + Content Factory + LoopForge git | Pattern repos N/A (honest ❌) |
+| HITL before side effects | AegisAI + Content Factory + LoopForge | VAP notify partial |
+| Evals + regression | Enterprise RAG, AegisLoop, Content Factory pytest | Pattern golden cross-repo |
+| Observability (OTel/Langfuse) | 6/7 platforms | Enterprise RAG OTLP |
+| Inference optimization | vLLM lab + VAP INFERENCE.md | Self-hosted vLLM behind router |
+| Honest implementation tables | 7/7 platforms + patterns | Portfolio CI validator |
 | A2A inter-agent protocol | In-process LangGraph | Document as future A2A peer layer |
 
 ---
@@ -111,7 +111,7 @@ Patterns (×5)                  → composable units    [stub-first traces]
 | **Total live demos** | **12** | All on Vercel free tier (+ Render APIs) |
 | Open-source repos | **15** | Per GitHub org |
 | Documented ADRs | **7** | Including ADR-007 protocol stack |
-| Agent skills | **18** | After 2026 skills expansion |
+| Agent skills | **19** | After enterprise-ai-architect + Phase 2 |
 
 ---
 
@@ -125,16 +125,29 @@ Patterns (×5)                  → composable units    [stub-first traces]
 - [x] LoopForge honest status table
 - [x] Content Factory gateway status row
 
-### Phase 2 — Next sprint
-- [ ] Content Factory pytest suite (graph + HITL routes)
-- [ ] LoopForge AegisAI gateway on PR workflow
-- [ ] Enterprise RAG `docs/ARCHITECTURE.md`
-- [ ] AegisLoop architecture doc + mermaid fix
+### Phase 2 — Done (2026 sprint)
+- [x] Content Factory pytest suite (graph + HITL routes)
+- [x] Content Factory MCP bridge + docs
+- [x] LoopForge AegisAI gateway on PR workflow
+- [x] LoopForge Langfuse harness export
+- [x] Enterprise RAG `docs/ARCHITECTURE.md`
+- [x] AegisLoop architecture doc + mermaid fix
+- [x] Pattern repos honest status tables (×5)
+- [x] Case studies: vLLM Lab + vpeetla-ai-skills
+- [x] Skills CI smoke test + `enterprise-ai-architect` skill
+- [x] VAP MCP + INFERENCE docs
+- [x] Protocol stack essay (`ai-content-factory/docs/content/`)
 
-### Phase 3 — Q3 2026
-- [ ] A2A Agent Card on VAP specialist endpoints (teaching)
-- [ ] MCP server packaging for org tools
-- [ ] Portfolio CI: demo URL + status table validator
+### Phase 3 — Done (Q3 2026)
+- [x] A2A Agent Card on VAP specialist endpoints (teaching)
+- [x] MCP server packaging for org tools (`vpeetla-ai-skills/mcp/`)
+- [x] Portfolio CI: demo URL + status table validator
+- [x] Enterprise RAG OTLP tests + ARCHITECTURE sync
+
+### Phase 4 — Future
+- [ ] Self-hosted vLLM behind VAP router (documented out of scope in INFERENCE.md)
+- [ ] Portfolio CI: cross-repo README status table scraper
+- [ ] MCP server on PyPI
 
 ---
 
