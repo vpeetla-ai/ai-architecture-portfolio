@@ -6,26 +6,49 @@
 
 ## Problem
 
-Multi-platform content generation at scale requires research, drafting, human review, and governed publish — not autonomous posting.
+Marketing and content teams need **one topic → many platforms** without losing brand control. Single-prompt tools skip research depth, skip human approval, and create compliance risk when agents post autonomously.
+
+**Who we serve:** Content leads, marketing ops, and platform engineers building governed publish pipelines.
 
 ## Architecture
 
 ```text
-Research Agent → Draft Agents (×5 platforms) → HITL Review → AegisAI Gateway → OAuth Publish
-                                                      ↑
-                                              Clerk auth · Cron scheduler
+Topic → Research (RAG) → Content (5 drafts) → Enrich (SEO/visual)
+      → HITL interrupt → Human approve/edit → AegisAI Gateway → Publish
+```
+
+```mermaid
+flowchart LR
+  T[Topic] --> R[Research]
+  R --> C[Content drafts]
+  C --> E[Enrich]
+  E --> H[HITL]
+  H --> G[AegisAI gateway]
+  G --> P[Publish adapters]
 ```
 
 ## Key decisions
 
-- LangGraph pipeline with explicit HITL node before publish
-- AegisAI gateway blocks publish until policy allows
-- LinkedIn and X OAuth when tokens configured
+- LangGraph with `interrupt_before=["hitl"]` — irreversible step gated by humans
+- AegisAI `authorize_publish()` before OAuth adapters
+- In-process MCP bridge for read-only research tools; publish via `PublisherService`
+- pytest on graph, HITL, and gateway paths
+
+## Trade-offs
+
+| Decision | Rationale | Cost |
+|----------|-----------|------|
+| HITL mandatory | Trust + policy | Not overnight-autonomous (by design) |
+| Mock OAuth in demo | Free-tier without vendor keys | Wire tokens for prod |
+| Redis checkpointer | Resume long pipelines | Ops dependency |
+| Gateway fail-open dev | Local velocity | Fail-closed required in prod |
 
 ## Stack
 
-FastAPI · LangGraph · Next.js · Clerk · Vercel · Render
+FastAPI · LangGraph · Next.js · Clerk · Redis · Vercel · Render
 
 ## Related
 
-Integrates with [AegisAI](./aegisai-agent-governance.md) gateway — end-to-end governed output layer of the reference stack.
+- [PRODUCT.md](https://github.com/vpeetla-ai/ai-content-factory/blob/main/docs/PRODUCT.md) in repo
+- [AegisAI case study](./aegisai-agent-governance.md) — gateway layer
+- Essay: [2026 Agent Protocol Stack](https://github.com/vpeetla-ai/ai-content-factory/blob/main/docs/content/2026-agent-protocol-stack.md)
