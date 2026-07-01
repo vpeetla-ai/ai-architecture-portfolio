@@ -11,24 +11,29 @@ Principal architects track AI signal across Hacker News, arXiv, industry press, 
 
 ```mermaid
 flowchart TB
-  CRON[Cron POST /runs] --> FETCH[fetch_sources]
+  CRON["Cron · POST /runs"] --> FETCH[fetch_sources]
   FETCH --> DIFF[diff_items]
   DIFF --> BRIEF[write_brief]
   BRIEF --> EVAL[run_eval]
   EVAL --> GW[gateway_and_email]
   GW --> ARCH[archive_report]
 
-  subgraph sources [Allowlisted sources]
-    HN[HN Firebase + Algolia AI]
+  subgraph sources["Allowlisted sources (read-only)"]
+    HN1[HN top · Firebase]
+    HN2[HN AI · Algolia]
     ARX[arXiv cs.AI]
-    RSS[RSS feeds]
+    VB[VentureBeat AI]
+    MIT[MIT Tech Review]
+    INFO[The Information · headlines]
+    PD[Paper Digest]
+    BATCH[The Batch]
+    TDS[Towards Data Science]
   end
 
   sources --> FETCH
-  SNAP[(snapshots)] <--> DIFF
-  ARCH --> REP[(reports JSON)]
-  GW --> AEGIS[AegisAI gateway]
-  AEGIS --> RESEND[Resend email]
+  SNAP[(snapshots/)] <--> DIFF
+  ARCH --> REP[(reports/)]
+  GW --> AEGIS[AegisAI gateway] --> MAIL[Resend email]
 ```
 
 ## Key decisions
