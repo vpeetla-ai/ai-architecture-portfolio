@@ -1,6 +1,6 @@
 # vpeetla-ai Org Review — Principal AI Architect (2026)
 
-**Scope:** All 15 repos under [vpeetla-ai](https://github.com/vpeetla-ai)  
+**Scope:** All 16 repos under [vpeetla-ai](https://github.com/vpeetla-ai)  
 **Bar:** Every product names **who it serves**, **architecture diagram**, **trade-offs**, **case study / ADR** where platform-grade.
 
 ---
@@ -9,7 +9,7 @@
 
 The org is unusually complete for a portfolio: **7 platform demos + 5 pattern demos + skills + architecture hub**. Phase 2–3 closed the protocol stack (MCP, gateway on git push, A2A cards, portfolio CI).
 
-**Remaining gaps** are mostly **product framing consistency** and **one cross-cutting eval product** — not missing core tech.
+**Remaining gaps** are mostly **product framing consistency** and deeper cross-repo eval adapters — not missing core tech.
 
 ---
 
@@ -28,6 +28,7 @@ The org is unusually complete for a portfolio: **7 platform demos + 5 pattern de
 | ai-architecture-portfolio | ✅ | ✅ ADRs | ✅ | hub |
 | venkat-ai-portfolio | ✅ | ✅ ecosystem.ts | ✅ | site |
 | 5 pattern repos | 🟡 teaching only | 🟡 trace UI | ✅ status table | ❌ (by design) |
+| golden-eval-registry | ✅ | ✅ ARCHITECTURE.md | ✅ PRODUCT.md | ✅ |
 | vpeetla-ai (profile) | ✅ | ✅ stack table | — | links |
 
 ---
@@ -39,21 +40,22 @@ The org is unusually complete for a portfolio: **7 platform demos + 5 pattern de
 3. **docs/PRODUCT.md** — ai-content-factory, vllm-architecture-lab
 4. **Case study** — ai-content-factory trade-offs + mermaid
 5. **Profile** — 12 live demos (was 11)
+6. **New repo:** `golden-eval-registry` — cross-repo golden eval contracts
 
 ---
 
 ## Suggested new project (highest portfolio value)
 
-### 1. `golden-eval-registry` (recommended)
+### 1. `golden-eval-registry` (implemented)
 
 **Who it serves:** You + hiring panels — proves agents **regress safely** across the stack.
 
 **Problem:** Golden queries live in Enterprise RAG; pytest in Content Factory; missions in AegisLoop — no **single regression hub**.
 
-**MVP:**
-- One repo with `fixtures/` per platform (RAG, LoopForge harness, Content Factory graph smoke)
-- GitHub Action matrix invokes each package's tests
-- Portfolio badge: "12 demos · N golden evals passing"
+**MVP shipped:**
+- One repo with versioned suites for RAG, LoopForge harness, LoopForge repo-fix, AegisLoop mission gates, and Content Factory graph/HITL
+- Dependency-light validator + GitHub Actions CI
+- Architecture, product, and ADR docs
 
 **Why now:** Completes "evals as product" from ADR-007; differentiates from demo-only portfolios.
 
@@ -78,7 +80,7 @@ Aggregate Langfuse/FinOps from VAP + AegisLoop — nice for enterprise narrative
 | PRODUCT.md for remaining platforms (VAP, AegisAI, Enterprise RAG) | respective repos |
 | Pattern mini case studies (1-pager each) | ai-architecture-portfolio |
 | Portfolio `--strict-urls` only on release tags | venkat-ai-portfolio |
-| golden-eval-registry repo | new |
+| Consumer adapters that import `golden-eval-registry` suites | platform repos |
 
 ---
 

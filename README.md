@@ -21,7 +21,7 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 ---
 
 **Venkata Peetla** — Principal AI Architect · Lucid Motors  
-*19 years enterprise delivery · **12 live demos** · **15 open-source repos**
+*19 years enterprise delivery · **12 live demos** · **16 open-source repos**
 
 [Live demos](https://venkat-ai.com/work) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai) · [Improvement plan 2026](docs/ORG_IMPROVEMENT_PLAN_2026.md)
 
@@ -68,6 +68,7 @@ Each includes architecture context, key decisions, trade-offs, and links to live
 | **Enterprise RAG** | Knowledge layer | Authorization before ranking · hybrid retrieval | [case-studies/enterprise-rag-platform.md](case-studies/enterprise-rag-platform.md) |
 | **AegisLoop** | AgentOps | Mission fleets · eval gates · FinOps · Langfuse | [case-studies/aegisloop-agentops.md](case-studies/aegisloop-agentops.md) |
 | **AI Content Factory** | Content automation | Research → drafts → HITL → governed publish | [case-studies/ai-content-factory.md](case-studies/ai-content-factory.md) |
+| **Golden Eval Registry** | Evaluation | Cross-repo golden eval contracts | [case-studies/golden-eval-registry.md](case-studies/golden-eval-registry.md) |
 
 ### Enterprise Delivery (employer context)
 

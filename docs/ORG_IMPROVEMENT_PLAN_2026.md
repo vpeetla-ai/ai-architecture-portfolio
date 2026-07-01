@@ -109,7 +109,7 @@ Patterns (×5)                  → composable units    [stub-first traces]
 | Platform live demos | **7** | AegisAI, VAP, Enterprise RAG, AegisLoop, Content Factory, LoopForge, vLLM Lab |
 | Pattern live demos | **5** | ReAct, Reflection, Plan-Execute, Multi-Agent, Swarm |
 | **Total live demos** | **12** | All on Vercel free tier (+ Render APIs) |
-| Open-source repos | **15** | Per GitHub org |
+| Open-source repos | **16** | Per GitHub org, excluding profile README repo |
 | Documented ADRs | **7** | Including ADR-007 protocol stack |
 | Agent skills | **19** | After enterprise-ai-architect + Phase 2 |
 
@@ -144,7 +144,9 @@ Patterns (×5)                  → composable units    [stub-first traces]
 - [x] Portfolio CI: demo URL + status table validator
 - [x] Enterprise RAG OTLP tests + ARCHITECTURE sync
 
-### Phase 4 — Future
+### Phase 4 — Started
+- [x] Golden Eval Registry repo (versioned cross-repo fixtures + validator)
+- [ ] Consumer adapters that import registry suites in platform CI
 - [ ] Self-hosted vLLM behind VAP router (documented out of scope in INFERENCE.md)
 - [ ] Portfolio CI: cross-repo README status table scraper
 - [ ] MCP server on PyPI
