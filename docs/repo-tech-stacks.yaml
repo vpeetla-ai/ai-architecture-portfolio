@@ -1,0 +1,164 @@
+# Canonical tech stack badges — vpeetla-ai org (single source of truth)
+# Run: node scripts/inject-readme-tech-badges.mjs --write
+# Badge row appears directly under the README H1 title.
+
+repos:
+  ai-content-factory:
+    dir: ai-content-factory
+    stack:
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: FastAPI, color: "009688" }
+      - { label: LangGraph, color: "9333EA" }
+      - { label: Pydantic, value: "v2", color: "E92063" }
+      - { label: Next.js, color: "000000" }
+      - { label: Clerk, color: "6C47FF" }
+      - { label: Vercel, color: "000000" }
+      - { label: Render, color: "46E3B7" }
+
+  aegisai-enterprise-agent-platform:
+    dir: aegisai-enterprise-agent-platform
+    stack:
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: FastAPI, color: "009688" }
+      - { label: LangGraph, color: "9333EA" }
+      - { label: Next.js, color: "000000" }
+      - { label: OPA, color: "7D4CDB" }
+      - { label: Supabase, color: "3FCF8E" }
+      - { label: Vercel, color: "000000" }
+      - { label: Render, color: "46E3B7" }
+
+  venkat-ai-platform:
+    dir: venkat-ai-platform
+    stack:
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: FastAPI, color: "009688" }
+      - { label: LangGraph, color: "9333EA" }
+      - { label: Next.js, color: "000000" }
+      - { label: Qdrant, color: "DC382D" }
+      - { label: Postgres, color: "4169E1" }
+      - { label: Redis, color: "DC382D" }
+      - { label: Vercel, color: "000000" }
+      - { label: Render, color: "46E3B7" }
+
+  enterprise_rag_platform:
+    dir: enterprise_rag_platform
+    stack:
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: FastAPI, color: "009688" }
+      - { label: Qdrant, color: "DC382D" }
+      - { label: Docker, color: "2496ED" }
+      - { label: Vercel, color: "000000" }
+      - { label: Render, color: "46E3B7" }
+
+  aegisloop-agentops-workbench:
+    dir: aegisloop-agentops-workbench
+    stack:
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: FastAPI, color: "009688" }
+      - { label: LangGraph, color: "9333EA" }
+      - { label: Langfuse, color: "6366F1" }
+      - { label: Vercel, color: "000000" }
+      - { label: Render, color: "46E3B7" }
+
+  loop-engine-agent-platform:
+    dir: loop-engine-agent-platform
+    stack:
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: LangGraph, color: "9333EA" }
+      - { label: FastAPI, color: "009688" }
+      - { label: MCP, color: "374151" }
+      - { label: Groq, color: "F55036" }
+      - { label: GitHub, value: "API", color: "181717" }
+      - { label: Vercel, color: "000000" }
+      - { label: Render, color: "46E3B7" }
+
+  vllm-architecture-lab:
+    dir: vllm-architecture-lab
+    stack:
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: FastAPI, color: "009688" }
+      - { label: vLLM, value: "concepts", color: "FF6B35" }
+      - { label: Vercel, color: "000000" }
+      - { label: Render, color: "46E3B7" }
+
+  sentinel-brief:
+    dir: sentinel-brief
+    stack:
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: FastAPI, color: "009688" }
+      - { label: LangGraph, color: "9333EA" }
+      - { label: RSS, color: "FF6600" }
+      - { label: Resend, color: "000000" }
+      - { label: Vercel, color: "000000" }
+      - { label: Render, color: "46E3B7" }
+
+  react-agent-pattern:
+    dir: react-agent-pattern
+    stack:
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: LangGraph, color: "9333EA" }
+      - { label: pytest, color: "0A9EDC" }
+      - { label: Vercel, color: "000000" }
+
+  reflection-agent-pattern:
+    dir: reflection-agent-pattern
+    stack:
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: LangGraph, color: "9333EA" }
+      - { label: pytest, color: "0A9EDC" }
+      - { label: Vercel, color: "000000" }
+
+  plan-execute-agent-pattern:
+    dir: plan-execute-agent-pattern
+    stack:
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: LangGraph, color: "9333EA" }
+      - { label: pytest, color: "0A9EDC" }
+      - { label: Vercel, color: "000000" }
+
+  multi-agent-system-pattern:
+    dir: multi-agent-system-pattern
+    stack:
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: LangGraph, color: "9333EA" }
+      - { label: pytest, color: "0A9EDC" }
+      - { label: Vercel, color: "000000" }
+
+  swarm-agent-pattern:
+    dir: swarm-agent-pattern
+    stack:
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: LangGraph, color: "9333EA" }
+      - { label: asyncio, color: "3776AB" }
+      - { label: Vercel, color: "000000" }
+
+  golden-eval-registry:
+    dir: golden-eval-registry
+    stack:
+      - { label: YAML, color: "CB171E" }
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: pytest, color: "0A9EDC" }
+      - { label: GitHub, value: "Actions", color: "181717" }
+
+  ai-architecture-portfolio:
+    dir: ai-architecture-portfolio
+    stack:
+      - { label: Markdown, color: "083FA1" }
+      - { label: Mermaid, color: "FF3670" }
+      - { label: GitHub, value: "Pages", color: "181717" }
+
+  vpeetla-ai-skills:
+    dir: vpeetla-ai-skills
+    stack:
+      - { label: Shell, color: "89E051" }
+      - { label: Markdown, color: "083FA1" }
+      - { label: MCP, color: "374151" }
+      - { label: Cursor, color: "000000" }
+
+  venkat-ai-portfolio:
+    dir: venkat-ai-portfolio
+    stack:
+      - { label: Next.js, color: "000000" }
+      - { label: TypeScript, color: "3178C6" }
+      - { label: Tailwind, value: "CSS", color: "06B6D4" }
+      - { label: Vercel, color: "000000" }

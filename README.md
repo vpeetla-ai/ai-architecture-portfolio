@@ -1,6 +1,10 @@
 # AI Architecture Portfolio
 
 
+
+<!-- vpeetla-tech-stack:start -->
+[![Markdown](https://img.shields.io/badge/Markdown-083FA1?style=flat-square)]() [![Mermaid](https://img.shields.io/badge/Mermaid-FF3670?style=flat-square)]() [![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-181717?style=flat-square)]()
+<!-- vpeetla-tech-stack:end -->
 ## Agent skills (Cursor + Codex)
 
 Org skills: [vpeetla-ai-skills](https://github.com/vpeetla-ai/vpeetla-ai-skills). This repo includes `.cursor/skills/`, `AGENTS.md`, and `CONTEXT.md`.

@@ -6,16 +6,25 @@ Every product repo README should follow this order so recruiters and engineers g
 
 | # | Section | Purpose |
 |---|---------|---------|
-| 1 | **Title + badges** | Name, live demo, CI, license |
-| 2 | **One-liner** | What it is in one sentence |
-| 3 | **What this is** | Product idea, who it serves |
-| 4 | **How we solve it** | Problem → approach (not feature list only) |
-| 5 | **Architecture** | Mermaid or link to `docs/ARCHITECTURE.md` + canonical `.mmd` if present |
-| 6 | **Case study & tradeoffs** | Links to portfolio case study, `docs/PRODUCT.md`, ADRs |
-| 7 | **Status** | Honest table — ✅ 🟡 ⬜ |
-| 8 | **Quick start** | `pip install`, `pytest`, local run |
-| 9 | **Deploy / env** | Link `docs/DEPLOY.md` or `docs/LIVE_DEMO.md` |
-| 10 | **Stack fit / related** | Which layer in governed stack |
+| 1 | **Title + tech stack badges** | H1 name, then `<!-- vpeetla-tech-stack -->` row (Python, FastAPI, LangGraph, …) — see [repo-tech-stacks.yaml](repo-tech-stacks.yaml) |
+| 2 | **Status badges** | Live demo, CI, license, portfolio link |
+| 3 | **One-liner** | What it is in one sentence |
+| 4 | **What this is** | Product idea, who it serves |
+| 5 | **How we solve it** | Problem → approach (not feature list only) |
+| 6 | **Architecture** | Mermaid or link to `docs/ARCHITECTURE.md` + canonical `.mmd` if present |
+| 7 | **Case study & tradeoffs** | Links to portfolio case study, `docs/PRODUCT.md`, ADRs |
+| 8 | **Status** | Honest table — ✅ 🟡 ⬜ |
+| 9 | **Quick start** | `pip install`, `pytest`, local run |
+| 10 | **Deploy / env** | Link `docs/DEPLOY.md` or `docs/LIVE_DEMO.md` |
+| 11 | **Stack fit / related** | Which layer in governed stack |
+
+## Tech stack badges
+
+Canonical stacks: [repo-tech-stacks.yaml](repo-tech-stacks.yaml). Regenerate all README rows:
+
+```bash
+node scripts/inject-readme-tech-badges.mjs --write
+```
 
 ## Case study index
 
