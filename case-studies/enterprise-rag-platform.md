@@ -12,14 +12,14 @@ Production RAG is not "connect a vector DB." Enterprise knowledge requires acces
 
 ```text
 Query + Principal → Access Filter → Hybrid Retriever → Reranker → Graph Expand
-       → Context Assembly → LLM + Citations → Eval/HITL → OTLP Export
+       → Context Assembly → LLM + Citations → Eval/HITL → Langfuse export
 ```
 
 ```mermaid
 flowchart LR
     Q[Query] --> AF[Access filter] --> RET[Hybrid retriever] --> RR[Rerank]
     RR --> CTX[Context] --> LLM[LLM + citations] --> EV[Eval]
-    EV -.-> OTLP[OTLP export]
+    EV -.-> LF[Langfuse<br/>trace-linked evals]
 ```
 
 ## Key outcome

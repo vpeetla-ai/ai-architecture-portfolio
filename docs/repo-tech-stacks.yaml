@@ -49,7 +49,7 @@ repos:
       - { label: Python, value: "3.11", color: "3776AB" }
       - { label: FastAPI, color: "009688" }
       - { label: Qdrant, color: "DC382D" }
-      - { label: OpenTelemetry, color: "326CE5" }
+      - { label: Langfuse, color: "6366F1" }
       - { label: Docker, color: "2496ED" }
       - { label: Vercel, color: "000000" }
       - { label: Render, color: "46E3B7" }

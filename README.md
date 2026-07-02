@@ -76,15 +76,13 @@ flowchart TB
         LF["loop-engine"]
         AL["aegisloop"]
         AEG["aegisai"]
-        ER["enterprise_rag · OTLP"]
+        ER["enterprise_rag"]
     end
     subgraph Export["Export adapters"]
         LANG["Langfuse Cloud"]
-        OTEL["OTLP collector"]
     end
     Platforms --> Levels
     Levels -.-> LANG
-    ER -.-> OTEL
 ```
 
 Spec: [docs/TRACE_LINKED_OBSERVABILITY.md](docs/TRACE_LINKED_OBSERVABILITY.md) · ADR: [ADR-007](adr/ADR-007-2026-agent-protocol-stack.md)

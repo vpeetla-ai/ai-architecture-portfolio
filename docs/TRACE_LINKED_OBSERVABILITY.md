@@ -22,7 +22,7 @@ Canonical package: `packages/vpeetla_observability/`
 | **venkat-ai-platform** | 🟡 Package synced; wire middleware on integrate | `app.vpeetla_observability.*` |
 | **loop-engine** | 🟡 Package synced + legacy `langfuse_export.py` | `loop_engine.vpeetla_observability.*` |
 | **aegisai** | 🟡 Package synced + LangSmith/Langfuse bootstrap | `aegisai.vpeetla_observability.*` |
-| **enterprise_rag** | OTLP primary (`OTEL_EXPORTER_OTLP_ENDPOINT`); package synced | `enterprise_rag.vpeetla_observability.*` |
+| **enterprise_rag** | ✅ Langfuse export on `/v1/answer` | `enterprise_rag.ops.langfuse_export` |
 
 ## Sync to platform repos
 

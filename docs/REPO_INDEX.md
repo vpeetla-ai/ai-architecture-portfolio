@@ -4,7 +4,7 @@
 |------|-------|---------------|-----------|------------|
 | [venkat-ai-platform](https://github.com/vpeetla-ai/venkat-ai-platform) | Orchestration | Langfuse spans | [demo](https://venkat-ai-platform.vercel.app) | [venkat-ai-platform](../case-studies/venkat-ai-platform.md) |
 | [aegisai-enterprise-agent-platform](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform) | Governance | Langfuse + LangSmith | [demo](https://aegisai-enterprise-agent-platform.vercel.app) | [aegisai](../case-studies/aegisai-agent-governance.md) |
-| [enterprise_rag_platform](https://github.com/vpeetla-ai/enterprise_rag_platform) | RAG | OTLP + pipeline spans | [demo](https://enterprise-rag-platform.vercel.app) | [enterprise-rag](../case-studies/enterprise-rag-platform.md) |
+| [enterprise_rag_platform](https://github.com/vpeetla-ai/enterprise_rag_platform) | RAG | Langfuse + pipeline spans | [demo](https://enterprise-rag-platform.vercel.app) | [enterprise-rag](../case-studies/enterprise-rag-platform.md) |
 | [aegisloop-agentops-workbench](https://github.com/vpeetla-ai/aegisloop-agentops-workbench) | AgentOps | Langfuse + mission spans | [demo](https://aegisloop-agentops-workbench.vercel.app) | [aegisloop](../case-studies/aegisloop-agentops.md) |
 | [ai-content-factory](https://github.com/vpeetla-ai/ai-content-factory) | Content | Trace-linked + Langfuse | [demo](https://ai-content-factory-iota.vercel.app) | [content-factory](../case-studies/ai-content-factory.md) |
 | [loop-engine-agent-platform](https://github.com/vpeetla-ai/loop-engine-agent-platform) | Loop harness | Langfuse + harness traces | [demo](https://demo-omega-taupe.vercel.app) | [loopforge](../case-studies/loopforge-self-improving-harness.md) |
