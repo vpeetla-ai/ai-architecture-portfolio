@@ -13,6 +13,14 @@ Static RAG configs and one-shot agents do not improve. Teams need agents that **
 
 ```text
 Agent → Harness → Loops → Memory
+         ↓
+    Langfuse (trace-linked evals: system · trace · node)
+```
+
+```mermaid
+flowchart LR
+    H[Harness] --> L[Loops] --> M[Memory]
+    H -.-> LF[Langfuse<br/>eval scores on trace_id]
 ```
 
 Three production loops:

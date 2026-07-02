@@ -15,6 +15,17 @@ Building agents is easy. Governing them is the product. Enterprise programs need
 Agent Request → Gateway SDK → OPA Policy → HITL Queue → Tool Execution → Signed Audit
                                     ↓
                             Agent Registry (Postgres)
+                                    ↓
+              Langfuse / LangSmith export (trace-linked eval adapters)
+```
+
+```mermaid
+flowchart LR
+    AG[Agent fleet] --> GW[AI Gateway]
+    GW --> POL[Policy + HITL]
+    POL --> EX[Tool execution]
+    GW --> AUD[Signed audit · Postgres]
+    AG -.-> LF[Langfuse export<br/>LANGFUSE_*]
 ```
 
 **Monitor → Govern → Remediate** — not another agent builder, but a runtime control plane in front of production agents.

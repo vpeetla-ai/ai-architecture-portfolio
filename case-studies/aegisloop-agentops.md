@@ -12,6 +12,12 @@ Orchestration demos do not model how agent **fleets** operate in production: bou
 
 Mission Brief → Orchestrator → Specialists → Source Coverage → Eval Gate → Ship (via AegisAI)
 
+```mermaid
+flowchart LR
+    MB[Mission brief] --> OR[Orchestrator] --> SP[Specialists] --> EV[Eval gate] --> SH[Ship]
+    OR -.-> LF[Langfuse<br/>trace-linked evals]
+```
+
 ## Key capabilities
 
 - Mission orchestrator with specialist routing

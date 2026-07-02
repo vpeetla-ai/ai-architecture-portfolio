@@ -16,6 +16,15 @@ Chief → Planner → Parallel Specialists → Content → Insight → Critic �
     7 RAG strategies   Loop patterns (ReAct · Reflection · Plan-Execute)
          ↓
     AegisAI Gateway (notify channels)
+         ↓
+    Langfuse (system / trace / node spans + eval scores)
+```
+
+```mermaid
+flowchart LR
+    CH[Chief] --> PL[Planner] --> WK[Workers] --> CR[Critic] --> NT[Notify]
+    WK -.-> LF[Langfuse<br/>trace-linked evals]
+    NT --> GW[AegisAI gateway]
 ```
 
 Three LangGraph orchestrators: **Platform · Deep Research · Architecture Review**

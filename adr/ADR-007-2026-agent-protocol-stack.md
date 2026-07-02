@@ -24,8 +24,18 @@ Adopt a **four-layer protocol stack** across all platform repos:
 1. Skills layer    → vpeetla-ai-skills (how we build)
 2. MCP layer       → tool servers where agents act on files/APIs
 3. Gateway layer   → AegisAI before irreversible side effects
-4. Observability   → Langfuse/OTel on every production API path
+4. Observability   → Langfuse/OTel + trace-linked evals on every production API path
 ```
+
+**Trace-linked evaluation** links three levels on one `trace_id`:
+
+| Level | Question | Example |
+|-------|----------|---------|
+| **system** | Did the workflow complete? | `pipeline.execute`, `sentinel_brief.run` |
+| **trace** | Which path did the agent take? | `gateway.authorize_email`, `eval.brief_gate` |
+| **node** | Was each step correct? | `research`, `llm.research` |
+
+Canonical package: `packages/vpeetla_observability/` · [TRACE_LINKED_OBSERVABILITY.md](../docs/TRACE_LINKED_OBSERVABILITY.md)
 
 **A2A** remains documented as the target for VAP specialist agents; in-process LangGraph delegation is acceptable for reference implementations.
 

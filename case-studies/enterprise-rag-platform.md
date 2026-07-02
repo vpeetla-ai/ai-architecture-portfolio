@@ -15,6 +15,13 @@ Query + Principal → Access Filter → Hybrid Retriever → Reranker → Graph 
        → Context Assembly → LLM + Citations → Eval/HITL → OTLP Export
 ```
 
+```mermaid
+flowchart LR
+    Q[Query] --> AF[Access filter] --> RET[Hybrid retriever] --> RR[Rerank]
+    RR --> CTX[Context] --> LLM[LLM + citations] --> EV[Eval]
+    EV -.-> OTLP[OTLP export]
+```
+
 ## Key outcome
 
 Authorization **before** semantic ranking — not after generation.

@@ -52,8 +52,42 @@ Six questions every enterprise agent program must answer — each mapped to a li
 | 5 | What do they produce? | **AI Content Factory** — governed publish pipeline | [ai-content-factory-iota.vercel.app](https://ai-content-factory-iota.vercel.app) | [ai-content-factory](https://github.com/vpeetla-ai/ai-content-factory) |
 | 6 | **How do agents improve?** | **LoopForge** — LangGraph repo fix → PR, harness, memory | [demo-omega-taupe.vercel.app](https://demo-omega-taupe.vercel.app) · [API](https://loopforge-api.onrender.com) | [loop-engine-agent-platform](https://github.com/vpeetla-ai/loop-engine-agent-platform) |
 | 7 | **How do we serve LLMs?** | **vLLM Architecture Lab** — PagedAttention, batching, KV budget | [vllm-architecture-lab.vercel.app](https://vllm-architecture-lab.vercel.app) · [API](https://vllm-architecture-lab-api.onrender.com) | [vllm-architecture-lab](https://github.com/vpeetla-ai/vllm-architecture-lab) |
+| — | **How do we know it worked?** | **Trace-linked LLMOps** — system / trace / node evals → Langfuse or OTLP | [TRACE_LINKED_OBSERVABILITY.md](docs/TRACE_LINKED_OBSERVABILITY.md) | All platform APIs |
 
 **Canonical essay:** [From Multi-Agent OS to Agent Governance](case-studies/from-multi-agent-os-to-agent-governance.md)
+
+---
+
+## Trace-linked LLMOps (observability layer)
+
+Observability tells you **what happened**. Trace-linked evaluation tells you **whether it was good** — on the same `trace_id` as the agent run.
+
+```mermaid
+flowchart TB
+    subgraph Levels["Three evaluation levels"]
+        SYS["system<br/>Did the workflow complete?"]
+        TR["trace<br/>Which path did the agent take?"]
+        ND["node<br/>Was each step correct?"]
+    end
+    subgraph Platforms["Platform repos"]
+        VAP["venkat-ai-platform"]
+        ACF["ai-content-factory"]
+        SB["sentinel-brief"]
+        LF["loop-engine"]
+        AL["aegisloop"]
+        AEG["aegisai"]
+        ER["enterprise_rag · OTLP"]
+    end
+    subgraph Export["Export adapters"]
+        LANG["Langfuse Cloud"]
+        OTEL["OTLP collector"]
+    end
+    Platforms --> Levels
+    Levels -.-> LANG
+    ER -.-> OTEL
+```
+
+Spec: [docs/TRACE_LINKED_OBSERVABILITY.md](docs/TRACE_LINKED_OBSERVABILITY.md) · ADR: [ADR-007](adr/ADR-007-2026-agent-protocol-stack.md)
 
 ---
 

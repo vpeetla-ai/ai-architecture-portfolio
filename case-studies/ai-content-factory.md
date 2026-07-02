@@ -25,6 +25,7 @@ flowchart LR
   E --> H[HITL]
   H --> G[AegisAI gateway]
   G --> P[Publish adapters]
+  R & C & E -.-> LF[Langfuse<br/>trace-linked evals]
 ```
 
 ## Key decisions

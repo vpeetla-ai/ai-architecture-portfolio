@@ -34,6 +34,7 @@ flowchart TB
   SNAP[(snapshots/)] <--> DIFF
   ARCH --> REP[(reports/)]
   GW --> AEGIS[AegisAI gateway] --> MAIL[Resend email]
+  FETCH & DIFF & BRIEF & EVAL -.-> OBS["TraceRecorder → Langfuse"]
 ```
 
 ## Key decisions
