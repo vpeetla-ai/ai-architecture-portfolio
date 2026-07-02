@@ -64,7 +64,7 @@ Patterns (×5)                  → composable units    [stub-first traces]
 | **enterprise_rag_platform** | `docs/ARCHITECTURE.md` hub; live LLM answer path |
 | **aegisloop** | Fix stale mermaid; mission architecture doc; more tests |
 | **ai-content-factory** | Real OAuth publish; gateway fail-closed prod mode |
-| **loop-engine** | Langfuse on harness iterations; eval regression suite |
+| **loop-engine** | Eval regression suite; wire `vpeetla_observability` middleware |
 | **vllm-architecture-lab** | Cross-link from VAP model-router docs |
 
 ### P2 — Pattern repos (ongoing)
@@ -95,7 +95,7 @@ Patterns (×5)                  → composable units    [stub-first traces]
 | Gateway governance | AegisAI + Content Factory + LoopForge git | Pattern repos N/A (honest ❌) |
 | HITL before side effects | AegisAI + Content Factory + LoopForge | VAP notify partial |
 | Evals + regression | Enterprise RAG, AegisLoop, Content Factory pytest | Pattern golden cross-repo |
-| Observability (OTel/Langfuse) | 6/7 platforms | Enterprise RAG OTLP |
+| Observability (OTel/Langfuse) | 7/7 platforms | Cross-repo `trace_id` in audit events |
 | Inference optimization | vLLM lab + VAP INFERENCE.md | Self-hosted vLLM behind router |
 | Honest implementation tables | 7/7 platforms + patterns | Portfolio CI validator |
 | A2A inter-agent protocol | In-process LangGraph | Document as future A2A peer layer |

@@ -9,6 +9,7 @@ repos:
       - { label: Python, value: "3.11", color: "3776AB" }
       - { label: FastAPI, color: "009688" }
       - { label: LangGraph, color: "9333EA" }
+      - { label: Langfuse, color: "6366F1" }
       - { label: Pydantic, value: "v2", color: "E92063" }
       - { label: Next.js, color: "000000" }
       - { label: Clerk, color: "6C47FF" }
@@ -21,6 +22,7 @@ repos:
       - { label: Python, value: "3.11", color: "3776AB" }
       - { label: FastAPI, color: "009688" }
       - { label: LangGraph, color: "9333EA" }
+      - { label: Langfuse, color: "6366F1" }
       - { label: Next.js, color: "000000" }
       - { label: OPA, color: "7D4CDB" }
       - { label: Supabase, color: "3FCF8E" }
@@ -33,6 +35,7 @@ repos:
       - { label: Python, value: "3.11", color: "3776AB" }
       - { label: FastAPI, color: "009688" }
       - { label: LangGraph, color: "9333EA" }
+      - { label: Langfuse, color: "6366F1" }
       - { label: Next.js, color: "000000" }
       - { label: Qdrant, color: "DC382D" }
       - { label: Postgres, color: "4169E1" }
@@ -46,6 +49,7 @@ repos:
       - { label: Python, value: "3.11", color: "3776AB" }
       - { label: FastAPI, color: "009688" }
       - { label: Qdrant, color: "DC382D" }
+      - { label: OpenTelemetry, color: "326CE5" }
       - { label: Docker, color: "2496ED" }
       - { label: Vercel, color: "000000" }
       - { label: Render, color: "46E3B7" }
@@ -66,6 +70,7 @@ repos:
       - { label: Python, value: "3.11", color: "3776AB" }
       - { label: LangGraph, color: "9333EA" }
       - { label: FastAPI, color: "009688" }
+      - { label: Langfuse, color: "6366F1" }
       - { label: MCP, color: "374151" }
       - { label: Groq, color: "F55036" }
       - { label: GitHub, value: "API", color: "181717" }
@@ -87,6 +92,7 @@ repos:
       - { label: Python, value: "3.11", color: "3776AB" }
       - { label: FastAPI, color: "009688" }
       - { label: LangGraph, color: "9333EA" }
+      - { label: Langfuse, color: "6366F1" }
       - { label: RSS, color: "FF6600" }
       - { label: Resend, color: "000000" }
       - { label: Vercel, color: "000000" }

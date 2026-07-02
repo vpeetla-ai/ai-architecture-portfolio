@@ -27,7 +27,7 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 **Venkata Peetla** — Principal AI Architect · Lucid Motors  
 *19 years enterprise delivery · **13 live demos** · **17 open-source repos**
 
-[Live demos](https://venkat-ai.com/work) · [Repo index](docs/REPO_INDEX.md) · [README standard](docs/README_STANDARD.md) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai) · [Improvement plan 2026](docs/ORG_IMPROVEMENT_PLAN_2026.md)
+[Live demos](https://venkat-ai.com/work) · [Repo index](docs/REPO_INDEX.md) · [Trace-linked observability](docs/TRACE_LINKED_OBSERVABILITY.md) · [README standard](docs/README_STANDARD.md) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai) · [Improvement plan 2026](docs/ORG_IMPROVEMENT_PLAN_2026.md)
 
 ---
 
