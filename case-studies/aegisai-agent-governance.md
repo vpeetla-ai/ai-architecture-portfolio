@@ -32,8 +32,8 @@ flowchart LR
 
 ## Key decisions
 
-- Separate governance from orchestration (see [ADR-001](../architecture-decisions/001-orchestration-vs-governance-split.md))
-- Side-effecting calls require gateway + optional HITL ([ADR-004](../architecture-decisions/004-gateway-hitl-side-effects.md))
+- Separate governance from orchestration (see [ADR-001](../adr/ADR-001-orchestration-vs-governance-split.md))
+- Side-effecting calls require gateway + optional HITL ([ADR-004](../adr/ADR-004-gateway-hitl-side-effects.md))
 - Agent registry with persistent lifecycle state
 
 ## Trade-offs
@@ -44,6 +44,7 @@ flowchart LR
 | HITL for high-risk only | Balance velocity vs safety |
 | OPA for policy | Declarative, auditable rules — but advisory: fails open (allow) when OPA itself is unavailable, defaulting to a builtin simulator rather than a hard block |
 | Cron orchestrator endpoints now require `AuthRequired` ([ADR-0003](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/blob/main/adr/0003-orchestrator-auth-gate.md)) | They previously had no auth dependency at all, unlike every other mutating route — closes that inconsistency |
+| MCP exposed outbound, not just gated inbound ([ADR-0005](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/blob/main/adr/0005-mcp-tool-exposure.md) · [ADR-013](../adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md)) | `McpGovernanceProxy` already gated outbound MCP calls; a real `interfaces/mcp/server.py` now exposes registry/budget/kill-switch/website-build as MCP tools any client can call, through the same governed core |
 
 ## Stack
 

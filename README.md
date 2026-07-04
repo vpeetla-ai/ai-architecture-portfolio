@@ -123,13 +123,19 @@ Real decisions from production systems — not theoretical patterns.
 
 | ADR | Topic | Key insight |
 |-----|-------|-------------|
-| [ADR-001](architecture-decisions/001-orchestration-vs-governance-split.md) | Orchestration vs governance split | VAP + AegisAI as complementary layers — orchestration without governance is a liability |
-| [ADR-002](architecture-decisions/002-authorization-before-ranking-rag.md) | Authorization before ranking | RAG is an access-controlled intelligence layer, not a vector DB wrapper |
-| [ADR-003](architecture-decisions/003-mission-based-agentops.md) | Mission-based AgentOps | Bounded missions with eval gates — fleets survive production, not monolithic prompts |
-| [ADR-004](architecture-decisions/004-gateway-hitl-side-effects.md) | Gateway + HITL for side effects | Side-effecting tool calls require policy + human approval + signed audit |
+| [ADR-001](adr/ADR-001-orchestration-vs-governance-split.md) | Orchestration vs governance split | VAP + AegisAI as complementary layers — orchestration without governance is a liability |
+| [ADR-002](adr/ADR-002-authorization-before-ranking-rag.md) | Authorization before ranking | RAG is an access-controlled intelligence layer, not a vector DB wrapper |
+| [ADR-003](adr/ADR-003-mission-based-agentops.md) | Mission-based AgentOps | Bounded missions with eval gates — fleets survive production, not monolithic prompts |
+| [ADR-004](adr/ADR-004-gateway-hitl-side-effects.md) | Gateway + HITL for side effects | Side-effecting tool calls require policy + human approval + signed audit |
+| [ADR-005](adr/ADR-005-reference-stack-free-tier.md) | Reference stack on free tier | Vercel + Render + Groq — production boundaries without enterprise budget on day one |
+| [ADR-006](adr/ADR-006-loop-harness-self-improving-agents.md) | Loop harness for self-improvement | Agent → Harness → Loops → Memory — RAG evolves on eval failure |
 | [ADR-007](adr/ADR-007-2026-agent-protocol-stack.md) | 2026 agent protocol stack | Skills → MCP → Gateway → Observability (ADR-007) |
-| [ADR-006](architecture-decisions/006-loop-harness-self-improving-agents.md) | Loop harness for self-improvement | Agent → Harness → Loops → Memory — RAG evolves on eval failure |
-| [ADR-005](architecture-decisions/005-reference-stack-free-tier.md) | Reference stack on free tier | Vercel + Render + Groq — production boundaries without enterprise budget on day one |
+| [ADR-008](adr/ADR-008-real-publish-scope-and-invite-gating.md) | Real publish scope and invite-gating | LinkedIn/X-only OAuth + PKCE; invite-gated signup for ai-content-factory |
+| [ADR-009](adr/ADR-009-vap-auth-gate.md) | Auth gate on VAP routes | API-key gate on chat/orchestrator/ingest/rag/threads routes that previously had zero auth |
+| [ADR-010](adr/ADR-010-aegisloop-auth-gate.md) | Auth gate on AegisLoop mission-run routes | Closed the same gap independently in both the FastAPI backend and the Netlify serverless function |
+| [ADR-011](adr/ADR-011-agent-finops-standalone-service.md) | AgentFinOps as a standalone service | Real cost governance needs one shared ledger, not per-repo fragments — built as its own repo |
+| [ADR-012](adr/ADR-012-aegisloop-finops-metering.md) | Real FinOps metering wired into both consumers | Real usage now halts real agent dispatch in both AegisAI and AegisLoop |
+| [ADR-013](adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md) | Bidirectional MCP + real A2A discovery | AegisAI exposes governed tools via MCP; AegisLoop is the org's first real A2A client of VAP |
 
 ---
 

@@ -90,15 +90,16 @@ Patterns (×5)                  → composable units    [stub-first traces]
 
 | 2026 trend | Current strength | Gap |
 |------------|------------------|-----|
-| MCP tool standardization | LoopForge + Content Factory + VAP docs | Stdio MCP server packaging (Phase 3) |
+| MCP tool standardization | Bidirectional in AegisAI — gate inbound + expose outbound (ADR-013) | Stdio MCP server packaging org-wide (Phase 3) |
 | Agent skills (SKILL.md) | vpeetla-ai-skills org-wide (19 skills) | Versioning semver |
 | Gateway governance | AegisAI + Content Factory + LoopForge git | Pattern repos N/A (honest ❌) |
 | HITL before side effects | AegisAI + Content Factory + LoopForge | VAP notify partial |
-| Evals + regression | Enterprise RAG, AegisLoop, Content Factory pytest | Pattern golden cross-repo |
+| Evals + regression | Enterprise RAG, AegisLoop, Content Factory pytest | Pattern golden cross-repo; golden-eval-registry fixtures not yet wired as a live CI gate (Phase 7) |
 | Observability (OTel/Langfuse) | 7/7 platforms | Cross-repo `trace_id` in audit events |
 | Inference optimization | vLLM lab + VAP INFERENCE.md | Self-hosted vLLM behind router |
 | Honest implementation tables | 7/7 platforms + patterns | Portfolio CI validator |
-| A2A inter-agent protocol | In-process LangGraph | Document as future A2A peer layer |
+| A2A inter-agent protocol | Real: VAP is a live A2A server, AegisLoop is a real, tested A2A client (discover-then-invoke, ADR-013) | Only one client repo so far — aegisai/content-factory could delegate too |
+| Cloud/infra (Terraform, K8s) | None — 100% Vercel/Render PaaS | Real hands-on AWS + GCP IaC (Phase 7) |
 
 ---
 
@@ -115,8 +116,8 @@ canonical on its own.**
 | Platform live demos | **8** | AegisAI, VAP, Enterprise RAG, AegisLoop, Content Factory, LoopForge, vLLM Lab, Sentinel Brief |
 | Pattern live demos | **5** | ReAct, Reflection, Plan-Execute, Multi-Agent, Swarm |
 | **Total live demos** | **13** | All on Vercel free tier (+ Render APIs) |
-| Open-source repos | **18** | Per GitHub org, excluding the private portfolio repo — adds `agent-finops` (2026-07-04) |
-| Documented ADRs | **12** | ADR-001 through ADR-012, incl. the 2026-07-03 auth-gate fixes (008/009/010), the AgentFinOps standalone-service decision (011), and its consumer-wiring in AegisLoop (012 — AegisAI's consumer wiring is ADR-0004 in its own repo-local sequence) |
+| Open-source repos | **19** | Per GitHub org, excluding the private portfolio repo — adds `agent-finops` (2026-07-04) |
+| Documented ADRs | **13** | ADR-001 through ADR-013, incl. the 2026-07-03 auth-gate fixes (008/009/010), the AgentFinOps standalone-service decision (011) and its consumer-wiring in AegisLoop (012 — AegisAI's consumer wiring is ADR-0004 in its own repo-local sequence), and bidirectional MCP + real A2A discovery (013) |
 | Agent skills | **20** | Per `vpeetla-ai-skills` |
 
 ---
@@ -205,6 +206,35 @@ canonical on its own.**
       (needs real testimonial content — not something to fabricate).
 - [ ] **Distribution cadence signal.** Surface last-published date / posting cadence from the
       already-working Substack sync, not just a static post list.
+
+### Phase 7 — Top-1% AI Architect program (In progress, 2026-07-04)
+
+Mapped the org against a well-known 15-step "AI Architect roadmap" infographic (role →
+fundamentals → cloud/infra → deep learning → GenAI/LLMs → RAG → architecture patterns →
+agents/workflows → MLOps/LLMOps → security/governance → case studies → portfolio →
+interviews → career growth) to find real, verified gaps rather than assumed ones — full plan
+tracked outside this repo; sub-items logged here as they ship.
+
+- [x] **Phase A — bidirectional MCP + real A2A.** AegisAI now exposes governed capabilities as
+      real MCP tools (`interfaces/mcp/server.py`), complementing its existing inbound
+      `McpGovernanceProxy` gate. AegisLoop's VAP delegation now performs genuine A2A discovery
+      (`GET /orchestrators/{id}/agent-card`) before invoking `/run`, replacing a hardcoded
+      orchestrator-id guess — AegisLoop is the org's first real A2A client. See
+      [ADR-013](../adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md).
+- [ ] **Phase B — golden-eval-registry becomes a real CI gate.** Closes the Phase 4 item above:
+      a real scorer/runner executes suites against a live instance in at least 2 consumer
+      repos' CI, not just fixture validation.
+- [ ] **Phase C — genuine hands-on AWS + GCP infra.** `agent-finops` on GCP Cloud Run + Cloud
+      SQL; `aegisai`'s API on AWS ECS Fargate + RDS + ALB. Real, temporary cloud spend —
+      stood up, verified, torn down per session, not left running.
+- [ ] **Phase D — data foundations.** Explicit ingestion data contracts + lineage metadata in
+      `enterprise_rag_platform`.
+- [ ] **Phase E — new repo `ai-architect-interview-playbook` (public).** System design,
+      cloud-architecture, STAR-method behavioral, and scalability/governance trade-off content,
+      grounded in this org's real ADRs and outcomes rather than generic prep.
+- [ ] **Phase F — portfolio UI.** New `/roadmap` page mapping all 15 infographic steps to real
+      proof; retire the stale, disconnected `data/architecture.ts` stub in favor of the
+      maintained `architecture-portfolio.ts`.
 
 ---
 
