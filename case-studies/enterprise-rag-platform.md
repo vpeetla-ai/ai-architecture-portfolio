@@ -34,10 +34,11 @@ Authorization **before** semantic ranking — not after generation.
 | Hybrid lexical + semantic | Recall for exact terms and paraphrase |
 | AegisAI HITL bridge | High-risk ingest and answer paths |
 | Seeded demo corpus | Portfolio demo without mandatory vector DB |
+| API-key gate, Principal still client-asserted ([ADR-0004](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/adr/0004-api-auth-and-principal-trust.md)) | Closes "anyone can call the API" but not "anyone can claim any identity in the request body" — the access-before-ranking guarantee holds only given a trustworthy Principal, which a real deployment must derive from a verified token |
 
 ## Related ADR
 
-[ADR-002: Authorization before ranking](../architecture-decisions/002-authorization-before-ranking-rag.md)
+[ADR-002: Authorization before ranking](../architecture-decisions/002-authorization-before-ranking-rag.md) · [ADR-0004: API auth and principal trust](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/adr/0004-api-auth-and-principal-trust.md)
 
 ## Stack
 
