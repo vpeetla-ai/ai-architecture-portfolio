@@ -104,14 +104,20 @@ Patterns (×5)                  → composable units    [stub-first traces]
 
 ## Canonical metrics (portfolio source of truth)
 
+**This table is a snapshot, not the source of truth — it drifted out of sync with
+`venkat-ai-portfolio/data/metrics.ts` once before (7 ADRs shown here after the real
+count reached 10). The `orgMetrics` object in that file is authoritative; update this
+snapshot to match it whenever either changes, don't treat this markdown table as
+canonical on its own.**
+
 | Metric | Value | Notes |
 |--------|-------|-------|
-| Platform live demos | **7** | AegisAI, VAP, Enterprise RAG, AegisLoop, Content Factory, LoopForge, vLLM Lab |
+| Platform live demos | **8** | AegisAI, VAP, Enterprise RAG, AegisLoop, Content Factory, LoopForge, vLLM Lab, Sentinel Brief |
 | Pattern live demos | **5** | ReAct, Reflection, Plan-Execute, Multi-Agent, Swarm |
-| **Total live demos** | **12** | All on Vercel free tier (+ Render APIs) |
-| Open-source repos | **16** | Per GitHub org, excluding profile README repo |
-| Documented ADRs | **7** | Including ADR-007 protocol stack |
-| Agent skills | **19** | After enterprise-ai-architect + Phase 2 |
+| **Total live demos** | **13** | All on Vercel free tier (+ Render APIs) |
+| Open-source repos | **17** | Per GitHub org, excluding the private portfolio repo |
+| Documented ADRs | **10** | ADR-001 through ADR-010, incl. the 2026-07-03 auth-gate fixes (008/009/010) |
+| Agent skills | **20** | Per `vpeetla-ai-skills` |
 
 ---
 
@@ -150,6 +156,47 @@ Patterns (×5)                  → composable units    [stub-first traces]
 - [ ] Self-hosted vLLM behind VAP router (documented out of scope in INFERENCE.md)
 - [ ] Portfolio CI: cross-repo README status table scraper
 - [ ] MCP server on PyPI
+
+### Phase 5 — Done (2026-07-03 security + auth audit)
+- [x] Fixed unauthenticated/expensive endpoints across 6 repos: `loop-engine-agent-platform`
+      (ADR-002 — repo-fix + PKCE isolation), `sentinel-brief` (ADR-0002 — `/runs` gate + real
+      LLM synthesis replacing the template-only summarizer), `aegisai-enterprise-agent-platform`
+      (ADR-0003 — cron orchestrator auth), `venkat-ai-platform` (ADR-009 — chat/orchestrator/
+      ingest/RAG/threads gate, the widest-blast-radius fix — one route could send real Slack/
+      Telegram/WhatsApp messages with zero auth), `enterprise_rag_platform` (ADR-0004 — API gate
+      *and* disclosed that its `Principal` is client-asserted, not verified, in the risk register),
+      `aegisloop-agentops-workbench` (ADR-010 — same gap independently in both its FastAPI backend
+      and its Netlify function)
+- [x] `ai-content-factory`: real LinkedIn/X OAuth + PKCE (was mocked), invite-gated signup,
+      Terms/Privacy pages, honest Medium/Substack/Instagram copy-draft fallback (ADR-008)
+- [x] Corrected 2 repo README claims that were *understated* relative to reality: AegisAI's
+      Postgres-backed registry already existed (README said "in-memory today"); confirmed and
+      corrected the org's "no A2A anywhere" assumption — VAP has a real external A2A discovery
+      surface
+- [x] Portfolio metrics sync: `documentedAdrs` was 7, actual 10; fixed a second hardcoded "7
+      ADRs" literal that had silently bypassed `metrics.ts`'s single-source-of-truth rule; added
+      the 4 missing ADR entries (007–010) to `architecture-portfolio.ts`
+- [x] Corrected 2 more stale portfolio claims: `ai-content-factory` OAuth no longer described as
+      mocked; `enterprise_rag_platform` observability described as OTLP (removed org-wide in
+      favor of Langfuse a prior sprint)
+
+### Phase 6 — Proposed (flagged for prioritization, not started)
+- [ ] **AgentFinOps — real, enforced cost governance.** `aegisai` and `aegisloop`'s FinOps
+      dashboards both compute from static seed data (`monthly_cost_usd` hardcoded in fixtures),
+      never from real token/request metering. Build a shared metering middleware across
+      VAP/AegisAI/AegisLoop/Content Factory/Sentinel Brief, a per-agent/tenant budget model in
+      AegisAI's control plane, and — the differentiator — wire budget breaches into the
+      kill-switch that's already real and already works, instead of just coloring a dashboard
+      number red. Directly ties to the Substack piece
+      ["Enterprise AI FinOps Architecture"](https://venkatapeetla.substack.com/p/enterprise-ai-finops-architecture)
+      (2026-06-09) — the audit that found this gap is itself proof of the article's thesis.
+- [ ] **Real usage-metrics capture for ai-content-factory.** Now that OAuth/invite-gating is
+      real, add a small, honest counter (real runs, real invited users) surfaced on the
+      portfolio instead of implying scale via "live demo" framing alone.
+- [ ] **Portfolio social proof.** GitHub stars/activity widget; testimonial/quote block
+      (needs real testimonial content — not something to fabricate).
+- [ ] **Distribution cadence signal.** Surface last-published date / posting cadence from the
+      already-working Substack sync, not just a static post list.
 
 ---
 
