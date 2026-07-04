@@ -42,7 +42,8 @@ flowchart LR
 |----------|-----------|
 | Gateway SDK vs inline checks | Central policy enforcement across all integrated systems |
 | HITL for high-risk only | Balance velocity vs safety |
-| OPA for policy | Declarative, auditable rules |
+| OPA for policy | Declarative, auditable rules — but advisory: fails open (allow) when OPA itself is unavailable, defaulting to a builtin simulator rather than a hard block |
+| Cron orchestrator endpoints now require `AuthRequired` ([ADR-0003](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/blob/main/adr/0003-orchestrator-auth-gate.md)) | They previously had no auth dependency at all, unlike every other mutating route — closes that inconsistency |
 
 ## Stack
 
