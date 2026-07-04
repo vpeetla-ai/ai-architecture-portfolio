@@ -37,7 +37,13 @@ Adopt a **four-layer protocol stack** across all platform repos:
 
 Canonical package: `packages/vpeetla_observability/` · [TRACE_LINKED_OBSERVABILITY.md](../docs/TRACE_LINKED_OBSERVABILITY.md)
 
-**A2A** remains documented as the target for VAP specialist agents; in-process LangGraph delegation is acceptable for reference implementations.
+**A2A** (updated 2026-07-03): VAP now exposes a real external A2A discovery surface
+(`backend/app/api/routes/a2a.py` — `.well-known/agent.json` + per-orchestrator agent cards, see
+[ADR-009](./ADR-009-vap-auth-gate.md)), so other systems can discover and call VAP's
+orchestrators via the A2A spec. Internally, VAP's own specialist agents still delegate via
+in-process LangGraph, not A2A between themselves — that distinction (external discovery via
+A2A, internal delegation via LangGraph) still holds and is acceptable for reference
+implementations.
 
 ## Consequences
 

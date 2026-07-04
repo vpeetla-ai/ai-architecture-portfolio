@@ -42,6 +42,7 @@ Three LangGraph orchestrators: **Platform · Deep Research · Architecture Revie
 | LangGraph over linear chains | Stateful orchestration for enterprise workflows |
 | Separate orchestrators | Different evaluation and tool boundaries per use case |
 | Gateway at notify boundary | Side effects governed without coupling to orchestrator code |
+| API-key gate on chat/orchestrator/ingest/rag/threads routes ([ADR-009](../adr/ADR-009-vap-auth-gate.md)) | These previously had zero auth despite calling an LLM, sending real Slack/Telegram/WhatsApp messages, or writing to the vector DB |
 
 ## Stack
 
@@ -49,4 +50,4 @@ FastAPI · LangGraph · Next.js · Postgres · Qdrant · Vercel · Render
 
 ## Related ADR
 
-[ADR-001: Orchestration vs governance split](../architecture-decisions/001-orchestration-vs-governance-split.md)
+[ADR-001: Orchestration vs governance split](../architecture-decisions/001-orchestration-vs-governance-split.md) · [ADR-009: Auth gate on VAP routes](../adr/ADR-009-vap-auth-gate.md)
