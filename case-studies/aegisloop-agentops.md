@@ -22,7 +22,7 @@ flowchart LR
 
 - Mission orchestrator with specialist routing
 - Langfuse spans and replayable traces
-- FinOps estimates per mission
+- Real FinOps metering per mission (agent-finops), not an estimate
 - VAP delegation for complex sub-tasks
 
 ## Trade-offs
@@ -30,10 +30,11 @@ flowchart LR
 | Choice | Rationale |
 |--------|-----------|
 | API-key gate on mission-run/stream, both backend and Netlify function ([ADR-010](../adr/ADR-010-aegisloop-auth-gate.md)) | Both entry points called a real LLM with zero caller auth — closed independently in each |
+| Real usage metering + mission budget guard via agent-finops ([ADR-012](../adr/ADR-012-aegisloop-finops-metering.md)) | Replaced a character-count cost guess with real token counts and a real halt condition — no kill-switch here, so enforcement is refusing further dispatch, not a persistent block |
 
 ## Related ADR
 
-[ADR-003: Mission-based AgentOps](../adr/ADR-003-mission-based-agentops.md) · [ADR-010: Auth gate on mission-run routes](../adr/ADR-010-aegisloop-auth-gate.md)
+[ADR-003: Mission-based AgentOps](../adr/ADR-003-mission-based-agentops.md) · [ADR-010: Auth gate on mission-run routes](../adr/ADR-010-aegisloop-auth-gate.md) · [ADR-012: Real FinOps metering](../adr/ADR-012-aegisloop-finops-metering.md)
 
 ## Stack
 

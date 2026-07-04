@@ -116,7 +116,7 @@ canonical on its own.**
 | Pattern live demos | **5** | ReAct, Reflection, Plan-Execute, Multi-Agent, Swarm |
 | **Total live demos** | **13** | All on Vercel free tier (+ Render APIs) |
 | Open-source repos | **18** | Per GitHub org, excluding the private portfolio repo — adds `agent-finops` (2026-07-04) |
-| Documented ADRs | **11** | ADR-001 through ADR-011, incl. the 2026-07-03 auth-gate fixes (008/009/010) and the AgentFinOps standalone-service decision (011) |
+| Documented ADRs | **12** | ADR-001 through ADR-012, incl. the 2026-07-03 auth-gate fixes (008/009/010), the AgentFinOps standalone-service decision (011), and its consumer-wiring in AegisLoop (012 — AegisAI's consumer wiring is ADR-0004 in its own repo-local sequence) |
 | Agent skills | **20** | Per `vpeetla-ai-skills` |
 
 ---
@@ -188,12 +188,16 @@ canonical on its own.**
       [ADR-011](../adr/ADR-011-agent-finops-standalone-service.md). Directly ties to the
       Substack piece ["Enterprise AI FinOps Architecture"](https://venkatapeetla.substack.com/p/enterprise-ai-finops-architecture)
       (2026-06-09) — the audit that found this gap is itself proof of the article's thesis.
-- [ ] **AgentFinOps Stage 2 — wire consumers.** `aegisai`'s `WebsiteBuildOrchestrator` (5 agents
-      already map to existing registry entries) is the first target — budget breach wires to
-      the existing, real `KillSwitchService`. `aegisloop`'s mission runtime is the second —
-      budget breach halts further paid-mode dispatch (no kill-switch there, so enforcement is
-      "refuse to keep spending"). Both repos' README FinOps rows and the portfolio's FinOps
-      thesis card get updated once real, not before.
+- [x] **AgentFinOps Stage 2 — consumers wired.** `aegisai`'s `WebsiteBuildOrchestrator` (4 of 5
+      agents call an LLM, all map to existing registry entries) records real usage per node and
+      wires a budget breach to the existing, real `KillSwitchService` — see
+      [aegisai ADR-0004](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/blob/main/adr/0004-real-finops-metering-website-build.md).
+      `aegisloop`'s `research`/`content` missions (the only 2 of 5 mission types that call an
+      LLM) record real usage against a stable repo-wide scope and halt further agent dispatch on
+      either agent-finops's own breach signal or a local `MISSION_BUDGET_USD` threshold (no
+      kill-switch there, so enforcement is "refuse to keep spending") — see
+      [ADR-012](../adr/ADR-012-aegisloop-finops-metering.md). Both repos' README FinOps rows
+      updated to reflect real metering, not estimates.
 - [ ] **Real usage-metrics capture for ai-content-factory.** Now that OAuth/invite-gating is
       real, add a small, honest counter (real runs, real invited users) surfaced on the
       portfolio instead of implying scale via "live demo" framing alone.
