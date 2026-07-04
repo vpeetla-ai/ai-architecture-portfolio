@@ -25,9 +25,15 @@ flowchart LR
 - FinOps estimates per mission
 - VAP delegation for complex sub-tasks
 
+## Trade-offs
+
+| Choice | Rationale |
+|--------|-----------|
+| API-key gate on mission-run/stream, both backend and Netlify function ([ADR-010](../adr/ADR-010-aegisloop-auth-gate.md)) | Both entry points called a real LLM with zero caller auth — closed independently in each |
+
 ## Related ADR
 
-[ADR-003: Mission-based AgentOps](../architecture-decisions/003-mission-based-agentops.md)
+[ADR-003: Mission-based AgentOps](../adr/ADR-003-mission-based-agentops.md) · [ADR-010: Auth gate on mission-run routes](../adr/ADR-010-aegisloop-auth-gate.md)
 
 ## Stack
 
