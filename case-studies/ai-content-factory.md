@@ -40,7 +40,8 @@ flowchart LR
 | Decision | Rationale | Cost |
 |----------|-----------|------|
 | HITL mandatory | Trust + policy | Not overnight-autonomous (by design) |
-| Mock OAuth in demo | Free-tier without vendor keys | Wire tokens for prod |
+| Real OAuth + PKCE for LinkedIn/X only ([ADR-008](../adr/ADR-008-real-publish-scope-and-invite-gating.md)) | Only two platforms have a viable public posting API | Medium/Substack/Instagram are copy-draft export, not auto-publish |
+| Invite-gated signup, no billing yet | Ship to real users without building billing prematurely | Revisit monetization once there's usage data |
 | Redis checkpointer | Resume long pipelines | Ops dependency |
 | Gateway fail-open dev | Local velocity | Fail-closed required in prod |
 
@@ -51,5 +52,6 @@ FastAPI · LangGraph · Next.js · Clerk · Redis · Vercel · Render
 ## Related
 
 - [PRODUCT.md](https://github.com/vpeetla-ai/ai-content-factory/blob/main/docs/PRODUCT.md) in repo
+- [ADR-008: Real publish scope and invite-gating](../adr/ADR-008-real-publish-scope-and-invite-gating.md)
 - [AegisAI case study](./aegisai-agent-governance.md) — gateway layer
 - Essay: [2026 Agent Protocol Stack](https://github.com/vpeetla-ai/ai-content-factory/blob/main/docs/content/2026-agent-protocol-stack.md)

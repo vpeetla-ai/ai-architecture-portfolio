@@ -51,8 +51,8 @@ Canonical package: `packages/vpeetla_observability/` · [TRACE_LINKED_OBSERVABIL
 - Gateway wrapping adds latency on git push / publish paths
 
 ### Follow-ups
-- ADR-008 (proposed): LoopForge gateway on PR workflow
-- ADR-009 (proposed): MCP tool registry in VAP
+- ADR-009 (proposed): LoopForge gateway on PR workflow
+- ADR-010 (proposed): MCP tool registry in VAP
 
 ## Links
 
