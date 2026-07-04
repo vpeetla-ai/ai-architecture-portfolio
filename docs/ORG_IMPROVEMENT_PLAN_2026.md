@@ -116,7 +116,7 @@ canonical on its own.**
 | Platform live demos | **8** | AegisAI, VAP, Enterprise RAG, AegisLoop, Content Factory, LoopForge, vLLM Lab, Sentinel Brief |
 | Pattern live demos | **5** | ReAct, Reflection, Plan-Execute, Multi-Agent, Swarm |
 | **Total live demos** | **13** | All on Vercel free tier (+ Render APIs) |
-| Open-source repos | **19** | Per GitHub org, excluding the private portfolio repo — adds `agent-finops` (2026-07-04) |
+| Open-source repos | **18** | Per GitHub org, excluding the private portfolio repo — adds `agent-finops` (2026-07-04) |
 | Documented ADRs | **13** | ADR-001 through ADR-013, incl. the 2026-07-03 auth-gate fixes (008/009/010), the AgentFinOps standalone-service decision (011) and its consumer-wiring in AegisLoop (012 — AegisAI's consumer wiring is ADR-0004 in its own repo-local sequence), and bidirectional MCP + real A2A discovery (013) |
 | Agent skills | **20** | Per `vpeetla-ai-skills` |
 
