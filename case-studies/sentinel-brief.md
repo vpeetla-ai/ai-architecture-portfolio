@@ -51,10 +51,11 @@ flowchart TB
 
 | Choice | Upside | Downside |
 |--------|--------|----------|
-| Template brief MVP | Zero LLM cost, deterministic tests | Less narrative synthesis |
+| LLM brief (Groq/OpenAI), template fallback ([ADR-0002](https://github.com/vpeetla-ai/sentinel-brief/blob/main/docs/adr/0002-runs-auth-and-llm-synthesis.md)) | Real narrative synthesis, never hard-fails | Slightly higher latency/cost when a key is set |
 | JSON snapshots | Portable, simple | No cross-source dedup yet |
 | Min-delta eval | Reduces noise emails | Quiet news days may skip send |
 | Fail-open gateway (dev) | Fast iteration | Must disable in production |
+| API-key gate on `POST /runs` only | Archive stays publicly browsable; run-triggering doesn't | Must set `SENTINEL_API_KEY` on Render before this is a production deployment |
 
 ## Sources (v1)
 
@@ -68,6 +69,6 @@ HN top, HN AI (Algolia), arXiv cs.AI, VentureBeat AI, MIT Technology Review, The
 
 ## Related
 
-- [ADR-0001 Governed overnight brief](https://github.com/vpeetla-ai/sentinel-brief/blob/main/docs/adr/0001-governed-overnight-brief.md)
+- [ADR-0001 Governed overnight brief](https://github.com/vpeetla-ai/sentinel-brief/blob/main/docs/adr/0001-governed-overnight-brief.md) · [ADR-0002 Runs auth + LLM synthesis](https://github.com/vpeetla-ai/sentinel-brief/blob/main/docs/adr/0002-runs-auth-and-llm-synthesis.md)
 - [agents-that-run-for-days skill](https://github.com/vpeetla-ai/vpeetla-ai-skills)
 - [Golden Eval Registry](golden-eval-registry.md)
