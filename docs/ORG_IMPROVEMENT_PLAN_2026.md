@@ -115,8 +115,8 @@ canonical on its own.**
 | Platform live demos | **8** | AegisAI, VAP, Enterprise RAG, AegisLoop, Content Factory, LoopForge, vLLM Lab, Sentinel Brief |
 | Pattern live demos | **5** | ReAct, Reflection, Plan-Execute, Multi-Agent, Swarm |
 | **Total live demos** | **13** | All on Vercel free tier (+ Render APIs) |
-| Open-source repos | **17** | Per GitHub org, excluding the private portfolio repo |
-| Documented ADRs | **10** | ADR-001 through ADR-010, incl. the 2026-07-03 auth-gate fixes (008/009/010) |
+| Open-source repos | **18** | Per GitHub org, excluding the private portfolio repo — adds `agent-finops` (2026-07-04) |
+| Documented ADRs | **11** | ADR-001 through ADR-011, incl. the 2026-07-03 auth-gate fixes (008/009/010) and the AgentFinOps standalone-service decision (011) |
 | Agent skills | **20** | Per `vpeetla-ai-skills` |
 
 ---
@@ -180,16 +180,20 @@ canonical on its own.**
       mocked; `enterprise_rag_platform` observability described as OTLP (removed org-wide in
       favor of Langfuse a prior sprint)
 
-### Phase 6 — Proposed (flagged for prioritization, not started)
-- [ ] **AgentFinOps — real, enforced cost governance.** `aegisai` and `aegisloop`'s FinOps
-      dashboards both compute from static seed data (`monthly_cost_usd` hardcoded in fixtures),
-      never from real token/request metering. Build a shared metering middleware across
-      VAP/AegisAI/AegisLoop/Content Factory/Sentinel Brief, a per-agent/tenant budget model in
-      AegisAI's control plane, and — the differentiator — wire budget breaches into the
-      kill-switch that's already real and already works, instead of just coloring a dashboard
-      number red. Directly ties to the Substack piece
-      ["Enterprise AI FinOps Architecture"](https://venkatapeetla.substack.com/p/enterprise-ai-finops-architecture)
+### Phase 6 — In progress
+- [x] **AgentFinOps Stage 1 — standalone service built.** New repo
+      [agent-finops](https://github.com/vpeetla-ai/agent-finops): real usage metering, one
+      canonical pricing table, budget breach detection, Python SDK with graceful local fallback.
+      22 tests, verified end-to-end against a live running instance. See
+      [ADR-011](../adr/ADR-011-agent-finops-standalone-service.md). Directly ties to the
+      Substack piece ["Enterprise AI FinOps Architecture"](https://venkatapeetla.substack.com/p/enterprise-ai-finops-architecture)
       (2026-06-09) — the audit that found this gap is itself proof of the article's thesis.
+- [ ] **AgentFinOps Stage 2 — wire consumers.** `aegisai`'s `WebsiteBuildOrchestrator` (5 agents
+      already map to existing registry entries) is the first target — budget breach wires to
+      the existing, real `KillSwitchService`. `aegisloop`'s mission runtime is the second —
+      budget breach halts further paid-mode dispatch (no kill-switch there, so enforcement is
+      "refuse to keep spending"). Both repos' README FinOps rows and the portfolio's FinOps
+      thesis card get updated once real, not before.
 - [ ] **Real usage-metrics capture for ai-content-factory.** Now that OAuth/invite-gating is
       real, add a small, honest counter (real runs, real invited users) surfaced on the
       portfolio instead of implying scale via "live demo" framing alone.
