@@ -53,6 +53,7 @@ Three production loops:
 | JSON file memory (v1) | Zero-infra demo on free tier | Not multi-tenant |
 | pytest-only quality gate (v1) | Works on Python repos today | Node/Rust need adapters |
 | Render free tier | $0 API hosting | Cold start ~30–60s |
+| API-key gate on repo-fix, no sandboxing yet ([ADR-002](https://github.com/vpeetla-ai/loop-engine-agent-platform/blob/main/docs/ADR-002-repo-fix-auth-and-isolation.md)) | `/api/repo-fix` runs arbitrary cloned code — closing "who can trigger it" was the tractable fix; container isolation is a bigger follow-up | Requires `LOOPFORGE_API_KEY` actually set on the live Render deployment, or it remains open |
 
 ## Impact
 
@@ -67,5 +68,5 @@ Python · LangGraph · FastAPI · MCP · Groq · GitHub API · Vercel · Render
 ## Related
 
 - [Architecture](https://github.com/vpeetla-ai/loop-engine-agent-platform/blob/main/docs/ARCHITECTURE.md)
-- [ADR-001](https://github.com/vpeetla-ai/loop-engine-agent-platform/blob/main/docs/ADR-001-loop-harness-memory.md)
+- [ADR-001](https://github.com/vpeetla-ai/loop-engine-agent-platform/blob/main/docs/ADR-001-loop-harness-memory.md) · [ADR-002](https://github.com/vpeetla-ai/loop-engine-agent-platform/blob/main/docs/ADR-002-repo-fix-auth-and-isolation.md)
 - Pairs with [VAP](https://github.com/vpeetla-ai/venkat-ai-platform), [Enterprise RAG](https://github.com/vpeetla-ai/enterprise_rag_platform), [AegisAI](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform)
