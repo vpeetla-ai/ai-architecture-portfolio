@@ -45,10 +45,11 @@ flowchart LR
 | OPA for policy | Declarative, auditable rules — but advisory: fails open (allow) when OPA itself is unavailable, defaulting to a builtin simulator rather than a hard block |
 | Cron orchestrator endpoints now require `AuthRequired` ([ADR-0003](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/blob/main/adr/0003-orchestrator-auth-gate.md)) | They previously had no auth dependency at all, unlike every other mutating route — closes that inconsistency |
 | MCP exposed outbound, not just gated inbound ([ADR-0005](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/blob/main/adr/0005-mcp-tool-exposure.md) · [ADR-013](../adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md)) | `McpGovernanceProxy` already gated outbound MCP calls; a real `interfaces/mcp/server.py` now exposes registry/budget/kill-switch/website-build as MCP tools any client can call, through the same governed core |
+| Real AWS deploy alongside Render ([ADR-0006](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/blob/main/adr/0006-paas-vs-iac-deploy-tradeoffs.md) · [ADR-015](../adr/ADR-015-real-aws-gcp-infra-phase-c.md)) | Chosen as the AWS target because this is the flagship control plane — real VPC/ECS Fargate/ALB/RDS/IAM, verified with a real orchestrator run against real RDS-backed persistence, then torn down |
 
 ## Stack
 
-FastAPI · Next.js · Vercel · Render · Supabase/Postgres
+FastAPI · Next.js · Vercel · Render · Supabase/Postgres · AWS ECS/RDS/ALB (alternative deploy)
 
 ## Related
 

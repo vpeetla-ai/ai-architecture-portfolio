@@ -99,7 +99,7 @@ Patterns (×5)                  → composable units    [stub-first traces]
 | Inference optimization | vLLM lab + VAP INFERENCE.md | Self-hosted vLLM behind router |
 | Honest implementation tables | 7/7 platforms + patterns | Portfolio CI validator |
 | A2A inter-agent protocol | Real: VAP is a live A2A server, AegisLoop is a real, tested A2A client (discover-then-invoke, ADR-013) | Only one client repo so far — aegisai/content-factory could delegate too |
-| Cloud/infra (Terraform, K8s) | None — 100% Vercel/Render PaaS | Real hands-on AWS + GCP IaC (Phase 7) |
+| Cloud/infra (Terraform, K8s) | Real, verified: agent-finops on GCP Cloud Run + Cloud SQL, aegisai on AWS ECS Fargate + RDS + ALB (stood up, verified, torn down) | Both are alternates to Render PaaS, not the new default — no ongoing running infra |
 
 ---
 
@@ -117,7 +117,7 @@ canonical on its own.**
 | Pattern live demos | **5** | ReAct, Reflection, Plan-Execute, Multi-Agent, Swarm |
 | **Total live demos** | **13** | All on Vercel free tier (+ Render APIs) |
 | Open-source repos | **18** | Per GitHub org, excluding the private portfolio repo — adds `agent-finops` (2026-07-04) |
-| Documented ADRs | **14** | ADR-001 through ADR-014, incl. the 2026-07-03 auth-gate fixes (008/009/010), the AgentFinOps standalone-service decision (011) and its consumer-wiring in AegisLoop (012 — AegisAI's consumer wiring is ADR-0004 in its own repo-local sequence), bidirectional MCP + real A2A discovery (013), and golden-eval-registry becoming a real CI gate (014) |
+| Documented ADRs | **15** | ADR-001 through ADR-015, incl. the 2026-07-03 auth-gate fixes (008/009/010), the AgentFinOps standalone-service decision (011) and its consumer-wiring in AegisLoop (012 — AegisAI's consumer wiring is ADR-0004 in its own repo-local sequence), bidirectional MCP + real A2A discovery (013), golden-eval-registry becoming a real CI gate (014), and genuine hands-on AWS + GCP infra (015) |
 | Agent skills | **20** | Per `vpeetla-ai-skills` |
 
 ---
@@ -232,9 +232,12 @@ tracked outside this repo; sub-items logged here as they ship.
       first time found and fixed a genuine bug in its own corpus fixture (version bumped
       1.0.0 → 1.0.1) — direct proof that fixture existence and correctness are different
       claims. See [ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md).
-- [ ] **Phase C — genuine hands-on AWS + GCP infra.** `agent-finops` on GCP Cloud Run + Cloud
-      SQL; `aegisai`'s API on AWS ECS Fargate + RDS + ALB. Real, temporary cloud spend —
-      stood up, verified, torn down per session, not left running.
+- [x] **Phase C — genuine hands-on AWS + GCP infra.** `agent-finops` deployed to real GCP Cloud
+      Run + Cloud SQL; `aegisai`'s API deployed to real AWS ECS Fargate + RDS + ALB. Both fully
+      verified against live endpoints (a real budget breach against real Cloud SQL; a real
+      orchestrator run against real RDS-backed persistence), then fully torn down — confirmed
+      empty via each provider's own CLI. Found and fixed 4 real bugs only real deployment could
+      surface (see [ADR-015](../adr/ADR-015-real-aws-gcp-infra-phase-c.md)).
 - [ ] **Phase D — data foundations.** Explicit ingestion data contracts + lineage metadata in
       `enterprise_rag_platform`.
 - [ ] **Phase E — new repo `ai-architect-interview-playbook` (public).** System design,

@@ -43,20 +43,27 @@ flowchart LR
 |--------|-----|------|
 | Standalone service vs. embedded per-repo logic ([ADR-011](../adr/ADR-011-agent-finops-standalone-service.md)) | One pricing table; enables real cross-tenant totals | Consumers must wire an HTTP call |
 | Report breach, don't enforce | Each consumer's enforcement mechanism already differs | Consumers must remember to act on it |
-| Built standalone first, consumers wired as follow-up | Proves the service works before integrating | AegisAI/AegisLoop dashboards aren't fixed yet — this is Stage 1 |
+| Built standalone first, consumers wired as follow-up ([ADR-012](../adr/ADR-012-aegisloop-finops-metering.md)) | Proves the service works before integrating | Both AegisAI and AegisLoop are now wired as real consumers — no longer a pending follow-up |
+| Real GCP deploy path alongside Render ([ADR-015](../adr/ADR-015-real-aws-gcp-infra-phase-c.md)) | Genuine hands-on Cloud Run + Cloud SQL infra ownership, not just a PaaS deploy | Real, temporary cloud spend — stood up, verified, torn down, not left running |
 
 ## Impact
 
-- 18th org repo, same documentation discipline as the other 17 (honest status table, ADR,
-  architecture/product docs, demo, CI) — this is what "portfolio truthfulness" (Phase 1 of
+- Same documentation discipline as every other repo (honest status table, ADR, architecture/
+  product docs, demo, CI) — this is what "portfolio truthfulness" (Phase 1 of
   `ORG_IMPROVEMENT_PLAN_2026.md`) is supposed to produce when caught early.
 - Verified end-to-end against a live running instance during the build, not just unit-mocked —
   recorded real usage, set a budget, confirmed breach detection over real HTTP requests.
 - Directly closes the loop on the org's own Substack thesis: the audit that found this gap is
   itself the proof the article's argument was right.
+- Real GCP infra ownership, not just a service: `terraform apply` stood up Cloud Run + Cloud
+  SQL for real, a real budget breach was detected against the live Cloud SQL-backed ledger, and
+  `terraform destroy` cleanly tore everything down — verified with the provider's own CLI, not
+  assumed.
 
 ## Related
 
 - [ADR-011: AgentFinOps standalone service](../adr/ADR-011-agent-finops-standalone-service.md)
-- [ORG_IMPROVEMENT_PLAN_2026.md](../docs/ORG_IMPROVEMENT_PLAN_2026.md) Phase 6
+- [ADR-012: Real FinOps metering wired into both consumers](../adr/ADR-012-aegisloop-finops-metering.md)
+- [ADR-015: Genuine hands-on AWS + GCP infra](../adr/ADR-015-real-aws-gcp-infra-phase-c.md)
+- [ORG_IMPROVEMENT_PLAN_2026.md](../docs/ORG_IMPROVEMENT_PLAN_2026.md) Phase 7
 - [agent-finops](https://github.com/vpeetla-ai/agent-finops)
