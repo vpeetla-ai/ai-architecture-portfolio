@@ -136,6 +136,7 @@ Real decisions from production systems — not theoretical patterns.
 | [ADR-011](adr/ADR-011-agent-finops-standalone-service.md) | AgentFinOps as a standalone service | Real cost governance needs one shared ledger, not per-repo fragments — built as its own repo |
 | [ADR-012](adr/ADR-012-aegisloop-finops-metering.md) | Real FinOps metering wired into both consumers | Real usage now halts real agent dispatch in both AegisAI and AegisLoop |
 | [ADR-013](adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md) | Bidirectional MCP + real A2A discovery | AegisAI exposes governed tools via MCP; AegisLoop is the org's first real A2A client of VAP |
+| [ADR-014](adr/ADR-014-golden-eval-registry-real-ci-gate.md) | golden-eval-registry becomes a real CI gate | 2 of 6 suite kinds now gate real builds — running one for the first time found and fixed a real fixture bug |
 
 ---
 

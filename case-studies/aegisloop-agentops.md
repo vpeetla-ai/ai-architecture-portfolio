@@ -32,10 +32,11 @@ flowchart LR
 | API-key gate on mission-run/stream, both backend and Netlify function ([ADR-010](../adr/ADR-010-aegisloop-auth-gate.md)) | Both entry points called a real LLM with zero caller auth — closed independently in each |
 | Real usage metering + mission budget guard via agent-finops ([ADR-012](../adr/ADR-012-aegisloop-finops-metering.md)) | Replaced a character-count cost guess with real token counts and a real halt condition — no kill-switch here, so enforcement is refusing further dispatch, not a persistent block |
 | VAP delegation now performs real A2A discovery before invoking ([ADR-013](../adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md)) | Previously guessed the target orchestrator from a local map and POSTed straight to `/run`; now calls VAP's real `GET /orchestrators/{id}/agent-card` first — AegisLoop is the org's first real A2A client, VAP its first real A2A server actually being called |
+| golden-eval-registry as a real CI gate ([ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)) | CI now checks out golden-eval-registry and runs the shared `aegisloop_mission_gates_v1` suite against the real `runtime.evaluate()` function, failing the build on regression — not just fixture validation |
 
 ## Related ADR
 
-[ADR-003: Mission-based AgentOps](../adr/ADR-003-mission-based-agentops.md) · [ADR-010: Auth gate on mission-run routes](../adr/ADR-010-aegisloop-auth-gate.md) · [ADR-012: Real FinOps metering](../adr/ADR-012-aegisloop-finops-metering.md) · [ADR-013: MCP exposure + real A2A delegation](../adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md)
+[ADR-003: Mission-based AgentOps](../adr/ADR-003-mission-based-agentops.md) · [ADR-010: Auth gate on mission-run routes](../adr/ADR-010-aegisloop-auth-gate.md) · [ADR-012: Real FinOps metering](../adr/ADR-012-aegisloop-finops-metering.md) · [ADR-013: MCP exposure + real A2A delegation](../adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md) · [ADR-014: golden-eval-registry real CI gate](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)
 
 ## Stack
 

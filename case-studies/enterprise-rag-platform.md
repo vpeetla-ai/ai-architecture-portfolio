@@ -35,10 +35,11 @@ Authorization **before** semantic ranking — not after generation.
 | AegisAI HITL bridge | High-risk ingest and answer paths |
 | Seeded demo corpus | Portfolio demo without mandatory vector DB |
 | API-key gate, Principal still client-asserted ([ADR-0004](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/adr/0004-api-auth-and-principal-trust.md)) | Closes "anyone can call the API" but not "anyone can claim any identity in the request body" — the access-before-ranking guarantee holds only given a trustworthy Principal, which a real deployment must derive from a verified token |
+| golden-eval-registry as a real CI gate, isolated pipeline not the demo singleton ([ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)) | CI now runs the shared `enterprise_rag_golden_v1` suite against a real, isolated `RagPipeline` and fails the build on regression — running it for the first time found and fixed a real bug in the fixture itself |
 
 ## Related ADR
 
-[ADR-002: Authorization before ranking](../architecture-decisions/002-authorization-before-ranking-rag.md) · [ADR-0004: API auth and principal trust](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/adr/0004-api-auth-and-principal-trust.md)
+[ADR-002: Authorization before ranking](../adr/ADR-002-authorization-before-ranking-rag.md) · [ADR-0004: API auth and principal trust](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/adr/0004-api-auth-and-principal-trust.md) · [ADR-014: golden-eval-registry real CI gate](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)
 
 ## Stack
 

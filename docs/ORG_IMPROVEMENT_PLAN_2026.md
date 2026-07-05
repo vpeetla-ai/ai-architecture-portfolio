@@ -117,7 +117,7 @@ canonical on its own.**
 | Pattern live demos | **5** | ReAct, Reflection, Plan-Execute, Multi-Agent, Swarm |
 | **Total live demos** | **13** | All on Vercel free tier (+ Render APIs) |
 | Open-source repos | **18** | Per GitHub org, excluding the private portfolio repo — adds `agent-finops` (2026-07-04) |
-| Documented ADRs | **13** | ADR-001 through ADR-013, incl. the 2026-07-03 auth-gate fixes (008/009/010), the AgentFinOps standalone-service decision (011) and its consumer-wiring in AegisLoop (012 — AegisAI's consumer wiring is ADR-0004 in its own repo-local sequence), and bidirectional MCP + real A2A discovery (013) |
+| Documented ADRs | **14** | ADR-001 through ADR-014, incl. the 2026-07-03 auth-gate fixes (008/009/010), the AgentFinOps standalone-service decision (011) and its consumer-wiring in AegisLoop (012 — AegisAI's consumer wiring is ADR-0004 in its own repo-local sequence), bidirectional MCP + real A2A discovery (013), and golden-eval-registry becoming a real CI gate (014) |
 | Agent skills | **20** | Per `vpeetla-ai-skills` |
 
 ---
@@ -153,7 +153,8 @@ canonical on its own.**
 
 ### Phase 4 — Started
 - [x] Golden Eval Registry repo (versioned cross-repo fixtures + validator)
-- [ ] Consumer adapters that import registry suites in platform CI
+- [x] Consumer adapters that import registry suites in platform CI (2 of 6 suite kinds — see
+      Phase 7's Phase B and [ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md))
 - [ ] Self-hosted vLLM behind VAP router (documented out of scope in INFERENCE.md)
 - [ ] Portfolio CI: cross-repo README status table scraper
 - [ ] MCP server on PyPI
@@ -221,9 +222,16 @@ tracked outside this repo; sub-items logged here as they ship.
       (`GET /orchestrators/{id}/agent-card`) before invoking `/run`, replacing a hardcoded
       orchestrator-id guess — AegisLoop is the org's first real A2A client. See
       [ADR-013](../adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md).
-- [ ] **Phase B — golden-eval-registry becomes a real CI gate.** Closes the Phase 4 item above:
-      a real scorer/runner executes suites against a live instance in at least 2 consumer
-      repos' CI, not just fixture validation.
+- [x] **Phase B — golden-eval-registry becomes a real CI gate.** Closes the Phase 4 item above.
+      New `runner.py` (`score_case`/`score_suite`) compares a consumer's real output against a
+      case's `expect` block, staying dependency-light — each consumer supplies `actual` however
+      it can reach itself. Wired for real: `enterprise_rag_platform` CI runs
+      `enterprise_rag_golden_v1` against a real, isolated `RagPipeline`; `aegisloop-agentops-
+      workbench` CI runs `aegisloop_mission_gates_v1` against the real `runtime.evaluate()`
+      gate. Both verified passing in real GitHub Actions runs. Running the RAG suite for the
+      first time found and fixed a genuine bug in its own corpus fixture (version bumped
+      1.0.0 → 1.0.1) — direct proof that fixture existence and correctness are different
+      claims. See [ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md).
 - [ ] **Phase C — genuine hands-on AWS + GCP infra.** `agent-finops` on GCP Cloud Run + Cloud
       SQL; `aegisai`'s API on AWS ECS Fargate + RDS + ALB. Real, temporary cloud spend —
       stood up, verified, torn down per session, not left running.
