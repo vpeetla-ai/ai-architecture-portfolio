@@ -18,7 +18,7 @@ as its own standalone public repo instead — the same reasoning already establi
 audience and purpose deserves to be found and linked on its own, not buried inside a repo whose
 primary purpose (architecture-decision history) most visitors aren't there for.
 
-33 entries across five categories (`ai-system-design/`, `general-system-design/`,
+35 entries across five categories (`ai-system-design/`, `general-system-design/`,
 `cloud-architecture/`, `behavioral/`, `scalability-governance-tradeoffs/`), each cross-linking to
 the real ADR or shipped decision it's
 grounded in, or explicitly marked as general framework content when it isn't tied to one specific
@@ -111,6 +111,32 @@ Twitter system, not one of this repo's six researched companies, and the entry s
 The strongest grounding found anywhere in this repo to date: Meta's own NSDI paper "Scaling
 Memcache at Facebook," its Multifeed/News-Feed-ranking engineering blogs, WhatsApp's own scaling
 talks, and Google's SRE Book chapter on its real distributed cron service. Repo now totals 33
+entries across five categories.
+
+## Update — 2026-07-05: end-to-end Staff+/Principal quality pass
+
+Asked to do a final, harsh review of every entry against a genuine Staff+/Principal bar — not a
+rubber-stamp check — and to add anything a real interview loop would cover that was still
+missing. A dedicated review pass read all 33 entries and flagged one as genuinely weak
+(`ai-system-design/06`, multimodal search/recommendation — no real grounding and a Principal
+bullet that was vague meta-commentary rather than a harder technical claim) and nine more as
+adequate-but-not-sharp (their Principal-level bullets read as generic restatements of the Staff+
+bullet rather than a substantively different, harder mechanism). Reworked all ten: `06` now has
+concrete ANN-index recall/latency/memory numbers and a named position-bias-correction mechanism;
+the others each gained one genuinely distinct Principal-level insight (e.g., hybrid logical
+clocks as the structural fix for clock skew in `general-system-design/05`, membership-inference
+testing as the real mechanism for whether a trained model inherits training-data residency
+constraints in `cloud-architecture/02`, CRDT tombstone-growth as the real operational cost CRDTs
+don't advertise in `general-system-design/06`).
+
+The gap analysis from that same review pass identified two genuinely missing, non-redundant
+topics and both were added: `ai-system-design/12` (training-data provenance and IP risk —
+grounded in real, ongoing litigation: NYT v. OpenAI/Microsoft, Getty v. Stability AI — with a
+real org callback to enterprise_rag_platform's own lineage-fix bug, generalized from retrieval
+to training-data ingestion) and `ai-system-design/13` (durable long-running agent execution —
+the architecture problem of an agent surviving its own restart mid-task without losing progress
+or repeating side effects, grounded in the real durable-execution pattern and a real callback to
+ai-content-factory's shipped `interrupt_before` + Redis-checkpointer design). Repo now totals 35
 entries across five categories.
 
 ## References
