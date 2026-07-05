@@ -55,12 +55,12 @@ review alone would not have surfaced.
 - Org repo count grows to 20 public repos (21 total including the private portfolio site).
 
 ### Negative
-- Only 10 of the playbook's 35 questions are covered in Phase 1 (the 3 folders sharing one
-  rubric shape); `behavioral/` and `scalability-governance-tradeoffs/` need a genuinely different,
-  not-yet-built rubric design given their STAR/framework answer shape.
-- Calibration (40/40, real API keys against live providers — see the repo's own ADR-0001) only
-  covers one weak and one strong reference answer per question, not the full range of real,
-  messier answers actual users will submit.
+- 9 of the playbook's 35 questions (`behavioral/` 5, `scalability-governance-tradeoffs/` 4) are
+  still not covered as of Phase 2 — genuinely STAR- and framework-shaped, deferred to a
+  not-yet-built Phase 3 rather than force-fit into the current five sections.
+- Calibration (real API keys against live providers — see the repo's own ADR-0001, 102/104 on
+  Phase 2's first full run, two real failures fixed) only covers one weak and one strong reference
+  answer per question, not the full range of real, messier answers actual users will submit.
 
 ## Update — 2026-07-05: deployed live
 
@@ -73,6 +73,25 @@ unauthenticated; and `vercel link` without an explicit project flag silently cre
 project rather than linking the intended one, caught and cleaned up after a project rename.
 Verified live end-to-end afterward, including the OpenAI proxy serverless function responding
 correctly in Vercel's real production runtime. Full account in the repo's own ADR-0001.
+
+## Update — 2026-07-05: Phase 2, sectioned mock interview + full system-design coverage
+
+Extended from a flat single-textarea answer to the playbook's own five sections (Requirements,
+Core Entities, API/Interface, High-Level Design, Deep Dives), with a High-Level Design input that
+accepts a live-rendered Mermaid diagram (primary) plus an optional image URL (Excalidraw/
+screenshot, sent as a real vision input when supported, with a text-only fallback). Coverage
+extended from 10 to all 26 questions across the three folders sharing this shape; `behavioral/`
+(5) and `scalability-governance-tradeoffs/` (4) remain deferred to a not-yet-built Phase 3 given
+their genuinely different STAR/framework answer shape.
+
+Calibration against live OpenAI + Anthropic across all 26 questions (104 cases): 102/104 passed
+on the first run. Both real failures were diagnosed, not dismissed — one a genuine content gap in
+a calibration answer (missing the rubric's specific Principal-level differentiator), one a
+transient network error — and both are fixed in the repo. Per this org's disclose-real-numbers
+discipline: a full live rerun confirming 104/104 has not happened as of this writing, since BYOK
+means this org never holds the API keys needed to run it; the image-vision-input path is likewise
+implemented with a graceful fallback but not yet confirmed live against either provider. Full
+account, including the two fixes, in the repo's own ADR-0001.
 
 ## References
 - [ai-architect-practice-arena](https://github.com/vpeetla-ai/ai-architect-practice-arena)
