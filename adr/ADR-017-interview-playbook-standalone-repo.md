@@ -18,8 +18,9 @@ as its own standalone public repo instead — the same reasoning already establi
 audience and purpose deserves to be found and linked on its own, not buried inside a repo whose
 primary purpose (architecture-decision history) most visitors aren't there for.
 
-26 entries across four categories (`system-design/`, `cloud-architecture/`, `behavioral/`,
-`scalability-governance-tradeoffs/`), each cross-linking to the real ADR or shipped decision it's
+33 entries across five categories (`ai-system-design/`, `general-system-design/`,
+`cloud-architecture/`, `behavioral/`, `scalability-governance-tradeoffs/`), each cross-linking to
+the real ADR or shipped decision it's
 grounded in, or explicitly marked as general framework content when it isn't tied to one specific
 decision. A `scripts/check_links.sh` + CI workflow is the repo's entire "test suite" — appropriate
 for a content-only repo where the actual verification that matters is "does every cross-link
@@ -92,6 +93,25 @@ clear architectural outlier among the six companies, via its own Private Cloud C
 publications. The research pass also caught and rejected two more fabricated-looking claims (an
 unsourced Vertex AI incident anecdote, an unattributed "Anthropic interview stage"
 characterization), continuing this repo's sourcing discipline.
+
+## Update — 2026-07-05: split into ai-system-design/ and general-system-design/
+
+Asked whether the repo's AI/ML-specific system-design content was being mistaken for the *only*
+system-design round these companies run — it wasn't a fair label. All 11 existing entries were
+genuinely AI/ML-specific; the classic, non-AI "regular round" (rate limiters, chat systems, news
+feeds, job schedulers) these same six companies also run wasn't represented at all. Renamed
+`system-design/` to `ai-system-design/` (a clean git rename, all cross-links updated and
+verified) and added a new `general-system-design/` folder with 7 entries. This research pass
+found the opposite sourcing shape from every prior pass: the classic round is heavily documented
+publicly, but two specific attributions traced, on verification, to the wrong company entirely —
+a "Design Google Docs" citation that was actually a Netflix question, and a "Design a distributed
+cache" citation that was actually Amazon's — both corrected rather than repeated. The distributed
+unique-ID-generator entry required a direct correction to a common assumption: Snowflake is a
+Twitter system, not one of this repo's six researched companies, and the entry says so plainly.
+The strongest grounding found anywhere in this repo to date: Meta's own NSDI paper "Scaling
+Memcache at Facebook," its Multifeed/News-Feed-ranking engineering blogs, WhatsApp's own scaling
+talks, and Google's SRE Book chapter on its real distributed cron service. Repo now totals 33
+entries across five categories.
 
 ## References
 - [ai-architect-interview-playbook](https://github.com/vpeetla-ai/ai-architect-interview-playbook)
