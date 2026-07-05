@@ -18,7 +18,7 @@ as its own standalone public repo instead — the same reasoning already establi
 audience and purpose deserves to be found and linked on its own, not buried inside a repo whose
 primary purpose (architecture-decision history) most visitors aren't there for.
 
-21 entries across four categories (`system-design/`, `cloud-architecture/`, `behavioral/`,
+26 entries across four categories (`system-design/`, `cloud-architecture/`, `behavioral/`,
 `scalability-governance-tradeoffs/`), each cross-linking to the real ADR or shipped decision it's
 grounded in, or explicitly marked as general framework content when it isn't tied to one specific
 decision. A `scripts/check_links.sh` + CI workflow is the repo's entire "test suite" — appropriate
@@ -73,6 +73,25 @@ company-attributed cost figure circulating on SEO content rather than silently o
 real Phase C AWS/GCP Terraform work (VPC/security-group design, the placeholder-API-key bug and
 fix, the Cloud Run `PORT` bug, ECR teardown fix) was preserved and folded into the new entries
 rather than discarded.
+
+## Update — 2026-07-05: eagle-eye gap analysis adds 5 entries
+
+Asked to review the repo against what a real Staff+/Principal AI Architect loop actually covers,
+not just what was already written. Identified five genuine gaps: foundation model strategy
+(build from scratch vs. fine-tune an open-weight model vs. call a vendor API — arguably the
+single most quintessential AI-architect strategic question, and it wasn't covered anywhere),
+multi-tenant AI platform architecture, AI agent sandboxing/code-execution security, on-device/
+edge AI inference architecture, and a behavioral gap (every existing behavioral entry was "found
+and fixed a gap in an existing system" — none covered leading a 0-to-1 build under genuine
+ambiguity). Added `system-design/09-11`, `scalability-governance-tradeoffs/04`, and
+`behavioral/05` (grounded in the real [ai-content-factory](https://github.com/vpeetla-ai/ai-content-factory)
+build and its ADR-008 scope decisions). Research for the AI agent sandboxing topic came back the
+best-sourced of any entry in the repo — Anthropic's own published Claude Code sandboxing
+architecture (gVisor, open-sourced sandbox runtime) — and on-device AI confirmed Apple is the
+clear architectural outlier among the six companies, via its own Private Cloud Compute
+publications. The research pass also caught and rejected two more fabricated-looking claims (an
+unsourced Vertex AI incident anecdote, an unattributed "Anthropic interview stage"
+characterization), continuing this repo's sourcing discipline.
 
 ## References
 - [ai-architect-interview-playbook](https://github.com/vpeetla-ai/ai-architect-interview-playbook)
