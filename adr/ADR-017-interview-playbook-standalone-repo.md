@@ -18,7 +18,7 @@ as its own standalone public repo instead — the same reasoning already establi
 audience and purpose deserves to be found and linked on its own, not buried inside a repo whose
 primary purpose (architecture-decision history) most visitors aren't there for.
 
-14 entries across four categories (`system-design/`, `cloud-architecture/`, `behavioral/`,
+18 entries across four categories (`system-design/`, `cloud-architecture/`, `behavioral/`,
 `scalability-governance-tradeoffs/`), each cross-linking to the real ADR or shipped decision it's
 grounded in, or explicitly marked as general framework content when it isn't tied to one specific
 decision. A `scripts/check_links.sh` + CI workflow is the repo's entire "test suite" — appropriate
@@ -40,6 +40,21 @@ resolve," not "does code compile."
   "the link resolves" — a stale claim that still points at a real file would pass the link
   checker. Mitigated by writing this content in the same session the underlying ADRs were
   written or verified, minimizing drift risk at time of writing.
+
+## Update — 2026-07-05: `system-design/` rewritten in hello-interview style
+
+The initial 4 `system-design/` entries were shallow — real ADR cross-links, but shaped like
+generic interview questions rather than the depth an actual Staff+/Principal AI-infra interview
+demands. Rewritten (8 entries, up from 4) to follow
+[hellointerview.com](https://www.hellointerview.com)'s actual answer structure (confirmed via
+direct research, not assumed) — requirements, core entities, API design, high-level
+architecture, deep dives with real trade-off tables and concrete numbers, and an explicit
+Mid/Senior/Staff+/Principal level breakdown — and grounded in real research into what's publicly
+reported at OpenAI, Anthropic, Meta, Google/DeepMind, Microsoft, and Apple for AI
+infrastructure roles specifically. That research came back honest, not flattering:
+company-attributed system design questions for these exact roles are genuinely scarce in public
+sources. Each entry's "Where this actually gets asked" section discloses that plainly rather
+than overclaiming a sourced question that doesn't exist.
 
 ## References
 - [ai-architect-interview-playbook](https://github.com/vpeetla-ai/ai-architect-interview-playbook)
