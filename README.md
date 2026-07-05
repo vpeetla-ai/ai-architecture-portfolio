@@ -138,6 +138,8 @@ Real decisions from production systems — not theoretical patterns.
 | [ADR-013](adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md) | Bidirectional MCP + real A2A discovery | AegisAI exposes governed tools via MCP; AegisLoop is the org's first real A2A client of VAP |
 | [ADR-014](adr/ADR-014-golden-eval-registry-real-ci-gate.md) | golden-eval-registry becomes a real CI gate | 2 of 6 suite kinds now gate real builds — running one for the first time found and fixed a real fixture bug |
 | [ADR-015](adr/ADR-015-real-aws-gcp-infra-phase-c.md) | Genuine hands-on AWS + GCP infra | agent-finops on real Cloud Run + Cloud SQL, aegisai on real ECS Fargate + RDS + ALB — stood up, verified, torn down |
+| [ADR-016](adr/ADR-016-ingestion-data-contracts-phase-d.md) | Ingestion data contracts + real lineage | enterprise_rag_platform now rejects bad ingests instead of silently indexing them; found a real CI gap where a whole test file never ran |
+| [ADR-017](adr/ADR-017-interview-playbook-standalone-repo.md) | Interview playbook as a standalone repo | 14 entries grounded in real ADRs/outcomes, not generic interview prep |
 
 ---
 

@@ -116,8 +116,8 @@ canonical on its own.**
 | Platform live demos | **8** | AegisAI, VAP, Enterprise RAG, AegisLoop, Content Factory, LoopForge, vLLM Lab, Sentinel Brief |
 | Pattern live demos | **5** | ReAct, Reflection, Plan-Execute, Multi-Agent, Swarm |
 | **Total live demos** | **13** | All on Vercel free tier (+ Render APIs) |
-| Open-source repos | **18** | Per GitHub org, excluding the private portfolio repo — adds `agent-finops` (2026-07-04) |
-| Documented ADRs | **15** | ADR-001 through ADR-015, incl. the 2026-07-03 auth-gate fixes (008/009/010), the AgentFinOps standalone-service decision (011) and its consumer-wiring in AegisLoop (012 — AegisAI's consumer wiring is ADR-0004 in its own repo-local sequence), bidirectional MCP + real A2A discovery (013), golden-eval-registry becoming a real CI gate (014), and genuine hands-on AWS + GCP infra (015) |
+| Open-source repos | **19** | Per GitHub org, excluding the private portfolio repo — adds `agent-finops` (2026-07-04) and `ai-architect-interview-playbook` (2026-07-05) |
+| Documented ADRs | **17** | ADR-001 through ADR-017, incl. the 2026-07-03 auth-gate fixes (008/009/010), the AgentFinOps standalone-service decision (011) and its consumer-wiring in AegisLoop (012 — AegisAI's consumer wiring is ADR-0004 in its own repo-local sequence), bidirectional MCP + real A2A discovery (013), golden-eval-registry becoming a real CI gate (014), genuine hands-on AWS + GCP infra (015), ingestion data contracts (016), and the interview playbook as a standalone repo (017) |
 | Agent skills | **20** | Per `vpeetla-ai-skills` |
 
 ---
@@ -238,14 +238,24 @@ tracked outside this repo; sub-items logged here as they ship.
       orchestrator run against real RDS-backed persistence), then fully torn down — confirmed
       empty via each provider's own CLI. Found and fixed 4 real bugs only real deployment could
       surface (see [ADR-015](../adr/ADR-015-real-aws-gcp-infra-phase-c.md)).
-- [ ] **Phase D — data foundations.** Explicit ingestion data contracts + lineage metadata in
-      `enterprise_rag_platform`.
-- [ ] **Phase E — new repo `ai-architect-interview-playbook` (public).** System design,
-      cloud-architecture, STAR-method behavioral, and scalability/governance trade-off content,
-      grounded in this org's real ADRs and outcomes rather than generic prep.
-- [ ] **Phase F — portfolio UI.** New `/roadmap` page mapping all 15 infographic steps to real
-      proof; retire the stale, disconnected `data/architecture.ts` stub in favor of the
-      maintained `architecture-portfolio.ts`.
+- [x] **Phase D — data foundations.** `enterprise_rag_platform`'s `/v1/ingest` now rejects (422)
+      documents with no owner/URI/real content instead of silently indexing them; every chunk
+      carries a real `content_hash` + `ingested_at`. Found and fixed a real, unrelated CI gap
+      while writing the tests: the repo's CI ran `unittest discover`, which silently never ran
+      an entire pytest-style test file (the RAG_API_KEY auth-gate tests) — fixed by switching
+      to `pytest`. See [ADR-016](../adr/ADR-016-ingestion-data-contracts-phase-d.md).
+- [x] **Phase E — new repo `ai-architect-interview-playbook` (public).** 14 entries across
+      system-design, cloud-architecture, behavioral (STAR), and scalability/governance
+      trade-offs — each grounded in this org's real ADRs and outcomes, or explicitly marked as
+      general framework content when it isn't. See [ADR-017](../adr/ADR-017-interview-playbook-standalone-repo.md).
+- [x] **Phase F — portfolio UI.** New `/roadmap` page maps all 15 infographic steps to real
+      proof (reusing the existing `CareerTimeline` visual pattern); "Roadmap" added to the main
+      nav; the interview playbook linked from `/roadmap` and `/hire`; retired the stale,
+      zero-importer `data/architecture.ts` stub in favor of the maintained
+      `architecture-portfolio.ts`.
+
+**Program status: Phases A through F all complete.** 19 open-source repos, 17 documented ADRs,
+13 live demos — every step of the 15-step roadmap now has a real, checkable proof point.
 
 ---
 

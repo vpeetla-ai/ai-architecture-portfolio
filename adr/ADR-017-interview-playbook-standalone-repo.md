@@ -1,0 +1,46 @@
+# ADR-017: Interview Playbook as a Standalone Repo (Phase E)
+
+## Status
+
+Accepted — 2026-07-05
+
+## Context
+
+Phase E of the top-1% AI Architect program targeted step 14 of the 15-step roadmap ("Master AI
+Architect Interviews"). The content could have lived inside this repo — a `docs/interview-
+playbook/` folder alongside the ADRs it's grounded in.
+
+## Decision
+
+Built [ai-architect-interview-playbook](https://github.com/vpeetla-ai/ai-architect-interview-playbook)
+as its own standalone public repo instead — the same reasoning already established for
+[agent-finops](https://github.com/vpeetla-ai/agent-finops) (ADR-011): a genuinely different
+audience and purpose deserves to be found and linked on its own, not buried inside a repo whose
+primary purpose (architecture-decision history) most visitors aren't there for.
+
+14 entries across four categories (`system-design/`, `cloud-architecture/`, `behavioral/`,
+`scalability-governance-tradeoffs/`), each cross-linking to the real ADR or shipped decision it's
+grounded in, or explicitly marked as general framework content when it isn't tied to one specific
+decision. A `scripts/check_links.sh` + CI workflow is the repo's entire "test suite" — appropriate
+for a content-only repo where the actual verification that matters is "does every cross-link
+resolve," not "does code compile."
+
+## Consequences
+
+### Positive
+- Directly answers a roadmap step with real, grounded content rather than generic interview
+  prep — every entry either cites a real ADR/shipped decision or says explicitly that it
+  doesn't.
+- Linked from the portfolio site's new `/roadmap` page (step 14) and from `/hire`'s credential
+  list (Phase F) — discoverable from two places, not an orphaned repo.
+- Org repo count grows to 19 public repos (20 total including the private portfolio site).
+
+### Negative
+- A content-only repo has no automated way to verify factual accuracy of its cross-links beyond
+  "the link resolves" — a stale claim that still points at a real file would pass the link
+  checker. Mitigated by writing this content in the same session the underlying ADRs were
+  written or verified, minimizing drift risk at time of writing.
+
+## References
+- [ai-architect-interview-playbook](https://github.com/vpeetla-ai/ai-architect-interview-playbook)
+- [ADR-011: AgentFinOps as a standalone service](./ADR-011-agent-finops-standalone-service.md) (the precedent for this decision)
