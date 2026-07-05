@@ -58,9 +58,21 @@ review alone would not have surfaced.
 - Only 10 of the playbook's 35 questions are covered in Phase 1 (the 3 folders sharing one
   rubric shape); `behavioral/` and `scalability-governance-tradeoffs/` need a genuinely different,
   not-yet-built rubric design given their STAR/framework answer shape.
-- The judge calibration set exists and is wired but has not yet been run against live providers
-  with a real key — disclosed explicitly as the pre-launch gate, not implied as already verified.
-- Not yet deployed to a public URL — verified so far via real local browser testing only.
+- Calibration (40/40, real API keys against live providers — see the repo's own ADR-0001) only
+  covers one weak and one strong reference answer per question, not the full range of real,
+  messier answers actual users will submit.
+
+## Update — 2026-07-05: deployed live
+
+Frontend live at [ai-architect-practice-arena.vercel.app](https://ai-architect-practice-arena.vercel.app),
+backend at [practice-arena-api.onrender.com](https://practice-arena-api.onrender.com), both free
+tier, matching this org's reference-stack convention (ADR-005). Deploying for real (not just
+planning to) surfaced two things: Vercel's default Deployment Protection blocks all public access
+on a new project by default — exactly wrong for a public tool, disabled and verified reachable
+unauthenticated; and `vercel link` without an explicit project flag silently creates a duplicate
+project rather than linking the intended one, caught and cleaned up after a project rename.
+Verified live end-to-end afterward, including the OpenAI proxy serverless function responding
+correctly in Vercel's real production runtime. Full account in the repo's own ADR-0001.
 
 ## References
 - [ai-architect-practice-arena](https://github.com/vpeetla-ai/ai-architect-practice-arena)
