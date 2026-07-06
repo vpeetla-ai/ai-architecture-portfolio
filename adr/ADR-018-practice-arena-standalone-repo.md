@@ -55,12 +55,9 @@ review alone would not have surfaced.
 - Org repo count grows to 20 public repos (21 total including the private portfolio site).
 
 ### Negative
-- 9 of the playbook's 35 questions (`behavioral/` 5, `scalability-governance-tradeoffs/` 4) are
-  still not covered as of Phase 2 — genuinely STAR- and framework-shaped, deferred to a
-  not-yet-built Phase 3 rather than force-fit into the current five sections.
-- Calibration (real API keys against live providers — see the repo's own ADR-0001, 102/104 on
-  Phase 2's first full run, two real failures fixed) only covers one weak and one strong reference
-  answer per question, not the full range of real, messier answers actual users will submit.
+- Calibration (real API keys against live providers — see the repo's own ADR-0001) only covers
+  one weak and one strong reference answer per question, not the full range of real, messier
+  answers actual users will submit.
 
 ## Update — 2026-07-05: deployed live
 
@@ -92,6 +89,31 @@ discipline: a full live rerun confirming 104/104 has not happened as of this wri
 means this org never holds the API keys needed to run it; the image-vision-input path is likewise
 implemented with a graceful fallback but not yet confirmed live against either provider. Full
 account, including the two fixes, in the repo's own ADR-0001.
+
+## Update — 2026-07-06: Phase 3, behavioral (STAR) + trade-offs (reasoning framework), full 35/35 coverage
+
+Extended coverage from 26 to all 35 playbook questions by adding two more rubric formats.
+`behavioral/` (5 STAR write-ups of Venkat's own real cases) and `scalability-governance-
+tradeoffs/` (4 reasoning-framework questions) both lacked the level-criteria section every
+system-design question has — a real gap found by reading all 9 source files before writing any
+code, fixed by authoring that content in the playbook repo first (same commit also added a new
+generic, reusable interview-question section to the 5 behavioral entries, since a STAR write-up
+of someone else's real case can't be re-answered literally — a practicing user answers the
+generic version with their own experience instead).
+
+`Rubric`/`Answer` became discriminated unions across all three formats rather than three separate
+code paths; the judge adapters needed no changes to their model-calling logic. The practice
+page's sidebar and right rail stay fully shared — only the center-column form is format-aware.
+
+Calibration against live OpenAI + Anthropic across all 35 questions (140 cases): 139/140 passed,
+confirmed identically across two independent full runs. All 18 new Phase 3 cases passed cleanly
+both times, including "strong" answers deliberately written with different concrete scenarios
+than each entry's own illustrative example — a real test that the judge grades the underlying
+competency, not a paraphrase match. The one failure (an already-shipped Phase 2 question) was a
+real gap in how the Anthropic adapter handled a technically-invalid JSON response (Anthropic has
+no strict JSON-mode like OpenAI's), fixed with a one-time retry — not yet reconfirmed with a
+third live run as of this writing. Full account, including the exact failure and fix, in the
+repo's own ADR-0001.
 
 ## References
 - [ai-architect-practice-arena](https://github.com/vpeetla-ai/ai-architect-practice-arena)
