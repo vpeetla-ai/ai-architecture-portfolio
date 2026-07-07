@@ -15,9 +15,9 @@ This document maps the current 21-repo stack to the **five essential AI portfoli
 | 2 | Local AI Assistant (SLMs) | domainforge-rag-peft, vllm-architecture-lab | ~45% | **Partial** — Ollama wired; missing benchmark study + dedicated product |
 | 3 | Monitoring & Observability | ai-content-factory, sentinel-brief, aegisloop | ~60% | **Partial** — Langfuse traces exist; missing P50/P95 + failure-rate SLOs |
 | 4 | Fine-Tuning (SFT + DPO) | domainforge-rag-peft | ~80% | **Strong** — full ladder; gaps: production-scale data + GPU-trained artifacts |
-| 5 | Real-Time Multimodal (Voice) | — | ~0% | **Missing** — no ASR/TTS/voice pipeline anywhere in org |
+| 5 | Real-Time Multimodal (Voice) | voiceforge-assistant | ~85% | **Strong** — MVP shipped Jul 2026; optional: server Whisper, AegisAI TTS gate |
 
-**Bottom line:** Four of five pillars are **demonstrated across existing platforms**. Pillar 5 requires a **new project**. Pillars 1–3 need **targeted hardening** in repos you already own — not greenfield rebuilds.
+**Bottom line:** All five pillars are now **demonstrated across the stack**. Pillars 1–3 need **targeted hardening**; Pillar 5 closed with **VoiceForge**.
 
 ---
 
@@ -163,54 +163,51 @@ No single README says: *“This is the production RAG reference — start here.�
 
 > ASR → LLM → TTS; WebSockets; latency budget visualization; graceful degradation.
 
-### What exists (related but not sufficient)
+### What VoiceForge satisfies (Jul 2026)
 
-| Artifact | Why it doesn't satisfy Pillar 5 |
-|----------|--------------------------------|
-| ai-content-factory SSE + Socket.io | Text token streaming only — not audio |
-| venkat-ai-platform chat SSE | Text only |
-| ai-content-factory “Visual Agent” | Generates text image *prompts* — no images/audio |
-| vllm-architecture-lab latency education | Simulator — not voice pipeline |
+| Requirement | Evidence | Repo |
+|-------------|----------|------|
+| ASR | Browser Web Speech API (default) + optional `faster-whisper` | voiceforge-assistant |
+| LLM triage | Mock / Ollama / DomainForge `/v1/query` | voiceforge-assistant |
+| TTS | `edge-tts` server + browser `speechSynthesis` fallback | voiceforge-assistant |
+| WebSocket transport | `/ws/voice` phase events + result payload | voiceforge-assistant |
+| Latency budget breakdown | `LatencyBudget` — ASR / LLM TTFT / TTS / total | voiceforge-assistant |
+| Graceful degradation | `DegradationReason` enum — text input, browser TTS, cached reply | voiceforge-assistant |
+| Latency waterfall UI | Next.js static export — per-phase bars | voiceforge-assistant |
+| Replay | `/v1/replay` last turn | voiceforge-assistant |
+| Tests + ADR | 9 pytest; ADR-001 voice pipeline | voiceforge-assistant |
 
-### What is completely missing
+**Live:** `voiceforge-assistant.vercel.app` + `voiceforge-api.onrender.com` (post-deploy)
 
-- Automatic Speech Recognition (Whisper, Deepgram, etc.)
-- Text-to-Speech (ElevenLabs, Coqui, Piper)
-- WebSocket **audio** streaming
-- Latency budget breakdown (ASR ms / LLM TTFT / TTS ms)
-- Graceful degradation (timeout, replay, fallback to text)
-- Voice activity detection
+### Remaining gaps (optional hardening)
 
-### Recommended new project: **VoiceForge** (working title)
+| Gap | Severity | Recommended fix | Effort |
+|-----|----------|-----------------|--------|
+| **Server Whisper on Render** | Low | Keep browser ASR default; document GPU host for Whisper | S (docs) |
+| **AegisAI gate before TTS** | Medium | HITL on outbound audio in regulated demos | M |
+| **Voice activity detection** | Low | Client-side VAD in UI | S |
+| **Golden eval on transcript faithfulness** | Medium | `golden-eval-registry` suite for voice turns | M |
 
-| Item | Spec |
-|------|------|
-| **Repo** | `vpeetla-ai/voiceforge-assistant` |
-| **Stack** | FastAPI WebSocket · Whisper (local) or Deepgram · Ollama/Mistral · Piper TTS |
-| **UI** | Vercel — latency waterfall chart (ASR / LLM / TTS / total) |
-| **Governance** | AegisAI gate before TTS side effects; golden eval on transcript faithfulness |
-| **Portfolio story** | “Real-time multimodal with performance engineering maturity” |
-| **Effort** | 3–4 weeks MVP |
-| **Live demo** | `voiceforge.vercel.app` + Render API |
+### Verdict
 
-**Alternative (lighter):** Add voice mode to **VAP** chat — faster but less impressive as standalone pillar.
+**VoiceForge closes Pillar 5.** Portfolio now has a deployable voice pipeline with honest multi-mode operation (browser ASR on free tier, real TTS, pluggable LLM).
 
 ---
 
 ## Cross-repo gap matrix (quick reference)
 
-| Capability | enterprise_rag | domainforge | VAP | aegisloop | ACF | sentinel |
-|------------|---------------|-------------|-----|-----------|-----|----------|
-| Hybrid BM25+vector | partial | yes | partial | — | — | — |
-| Cross-encoder rerank | no | no | no | — | — | — |
-| Decline-to-answer | partial | partial | no | — | — | — |
-| Golden eval CI gate | **yes** | fixture | no | partial | partial | partial |
-| Ragas | no | aspirational | no | — | — | — |
-| Langfuse traces | partial | no | yes | partial | **yes** | **yes** |
-| P50/P95 dashboards | no | no | no | demo only | no | no |
-| SFT/DPO | — | **yes** | — | — | — | — |
-| Ollama production | — | **yes** | — | — | fallback | — |
-| Voice/ASR/TTS | — | — | — | — | — | — |
+| Capability | enterprise_rag | domainforge | VAP | aegisloop | ACF | sentinel | voiceforge |
+|------------|---------------|-------------|-----|-----------|-----|----------|------------|
+| Hybrid BM25+vector | partial | yes | partial | — | — | — | — |
+| Cross-encoder rerank | no | no | no | — | — | — | — |
+| Decline-to-answer | partial | partial | no | — | — | — | — |
+| Golden eval CI gate | **yes** | fixture | no | partial | partial | partial | — |
+| Ragas | no | aspirational | no | — | — | — | — |
+| Langfuse traces | partial | no | yes | partial | **yes** | **yes** | — |
+| P50/P95 dashboards | no | no | no | demo only | no | no | partial |
+| SFT/DPO | — | **yes** | — | — | — | — | — |
+| Ollama production | — | **yes** | — | — | fallback | — | optional |
+| Voice/ASR/TTS | — | — | — | — | — | — | **yes** |
 
 ---
 
@@ -234,9 +231,9 @@ No single README says: *“This is the production RAG reference — start here.�
 8. RunPod: `bash scripts/gpu_pipeline.sh` → real Mistral S3/S4 adapters
 9. Point Render `MOCK_LLM=false` + `OLLAMA_BASE_URL` at GPU host
 
-### Phase D — New platform (3–4 weeks)
+### Phase D — VoiceForge ✅ (Jul 2026)
 
-10. **VoiceForge** — ASR + LLM + TTS + latency budget UI + graceful degradation
+10. **VoiceForge** — ASR + LLM + TTS + latency budget UI + graceful degradation — **shipped**
 
 ---
 
@@ -253,7 +250,9 @@ You are **not** missing a junior demo collection. You have:
 - **Eval contracts** (golden-eval-registry) — CI discipline
 - **Inference education** (vLLM Lab) — systems depth
 
-The rubric’s five pillars map to **four satisfied + one missing (voice)**. The gaps are **hardening and one new project**, not a ground-up rebuild.
+- **Real-time voice** (VoiceForge) — ASR → LLM → TTS with latency budgets
+
+The rubric’s five pillars are **all demonstrated**. Remaining work is **hardening pillars 1–3**, not a ground-up rebuild.
 
 ---
 
@@ -261,7 +260,7 @@ The rubric’s five pillars map to **four satisfied + one missing (voice)**. The
 
 | Artifact | Update when |
 |----------|-------------|
-| [vpeetla-ai/README.md](https://github.com/vpeetla-ai/vpeetla-ai) | DomainForge S0→S4; VoiceForge when launched |
+| [vpeetla-ai/README.md](https://github.com/vpeetla-ai/vpeetla-ai) | DomainForge S0→S4; VoiceForge shipped |
 | [ai-architecture-portfolio](https://github.com/vpeetla-ai/ai-architecture-portfolio) | ADRs for reranker, voice, observability SLOs |
 | [venkat-ai-portfolio/data/ecosystem.ts](https://venkat-ai.com/work) | New platform cards |
 | [golden-eval-registry](https://github.com/vpeetla-ai/golden-eval-registry) | New suite kinds + CI gates |

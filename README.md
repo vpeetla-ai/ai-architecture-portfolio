@@ -25,7 +25,7 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 ---
 
 **Venkata Peetla** — Principal AI Architect · Lucid Motors  
-*19 years enterprise delivery · **15 live demos** · **21 open-source repos**
+*19 years enterprise delivery · **16 live demos** · **22 open-source repos**
 
 [Live demos](https://venkat-ai.com/work) · [Repo index](docs/REPO_INDEX.md) · [Trace-linked observability](docs/TRACE_LINKED_OBSERVABILITY.md) · [README standard](docs/README_STANDARD.md) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai) · [Improvement plan 2026](docs/ORG_IMPROVEMENT_PLAN_2026.md)
 
@@ -33,7 +33,7 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 
 ## Impact at a Glance
 
-| **10→2** | **Multi-$M** | **15 live demos** | **8-layer stack + skills** |
+| **10→2** | **Multi-$M** | **16 live demos** | **8-layer stack + skills** |
 |----------|--------------|---------------------|---------------------------|
 | Agent ops staffing reduction (targeted supply-chain flows) | Revenue & savings — payments, subscriptions, EDI | Platform + pattern demos on Vercel/Render | Wired together — [improvement plan](docs/ORG_IMPROVEMENT_PLAN_2026.md) |
 
@@ -49,6 +49,7 @@ Six questions every enterprise agent program must answer — each mapped to a li
 | 2 | What are agents allowed to do? | **AegisAI** — gateway, policy, HITL, audit | [aegisai-enterprise-agent-platform.vercel.app](https://aegisai-enterprise-agent-platform.vercel.app) | [aegisai](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform) |
 | 3 | What knowledge can they use? | **Enterprise RAG** — access-before-ranking | [enterprise-rag-platform-eta.vercel.app](https://enterprise-rag-platform-eta.vercel.app) | [enterprise_rag_platform](https://github.com/vpeetla-ai/enterprise_rag_platform) |
 | 3b | How do we adapt domain format? | **DomainForge** — RAG facts + PEFT behavior | [domainforge-rag-peft.vercel.app](https://domainforge-rag-peft.vercel.app) · [API](https://domainforge-api.onrender.com) | [domainforge-rag-peft](https://github.com/vpeetla-ai/domainforge-rag-peft) |
+| 3c | How do we run voice triage? | **VoiceForge** — ASR → LLM → TTS | [voiceforge-assistant.vercel.app](https://voiceforge-assistant.vercel.app) · [API](https://voiceforge-api.onrender.com) | [voiceforge-assistant](https://github.com/vpeetla-ai/voiceforge-assistant) |
 | 4 | How do we operate agent fleets? | **AegisLoop** — missions, traces, eval gates | [aegisloop-agentops-workbench.vercel.app](https://aegisloop-agentops-workbench.vercel.app) | [aegisloop](https://github.com/vpeetla-ai/aegisloop-agentops-workbench) |
 | 5 | What do they produce? | **AI Content Factory** — governed publish pipeline | [ai-content-factory-iota.vercel.app](https://ai-content-factory-iota.vercel.app) | [ai-content-factory](https://github.com/vpeetla-ai/ai-content-factory) |
 | 6 | **How do agents improve?** | **LoopForge** — LangGraph repo fix → PR, harness, memory | [demo-omega-taupe.vercel.app](https://demo-omega-taupe.vercel.app) · [API](https://loopforge-api.onrender.com) | [loop-engine-agent-platform](https://github.com/vpeetla-ai/loop-engine-agent-platform) |
@@ -99,7 +100,8 @@ Each includes architecture context, key decisions, trade-offs, and links to live
 
 | Project | Domain | Key outcome | Case study |
 |---------|--------|-------------|------------|
-| **DomainForge** | RAG + PEFT MLOps | S0→S3 eval ladder — facts via RAG, behavior via QLoRA | [case-studies/domainforge-rag-peft.md](case-studies/domainforge-rag-peft.md) |
+| **VoiceForge** | Real-time multimodal | ASR → LLM → TTS · latency budgets · graceful degradation | [case-studies/voiceforge-assistant.md](case-studies/voiceforge-assistant.md) |
+| **DomainForge** | RAG + PEFT MLOps | S0→S4 eval ladder — facts via RAG, behavior via QLoRA + DPO | [case-studies/domainforge-rag-peft.md](case-studies/domainforge-rag-peft.md) |
 | **LoopForge** | Loop engineering | Self-improving harness — ODAEU, MCP, RAG tuning | [case-studies/loopforge-self-improving-harness.md](case-studies/loopforge-self-improving-harness.md) |
 | **vLLM Architecture Lab** | LLM inference | PagedAttention · continuous batching · KV simulator | [vllm-architecture-lab/docs/ARCHITECTURE.md](https://github.com/vpeetla-ai/vllm-architecture-lab/blob/main/docs/ARCHITECTURE.md) |
 | **AegisAI** | Agent governance | Runtime control plane — gateway, HITL, signed audit | [case-studies/aegisai-agent-governance.md](case-studies/aegisai-agent-governance.md) |
