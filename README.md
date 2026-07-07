@@ -145,6 +145,7 @@ Real decisions from production systems — not theoretical patterns.
 | [ADR-017](adr/ADR-017-interview-playbook-standalone-repo.md) | Interview playbook as a standalone repo | 35 entries grounded in real ADRs/outcomes, not generic interview prep |
 | [ADR-018](adr/ADR-018-practice-arena-standalone-repo.md) | Practice Arena as a standalone repo | LLM-as-judge mock interview tool grading real answers against the playbook's own rubrics — dual-judge, bring-your-own-key |
 | [ADR-019](adr/ADR-019-rag-facts-peft-behavior.md) | RAG facts + PEFT behavior | DomainForge splits SOP retrieval from QLoRA JSON discipline — separate eval dimensions and promotion gates |
+| [ADR-020](adr/ADR-020-dpo-after-sft-alignment.md) | DPO after SFT | S4 preference tuning with scorer-labeled pairs — alignment without a reward model |
 
 ---
 

@@ -29,7 +29,8 @@ flowchart LR
 ## Key decisions
 
 - **RAG = facts, PEFT = behavior** — separate data planes, separate eval metrics ([ADR-019](../adr/ADR-019-rag-facts-peft-behavior.md))
-- **Solution ladder** — S0 baseline → S1 naive RAG → S2 hybrid → S3 PEFT+hybrid; compare via `/v1/eval/compare`
+- **Solution ladder** — S0 baseline → S1 naive RAG → S2 hybrid → S3 PEFT+hybrid → **S4 DPO-aligned**; compare via `/v1/eval/compare`
+- **DPO preference pairs** — scorer-labeled chosen vs hard-negative rejected ([ADR-020](../adr/ADR-020-dpo-after-sft-alignment.md))
 - **Adapter promotion gated** — `promote` endpoint requires API key; blocked on faithfulness or format regression
 - **Honest production scope** — Render runs `MOCK_LLM=true`; full Mistral QLoRA requires CUDA
 
@@ -46,7 +47,8 @@ flowchart LR
 ## Impact
 
 - Tenth production platform in the governed stack — answers **"How do we adapt models to domain format?"**
-- 24 pytest cases; live S0/S1/S2 compare on golden set
+- Interview narrative: *"RAG for facts · SFT for schema · DPO for alignment"*
+- 32 pytest cases; live S0–S4 compare + preference pair viewer
 - Pairs with [Enterprise RAG](enterprise-rag-platform.md) (access layer) and [vLLM Architecture Lab](vllm-architecture-lab.md) (inference education)
 
 ## Stack
@@ -55,4 +57,4 @@ Python 3.11 · FastAPI · Chroma · TRL · PEFT · Next.js static export · Verc
 
 ## Related ADR
 
-[ADR-019: RAG facts + PEFT behavior](../adr/ADR-019-rag-facts-peft-behavior.md) · [ADR-002: Authorization before ranking](../adr/ADR-002-authorization-before-ranking-rag.md)
+[ADR-019: RAG facts + PEFT behavior](../adr/ADR-019-rag-facts-peft-behavior.md) · [ADR-020: DPO after SFT](../adr/ADR-020-dpo-after-sft-alignment.md) · [ADR-002: Authorization before ranking](../adr/ADR-002-authorization-before-ranking-rag.md)
