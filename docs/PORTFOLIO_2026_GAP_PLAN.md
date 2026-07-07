@@ -177,7 +177,7 @@ No single README says: *“This is the production RAG reference — start here.�
 | Replay | `/v1/replay` last turn | voiceforge-assistant |
 | Tests + ADR | 9 pytest; ADR-001 voice pipeline | voiceforge-assistant |
 
-**Live:** `voiceforge-assistant.vercel.app` + `voiceforge-api.onrender.com` (post-deploy)
+**Live:** [voiceforge-assistant.vercel.app](https://voiceforge-assistant.vercel.app) · [API](https://voiceforge-api-eysb.onrender.com)
 
 ### Remaining gaps (optional hardening)
 
