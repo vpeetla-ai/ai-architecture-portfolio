@@ -29,9 +29,11 @@ A visitor who lands on GitHub or a live demo should understand in **60 seconds**
 | **0** | Inventory & readiness audit | ✅ Done | Jul 2026 |
 | **1** | Canonical diagram sync (Tier-1) | ✅ Done | Jul 2026 |
 | **2** | README standardization (Tier-1) | ✅ Done | Jul 2026 |
-| **3** | ADR & case study alignment | ⬜ Not started | — |
-| **4** | Demo & first-run UX polish | ⬜ Not started | — |
-| **5** | LinkedIn content (12-week launch) | ⬜ Not started | — |
+| **3** | ADR & case study alignment | ✅ Done | Jul 2026 |
+| **4** | Demo & first-run UX polish | ✅ Done (2 dashboard blockers) | Jul 2026 |
+| **5** | LinkedIn content (12-week launch) | ✅ Drafts ready | Jul 2026 |
+
+> **Open blockers before live posting:** disable Vercel Deployment Protection on DomainForge + VoiceForge; expose a public ACF landing route (or post the `/sign-in` link); export OG cards per [SOCIAL_PREVIEW_SPEC.md](./SOCIAL_PREVIEW_SPEC.md).
 
 ---
 
@@ -98,36 +100,53 @@ A visitor who lands on GitHub or a live demo should understand in **60 seconds**
 
 ---
 
-## Phase 4 — Demo & first-run UX ⬜
+## Phase 4 — Demo & first-run UX ✅ (2 dashboard blockers)
 
-- [ ] Render cold-start notes in every Deploy section
-- [ ] Verify Vercel aliases (see CONTEXT.md stale list)
-- [ ] Empty/error states when API sleeping (DomainForge, VoiceForge)
-- [ ] Social preview images (1200×630) per flagship
+- [x] Render cold-start "first-run note" in Deploy sections — Enterprise RAG, vLLM Lab, DomainForge, VoiceForge
+- [x] Verify Vercel aliases — 7/10 public 200; findings logged in [CONTEXT.md](../../ai-content-factory/CONTEXT.md) demo-access table
+- [x] Cold-start-aware empty/error states — DomainForge + VoiceForge UIs now show a "waking API (~30s)" hint on network/timeout failures
+- [x] Social preview spec — [SOCIAL_PREVIEW_SPEC.md](./SOCIAL_PREVIEW_SPEC.md) (asset export ⬜, tracked there)
+
+**Demo-access verification (Jul 7 2026):**
+
+| Demo | Status | Blocker |
+|------|--------|---------|
+| Enterprise RAG, vLLM Lab, VAP, AegisLoop, LoopForge, Sentinel, AegisAI | ✅ public 200 | — |
+| DomainForge | ❌ 302 → Vercel SSO | **Disable Vercel Deployment Protection** (backend healthy) |
+| VoiceForge | ❌ 302 → Vercel SSO | **Disable Vercel Deployment Protection** (backend healthy) |
+| ACF | ⚠️ `/` 404, `/sign-in` 200 | Public landing route / link `/sign-in` (Clerk gates root; backend healthy) |
+
+> These 3 are Vercel/Clerk **dashboard** settings, not repo code. Must clear before Weeks 2 (DomainForge), 4 (VoiceForge), 8 (ACF) posts.
+
+**Remaining Phase 4 asset work:** export 1200×630 OG cards per flagship and wire `openGraph.images` (see spec).
 
 ---
 
-## Phase 5 — LinkedIn launch sequence ⬜
+## Phase 5 — LinkedIn launch sequence ✅ drafts ready
 
 **Principles:** Who hurts → what breaks → what we built → architecture insight → honest boundary → CTA (demo → GitHub → case study).
 
-| Week | Post | Repo | Gate (audit ≥14) |
-|------|------|------|------------------|
-| 0 | Anchor essay — governance stack | venkat-ai.com/work | — |
-| 1 | Access-before-ranking RAG | Enterprise RAG | ✅ 15/16 |
-| 2 | RAG for facts · PEFT for behavior | DomainForge | ✅ 15/16 |
-| 3 | PagedAttention + multi-LoRA economics | vLLM Lab | ✅ 14/16 |
-| 4 | Voice TTFT + latency budgets | VoiceForge | ✅ 15/16 |
-| 5 | Gateway before side effects | AegisAI | ⬜ audit pending |
-| 6 | Orchestration ≠ governance | VAP | ✅ 14/16 |
-| 7 | AgentOps console | AegisLoop | ✅ 14/16 |
-| 8 | HITL publish pipeline | ACF | ✅ 16/16 |
-| 9 | Self-improvement harness | LoopForge | ✅ 14/16 |
-| 10 | Governed overnight intel | Sentinel | ⬜ |
-| 11 | Golden eval CI contracts | golden-eval-registry | ⬜ |
-| 12 | 5 agent patterns carousel | pattern repos ×5 | ⬜ |
+**All 13 posts (Week 0 + Weeks 1–12) are drafted in [LINKEDIN_POST_TEMPLATES.md](./LINKEDIN_POST_TEMPLATES.md).** Posting cadence is manual (one/week); check the demo gate + Phase 4 access blocker before each.
 
-Post skeleton: see [LINKEDIN_POST_TEMPLATES.md](./LINKEDIN_POST_TEMPLATES.md) (Phase 5).
+| Week | Post | Repo | Draft | Gate (audit ≥14) | Pre-post check |
+|------|------|------|-------|------------------|----------------|
+| 0 | Anchor essay — governance stack | venkat-ai.com/work | ✅ | — | — |
+| 1 | Access-before-ranking RAG | Enterprise RAG | ✅ | ✅ 15/16 | demo 200 ✅ |
+| 2 | RAG for facts · PEFT for behavior | DomainForge | ✅ | ✅ 15/16 | ⚠️ disable Vercel SSO first |
+| 3 | PagedAttention + multi-LoRA economics | vLLM Lab | ✅ | ✅ 14/16 | demo 200 ✅ |
+| 4 | Voice TTFT + latency budgets | VoiceForge | ✅ | ✅ 15/16 | ⚠️ disable Vercel SSO first |
+| 5 | Gateway before side effects | AegisAI | ✅ | ⬜ audit pending | run audit |
+| 6 | Orchestration ≠ governance | VAP | ✅ | ✅ 14/16 | demo 200 ✅ |
+| 7 | AgentOps console | AegisLoop | ✅ | ✅ 14/16 | demo 200 ✅ |
+| 8 | HITL publish pipeline | ACF | ✅ | ✅ 16/16 | ⚠️ link `/sign-in` (root 404) |
+| 9 | Self-improvement harness | LoopForge | ✅ | ✅ 14/16 | demo 200 ✅ |
+| 10 | Governed overnight intel | Sentinel | ✅ | ✅ 16/16 | demo 200 ✅ |
+| 11 | Golden eval CI contracts | golden-eval-registry | ✅ | n/a (no demo) | repo link |
+| 12 | 5 agent patterns carousel | pattern repos ×5 | ✅ | ⬜ audit | verify 5 demos |
+
+Post skeleton + all drafts: [LINKEDIN_POST_TEMPLATES.md](./LINKEDIN_POST_TEMPLATES.md).
+
+**Before posting each week:** (1) demo returns 200 for a signed-out visitor, (2) OG card exists per [SOCIAL_PREVIEW_SPEC.md](./SOCIAL_PREVIEW_SPEC.md), (3) attach architecture PNG from `docs/diagrams/canonical-architecture.mmd`.
 
 ---
 
