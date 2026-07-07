@@ -11,45 +11,30 @@ Voice assistants must meet **sub-30s end-to-end latency** with visible phase bre
 
 ## Architecture
 
-```text
-Mic (browser) → ASR → LLM triage → TTS → speaker
-                    ↓
-              LatencyBudget + DegradationReason
-```
+Canonical: [docs/diagrams/canonical-architecture.mmd](https://github.com/vpeetla-ai/voiceforge-assistant/blob/main/docs/diagrams/canonical-architecture.mmd)
 
-```mermaid
-flowchart LR
-  MIC[Browser mic] --> ASR[Web Speech / Whisper]
-  ASR --> LLM[Mock / Ollama / DomainForge]
-  LLM --> TTS[edge-tts / browser]
-  TTS --> OUT[Audio + waterfall UI]
-```
+## Latency budgets (default)
+
+| Phase | Budget (ms) | Measured in UI |
+|-------|-------------|----------------|
+| ASR | 8,000 | `asr_ms` |
+| LLM (total) | 15,000 | `llm_total_ms` |
+| LLM TTFT | — | `llm_ttft_ms` (tracked) |
+| TTS | 10,000 | `tts_ms` |
+| **Total** | **30,000** | waterfall + degradation |
+
+When a phase exceeds budget, `DegradationReason` triggers text input, browser TTS, or cached reply.
 
 ## Key decisions
 
-- **Browser-first ASR on free tier** — Render cannot host Whisper by default ([ADR-021](../adr/ADR-021-voiceforge-multimodal-pipeline.md))
-- **Pluggable LLM** — mock for demos; DomainForge for governed triage JSON
-- **Graceful degradation** — text input, browser TTS, cached reply on timeout/failure
-- **Dual transport** — REST for curl/tests; WebSocket for phase events
-
-## Trade-offs
-
-| Decision | Rationale |
-|----------|-----------|
-| Browser ASR default | Zero server GPU; honest Render free-tier story |
-| edge-tts server TTS | Works without API keys on Render |
-| Mock LLM in production demo | No cold-start GPU dependency |
-| Latency waterfall in UI | Portfolio proof of performance engineering |
+- **Browser-first ASR on free tier** — [ADR-021](../adr/ADR-021-voiceforge-multimodal-pipeline.md)
+- **Pluggable LLM** — Mock / Ollama / DomainForge `/v1/query`
+- **Dual transport** — REST + WebSocket phase events
 
 ## Impact
 
-- **Closes Portfolio Pillar 5** — real-time multimodal with measurable latency
+- **Closes Portfolio Pillar 5** — measurable multimodal latency
 - Pairs with [DomainForge](domainforge-rag-peft.md) (voice → triage JSON)
-- 9 pytest cases; WebSocket + REST APIs
-
-## Stack
-
-Python 3.11 · FastAPI · edge-tts · Next.js static export · Vercel · Render
 
 ## Related ADR
 

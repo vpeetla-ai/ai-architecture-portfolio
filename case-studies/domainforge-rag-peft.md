@@ -3,6 +3,7 @@
 **Domain:** Enterprise RAG · Parameter-efficient fine-tuning · Eval harness  
 **Live demo:** [domainforge-rag-peft.vercel.app](https://domainforge-rag-peft.vercel.app)  
 **API:** [domainforge-api.onrender.com](https://domainforge-api.onrender.com)  
+**Bench:** [/bench](https://domainforge-rag-peft.vercel.app/bench)  
 **Source:** [domainforge-rag-peft](https://github.com/vpeetla-ai/domainforge-rag-peft)
 
 ## Problem
@@ -11,50 +12,36 @@ Support automation needs **grounded citations** from SOPs and **reliable JSON** 
 
 ## Architecture
 
-```text
-SOP corpus → chunk + index → hybrid retriever (S1/S2)
-Bitext SFT → ChatML → QLoRA adapter (S3)
-Both → FastAPI /v1/query → eval harness (S0–S3 compare)
-```
+Canonical: [docs/diagrams/canonical-architecture.mmd](https://github.com/vpeetla-ai/domainforge-rag-peft/blob/main/docs/diagrams/canonical-architecture.mmd)
 
-```mermaid
-flowchart LR
-  SOP[Capstone SOPs] --> RAG[Hybrid RAG]
-  Bitext[Bitext SFT] --> PEFT[QLoRA adapter]
-  RAG --> API[FastAPI]
-  PEFT --> API
-  API --> EVAL[Golden eval S0–S3]
+```text
+SOP corpus → hybrid RAG (S1/S2)  |  Bitext → QLoRA (S3) → DPO (S4)
+Both → FastAPI /v1/query → golden eval S0→S4 → optional Ollama / vLLM serve
 ```
 
 ## Key decisions
 
-- **RAG = facts, PEFT = behavior** — separate data planes, separate eval metrics ([ADR-019](../adr/ADR-019-rag-facts-peft-behavior.md))
-- **Solution ladder** — S0 baseline → S1 naive RAG → S2 hybrid → S3 PEFT+hybrid → **S4 DPO-aligned**; compare via `/v1/eval/compare`
-- **DPO preference pairs** — scorer-labeled chosen vs hard-negative rejected ([ADR-020](../adr/ADR-020-dpo-after-sft-alignment.md))
-- **Adapter promotion gated** — `promote` endpoint requires API key; blocked on faithfulness or format regression
-- **Honest production scope** — Render runs `MOCK_LLM=true`; full Mistral QLoRA requires CUDA
+- **RAG = facts, PEFT = behavior** — [ADR-019](../adr/ADR-019-rag-facts-peft-behavior.md)
+- **S0→S4 ladder** — baseline → naive RAG → hybrid → PEFT → **DPO-aligned** ([ADR-020](../adr/ADR-020-dpo-after-sft-alignment.md))
+- **Adapter promotion gated** — API-key; blocked on regression
+- **Local AI bench** — `POST /v1/bench/ollama` + UI `/bench` ([case study](domainforge-local-ai-bench.md))
+- **vLLM multi-LoRA target** — [ADR-022](../adr/ADR-022-domainforge-vllm-multi-lora-serving.md) (planned)
 
-## Trade-offs
+## Ollama bench (reference targets)
 
-| Decision | Rationale |
-|----------|-----------|
-| Capstone SOP corpus (13 docs) | Portfolio-safe; no employer supply-chain data |
-| Bitext public SFT | Realistic intent distribution without proprietary tickets |
-| Hybrid BM25 + lexical (S2) | Better recall than naive cosine-only RAG |
-| Public query/eval endpoints | Portfolio demo UX on free tier |
-| API-key on promote only | Governance for irreversible adapter changes |
+| Model | Metric | Notes |
+|-------|--------|-------|
+| llama3.2:3b | P50/P95 ms, tokens/s | Run via `/bench` when Ollama local |
+| mistral:7b | P50/P95 ms, tokens/s | Same golden triage JSON prompt |
+| GPU pipeline | Real S3/S4 adapters | `scripts/gpu_pipeline.sh` on RunPod |
+
+*Populate table after GPU run — honest empty until measured.*
 
 ## Impact
 
-- Tenth production platform in the governed stack — answers **"How do we adapt models to domain format?"**
-- Interview narrative: *"RAG for facts · SFT for schema · DPO for alignment"*
-- 32 pytest cases; live S0–S4 compare + preference pair viewer
-- Pairs with [Enterprise RAG](enterprise-rag-platform.md) (access layer) and [vLLM Architecture Lab](vllm-architecture-lab.md) (inference education)
-
-## Stack
-
-Python 3.11 · FastAPI · Chroma · TRL · PEFT · Next.js static export · Vercel · Render
+- Answers **"How do we adapt models to domain format?"**
+- Pairs with [Enterprise RAG](enterprise-rag-platform.md), [vLLM Lab](vllm-architecture-lab.md), [VoiceForge](voiceforge-assistant.md)
 
 ## Related ADR
 
-[ADR-019: RAG facts + PEFT behavior](../adr/ADR-019-rag-facts-peft-behavior.md) · [ADR-020: DPO after SFT](../adr/ADR-020-dpo-after-sft-alignment.md) · [ADR-002: Authorization before ranking](../adr/ADR-002-authorization-before-ranking-rag.md)
+[ADR-019](../adr/ADR-019-rag-facts-peft-behavior.md) · [ADR-020](../adr/ADR-020-dpo-after-sft-alignment.md) · [ADR-022](../adr/ADR-022-domainforge-vllm-multi-lora-serving.md)

@@ -1,8 +1,8 @@
 # Enterprise RAG Platform — Access-Aware Knowledge Layer
 
 **Domain:** Enterprise RAG · Hybrid retrieval · Governance  
-**Live demo:** [demo-omega-taupe.vercel.app](https://demo-omega-taupe.vercel.app)  
-**Source:** [github.com/vpeetla-ai/enterprise_rag_platform](https://github.com/vpeetla-ai/enterprise_rag_platform)
+**Live demo:** [enterprise-rag-platform-eta.vercel.app](https://enterprise-rag-platform-eta.vercel.app)  
+**Source:** [enterprise_rag_platform](https://github.com/vpeetla-ai/enterprise_rag_platform)
 
 ## Problem
 
@@ -10,21 +10,25 @@ Production RAG is not "connect a vector DB." Enterprise knowledge requires acces
 
 ## Architecture
 
+Canonical: [docs/diagrams/canonical-architecture.mmd](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/diagrams/canonical-architecture.mmd)
+
 ```text
-Query + Principal → Access Filter → Hybrid Retriever → Reranker → Graph Expand
-       → Context Assembly → LLM + Citations → Eval/HITL → Langfuse export
+Query + Principal → Access Filter → Hybrid Retriever → CrossEncoder Rerank
+       → Decline if low confidence → Context → LLM + Citations → Eval/HITL → Langfuse
 ```
 
 ```mermaid
 flowchart LR
-    Q[Query] --> AF[Access filter] --> RET[Hybrid retriever] --> RR[Rerank]
-    RR --> CTX[Context] --> LLM[LLM + citations] --> EV[Eval]
-    EV -.-> LF[Langfuse<br/>trace-linked evals]
+    Q[Query] --> AF[Access filter] --> RET[Hybrid retriever]
+    RET --> RR[CrossEncoder rerank] --> DEC{Confidence OK?}
+    DEC -->|no| REF[Decline to answer]
+    DEC -->|yes| CTX[Context] --> LLM[LLM + citations]
+    LLM --> EV[Eval] -.-> LF[Langfuse]
 ```
 
 ## Key outcome
 
-Authorization **before** semantic ranking — not after generation.
+Authorization **before** semantic ranking — then rerank, then **decline** when evidence is insufficient.
 
 ## Trade-offs
 
@@ -32,15 +36,14 @@ Authorization **before** semantic ranking — not after generation.
 |----------|-----------|
 | Access filter first | Prevent unauthorized content in context window |
 | Hybrid lexical + semantic | Recall for exact terms and paraphrase |
+| Cross-encoder rerank | ms-marco-MiniLM after hybrid recall |
+| Decline-to-answer | `RAG_DECLINE_THRESHOLD` — no hallucinated synthesis |
 | AegisAI HITL bridge | High-risk ingest and answer paths |
-| Seeded demo corpus | Portfolio demo without mandatory vector DB |
-| API-key gate, Principal still client-asserted ([ADR-0004](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/adr/0004-api-auth-and-principal-trust.md)) | Closes "anyone can call the API" but not "anyone can claim any identity in the request body" — the access-before-ranking guarantee holds only given a trustworthy Principal, which a real deployment must derive from a verified token |
-| golden-eval-registry as a real CI gate, isolated pipeline not the demo singleton ([ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)) | CI now runs the shared `enterprise_rag_golden_v1` suite against a real, isolated `RagPipeline` and fails the build on regression — running it for the first time found and fixed a real bug in the fixture itself |
-| Real ingestion data contract + lineage, not just computed-and-discarded validation ([ADR-0005](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/adr/0005-ingestion-data-contract-and-lineage.md) · [ADR-016](../adr/ADR-016-ingestion-data-contracts-phase-d.md)) | `/v1/ingest` now rejects bad documents (422) instead of silently indexing them; every chunk carries a real content hash + ingestion timestamp — found while writing the tests: a whole CI test file had never actually run |
+| golden-eval-registry CI gate | Real regression on isolated `RagPipeline` |
 
 ## Related ADR
 
-[ADR-002: Authorization before ranking](../adr/ADR-002-authorization-before-ranking-rag.md) · [ADR-0004: API auth and principal trust](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/adr/0004-api-auth-and-principal-trust.md) · [ADR-014: golden-eval-registry real CI gate](../adr/ADR-014-golden-eval-registry-real-ci-gate.md) · [ADR-016: Ingestion data contracts](../adr/ADR-016-ingestion-data-contracts-phase-d.md)
+[ADR-002: Authorization before ranking](../adr/ADR-002-authorization-before-ranking-rag.md) · [ADR-023: Rerank + decline](../adr/ADR-023-enterprise-rag-rerank-decline.md) · [ADR-014: Golden eval CI gate](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)
 
 ## Stack
 

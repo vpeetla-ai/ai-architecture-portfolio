@@ -26,10 +26,10 @@ Scoring: **0** = missing · **1** = partial · **2** = complete
 | **voiceforge-assistant** | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 1 | **15** | ✅ | Full README pass |
 | **vllm-architecture-lab** | 2 | 2 | 2 | 2 | 2 | 1 | 2 | 1 | **14** | ✅ | Canonical diagram added |
 | **aegisai-enterprise-agent-platform** | 2 | 2 | 1 | 2 | 2 | 2 | 2 | 1 | **14** | ✅ | Phase 3 diagram sync |
-| **venkat-ai-platform** | 2 | 2 | 1 | 2 | 2 | 1 | 2 | 1 | **13** | ⬜ | Phase 3 |
-| **aegisloop-agentops-workbench** | 1 | 2 | 1 | 2 | 2 | 2 | 2 | 1 | **13** | ⬜ | Phase 3 |
-| **ai-content-factory** | 2 | 2 | 1 | 2 | 2 | 2 | 2 | 2 | **15** | ✅ | Phase 3 diagram |
-| **loop-engine-agent-platform** | 1 | 2 | 1 | 2 | 2 | 2 | 2 | 1 | **13** | ⬜ | Phase 4 |
+| **venkat-ai-platform** | 2 | 2 | 2 | 2 | 2 | 1 | 2 | 1 | **14** | ✅ | Phase 3 diagram |
+| **aegisloop-agentops-workbench** | 1 | 2 | 2 | 2 | 2 | 2 | 2 | 1 | **14** | ✅ | Phase 3 diagram |
+| **ai-content-factory** | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | **16** | ✅ | Phase 3 diagram |
+| **loop-engine-agent-platform** | 1 | 2 | 2 | 2 | 2 | 2 | 2 | 1 | **14** | ✅ | Phase 3 diagram |
 | **sentinel-brief** | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | **16** | ✅ | Ready for W10 post |
 
 ---
@@ -59,8 +59,8 @@ Scoring: **0** = missing · **1** = partial · **2** = complete
 ## Priority fixes (from audit)
 
 1. **CI badges** — several repos score R8=1 (CI exists but badge not in README header)
-2. **VAP / AegisLoop / LoopForge** — canonical `.mmd` + README embed (Phase 3)
-3. **agent-finops** — README standardization (Phase 3)
+2. **CI badges** — several repos score R8=1 (CI exists but badge not in README header)
+3. **agent-finops** — README standardization (Phase 4)
 
 ---
 

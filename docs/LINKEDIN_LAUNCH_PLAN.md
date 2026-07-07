@@ -55,12 +55,14 @@ A visitor who lands on GitHub or a live demo should understand in **60 seconds**
 | VoiceForge | ✅ | ✅ | ✅ |
 | Enterprise RAG | ✅ | ✅ | ✅ (existing hub) |
 | vLLM Lab | ✅ | ✅ | ✅ |
-| VAP | ⬜ | ⬜ | ⬜ |
-| ACF | ⬜ | ⬜ | ⬜ |
-| AegisLoop | ⬜ | ⬜ | ⬜ |
-| LoopForge | ⬜ | ⬜ | ⬜ |
+| VAP | ✅ | ✅ | ✅ |
+| ACF | ✅ | ✅ | ✅ |
+| AegisLoop | ✅ | ✅ | ✅ |
+| LoopForge | ✅ | ✅ | ✅ |
 
-**New ADR (Phase 3):** [ADR-022](../adr/ADR-022-domainforge-vllm-multi-lora-serving.md) — target architecture for multi-LoRA serving (planned).
+**New ADRs (Phase 3):**
+- [ADR-022](../adr/ADR-022-domainforge-vllm-multi-lora-serving.md) — target architecture for multi-LoRA serving (planned)
+- [ADR-023](../adr/ADR-023-enterprise-rag-rerank-decline.md) — cross-encoder rerank + decline-to-answer
 
 ---
 
@@ -78,20 +80,21 @@ A visitor who lands on GitHub or a live demo should understand in **60 seconds**
 | Gap plan refresh | ✅ | — | — | — |
 
 **Sync targets (Phase 3):**
-- [ ] `venkat-ai-portfolio/data/ecosystem.ts`
-- [ ] `vpeetla-ai/README.md` org profile
-- [ ] `CONTEXT.md` in ai-content-factory
+- [x] `venkat-ai-portfolio/data/ecosystem.ts`
+- [x] `vpeetla-ai/README.md` org profile
+- [x] `CONTEXT.md` in ai-content-factory
 
 ---
 
-## Phase 3 — ADR & case study alignment ⬜
+## Phase 3 — ADR & case study alignment ✅
 
 | Repo | ADR action | Case study |
 |------|------------|------------|
-| DomainForge | Link ADR-019/020; ADR-022 drafted | Add Ollama bench table when GPU run completes |
-| Enterprise RAG | Cross-encoder + decline in ADR | Update pipeline stages |
-| VoiceForge | Link portfolio ADR-021 | Latency SLO table |
-| vLLM Lab | ADR-022 target architecture | Train → serve economics essay |
+| DomainForge | Link ADR-019/020; ADR-022 drafted | ✅ S0→S4 + bench table |
+| Enterprise RAG | ✅ ADR-023 cross-encoder + decline | ✅ pipeline stages |
+| VoiceForge | Link portfolio ADR-021 | ✅ Latency SLO table |
+| vLLM Lab | ADR-022 target architecture | ✅ Train → serve economics |
+| VAP / ACF / AegisLoop / LoopForge | Canonical diagrams + README links | — |
 
 ---
 
@@ -116,10 +119,10 @@ A visitor who lands on GitHub or a live demo should understand in **60 seconds**
 | 3 | PagedAttention + multi-LoRA economics | vLLM Lab | ✅ 14/16 |
 | 4 | Voice TTFT + latency budgets | VoiceForge | ✅ 15/16 |
 | 5 | Gateway before side effects | AegisAI | ⬜ audit pending |
-| 6 | Orchestration ≠ governance | VAP | ⬜ |
-| 7 | AgentOps console | AegisLoop | ⬜ |
-| 8 | HITL publish pipeline | ACF | ⬜ |
-| 9 | Self-improvement harness | LoopForge | ⬜ |
+| 6 | Orchestration ≠ governance | VAP | ✅ 14/16 |
+| 7 | AgentOps console | AegisLoop | ✅ 14/16 |
+| 8 | HITL publish pipeline | ACF | ✅ 16/16 |
+| 9 | Self-improvement harness | LoopForge | ✅ 14/16 |
 | 10 | Governed overnight intel | Sentinel | ⬜ |
 | 11 | Golden eval CI contracts | golden-eval-registry | ⬜ |
 | 12 | 5 agent patterns carousel | pattern repos ×5 | ⬜ |
@@ -134,8 +137,8 @@ Post skeleton: see [LINKEDIN_POST_TEMPLATES.md](./LINKEDIN_POST_TEMPLATES.md) (P
 |-----|----------|-------|--------|
 | Multi-LoRA serving demo | High | 3 + GPU | ADR-022 drafted; implementation ⬜ |
 | GPU-trained Mistral artifacts published | High | User RunPod | ⬜ |
-| enterprise_rag `vpeetla_observability` middleware | Medium | 3 | ⬜ |
-| venkat-ai-portfolio ecosystem sync | Medium | 3 | ⬜ |
+| enterprise_rag `vpeetla_observability` middleware | Medium | 4 | ⬜ |
+| venkat-ai-portfolio ecosystem sync | Medium | 3 | ✅ |
 | Pattern repo README batch (×5) | Medium | 4 | ⬜ |
 
 ---
