@@ -38,17 +38,18 @@ This document maps the current 21-repo stack to the **five essential AI portfoli
 | LangGraph orchestration | 3 StateGraph pipelines, ENTERPRISE RAG strategy | venkat-ai-platform |
 | Eval harness | S0→S4 compare, hallucination scorer | domainforge |
 
-### Gaps (fix in existing repos)
+### Gaps (remaining Jul 2026)
 
-| Gap | Severity | Recommended fix | Owner repo | Effort |
-|-----|----------|-----------------|------------|--------|
-| **Cross-encoder reranker** (not heuristic/LLM) | High | Add `sentence-transformers/cross-encoder/ms-marco-MiniLM` stage after hybrid retrieval | enterprise_rag_platform | M |
-| **Ragas faithfulness** | Medium | Integrate `ragas` metrics OR remove “Ragas” from DomainForge README diagram | domainforge, enterprise_rag | S |
-| **Decline-to-answer** when retrieval unsupported | High | Return structured refusal if max retrieval score < threshold | enterprise_rag, domainforge | S |
-| **True dense hybrid on Qdrant** | Medium | Replace scroll+lexical Qdrant adapter with embedded vectors + BM25 fusion | enterprise_rag_platform | L |
-| **Golden eval CI on DomainForge** | Medium | Wire `domainforge.triage_preference_v1` as real CI gate (like enterprise_rag) | domainforge + golden-eval-registry | S |
-| **VAP hybrid is keyword overlap, not BM25** | Low | Document honestly or delegate to ENTERPRISE strategy by default | venkat-ai-platform | S |
-| **Weaviate** | Low | Optional — Qdrant/Chroma sufficient for portfolio; mention as ADR trade-off | docs only | — |
+| Gap | Severity | Status |
+|-----|----------|--------|
+| Cross-encoder reranker | High | ✅ Shipped |
+| Decline-to-answer | High | ✅ Shipped |
+| Golden eval CI on DomainForge | Medium | ✅ Shipped |
+| P50/P95 on AegisLoop | High | ✅ Shipped |
+| Ragas faithfulness | Medium | ⬜ Remove aspirational claims |
+| vLLM multi-LoRA serving | High | ⬜ ADR-022 drafted |
+| True dense hybrid on Qdrant | Medium | ⬜ |
+| enterprise_rag TraceRecorder | Medium | ⬜ |
 
 ### Missing as standalone narrative
 
