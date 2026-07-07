@@ -1,7 +1,7 @@
 # Portfolio 2026 Gap Plan — Five Essential AI Projects
 
 **Org:** [vpeetla-ai](https://github.com/vpeetla-ai) · **Portfolio:** [venkat-ai.com/work](https://venkat-ai.com/work)  
-**Date:** Jul 2026 · **Status:** Honest self-assessment against production-grade portfolio rubric
+**Date:** Jul 2026 · **Status:** Honest self-assessment — **Phases A–B complete** · **LinkedIn launch Phases 0–2 complete** ([LINKEDIN_LAUNCH_PLAN.md](./LINKEDIN_LAUNCH_PLAN.md))
 
 This document maps the current 21-repo stack to the **five essential AI portfolio projects for 2026** — systems that prove production discipline, not chat demos.
 
@@ -11,9 +11,9 @@ This document maps the current 21-repo stack to the **five essential AI portfoli
 
 | # | Pillar | Primary repo(s) | Coverage | Verdict |
 |---|--------|-----------------|----------|---------|
-| 1 | Production-Grade RAG | enterprise_rag_platform, domainforge-rag-peft | ~75% | **Strong** — gaps: cross-encoder reranker, Ragas, unified decline-to-answer |
-| 2 | Local AI Assistant (SLMs) | domainforge-rag-peft, vllm-architecture-lab | ~45% | **Partial** — Ollama wired; missing benchmark study + dedicated product |
-| 3 | Monitoring & Observability | ai-content-factory, sentinel-brief, aegisloop | ~60% | **Partial** — Langfuse traces exist; missing P50/P95 + failure-rate SLOs |
+| 1 | Production-Grade RAG | enterprise_rag_platform, domainforge-rag-peft | ~85% | **Strong** — cross-encoder reranker + decline-to-answer shipped Jul 2026 |
+| 2 | Local AI Assistant (SLMs) | domainforge-rag-peft, vllm-architecture-lab | ~55% | **Partial** — `/bench` UI + case study; GPU artifacts user-driven |
+| 3 | Monitoring & Observability | ai-content-factory, sentinel-brief, aegisloop | ~70% | **Partial** — P50/P95 + failure rate on AegisLoop; enterprise_rag observability middleware ⬜ |
 | 4 | Fine-Tuning (SFT + DPO) | domainforge-rag-peft | ~80% | **Strong** — full ladder; gaps: production-scale data + GPU-trained artifacts |
 | 5 | Real-Time Multimodal (Voice) | voiceforge-assistant | ~85% | **Strong** — MVP shipped Jul 2026; optional: server Whisper, AegisAI TTS gate |
 
@@ -199,12 +199,12 @@ No single README says: *“This is the production RAG reference — start here.�
 | Capability | enterprise_rag | domainforge | VAP | aegisloop | ACF | sentinel | voiceforge |
 |------------|---------------|-------------|-----|-----------|-----|----------|------------|
 | Hybrid BM25+vector | partial | yes | partial | — | — | — | — |
-| Cross-encoder rerank | no | no | no | — | — | — | — |
-| Decline-to-answer | partial | partial | no | — | — | — | — |
-| Golden eval CI gate | **yes** | fixture | no | partial | partial | partial | — |
+| Cross-encoder rerank | **yes** | no | no | — | — | — | — |
+| Decline-to-answer | **yes** | partial | no | — | — | — | — |
+| Golden eval CI gate | **yes** | **yes** | no | partial | partial | partial | — |
 | Ragas | no | aspirational | no | — | — | — | — |
 | Langfuse traces | partial | no | yes | partial | **yes** | **yes** | — |
-| P50/P95 dashboards | no | no | no | demo only | no | no | partial |
+| P50/P95 dashboards | no | no | no | **yes** | no | no | partial |
 | SFT/DPO | — | **yes** | — | — | — | — | — |
 | Ollama production | — | **yes** | — | — | fallback | — | optional |
 | Voice/ASR/TTS | — | — | — | — | — | — | **yes** |
@@ -234,6 +234,17 @@ No single README says: *“This is the production RAG reference — start here.�
 ### Phase D — VoiceForge ✅ (Jul 2026)
 
 10. **VoiceForge** — ASR + LLM + TTS + latency budget UI + graceful degradation — **shipped**
+
+### Phase E — LinkedIn launch prep ✅ (Jul 2026)
+
+11. **LINKEDIN_LAUNCH_PLAN.md** — phase tracker + audit rubric
+12. **Canonical diagrams** — DomainForge, VoiceForge, Enterprise RAG, vLLM Lab
+13. **README standardization** — DomainForge, VoiceForge, Enterprise RAG reranker row
+14. **ADR-022** — DomainForge → vLLM multi-LoRA target architecture
+
+### Phase F — LinkedIn posts ⬜
+
+15. Week 0 anchor post → flagship weekly sequence (see [LINKEDIN_POST_TEMPLATES.md](./LINKEDIN_POST_TEMPLATES.md))
 
 ---
 
@@ -266,4 +277,4 @@ The rubric’s five pillars are **all demonstrated**. Remaining work is **harden
 | [golden-eval-registry](https://github.com/vpeetla-ai/golden-eval-registry) | New suite kinds + CI gates |
 | [CONTEXT.md](https://github.com/vpeetla-ai/ai-content-factory/blob/main/CONTEXT.md) | Stack layer additions |
 
-*This document is the canonical gap plan. Update after each phase completion.*
+*This document is the canonical gap plan. Update after each phase completion. LinkedIn execution: [LINKEDIN_LAUNCH_PLAN.md](./LINKEDIN_LAUNCH_PLAN.md).*

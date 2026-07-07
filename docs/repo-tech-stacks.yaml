@@ -66,6 +66,16 @@ repos:
       - { label: Vercel, color: "000000" }
       - { label: Render, color: "46E3B7" }
 
+  voiceforge-assistant:
+    dir: voiceforge-assistant
+    stack:
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: FastAPI, color: "009688" }
+      - { label: WebSocket, color: "010101" }
+      - { label: Next.js, color: "000000" }
+      - { label: Vercel, color: "000000" }
+      - { label: Render, color: "46E3B7" }
+
   aegisloop-agentops-workbench:
     dir: aegisloop-agentops-workbench
     stack:
