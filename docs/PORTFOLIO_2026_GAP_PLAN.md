@@ -213,7 +213,7 @@ No single README says: *“This is the production RAG reference — start here.�
 
 ## Prioritized roadmap
 
-### Phase A — Harden existing (2–3 weeks, no new repos)
+### Phase A — Harden existing ✅ (Jul 2026)
 
 1. **enterprise_rag:** cross-encoder reranker + decline-to-answer threshold
 2. **domainforge:** fix Ragas README claim; scale DPO preference pairs; update org README to S0→S4
@@ -221,12 +221,12 @@ No single README says: *“This is the production RAG reference — start here.�
 4. **aegisloop:** P50/P95 + failure rate cards from trace DB
 5. **enterprise_rag:** wire `vpeetla_observability` middleware
 
-### Phase B — Local AI benchmark (1–2 weeks)
+### Phase B — Local AI benchmark ✅ (Jul 2026)
 
 6. **DomainForge `/bench`** or **`local-ai-bench`** repo: Ollama tokens/sec + latency table for 3B/7B × Q4/Q5
 7. Publish case study: “Structured JSON triage — model & quantization comparison”
 
-### Phase C — GPU execution (user-driven)
+### Phase C — GPU execution ✅ (docs + pipeline; RunPod user-driven)
 
 8. RunPod: `bash scripts/gpu_pipeline.sh` → real Mistral S3/S4 adapters
 9. Point Render `MOCK_LLM=false` + `OLLAMA_BASE_URL` at GPU host
