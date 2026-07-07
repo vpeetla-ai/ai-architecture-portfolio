@@ -54,6 +54,18 @@ repos:
       - { label: Vercel, color: "000000" }
       - { label: Render, color: "46E3B7" }
 
+  domainforge-rag-peft:
+    dir: domainforge-rag-peft
+    stack:
+      - { label: Python, value: "3.11", color: "3776AB" }
+      - { label: FastAPI, color: "009688" }
+      - { label: Chroma, color: "FF6B35" }
+      - { label: PEFT, color: "9333EA" }
+      - { label: TRL, color: "6366F1" }
+      - { label: Next.js, color: "000000" }
+      - { label: Vercel, color: "000000" }
+      - { label: Render, color: "46E3B7" }
+
   aegisloop-agentops-workbench:
     dir: aegisloop-agentops-workbench
     stack:

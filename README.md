@@ -25,7 +25,7 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 ---
 
 **Venkata Peetla** — Principal AI Architect · Lucid Motors  
-*19 years enterprise delivery · **13 live demos** · **17 open-source repos**
+*19 years enterprise delivery · **15 live demos** · **21 open-source repos**
 
 [Live demos](https://venkat-ai.com/work) · [Repo index](docs/REPO_INDEX.md) · [Trace-linked observability](docs/TRACE_LINKED_OBSERVABILITY.md) · [README standard](docs/README_STANDARD.md) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai) · [Improvement plan 2026](docs/ORG_IMPROVEMENT_PLAN_2026.md)
 
@@ -33,7 +33,7 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 
 ## Impact at a Glance
 
-| **10→2** | **Multi-$M** | **12 live demos** | **7-layer stack + skills** |
+| **10→2** | **Multi-$M** | **15 live demos** | **8-layer stack + skills** |
 |----------|--------------|---------------------|---------------------------|
 | Agent ops staffing reduction (targeted supply-chain flows) | Revenue & savings — payments, subscriptions, EDI | Platform + pattern demos on Vercel/Render | Wired together — [improvement plan](docs/ORG_IMPROVEMENT_PLAN_2026.md) |
 
@@ -47,7 +47,8 @@ Six questions every enterprise agent program must answer — each mapped to a li
 |---|----------|--------|-----------|--------|
 | 1 | What should agents do? | **Venkat AI Platform** — multi-agent OS | [venkat-ai-platform.vercel.app](https://venkat-ai-platform.vercel.app) | [venkat-ai-platform](https://github.com/vpeetla-ai/venkat-ai-platform) |
 | 2 | What are agents allowed to do? | **AegisAI** — gateway, policy, HITL, audit | [aegisai-enterprise-agent-platform.vercel.app](https://aegisai-enterprise-agent-platform.vercel.app) | [aegisai](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform) |
-| 3 | What knowledge can they use? | **Enterprise RAG** — access-before-ranking | [enterprise-rag-platform.vercel.app](https://enterprise-rag-platform.vercel.app) | [enterprise_rag_platform](https://github.com/vpeetla-ai/enterprise_rag_platform) |
+| 3 | What knowledge can they use? | **Enterprise RAG** — access-before-ranking | [enterprise-rag-platform-eta.vercel.app](https://enterprise-rag-platform-eta.vercel.app) | [enterprise_rag_platform](https://github.com/vpeetla-ai/enterprise_rag_platform) |
+| 3b | How do we adapt domain format? | **DomainForge** — RAG facts + PEFT behavior | [domainforge-rag-peft.vercel.app](https://domainforge-rag-peft.vercel.app) · [API](https://domainforge-api.onrender.com) | [domainforge-rag-peft](https://github.com/vpeetla-ai/domainforge-rag-peft) |
 | 4 | How do we operate agent fleets? | **AegisLoop** — missions, traces, eval gates | [aegisloop-agentops-workbench.vercel.app](https://aegisloop-agentops-workbench.vercel.app) | [aegisloop](https://github.com/vpeetla-ai/aegisloop-agentops-workbench) |
 | 5 | What do they produce? | **AI Content Factory** — governed publish pipeline | [ai-content-factory-iota.vercel.app](https://ai-content-factory-iota.vercel.app) | [ai-content-factory](https://github.com/vpeetla-ai/ai-content-factory) |
 | 6 | **How do agents improve?** | **LoopForge** — LangGraph repo fix → PR, harness, memory | [demo-omega-taupe.vercel.app](https://demo-omega-taupe.vercel.app) · [API](https://loopforge-api.onrender.com) | [loop-engine-agent-platform](https://github.com/vpeetla-ai/loop-engine-agent-platform) |
@@ -77,6 +78,7 @@ flowchart TB
         AL["aegisloop"]
         AEG["aegisai"]
         ER["enterprise_rag"]
+        DF["domainforge"]
     end
     subgraph Export["Export adapters"]
         LANG["Langfuse Cloud"]
@@ -97,6 +99,7 @@ Each includes architecture context, key decisions, trade-offs, and links to live
 
 | Project | Domain | Key outcome | Case study |
 |---------|--------|-------------|------------|
+| **DomainForge** | RAG + PEFT MLOps | S0→S3 eval ladder — facts via RAG, behavior via QLoRA | [case-studies/domainforge-rag-peft.md](case-studies/domainforge-rag-peft.md) |
 | **LoopForge** | Loop engineering | Self-improving harness — ODAEU, MCP, RAG tuning | [case-studies/loopforge-self-improving-harness.md](case-studies/loopforge-self-improving-harness.md) |
 | **vLLM Architecture Lab** | LLM inference | PagedAttention · continuous batching · KV simulator | [vllm-architecture-lab/docs/ARCHITECTURE.md](https://github.com/vpeetla-ai/vllm-architecture-lab/blob/main/docs/ARCHITECTURE.md) |
 | **AegisAI** | Agent governance | Runtime control plane — gateway, HITL, signed audit | [case-studies/aegisai-agent-governance.md](case-studies/aegisai-agent-governance.md) |
@@ -141,6 +144,7 @@ Real decisions from production systems — not theoretical patterns.
 | [ADR-016](adr/ADR-016-ingestion-data-contracts-phase-d.md) | Ingestion data contracts + real lineage | enterprise_rag_platform now rejects bad ingests instead of silently indexing them; found a real CI gap where a whole test file never ran |
 | [ADR-017](adr/ADR-017-interview-playbook-standalone-repo.md) | Interview playbook as a standalone repo | 35 entries grounded in real ADRs/outcomes, not generic interview prep |
 | [ADR-018](adr/ADR-018-practice-arena-standalone-repo.md) | Practice Arena as a standalone repo | LLM-as-judge mock interview tool grading real answers against the playbook's own rubrics — dual-judge, bring-your-own-key |
+| [ADR-019](adr/ADR-019-rag-facts-peft-behavior.md) | RAG facts + PEFT behavior | DomainForge splits SOP retrieval from QLoRA JSON discipline — separate eval dimensions and promotion gates |
 
 ---
 
@@ -163,6 +167,8 @@ Five MIT-licensed patterns with live trace viewers — mapped to VAP orchestrato
 **Agentic AI & Governance** — Multi-agent orchestration (LangGraph), runtime gateway (OPA policy, HITL), agent registry, signed audit, evaluation gates, AI FinOps
 
 **Enterprise RAG** — Access-aware retrieval, hybrid search, reranking, graph expansion, citation traceability, ingest/answer HITL bridges
+
+**RAG + MLOps** — RAG-for-facts / PEFT-for-behavior separation, QLoRA training, adapter registry, solution-ladder eval (DomainForge)
 
 **Platform & Delivery** — FastAPI · Next.js · Postgres · Qdrant · AWS/OCI · 19 years across Google · Kaiser · Volvo · Lucid
 

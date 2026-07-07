@@ -8,7 +8,8 @@ Shared vocabulary for all org repos. Agents should use these terms consistently.
 |-------|----------|------|------|
 | Orchestration | What should agents do? | venkat-ai-platform | venkat-ai-platform.vercel.app |
 | Governance | What are agents allowed? | aegisai-enterprise-agent-platform | aegisai-enterprise-agent-platform.vercel.app |
-| Knowledge | What knowledge can they use? | enterprise_rag_platform | enterprise-rag-platform.vercel.app |
+| Knowledge | What knowledge can they use? | enterprise_rag_platform | enterprise-rag-platform-eta.vercel.app |
+| Knowledge + MLOps | How do we adapt models to domain format? | domainforge-rag-peft | domainforge-rag-peft.vercel.app |
 | AgentOps | How do we operate fleets? | aegisloop-agentops-workbench | aegisloop-agentops-workbench.vercel.app |
 | Application | What do they produce? | ai-content-factory | ai-content-factory-iota.vercel.app |
 | Self-improvement | How do agents improve? | loop-engine-agent-platform | demo-omega-taupe.vercel.app |
