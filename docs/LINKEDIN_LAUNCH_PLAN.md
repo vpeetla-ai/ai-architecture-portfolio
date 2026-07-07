@@ -33,7 +33,7 @@ A visitor who lands on GitHub or a live demo should understand in **60 seconds**
 | **4** | Demo & first-run UX polish | ✅ Done (2 dashboard blockers) | Jul 2026 |
 | **5** | LinkedIn content (12-week launch) | ✅ Drafts ready | Jul 2026 |
 
-> **Open blockers before live posting:** disable Vercel Deployment Protection on DomainForge + VoiceForge; expose a public ACF landing route (or post the `/sign-in` link); export OG cards per [SOCIAL_PREVIEW_SPEC.md](./SOCIAL_PREVIEW_SPEC.md).
+> **Open blockers before live posting:** disable Vercel Deployment Protection on DomainForge + VoiceForge; expose a public ACF landing route (or post the `/sign-in` link); export OG cards per [SOCIAL_PREVIEW_COPY.md](./SOCIAL_PREVIEW_COPY.md).
 
 ---
 
@@ -105,7 +105,8 @@ A visitor who lands on GitHub or a live demo should understand in **60 seconds**
 - [x] Render cold-start "first-run note" in Deploy sections — Enterprise RAG, vLLM Lab, DomainForge, VoiceForge
 - [x] Verify Vercel aliases — 7/10 public 200; findings logged in [CONTEXT.md](../../ai-content-factory/CONTEXT.md) demo-access table
 - [x] Cold-start-aware empty/error states — DomainForge + VoiceForge UIs now show a "waking API (~30s)" hint on network/timeout failures
-- [x] Social preview spec — [SOCIAL_PREVIEW_SPEC.md](./SOCIAL_PREVIEW_SPEC.md) (asset export ⬜, tracked there)
+- [x] Social preview spec — [SOCIAL_PREVIEW_SPEC.md](./SOCIAL_PREVIEW_SPEC.md)
+- [x] Designer copy handoff — [SOCIAL_PREVIEW_COPY.md](./SOCIAL_PREVIEW_COPY.md) (PNG export ⬜)
 
 **Demo-access verification (Jul 7 2026):**
 
@@ -118,7 +119,7 @@ A visitor who lands on GitHub or a live demo should understand in **60 seconds**
 
 > These 3 are Vercel/Clerk **dashboard** settings, not repo code. Must clear before Weeks 2 (DomainForge), 4 (VoiceForge), 8 (ACF) posts.
 
-**Remaining Phase 4 asset work:** export 1200×630 OG cards per flagship and wire `openGraph.images` (see spec).
+**Remaining Phase 4 asset work:** export 1200×630 OG cards per [SOCIAL_PREVIEW_COPY.md](./SOCIAL_PREVIEW_COPY.md) and wire `openGraph.images`.
 
 ---
 
@@ -135,14 +136,14 @@ A visitor who lands on GitHub or a live demo should understand in **60 seconds**
 | 2 | RAG for facts · PEFT for behavior | DomainForge | ✅ | ✅ 15/16 | ⚠️ disable Vercel SSO first |
 | 3 | PagedAttention + multi-LoRA economics | vLLM Lab | ✅ | ✅ 14/16 | demo 200 ✅ |
 | 4 | Voice TTFT + latency budgets | VoiceForge | ✅ | ✅ 15/16 | ⚠️ disable Vercel SSO first |
-| 5 | Gateway before side effects | AegisAI | ✅ | ⬜ audit pending | run audit |
+| 5 | Gateway before side effects | AegisAI | ✅ | ✅ 16/16 | demo 200 ✅ |
 | 6 | Orchestration ≠ governance | VAP | ✅ | ✅ 14/16 | demo 200 ✅ |
 | 7 | AgentOps console | AegisLoop | ✅ | ✅ 14/16 | demo 200 ✅ |
 | 8 | HITL publish pipeline | ACF | ✅ | ✅ 16/16 | ⚠️ link `/sign-in` (root 404) |
 | 9 | Self-improvement harness | LoopForge | ✅ | ✅ 14/16 | demo 200 ✅ |
 | 10 | Governed overnight intel | Sentinel | ✅ | ✅ 16/16 | demo 200 ✅ |
 | 11 | Golden eval CI contracts | golden-eval-registry | ✅ | n/a (no demo) | repo link |
-| 12 | 5 agent patterns carousel | pattern repos ×5 | ✅ | ⬜ audit | verify 5 demos |
+| 12 | 5 agent patterns carousel | pattern repos ×5 | ✅ | demos ✅ 200 | series OG card; per-repo gate ⬜ |
 
 Post skeleton + all drafts: [LINKEDIN_POST_TEMPLATES.md](./LINKEDIN_POST_TEMPLATES.md).
 

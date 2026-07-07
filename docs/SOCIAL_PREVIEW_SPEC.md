@@ -2,7 +2,7 @@
 
 **Purpose:** Every LinkedIn post links a live demo. When someone shares that link, LinkedIn/X/Slack render an Open Graph card. Without an `og:image`, the card is blank or shows a raw screenshot — which reads as unfinished. This spec defines a consistent 1200×630 card per flagship.
 
-**Phase:** 4 (Demo & first-run UX) · **Status:** spec ready; asset export ⬜
+**Phase:** 4 (Demo & first-run UX) · **Status:** spec ready; designer copy in [SOCIAL_PREVIEW_COPY.md](./SOCIAL_PREVIEW_COPY.md); PNG export ⬜
 
 ---
 

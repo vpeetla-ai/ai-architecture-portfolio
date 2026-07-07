@@ -25,7 +25,7 @@ Scoring: **0** = missing · **1** = partial · **2** = complete
 | **domainforge-rag-peft** | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 1 | **15** | ✅ | Full README pass |
 | **voiceforge-assistant** | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 1 | **15** | ✅ | Full README pass |
 | **vllm-architecture-lab** | 2 | 2 | 2 | 2 | 2 | 1 | 2 | 1 | **14** | ✅ | Canonical diagram added |
-| **aegisai-enterprise-agent-platform** | 2 | 2 | 1 | 2 | 2 | 2 | 2 | 1 | **14** | ✅ | Phase 3 diagram sync |
+| **aegisai-enterprise-agent-platform** | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | **16** | ✅ | Canonical diagram + CI badge + cold-start note |
 | **venkat-ai-platform** | 2 | 2 | 2 | 2 | 2 | 1 | 2 | 1 | **14** | ✅ | Phase 3 diagram |
 | **aegisloop-agentops-workbench** | 1 | 2 | 2 | 2 | 2 | 2 | 2 | 1 | **14** | ✅ | Phase 3 diagram |
 | **ai-content-factory** | 2 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | **16** | ✅ | Phase 3 diagram |
@@ -46,21 +46,26 @@ Scoring: **0** = missing · **1** = partial · **2** = complete
 
 ## Tier 3 — Agent patterns (×5)
 
-| Repo | Total | Gate | Notes |
-|------|-------|------|-------|
-| react-agent-pattern | 10 | ⬜ | UI revamp done; README batch Phase 4 |
-| reflection-agent-pattern | 10 | ⬜ | Same |
-| plan-execute-agent-pattern | 10 | ⬜ | Same |
-| multi-agent-system-pattern | 10 | ⬜ | Same |
-| swarm-agent-pattern | 10 | ⬜ | Same |
+**Demo verification (Jul 7 2026):** all five Vercel trace viewers return **HTTP 200** for signed-out visitors.
+
+| Repo | Demo URL | HTTP | R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | **Total** | Gate | Gap to ≥14 |
+|------|----------|------|----|----|----|----|----|----|----|----|-----------|------|------------|
+| react-agent-pattern | react-agent-pattern.vercel.app | ✅ 200 | 1 | 2 | 0 | 2 | 1 | 1 | 2 | 1 | **10** | ⬜ | canonical `.mmd` + CI workflow + Deploy section |
+| reflection-agent-pattern | reflection-agent-pattern.vercel.app | ✅ 200 | 1 | 2 | 0 | 2 | 1 | 1 | 2 | 1 | **10** | ⬜ | same |
+| plan-execute-agent-pattern | plan-execute-agent-pattern.vercel.app | ✅ 200 | 1 | 2 | 0 | 2 | 1 | 1 | 2 | 1 | **10** | ⬜ | same |
+| multi-agent-system-pattern | multi-agent-system-pattern.vercel.app | ✅ 200 | 1 | 2 | 0 | 2 | 1 | 1 | 2 | 1 | **10** | ⬜ | same |
+| swarm-agent-pattern | swarm-agent-pattern.vercel.app | ✅ 200 | 1 | 2 | 0 | 2 | 1 | 1 | 2 | 1 | **10** | ⬜ | same |
+
+**Week 12 carousel:** demos are public and postable today; individual repo gates remain ⬜ until README batch (canonical diagram + CI badge per pattern). Carousel post uses series-level OG card — see [SOCIAL_PREVIEW_COPY.md](./SOCIAL_PREVIEW_COPY.md).
 
 ---
 
 ## Priority fixes (from audit)
 
 1. **CI badges** — several repos score R8=1 (CI exists but badge not in README header)
-2. **CI badges** — several repos score R8=1 (CI exists but badge not in README header)
-3. **agent-finops** — README standardization (Phase 4)
+2. **Pattern repos (×5)** — demos verified ✅; README batch needed for gate (canonical `.mmd`, CI workflow, Deploy section)
+3. **agent-finops** — README standardization
+4. **OG card export** — copy ready in [SOCIAL_PREVIEW_COPY.md](./SOCIAL_PREVIEW_COPY.md); PNG assets ⬜
 
 ---
 
