@@ -16,7 +16,7 @@ Most teams follow: demo → real tools → no governance → panic.
 
 ## Related ADR
 
-[ADR-001: Orchestration vs governance split](../architecture-decisions/001-orchestration-vs-governance-split.md)
+[ADR-001: Orchestration vs governance split](../adr/ADR-001-orchestration-vs-governance-split.md)
 
 ## Live proof
 
