@@ -10,7 +10,7 @@ Canonical tracker for Principal AI Architect portfolio dimensions across [vpeetl
 |-----------|-------|-----------|
 | **Breadth** | A | 16 live products · 22 open-source repos |
 | **Depth (governance + RAG)** | A | VAP + AegisAI + Enterprise RAG stack |
-| **Production realism** | A | SLO.md in every flagship repo · ops metrics APIs |
+| **Production realism** | A | `/api/v1/ops/metrics` on every flagship API + architect landing on every Vercel demo |
 | **DevSecOps + FinOps** | A | security-scan.yml org-wide · agent-finops + cloud cost snapshot |
 | **Reference architecture library** | A | [6 AWS patterns](https://github.com/vpeetla-ai/ai-content-factory/tree/main/docs/reference-architectures) + Terraform |
 | **Business impact storytelling** | A | Employer case studies + live ops on venkat-ai.com |
@@ -31,16 +31,16 @@ Canonical tracker for Principal AI Architect portfolio dimensions across [vpeetl
 
 | Repo | SLO | DevSecOps | Golden eval | Ops metrics |
 |------|-----|-----------|-------------|-------------|
-| ai-content-factory | ✅ | ✅ | ✅ graph_hitl | ✅ `/api/v1/ops/metrics` |
-| venkat-ai-platform | ✅ | ✅ | — | `/health` |
-| aegisai-enterprise-agent-platform | ✅ | ✅ | — | `/health` |
-| enterprise_rag_platform | ✅ | ✅ | ✅ rag_answer | `/health` |
-| aegisloop-agentops-workbench | ✅ | ✅ | ✅ mission_gate | `/api/metrics` |
-| domainforge-rag-peft | ✅ | ✅ | ✅ triage_preference | `/health` |
-| loop-engine-agent-platform | ✅ | ✅ | ✅ harness + repo_fix | `/health` |
-| sentinel-brief | ✅ | ✅ | ✅ brief_gate | `/health` |
-| agent-finops | ✅ | ✅ | — | `/health` |
-| voiceforge-assistant | ✅ | ✅ | — | latency budgets |
+| ai-content-factory | ✅ | ✅ | ✅ graph_hitl | ✅ `/api/v1/ops/metrics` + architect landing |
+| venkat-ai-platform | ✅ | ✅ | — | ✅ `/api/v1/ops/metrics` + live metrics section |
+| aegisai-enterprise-agent-platform | ✅ | ✅ | — | ✅ `/api/v1/ops/metrics` + control-room strip |
+| enterprise_rag_platform | ✅ | ✅ | ✅ rag_answer | ✅ `/v1/ops/metrics` + architect panel |
+| aegisloop-agentops-workbench | ✅ | ✅ | ✅ mission_gate | ✅ `/api/v1/ops/metrics` + architect panel |
+| domainforge-rag-peft | ✅ | ✅ | ✅ triage_preference | ✅ `/v1/ops/metrics` + architect landing |
+| loop-engine-agent-platform | ✅ | ✅ | ✅ harness + repo_fix | ✅ `/api/v1/ops/metrics` + architect panel |
+| sentinel-brief | ✅ | ✅ | ✅ brief_gate | ✅ `/api/v1/ops/metrics` + metrics in arch tab |
+| agent-finops | ✅ | ✅ | — | ✅ `/v1/ops/metrics` + architect panel |
+| voiceforge-assistant | ✅ | ✅ | — | ✅ `/v1/ops/metrics` + architect landing |
 | golden-eval-registry | ✅ | ✅ | source | — |
 
 ## Reference architectures
