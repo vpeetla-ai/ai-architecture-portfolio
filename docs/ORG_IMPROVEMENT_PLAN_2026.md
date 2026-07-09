@@ -6,7 +6,15 @@
 
 ---
 
-## Executive summary
+The highest ROI improvements are now sequenced in:
+
+→ **[Top-1% 90-day backlog](./TOP1PCT_90DAY_BACKLOG.md)** · **[Implementation plan](./TOP1PCT_IMPLEMENTATION_PLAN.md)**
+
+Legacy trend alignment below remains useful context; prefer the sequenced backlog for execution order.
+
+---
+
+## Executive summary (2026 — superseded for sequencing)
 
 The org already leads on **governed multi-agent systems** (orchestration + gateway + RAG + AgentOps + loops + inference lab + org skills). The highest ROI improvements are:
 

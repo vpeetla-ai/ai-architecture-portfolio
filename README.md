@@ -27,7 +27,7 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 **Venkata Peetla** — Principal AI Architect · Lucid Motors  
 *19 years enterprise delivery · **16 live demos** · **22 open-source repos**
 
-[Live demos](https://venkat-ai.com/work) · [Repo index](docs/REPO_INDEX.md) · [LinkedIn launch plan](docs/LINKEDIN_LAUNCH_PLAN.md) · [Trace-linked observability](docs/TRACE_LINKED_OBSERVABILITY.md) · [README standard](docs/README_STANDARD.md) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai) · [Improvement plan 2026](docs/ORG_IMPROVEMENT_PLAN_2026.md)
+[Live demos](https://venkat-ai.com/work) · [Repo index](docs/REPO_INDEX.md) · [LinkedIn launch plan](docs/LINKEDIN_LAUNCH_PLAN.md) · [Trace-linked observability](docs/TRACE_LINKED_OBSERVABILITY.md) · [README standard](docs/README_STANDARD.md) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai) · [Improvement plan 2026](docs/ORG_IMPROVEMENT_PLAN_2026.md) · [Top-1% 90-day backlog](docs/TOP1PCT_90DAY_BACKLOG.md)
 
 ---
 
@@ -148,6 +148,10 @@ Real decisions from production systems — not theoretical patterns.
 | [ADR-018](adr/ADR-018-practice-arena-standalone-repo.md) | Practice Arena as a standalone repo | LLM-as-judge mock interview tool grading real answers against the playbook's own rubrics — dual-judge, bring-your-own-key |
 | [ADR-019](adr/ADR-019-rag-facts-peft-behavior.md) | RAG facts + PEFT behavior | DomainForge splits SOP retrieval from QLoRA JSON discipline — separate eval dimensions and promotion gates |
 | [ADR-020](adr/ADR-020-dpo-after-sft-alignment.md) | DPO after SFT | S4 preference tuning with scorer-labeled pairs — alignment without a reward model |
+| [ADR-021](adr/ADR-021-voiceforge-multimodal-pipeline.md) | VoiceForge multimodal pipeline | Browser ASR + edge-tts + phase latency budgets — honest free-tier multimodal |
+| [ADR-022](adr/ADR-022-domainforge-vllm-multi-lora-serving.md) | DomainForge → vLLM multi-LoRA *(Proposed)* | Train/eval adapters today; multi-LoRA serving is the target economics proof |
+| [ADR-023](adr/ADR-023-enterprise-rag-rerank-decline.md) | Cross-encoder rerank + decline-to-answer | Hybrid recall is not enough — rerank then refuse when evidence is weak |
+| [ADR-024](adr/ADR-024-production-strict-fail-closed.md) | Org `PRODUCTION_STRICT` fail-closed profile | Demo fail-open stays; one env flag forces gateway/identity honesty |
 
 ---
 
