@@ -13,7 +13,7 @@
 | [vllm-architecture-lab](https://github.com/vpeetla-ai/vllm-architecture-lab) | Inference | — | [demo](https://vllm-architecture-lab.vercel.app) | [vllm-lab](../case-studies/vllm-architecture-lab.md) |
 | [sentinel-brief](https://github.com/vpeetla-ai/sentinel-brief) | Overnight intel | Trace-linked + Langfuse | [demo](https://sentinel-brief-ruddy.vercel.app) | [sentinel-brief](../case-studies/sentinel-brief.md) |
 | [golden-eval-registry](https://github.com/vpeetla-ai/golden-eval-registry) | Eval contracts | — | — | [golden-eval](../case-studies/golden-eval-registry.md) |
-| [agent-finops](https://github.com/vpeetla-ai/agent-finops) | FinOps | Metering API | [API](https://agent-finops.onrender.com) | [ADR-011](../adr/ADR-011-agent-finops-standalone-service.md) |
+| [agent-finops](https://github.com/vpeetla-ai/agent-finops) | FinOps | Metering API | [API](https://agent-finops-api.onrender.com) | [ADR-011](../adr/ADR-011-agent-finops-standalone-service.md) |
 | [vpeetla-ai-skills](https://github.com/vpeetla-ai/vpeetla-ai-skills) | Skills / MCP | — | — | [skills](../case-studies/vpeetla-ai-skills.md) |
 | *-agent-pattern (×5) | Patterns | JSON trace export | [work#demos](https://venkat-ai.com/work) | Ecosystem essay |
 
