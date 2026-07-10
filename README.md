@@ -25,7 +25,7 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 ---
 
 **Venkata Peetla** — Principal AI Architect · Lucid Motors  
-*19 years enterprise delivery · **16 live demos** · **22 open-source repos**
+*19 years enterprise delivery · **17 live demos** · **23 open-source repos**
 
 [Live demos](https://venkat-ai.com/work) · [Repo index](docs/REPO_INDEX.md) · [LinkedIn launch plan](docs/LINKEDIN_LAUNCH_PLAN.md) · [Trace-linked observability](docs/TRACE_LINKED_OBSERVABILITY.md) · [README standard](docs/README_STANDARD.md) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai) · [Improvement plan 2026](docs/ORG_IMPROVEMENT_PLAN_2026.md) · [Top-1% 90-day backlog](docs/TOP1PCT_90DAY_BACKLOG.md)
 
@@ -33,7 +33,7 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 
 ## Impact at a Glance
 
-| **10→2** | **Multi-$M** | **16 live demos** | **8-layer stack + skills** |
+| **10→2** | **Multi-$M** | **17 live demos** | **8-layer stack + skills** |
 |----------|--------------|---------------------|---------------------------|
 | Agent ops staffing reduction (targeted supply-chain flows) | Revenue & savings — payments, subscriptions, EDI | Platform + pattern demos on Vercel/Render | Wired together — [improvement plan](docs/ORG_IMPROVEMENT_PLAN_2026.md) |
 
@@ -57,6 +57,7 @@ Questions every enterprise agent program must answer — each mapped to a live r
 | 8 | **What did agents cost?** | **Agent FinOps** — metering, budgets, breach halt | [agent-finops.vercel.app](https://agent-finops.vercel.app) · [API](https://agent-finops-api.onrender.com) | [agent-finops](https://github.com/vpeetla-ai/agent-finops) |
 | 9 | **Overnight signal?** | **Sentinel Brief** — allowlisted sources → eval gate → governed email | [sentinel-brief-ruddy.vercel.app](https://sentinel-brief-ruddy.vercel.app) | [sentinel-brief](https://github.com/vpeetla-ai/sentinel-brief) |
 | 10 | **Interview proof?** | **Practice Arena** — 35/35 playbook · 139/140 dual-judge calibration | [ai-architect-practice-arena.vercel.app](https://ai-architect-practice-arena.vercel.app) | [ai-architect-practice-arena](https://github.com/vpeetla-ai/ai-architect-practice-arena) |
+| 11 | **Right model for this step?** | **OmniForge** — multimodal ask · multi-agent · multi-LLM waterfall | [omniforge-flame.vercel.app](https://omniforge-flame.vercel.app) · [API](https://omniforge-api.onrender.com) | [omniforge](https://github.com/vpeetla-ai/omniforge) |
 | — | **How do we know it worked?** | **Trace-linked LLMOps** — system / trace / node evals → Langfuse or OTLP | [TRACE_LINKED_OBSERVABILITY.md](docs/TRACE_LINKED_OBSERVABILITY.md) | All platform APIs |
 
 **Canonical essay:** [From Multi-Agent OS to Agent Governance](case-studies/from-multi-agent-os-to-agent-governance.md)
@@ -114,6 +115,7 @@ Each includes architecture context, key decisions, trade-offs, and links to live
 | **AI Content Factory** | Content automation | Research → drafts → HITL → governed publish | [case-studies/ai-content-factory.md](case-studies/ai-content-factory.md) |
 | **Agent FinOps** | Cost governance | Shared metering ledger · budget breach halts dispatch | [case-studies/agent-finops.md](case-studies/agent-finops.md) |
 | **Sentinel Brief** | Overnight intelligence | Allowlisted sources → snapshot diff → eval gate → governed email | [case-studies/sentinel-brief.md](case-studies/sentinel-brief.md) |
+| **OmniForge** | Multimodal multi-LLM | Ask anything · agents + MCP · model waterfall proof | [case-studies/omniforge.md](case-studies/omniforge.md) |
 | **Golden Eval Registry** | Evaluation | Cross-repo golden eval contracts | [case-studies/golden-eval-registry.md](case-studies/golden-eval-registry.md) |
 
 ### Enterprise Delivery (employer context)
