@@ -13,10 +13,11 @@ Every product repo README should follow this order so recruiters and engineers g
 | 5 | **How we solve it** | Problem → approach (not feature list only) |
 | 6 | **Architecture** | Mermaid or link to `docs/ARCHITECTURE.md` + canonical `.mmd` if present |
 | 7 | **Case study & tradeoffs** | Links to portfolio case study, `docs/PRODUCT.md`, ADRs |
-| 8 | **Status** | Honest table — ✅ 🟡 ⬜ |
-| 9 | **Quick start** | `pip install`, `pytest`, local run |
-| 10 | **Deploy / env** | Link `docs/DEPLOY.md` or `docs/LIVE_DEMO.md` |
-| 11 | **Stack fit / related** | Which layer in governed stack |
+| 8 | **Interview map** | Honest crosswalk to [playbook](https://github.com/vpeetla-ai/ai-architect-interview-playbook) entries (system design / coding / cloud / trade-offs / behavioral) — see [REPO_INTERVIEW_MAP.md](REPO_INTERVIEW_MAP.md) |
+| 9 | **Status** | Honest table — ✅ 🟡 ⬜ |
+| 10 | **Quick start** | `pip install`, `pytest`, local run |
+| 11 | **Deploy / env** | Link `docs/DEPLOY.md` or `docs/LIVE_DEMO.md` |
+| 12 | **Stack fit / related** | Which layer in governed stack |
 
 ## Tech stack badges
 
@@ -29,6 +30,7 @@ node scripts/inject-readme-tech-badges.mjs --write
 ## Case study index
 
 See [REPO_INDEX.md](REPO_INDEX.md) for repo → case study mapping.
+See [REPO_INTERVIEW_MAP.md](REPO_INTERVIEW_MAP.md) for repo → Staff+ playbook entry mapping.
 
 ## Pattern repos (no dedicated case study)
 

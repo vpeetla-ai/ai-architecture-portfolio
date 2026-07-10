@@ -62,6 +62,8 @@ Questions every enterprise agent program must answer — each mapped to a live r
 
 **Canonical essay:** [From Multi-Agent OS to Agent Governance](case-studies/from-multi-agent-os-to-agent-governance.md)
 
+**Repo → interview map:** each product README has an `## Interview map` section linking Staff+ playbook entries this system honestly exercises — full matrix in [docs/REPO_INTERVIEW_MAP.md](docs/REPO_INTERVIEW_MAP.md).
+
 ---
 
 ## Trace-linked LLMOps (observability layer)

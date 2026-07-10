@@ -17,4 +17,4 @@
 | [vpeetla-ai-skills](https://github.com/vpeetla-ai/vpeetla-ai-skills) | Skills / MCP | — | — | [skills](../case-studies/vpeetla-ai-skills.md) |
 | *-agent-pattern (×5) | Patterns | JSON trace export | [work#demos](https://venkat-ai.com/work) | Ecosystem essay |
 
-**Observability spec:** [TRACE_LINKED_OBSERVABILITY.md](./TRACE_LINKED_OBSERVABILITY.md) · **Portfolio site:** [venkat-ai.com/work](https://venkat-ai.com/work) · **Metrics:** `venkat-ai-portfolio/data/metrics.ts`
+**Observability spec:** [TRACE_LINKED_OBSERVABILITY.md](./TRACE_LINKED_OBSERVABILITY.md) · **Interview crosswalk:** [REPO_INTERVIEW_MAP.md](./REPO_INTERVIEW_MAP.md) · **Portfolio site:** [venkat-ai.com/work](https://venkat-ai.com/work) · **Metrics:** `venkat-ai-portfolio/data/metrics.ts`
