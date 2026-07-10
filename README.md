@@ -41,7 +41,7 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 
 ## Governed AI Reference Stack
 
-Six questions every enterprise agent program must answer — each mapped to a live repo and demo.
+Questions every enterprise agent program must answer — each mapped to a live repo and demo.
 
 | # | Question | System | Live demo | Source |
 |---|----------|--------|-----------|--------|
@@ -54,6 +54,9 @@ Six questions every enterprise agent program must answer — each mapped to a li
 | 5 | What do they produce? | **AI Content Factory** — governed publish pipeline | [ai-content-factory-iota.vercel.app](https://ai-content-factory-iota.vercel.app) | [ai-content-factory](https://github.com/vpeetla-ai/ai-content-factory) |
 | 6 | **How do agents improve?** | **LoopForge** — LangGraph repo fix → PR, harness, memory | [demo-omega-taupe.vercel.app](https://demo-omega-taupe.vercel.app) · [API](https://loopforge-api.onrender.com) | [loop-engine-agent-platform](https://github.com/vpeetla-ai/loop-engine-agent-platform) |
 | 7 | **How do we serve LLMs?** | **vLLM Architecture Lab** — PagedAttention, batching, KV budget | [vllm-architecture-lab.vercel.app](https://vllm-architecture-lab.vercel.app) · [API](https://vllm-architecture-lab-api.onrender.com) | [vllm-architecture-lab](https://github.com/vpeetla-ai/vllm-architecture-lab) |
+| 8 | **What did agents cost?** | **Agent FinOps** — metering, budgets, breach halt | [agent-finops.vercel.app](https://agent-finops.vercel.app) · [API](https://agent-finops-api.onrender.com) | [agent-finops](https://github.com/vpeetla-ai/agent-finops) |
+| 9 | **Overnight signal?** | **Sentinel Brief** — allowlisted sources → eval gate → governed email | [sentinel-brief-ruddy.vercel.app](https://sentinel-brief-ruddy.vercel.app) | [sentinel-brief](https://github.com/vpeetla-ai/sentinel-brief) |
+| 10 | **Interview proof?** | **Practice Arena** — 35/35 playbook · 139/140 dual-judge calibration | [ai-architect-practice-arena.vercel.app](https://ai-architect-practice-arena.vercel.app) | [ai-architect-practice-arena](https://github.com/vpeetla-ai/ai-architect-practice-arena) |
 | — | **How do we know it worked?** | **Trace-linked LLMOps** — system / trace / node evals → Langfuse or OTLP | [TRACE_LINKED_OBSERVABILITY.md](docs/TRACE_LINKED_OBSERVABILITY.md) | All platform APIs |
 
 **Canonical essay:** [From Multi-Agent OS to Agent Governance](case-studies/from-multi-agent-os-to-agent-governance.md)
@@ -109,6 +112,8 @@ Each includes architecture context, key decisions, trade-offs, and links to live
 | **Enterprise RAG** | Knowledge layer | Authorization before ranking · hybrid retrieval | [case-studies/enterprise-rag-platform.md](case-studies/enterprise-rag-platform.md) |
 | **AegisLoop** | AgentOps | Mission fleets · eval gates · FinOps · Langfuse | [case-studies/aegisloop-agentops.md](case-studies/aegisloop-agentops.md) |
 | **AI Content Factory** | Content automation | Research → drafts → HITL → governed publish | [case-studies/ai-content-factory.md](case-studies/ai-content-factory.md) |
+| **Agent FinOps** | Cost governance | Shared metering ledger · budget breach halts dispatch | [case-studies/agent-finops.md](case-studies/agent-finops.md) |
+| **Sentinel Brief** | Overnight intelligence | Allowlisted sources → snapshot diff → eval gate → governed email | [case-studies/sentinel-brief.md](case-studies/sentinel-brief.md) |
 | **Golden Eval Registry** | Evaluation | Cross-repo golden eval contracts | [case-studies/golden-eval-registry.md](case-studies/golden-eval-registry.md) |
 
 ### Enterprise Delivery (employer context)
@@ -141,7 +146,7 @@ Real decisions from production systems — not theoretical patterns.
 | [ADR-011](adr/ADR-011-agent-finops-standalone-service.md) | AgentFinOps as a standalone service | Real cost governance needs one shared ledger, not per-repo fragments — built as its own repo |
 | [ADR-012](adr/ADR-012-aegisloop-finops-metering.md) | Real FinOps metering wired into both consumers | Real usage now halts real agent dispatch in both AegisAI and AegisLoop |
 | [ADR-013](adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md) | Bidirectional MCP + real A2A discovery | AegisAI exposes governed tools via MCP; AegisLoop is the org's first real A2A client of VAP |
-| [ADR-014](adr/ADR-014-golden-eval-registry-real-ci-gate.md) | golden-eval-registry becomes a real CI gate | 2 of 6 suite kinds now gate real builds — running one for the first time found and fixed a real fixture bug |
+| [ADR-014](adr/ADR-014-golden-eval-registry-real-ci-gate.md) | golden-eval-registry becomes a real CI gate | Golden eval registry gates real CI across platform repos — first execution found and fixed a real fixture bug |
 | [ADR-015](adr/ADR-015-real-aws-gcp-infra-phase-c.md) | Genuine hands-on AWS + GCP infra | agent-finops on real Cloud Run + Cloud SQL, aegisai on real ECS Fargate + RDS + ALB — stood up, verified, torn down |
 | [ADR-016](adr/ADR-016-ingestion-data-contracts-phase-d.md) | Ingestion data contracts + real lineage | enterprise_rag_platform now rejects bad ingests instead of silently indexing them; found a real CI gap where a whole test file never ran |
 | [ADR-017](adr/ADR-017-interview-playbook-standalone-repo.md) | Interview playbook as a standalone repo | 35 entries grounded in real ADRs/outcomes, not generic interview prep |
@@ -157,7 +162,7 @@ Real decisions from production systems — not theoretical patterns.
 
 ---
 
-## Agent Pattern Library (curriculum stubs)
+## Curriculum Agent Patterns (teaching stubs)
 
 Five MIT-licensed **teaching stubs** with live trace viewers — compose into VAP for production graphs. Not fleets; status tables mark gateway ❌ / LangGraph production 🟡.
 
