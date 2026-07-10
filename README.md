@@ -152,12 +152,13 @@ Real decisions from production systems — not theoretical patterns.
 | [ADR-022](adr/ADR-022-domainforge-vllm-multi-lora-serving.md) | DomainForge → vLLM multi-LoRA *(Proposed)* | Train/eval adapters today; multi-LoRA serving is the target economics proof |
 | [ADR-023](adr/ADR-023-enterprise-rag-rerank-decline.md) | Cross-encoder rerank + decline-to-answer | Hybrid recall is not enough — rerank then refuse when evidence is weak |
 | [ADR-024](adr/ADR-024-production-strict-fail-closed.md) | Org `PRODUCTION_STRICT` fail-closed profile | Demo fail-open stays; one env flag forces gateway/identity honesty |
+| [ADR-025](adr/ADR-025-nist-ai-rmf-threat-model.md) | NIST AI RMF threat model mapping | Govern/Map/Measure/Manage bound to gateway, access-before-ranking, golden evals, `PRODUCTION_STRICT` — honest free-tier gaps |
 
 ---
 
-## Agent Pattern Library
+## Agent Pattern Library (curriculum stubs)
 
-Five MIT-licensed patterns with live trace viewers — mapped to VAP orchestrators.
+Five MIT-licensed **teaching stubs** with live trace viewers — compose into VAP for production graphs. Not fleets; status tables mark gateway ❌ / LangGraph production 🟡.
 
 | Pattern | Live demo | Repository |
 |---------|-----------|------------|

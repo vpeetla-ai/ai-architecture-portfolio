@@ -26,7 +26,7 @@ Status legend: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 | **P1.3** | Fix VAP golden-eval CI claim | `venkat-ai-platform` | `docs/SLO.md` matches CI reality (no false “per merge golden gate”); either wire a real gate **or** mark Planned | `DONE` |
 | **P1.4** | Org `PRODUCTION_STRICT` convention | `ai-architecture-portfolio` (+ first consumer) | ADR-024 accepted; at least one gateway client fail-closed when flag set; docs in CONTEXT | `DONE` |
 | **P1.5** | Verified Principal (JWT/OIDC) on Enterprise RAG | `enterprise_rag_platform` | ADR + API path: Principal from verified token (not request-body spoof) in strict mode; tests; risk-register updated | `DONE` |
-| **P1.6** | Pattern series claim hygiene | `vpeetla-ai` profile + 5 pattern READMEs | Hero/copy says “curriculum stubs” or each has LangGraph+golden; no “production-grade” without status table ❌ rows | `TODO` |
+| **P1.6** | Pattern series claim hygiene | `vpeetla-ai` profile + 5 pattern READMEs | Hero/copy says “curriculum stubs” or each has LangGraph+golden; no “production-grade” without status table ❌ rows | `DONE` |
 
 ---
 
@@ -34,12 +34,12 @@ Status legend: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 
 | ID | Action | Repo(s) | Acceptance criteria | Status |
 |----|--------|---------|---------------------|--------|
-| **P2.1** | LoopForge ephemeral container sandbox | `loop-engine-agent-platform` | `run_pytest` / clone work runs in disposable container; README sandbox row ✅; ADR | `TODO` |
-| **P2.2** | Threat model + NIST AI RMF ADR | `ai-architecture-portfolio` | ADR-025 control mapping; links to gateway/HITL/eval | `TODO` |
-| **P2.3** | Adversarial golden suites | `golden-eval-registry` + ERAG | Jailbreak / Principal-spoof / injection cases gate CI | `TODO` |
-| **P2.4** | Wire VAP golden CI for real | `venkat-ai-platform`, `golden-eval-registry` | Suite + workflow; SLO row becomes ✅ | `TODO` |
-| **P2.5** | Propagate `PRODUCTION_STRICT` to ACF publish + LoopForge git | `ai-content-factory`, `loop-engine-agent-platform` | Fail-closed gateway required in prod profile; tests | `TODO` |
-| **P2.6** | AegisAI: no seed monitor in prod mode | `aegisai-enterprise-agent-platform` | Seed events disabled when strict; OPA fail-closed option documented | `TODO` |
+| **P2.1** | LoopForge ephemeral container sandbox | `loop-engine-agent-platform` | `run_pytest` / clone work runs in disposable container; README sandbox row ✅ or Partial+ADR; ADR | `DONE` |
+| **P2.2** | Threat model + NIST AI RMF ADR | `ai-architecture-portfolio` | ADR-025 control mapping; links to gateway/HITL/eval | `DONE` |
+| **P2.3** | Adversarial golden suites | `golden-eval-registry` + ERAG | Jailbreak / Principal-spoof / injection cases gate CI | `DONE` |
+| **P2.4** | Wire VAP golden CI for real | `venkat-ai-platform`, `golden-eval-registry` | Suite + workflow; SLO row becomes ✅ | `DONE` |
+| **P2.5** | Propagate `PRODUCTION_STRICT` to ACF publish + LoopForge git | `ai-content-factory`, `loop-engine-agent-platform` | Fail-closed gateway required in prod profile; tests | `DONE` |
+| **P2.6** | AegisAI: no seed monitor in prod mode | `aegisai-enterprise-agent-platform` | Seed events disabled when strict; OPA fail-closed option documented | `DONE` |
 
 ---
 
@@ -73,3 +73,10 @@ Status legend: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 | 2026-07-09 | P1.3 | VAP SLO eval gate marked Planned (honest) |
 | 2026-07-09 | P1.4 | ADR-024; ACF `production_strict` fail-closed publish; gateway tests |
 | 2026-07-09 | P1.5 | ERAG ADR-0006; JWT Principal under PRODUCTION_STRICT; 12 auth/jwt tests pass |
+| 2026-07-09 | P1.6 | Pattern series rebranded to curriculum stubs (profile + 5 READMEs) |
+| 2026-07-09 | P2.1 | LoopForge Docker ephemeral sandbox + ADR-003 |
+| 2026-07-09 | P2.2 | ADR-025 NIST AI RMF threat-model mapping |
+| 2026-07-09 | P2.3 | enterprise_rag_adversarial_v1 suite + ERAG CI gate |
+| 2026-07-09 | P2.4 | vap_orchestrator_invariant_v1 + VAP golden CI workflow |
+| 2026-07-09 | P2.5 | LoopForge PRODUCTION_STRICT fail-closed gateway (ACF already done) |
+| 2026-07-09 | P2.6 | AegisAI skips seed monitor under PRODUCTION_STRICT |
