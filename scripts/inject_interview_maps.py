@@ -7,16 +7,17 @@ import re
 from pathlib import Path
 
 HOME = Path("/Users/lakshmipraveenabodempudi")
-UI = "https://ai-architect-interview-playbook-9xs.vercel.app/q"
+UI = "https://ai-architect-interview-playbook.vercel.app/q"
 GH = "https://github.com/vpeetla-ai/ai-architect-interview-playbook/blob/main"
 PLAYBOOK = "https://github.com/vpeetla-ai/ai-architect-interview-playbook"
-STUDY = "https://ai-architect-interview-playbook-9xs.vercel.app"
+STUDY = "https://ai-architect-interview-playbook.vercel.app"
 ARENA = "https://ai-architect-practice-arena.vercel.app"
 MATRIX = "https://github.com/vpeetla-ai/ai-architecture-portfolio/blob/main/docs/REPO_INTERVIEW_MAP.md"
 
 
 def q(cat: str, slug: str, title: str) -> str:
-    return f"[{title}]({UI}/{cat}/{slug}) ([md]({GH}/{cat}/{slug}.md))"
+    # Study UI is a static export with trailingSlash: true
+    return f"[{title}]({UI}/{cat}/{slug}/) ([md]({GH}/{cat}/{slug}.md))"
 
 
 def section(business: str, rows: list[tuple[str, str, str]]) -> str:
