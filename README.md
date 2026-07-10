@@ -159,6 +159,7 @@ Real decisions from production systems — not theoretical patterns.
 | [ADR-024](adr/ADR-024-production-strict-fail-closed.md) | Org `PRODUCTION_STRICT` fail-closed profile | Demo fail-open stays; one env flag forces gateway/identity honesty |
 | [ADR-025](adr/ADR-025-nist-ai-rmf-threat-model.md) | NIST AI RMF threat model mapping | Govern/Map/Measure/Manage bound to gateway, access-before-ranking, golden evals, `PRODUCTION_STRICT` — honest free-tier gaps |
 | [ADR-026](adr/ADR-026-multi-tenant-isolation.md) | Multi-tenant isolation contract | Network / data / quota / blast-radius minimum for `PRODUCTION_STRICT` |
+| [ADR-027](adr/ADR-027-omniforge-self-contained-multimodal-multi-llm.md) | OmniForge multimodal multi-LLM | Self-contained ask platform — agents + MCP + task-class routing + waterfall proof |
 
 ---
 
