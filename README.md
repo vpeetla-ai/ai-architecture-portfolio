@@ -149,10 +149,11 @@ Real decisions from production systems — not theoretical patterns.
 | [ADR-019](adr/ADR-019-rag-facts-peft-behavior.md) | RAG facts + PEFT behavior | DomainForge splits SOP retrieval from QLoRA JSON discipline — separate eval dimensions and promotion gates |
 | [ADR-020](adr/ADR-020-dpo-after-sft-alignment.md) | DPO after SFT | S4 preference tuning with scorer-labeled pairs — alignment without a reward model |
 | [ADR-021](adr/ADR-021-voiceforge-multimodal-pipeline.md) | VoiceForge multimodal pipeline | Browser ASR + edge-tts + phase latency budgets — honest free-tier multimodal |
-| [ADR-022](adr/ADR-022-domainforge-vllm-multi-lora-serving.md) | DomainForge → vLLM multi-LoRA *(Proposed)* | Train/eval adapters today; multi-LoRA serving is the target economics proof |
+| [ADR-022](adr/ADR-022-domainforge-vllm-multi-lora-serving.md) | DomainForge → vLLM multi-LoRA *(Accepted — educational Path B)* | Train/eval today; OpenAI-compatible adapter chat wired to vLLM Lab (not CUDA LoRA yet) |
 | [ADR-023](adr/ADR-023-enterprise-rag-rerank-decline.md) | Cross-encoder rerank + decline-to-answer | Hybrid recall is not enough — rerank then refuse when evidence is weak |
 | [ADR-024](adr/ADR-024-production-strict-fail-closed.md) | Org `PRODUCTION_STRICT` fail-closed profile | Demo fail-open stays; one env flag forces gateway/identity honesty |
 | [ADR-025](adr/ADR-025-nist-ai-rmf-threat-model.md) | NIST AI RMF threat model mapping | Govern/Map/Measure/Manage bound to gateway, access-before-ranking, golden evals, `PRODUCTION_STRICT` — honest free-tier gaps |
+| [ADR-026](adr/ADR-026-multi-tenant-isolation.md) | Multi-tenant isolation contract | Network / data / quota / blast-radius minimum for `PRODUCTION_STRICT` |
 
 ---
 

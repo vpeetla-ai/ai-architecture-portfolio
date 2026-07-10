@@ -47,11 +47,11 @@ Status legend: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 
 | ID | Action | Repo(s) | Acceptance criteria | Status |
 |----|--------|---------|---------------------|--------|
-| **P3.1** | Persistent eval runner **or** Sentinel report archive | `golden-eval-registry` / `sentinel-brief` | One non-sleeping path with durable artifacts + public health | `TODO` |
-| **P3.2** | Thin DomainForge → vLLM multi-LoRA slice | `domainforge-rag-peft`, `vllm-architecture-lab` | ADR-022 → Accepted with runnable path (even one adapter) | `TODO` |
-| **P3.3** | Practice Arena coverage decision | `ai-architect-practice-arena` | Either 35/35 or README claim narrowed to calibrated N | `TODO` |
-| **P3.4** | Multi-tenant isolation ADR (+ thin demo) | `ai-architecture-portfolio` (+ one API) | ADR-026 blast-radius / quota / data isolation | `TODO` |
-| **P3.5** | Portfolio CI: auto-check ADR count vs metrics.ts | `venkat-ai-portfolio` | Validator fails on ADR drift | `TODO` |
+| **P3.1** | Persistent eval runner **or** Sentinel report archive | `golden-eval-registry` / `sentinel-brief` | One non-sleeping path with durable artifacts + public health | `DONE` |
+| **P3.2** | Thin DomainForge → vLLM multi-LoRA slice | `domainforge-rag-peft`, `vllm-architecture-lab` | ADR-022 → Accepted with runnable path (even one adapter) | `DONE` |
+| **P3.3** | Practice Arena coverage decision | `ai-architect-practice-arena` | Either 35/35 or README claim narrowed to calibrated N | `DONE` |
+| **P3.4** | Multi-tenant isolation ADR (+ thin demo) | `ai-architecture-portfolio` (+ one API) | ADR-026 blast-radius / quota / data isolation | `DONE` |
+| **P3.5** | Portfolio CI: auto-check ADR count vs metrics.ts | `venkat-ai-portfolio` | Validator fails on ADR drift | `DONE` |
 
 ---
 
@@ -80,3 +80,8 @@ Status legend: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 | 2026-07-09 | P2.4 | vap_orchestrator_invariant_v1 + VAP golden CI workflow |
 | 2026-07-09 | P2.5 | LoopForge PRODUCTION_STRICT fail-closed gateway (ACF already done) |
 | 2026-07-09 | P2.6 | AegisAI skips seed monitor under PRODUCTION_STRICT |
+| 2026-07-09 | P3.1 | Sentinel committed `archives/` + GET /reports merge; golden nightly-smoke workflow |
+| 2026-07-09 | P3.2 | ADR-022 Accepted educational Path B; DomainForge↔vLLM Lab chat+adapter_id |
+| 2026-07-09 | P3.3 | Practice Arena README/UI claim 35/35 + 139/140 calibration |
+| 2026-07-09 | P3.4 | ADR-026 multi-tenant isolation contract |
+| 2026-07-09 | P3.5 | validate-portfolio.mjs ADR drift check vs sibling portfolio |
