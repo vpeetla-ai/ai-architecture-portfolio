@@ -132,7 +132,7 @@ Wire Interview map on `aegis-llm-gateway` README when live.
 
 - [ ] Publish ADR-028  
 - [ ] Spike Redis vs Qdrant-for-cache on free tier; pick one  
-- [ ] Canonical Mermaid: federated plane + gateway sequence  
+- [x] Canonical Mermaid: federated plane + gateway sequence  
 - [ ] Repo names finalized: `aegis-llm-gateway`, `aegis-semantic-cache`  
 - [ ] Non-goals locked in README templates  
 
@@ -173,9 +173,10 @@ Wire Interview map on `aegis-llm-gateway` README when live.
 
 ### Block 6 — Control Room + self-serve (1 week)
 
-- [ ] AegisAI UI tabs for gateway/cache metrics  
-- [ ] Self-serve registry form → real entries  
-- [ ] Portfolio diagram update (CONTEXT + venkat-ai.com/work)  
+- [x] AegisAI UI tabs for gateway/cache metrics (`LLM Plane` module + BFF `/api/llm-plane/*`)  
+- [x] Self-serve registry form → real entries (Onboard list + Registry tab)  
+- [x] Portfolio diagram update (CONTEXT + README Mermaid + venkat-ai.com/work ArchitectureDiagram)  
+ 
 
 ### Block 7 — Playbook + narrative (2–3 days)
 

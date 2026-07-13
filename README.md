@@ -46,7 +46,9 @@ Questions every enterprise agent program must answer — each mapped to a live r
 | # | Question | System | Live demo | Source |
 |---|----------|--------|-----------|--------|
 | 1 | What should agents do? | **Venkat AI Platform** — multi-agent OS | [venkat-ai-platform.vercel.app](https://venkat-ai-platform.vercel.app) | [venkat-ai-platform](https://github.com/vpeetla-ai/venkat-ai-platform) |
-| 2 | What are agents allowed to do? | **AegisAI** — gateway, policy, HITL, audit | [aegisai-enterprise-agent-platform.vercel.app](https://aegisai-enterprise-agent-platform.vercel.app) | [aegisai](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform) |
+| 2 | What are agents allowed to do? | **AegisAI** — tool gateway, policy, HITL, audit | [aegisai-enterprise-agent-platform.vercel.app](https://aegisai-enterprise-agent-platform.vercel.app) | [aegisai](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform) |
+| 2a | How do we route model calls? | **Aegis LLM Gateway** — OpenAI-shaped plane (ADR-028) | GitHub · Render next | [aegis-llm-gateway](https://github.com/vpeetla-ai/aegis-llm-gateway) |
+| 2b | How do we cache completions? | **Aegis Semantic Cache** — tenant-scoped similarity | GitHub · Render next | [aegis-semantic-cache](https://github.com/vpeetla-ai/aegis-semantic-cache) |
 | 3 | What knowledge can they use? | **Enterprise RAG** — access-before-ranking | [enterprise-rag-platform-eta.vercel.app](https://enterprise-rag-platform-eta.vercel.app) | [enterprise_rag_platform](https://github.com/vpeetla-ai/enterprise_rag_platform) |
 | 3b | How do we adapt domain format? | **DomainForge** — RAG facts + PEFT behavior | [domainforge-rag-peft.vercel.app](https://domainforge-rag-peft.vercel.app) · [API](https://domainforge-api.onrender.com) | [domainforge-rag-peft](https://github.com/vpeetla-ai/domainforge-rag-peft) |
 | 3c | How do we run voice triage? | **VoiceForge** — ASR → LLM → TTS | [voiceforge-assistant.vercel.app](https://voiceforge-assistant.vercel.app) · [API](https://voiceforge-api-eysb.onrender.com) | [voiceforge-assistant](https://github.com/vpeetla-ai/voiceforge-assistant) |
@@ -61,6 +63,36 @@ Questions every enterprise agent program must answer — each mapped to a live r
 | — | **How do we know it worked?** | **Trace-linked LLMOps** — system / trace / node evals → Langfuse or OTLP | [TRACE_LINKED_OBSERVABILITY.md](docs/TRACE_LINKED_OBSERVABILITY.md) | All platform APIs |
 
 **Canonical essay:** [From Multi-Agent OS to Agent Governance](case-studies/from-multi-agent-os-to-agent-governance.md)
+
+### Federated LLM plane (ADR-028)
+
+```mermaid
+flowchart TB
+  subgraph Apps["Consumer apps"]
+    VAP[VAP]
+    ACF[ACF]
+    SB[Sentinel]
+    DF[DomainForge]
+    OF[OmniForge]
+  end
+  subgraph ModelPlane["Model plane"]
+    GW[aegis-llm-gateway]
+    CACHE[aegis-semantic-cache]
+    FIN[agent-finops]
+  end
+  subgraph ToolPlane["Tool governance"]
+    AEGIS[AegisAI tool gateway + HITL]
+  end
+  VAP --> GW
+  ACF --> GW
+  SB --> GW
+  DF --> GW
+  OF --> GW
+  GW --> CACHE
+  GW --> FIN
+  ACF --> AEGIS
+  SB --> AEGIS
+```
 
 **Repo → interview map:** each product README has an `## Interview map` section linking Staff+ playbook entries this system honestly exercises — full matrix in [docs/REPO_INTERVIEW_MAP.md](docs/REPO_INTERVIEW_MAP.md).
 
@@ -164,6 +196,7 @@ Real decisions from production systems — not theoretical patterns.
 | [ADR-025](adr/ADR-025-nist-ai-rmf-threat-model.md) | NIST AI RMF threat model mapping | Govern/Map/Measure/Manage bound to gateway, access-before-ranking, golden evals, `PRODUCTION_STRICT` — honest free-tier gaps |
 | [ADR-026](adr/ADR-026-multi-tenant-isolation.md) | Multi-tenant isolation contract | Network / data / quota / blast-radius minimum for `PRODUCTION_STRICT` |
 | [ADR-027](adr/ADR-027-omniforge-self-contained-multimodal-multi-llm.md) | OmniForge multimodal multi-LLM | Self-contained ask platform — agents + MCP + task-class routing + waterfall proof |
+| [ADR-028](adr/ADR-028-federated-ai-control-plane-k8s-analogy.md) | Federated AI control plane | LLM gateway + semantic cache as separate planes — AegisAI stays tool gateway only |
 
 ---
 

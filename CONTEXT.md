@@ -2,12 +2,14 @@
 
 Shared vocabulary for all org repos. Agents should use these terms consistently.
 
-## Stack layers (6 questions)
+## Stack layers
 
 | Layer | Question | Repo | Demo |
 |-------|----------|------|------|
 | Orchestration | What should agents do? | venkat-ai-platform | venkat-ai-platform.vercel.app |
 | Governance | What are agents allowed? | aegisai-enterprise-agent-platform | aegisai-enterprise-agent-platform.vercel.app |
+| LLM gateway | How do we route and quota model calls? | aegis-llm-gateway | GitHub · Render next |
+| Semantic cache | How do we similarity-cache completions? | aegis-semantic-cache | GitHub · Render next |
 | Knowledge | What knowledge can they use? | enterprise_rag_platform | enterprise-rag-platform-eta.vercel.app |
 | Knowledge + MLOps | How do we adapt models to domain format? | domainforge-rag-peft | domainforge-rag-peft.vercel.app |
 | AgentOps | How do we operate fleets? | aegisloop-agentops-workbench | aegisloop-agentops-workbench.vercel.app |
@@ -19,7 +21,9 @@ Shared vocabulary for all org repos. Agents should use these terms consistently.
 | Term | Meaning |
 |------|---------|
 | **Harness** | Outer scheduler: budgets, tracing, eval gates, loop termination (LoopForge, ODAEU) |
-| **Gateway** | AegisAI runtime control plane — policy + HITL + audit before tool side effects |
+| **Tool gateway** | AegisAI — policy + HITL + audit before tool side effects |
+| **LLM gateway plane** | aegis-llm-gateway — OpenAI-shaped proxy, routing, quotas, stub/BYOK (ADR-028) |
+| **Semantic cache plane** | aegis-semantic-cache — embed + similarity lookup; separate scale path |
 | **ODAEU** | Observe → Decide → Act → Evaluate → Update (outer self-improve loop) |
 | **Access-before-ranking** | Filter chunks by principal clearance before hybrid retrieval scores |
 | **HITL** | Human-in-the-loop gate before irreversible actions (publish, push, deploy) |
@@ -43,9 +47,9 @@ Shared vocabulary for all org repos. Agents should use these terms consistently.
 - **UI** → Vercel (static or Next.js)
 - **API** → Render (Docker or native Python)
 - **Vectors** → Qdrant Cloud (optional)
-- **LLM** → Groq / OpenRouter / LiteLLM routing
+- **LLM** → apps → `aegis-llm-gateway` (optional `LLM_GATEWAY_URL`) → providers; cache via `aegis-semantic-cache`
 - **Free tier** → `plan: free` in render.yaml; expect cold starts
 
 ## Integration rule
 
-Side effects (notify, publish, deploy, git push to protected branch) → **gateway or HITL** unless explicitly in local stub mode.
+Side effects (notify, publish, deploy, git push to protected branch) → **tool gateway or HITL** unless explicitly in local stub mode. Model HTTP is the **LLM gateway plane**, not AegisAI.
