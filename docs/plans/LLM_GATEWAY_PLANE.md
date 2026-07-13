@@ -151,9 +151,11 @@ Wire Interview map on `aegis-llm-gateway` README when live.
 
 ### Block 3 — First consumer: VAP (1 week)
 
-- [ ] VAP routes chat/completions through gateway  
-- [ ] Golden/smoke test: stub path green in CI  
-- [ ] Ops metrics show gateway dependency  
+- [x] VAP routes chat/completions through gateway (`LLM_GATEWAY_URL` → `chat_llm_for_bucket`)  
+- [x] Golden/smoke test: stub path green in CI (`tests/test_llm_gateway.py`)  
+- [x] Ops metrics show gateway dependency (`extra.llm_gateway` on `/api/v1/ops/metrics`)  
+- [x] Docs: `.env.example`, `docs/INFERENCE.md`, README status + Interview map  
+ 
 
 ### Block 4 — ACF + Sentinel (1 week)
 
