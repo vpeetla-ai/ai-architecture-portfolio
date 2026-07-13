@@ -166,8 +166,10 @@ Wire Interview map on `aegis-llm-gateway` README when live.
 
 ### Block 5 — DomainForge + OmniForge (1 week)
 
-- [ ] Gateway optional with clear env  
-- [ ] OmniForge: “self-contained OR plane-connected” honesty in README  
+- [x] Gateway optional with clear env (`LLM_GATEWAY_*` on both)  
+- [x] OmniForge: “self-contained OR plane-connected” honesty in README  
+- [x] DomainForge router: gateway → vLLM → Ollama → baseline; ops `extra.llm_gateway`  
+ 
 
 ### Block 6 — Control Room + self-serve (1 week)
 
