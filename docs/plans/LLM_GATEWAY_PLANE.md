@@ -145,9 +145,9 @@ Wire Interview map on `aegis-llm-gateway` README when live.
 
 ### Block 2 — FinOps + strict/demo posture (3–5 days)
 
-- [ ] Meter stub and BYOK paths via agent-finops  
-- [ ] Budget breach → fail-closed in `strict`  
-- [ ] Demo mode fail-open documented in UI  
+- [x] Meter stub path via agent-finops (`POST /v1/usage` + API key)  
+- [x] Budget breach → fail-closed in `strict` (HTTP 402); FinOps down → 503  
+- [x] Demo mode fail-open documented (`GET /v1/posture` + `demo/index.html`)  
 
 ### Block 3 — First consumer: VAP (1 week)
 
