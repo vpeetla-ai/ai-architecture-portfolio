@@ -159,8 +159,10 @@ Wire Interview map on `aegis-llm-gateway` README when live.
 
 ### Block 4 — ACF + Sentinel (1 week)
 
-- [ ] Same migration pattern  
-- [ ] Regression: HITL/tool gateway unchanged  
+- [x] Same migration pattern (`LLM_GATEWAY_URL` → OpenAI-compatible completions)  
+- [x] Regression: HITL/tool gateway unchanged (ACF publish + Sentinel `email.send`)  
+- [x] Ops metrics show `extra.llm_gateway`; docs + Interview map updated  
+ 
 
 ### Block 5 — DomainForge + OmniForge (1 week)
 
