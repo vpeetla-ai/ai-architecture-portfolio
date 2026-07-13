@@ -219,3 +219,22 @@ Honest scope in the README status table.
 > Live: react-agent-pattern.vercel.app (+ 4 more)
 >
 > #LangGraph #AgentPatterns #AIArchitecture
+
+---
+
+## Flagship — Enterprise LLM Gateway Plane (Block 7)
+
+> Most “AI control planes” glue an LLM SDK into the same service that authorizes tool calls. That’s a monolith waiting to happen.
+>
+> We shipped a **federated LLM Gateway Plane**:
+> → `aegis-llm-gateway` — OpenAI-shaped completions, stub→BYOK, FinOps pre-check
+> → `aegis-semantic-cache` — tenant-scoped similarity cache (cache-as-service)
+> → Consumers (VAP, ACF, Sentinel, DomainForge, OmniForge) prefer `LLM_GATEWAY_URL`
+> → AegisAI Control Room **LLM Plane** tabs read ops metrics — without owning the proxy
+>
+> Interview-ready design: gateway vs sidecar · cache-in-process vs cache-as-service · fail-closed posture.
+>
+> Playbook: ai-architect-interview-playbook.vercel.app/q/cloud-architecture/07-llm-gateway-semantic-cache-model-router/
+> ADR-028 · Plan: ai-architecture-portfolio/docs/plans/LLM_GATEWAY_PLANE.md
+>
+> #LLMGateway #AIArchitecture #EnterpriseAI

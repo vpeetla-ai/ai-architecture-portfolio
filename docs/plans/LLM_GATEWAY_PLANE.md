@@ -180,9 +180,10 @@ Wire Interview map on `aegis-llm-gateway` README when live.
 
 ### Block 7 — Playbook + narrative (2–3 days)
 
-- [ ] New SD question + Arena rubrics bump  
-- [ ] LinkedIn: “Shipped the Enterprise LLM Gateway Plane”  
-- [ ] Interview map links on new repos  
+- [x] New SD question + Arena rubrics bump (`cloud-architecture/07` rewrite + calibration)  
+- [x] LinkedIn: “Shipped the Enterprise LLM Gateway Plane” (`LINKEDIN_POST_TEMPLATES.md`)  
+- [x] Interview map links on new repos + `REPO_INTERVIEW_MAP.md` rows  
+ 
 
 ---
 
