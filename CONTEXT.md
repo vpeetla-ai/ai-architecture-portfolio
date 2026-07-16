@@ -9,6 +9,7 @@ Shared vocabulary for all org repos. Agents should use these terms consistently.
 | Orchestration | What should agents do? | venkat-ai-platform | venkat-ai-platform.vercel.app |
 | Governance | What are agents allowed? | aegisai-enterprise-agent-platform | aegisai-enterprise-agent-platform.vercel.app |
 | LLM gateway | How do we route and quota model calls? | aegis-llm-gateway | GitHub · Render next |
+| Routing contract | Shared role/tier/data-class enforce schemas | aegis-routing-contract | GitHub |
 | Semantic cache | How do we similarity-cache completions? | aegis-semantic-cache | GitHub · Render next |
 | Knowledge | What knowledge can they use? | enterprise_rag_platform | enterprise-rag-platform-eta.vercel.app |
 | Knowledge + MLOps | How do we adapt models to domain format? | domainforge-rag-peft | domainforge-rag-peft.vercel.app |
@@ -22,7 +23,9 @@ Shared vocabulary for all org repos. Agents should use these terms consistently.
 |------|---------|
 | **Harness** | Outer scheduler: budgets, tracing, eval gates, loop termination (LoopForge, ODAEU) |
 | **Tool gateway** | AegisAI — policy + HITL + audit before tool side effects |
-| **LLM gateway plane** | aegis-llm-gateway — OpenAI-shaped proxy, routing, quotas, stub/BYOK (ADR-028) |
+| **LLM gateway plane** | aegis-llm-gateway — OpenAI-shaped proxy, quotas, stub/BYOK; **enforces+records** role-aware decisions (ADR-028/029) — apps still **select** |
+| **Routing contract** | aegis-routing-contract — ThesisRole, DataClass, ModelTier, RoutingDecisionV2, enforce helpers |
+| **Cost / compliant outcome** | agent-finops KPI: eval pass + no policy deny + HITL when required + budget OK |
 | **Semantic cache plane** | aegis-semantic-cache — embed + similarity lookup; separate scale path |
 | **ODAEU** | Observe → Decide → Act → Evaluate → Update (outer self-improve loop) |
 | **Access-before-ranking** | Filter chunks by principal clearance before hybrid retrieval scores |

@@ -14,7 +14,8 @@
 | [sentinel-brief](https://github.com/vpeetla-ai/sentinel-brief) | Overnight intel | Trace-linked + Langfuse | [demo](https://sentinel-brief-ruddy.vercel.app) | [sentinel-brief](../case-studies/sentinel-brief.md) |
 | [golden-eval-registry](https://github.com/vpeetla-ai/golden-eval-registry) | Eval contracts | — | — | [golden-eval](../case-studies/golden-eval-registry.md) |
 | [agent-finops](https://github.com/vpeetla-ai/agent-finops) | FinOps | Metering API | [API](https://agent-finops-api.onrender.com) | [ADR-011](../adr/ADR-011-agent-finops-standalone-service.md) |
-| [aegis-llm-gateway](https://github.com/vpeetla-ai/aegis-llm-gateway) | LLM gateway plane | Cache + FinOps hooks | — (Render next) | [ADR-028](../adr/ADR-028-federated-ai-control-plane-k8s-analogy.md) |
+| [aegis-llm-gateway](https://github.com/vpeetla-ai/aegis-llm-gateway) | LLM gateway plane | Cache + FinOps hooks | — (Render next) | [ADR-028](../adr/ADR-028-federated-ai-control-plane-k8s-analogy.md) · [ADR-029](../adr/ADR-029-app-owned-role-aware-routing-contract.md) |
+| [aegis-routing-contract](https://github.com/vpeetla-ai/aegis-routing-contract) | Routing contract | Shared schemas/policy | — | [ADR-029](../adr/ADR-029-app-owned-role-aware-routing-contract.md) |
 | [aegis-semantic-cache](https://github.com/vpeetla-ai/aegis-semantic-cache) | Semantic cache plane | Hit/miss metrics | — (Render next) | [ADR-028](../adr/ADR-028-federated-ai-control-plane-k8s-analogy.md) |
 | [vpeetla-ai-skills](https://github.com/vpeetla-ai/vpeetla-ai-skills) | Skills / MCP | — | — | [skills](../case-studies/vpeetla-ai-skills.md) |
 | *-agent-pattern (×5) | Patterns | JSON trace export | [work#demos](https://venkat-ai.com/work) | Ecosystem essay |
