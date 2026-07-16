@@ -47,8 +47,9 @@ Questions every enterprise agent program must answer — each mapped to a live r
 |---|----------|--------|-----------|--------|
 | 1 | What should agents do? | **Venkat AI Platform** — multi-agent OS | [venkat-ai-platform.vercel.app](https://venkat-ai-platform.vercel.app) | [venkat-ai-platform](https://github.com/vpeetla-ai/venkat-ai-platform) |
 | 2 | What are agents allowed to do? | **AegisAI** — tool gateway, policy, HITL, audit | [aegisai-enterprise-agent-platform.vercel.app](https://aegisai-enterprise-agent-platform.vercel.app) | [aegisai](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform) |
-| 2a | How do we route model calls? | **Aegis LLM Gateway** — OpenAI-shaped plane (ADR-028) | GitHub · Render next | [aegis-llm-gateway](https://github.com/vpeetla-ai/aegis-llm-gateway) |
-| 2b | How do we cache completions? | **Aegis Semantic Cache** — tenant-scoped similarity | GitHub · Render next | [aegis-semantic-cache](https://github.com/vpeetla-ai/aegis-semantic-cache) |
+| 2a | How do we route model calls? | **Aegis LLM Gateway** — apps select; GW enforces+records (ADR-028/029) | [API](https://aegis-llm-gateway-api.onrender.com/health) · stub default | [aegis-llm-gateway](https://github.com/vpeetla-ai/aegis-llm-gateway) |
+| 2b | How do we cache completions? | **Aegis Semantic Cache** — tenant-scoped similarity | [API](https://aegis-semantic-cache-api.onrender.com/health) · stub default | [aegis-semantic-cache](https://github.com/vpeetla-ai/aegis-semantic-cache) |
+| 2c | Shared role/tier/data-class schemas? | **aegis-routing-contract** — ThesisRole · ModelTier · enforce helpers | GitHub (library) | [aegis-routing-contract](https://github.com/vpeetla-ai/aegis-routing-contract) |
 | 3 | What knowledge can they use? | **Enterprise RAG** — access-before-ranking | [enterprise-rag-platform-eta.vercel.app](https://enterprise-rag-platform-eta.vercel.app) | [enterprise_rag_platform](https://github.com/vpeetla-ai/enterprise_rag_platform) |
 | 3b | How do we adapt domain format? | **DomainForge** — RAG facts + PEFT behavior | [domainforge-rag-peft.vercel.app](https://domainforge-rag-peft.vercel.app) · [API](https://domainforge-api.onrender.com) | [domainforge-rag-peft](https://github.com/vpeetla-ai/domainforge-rag-peft) |
 | 3c | How do we run voice triage? | **VoiceForge** — ASR → LLM → TTS | [voiceforge-assistant.vercel.app](https://voiceforge-assistant.vercel.app) · [API](https://voiceforge-api-eysb.onrender.com) | [voiceforge-assistant](https://github.com/vpeetla-ai/voiceforge-assistant) |
@@ -64,32 +65,40 @@ Questions every enterprise agent program must answer — each mapped to a live r
 
 **Canonical essay:** [From Multi-Agent OS to Agent Governance](case-studies/from-multi-agent-os-to-agent-governance.md)
 
-### Federated LLM plane (ADR-028)
+### Federated LLM plane (ADR-028 + ADR-029)
+
+Apps **select** models (local Multi-LLM brains / buckets). `aegis-llm-gateway` **enforces + records** via `aegis-routing-contract`. AegisAI stays tool governance only. Live default is **stub** (`GATEWAY_MODE=stub`); BYOK is an explicit Render override.
 
 ```mermaid
 flowchart TB
-  subgraph Apps["Consumer apps"]
+  subgraph Apps["Consumer apps — select models"]
     VAP[VAP]
     ACF[ACF]
     SB[Sentinel]
     DF[DomainForge]
     OF[OmniForge]
   end
-  subgraph ModelPlane["Model plane"]
+  subgraph Contract["Shared contract"]
+    RC[aegis-routing-contract]
+  end
+  subgraph ModelPlane["Model plane — enforce + record"]
     GW[aegis-llm-gateway]
     CACHE[aegis-semantic-cache]
     FIN[agent-finops]
   end
   subgraph ToolPlane["Tool governance"]
-    AEGIS[AegisAI tool gateway + HITL]
+    AEGIS[AegisAI tool gateway + HITL + Control Room ops]
   end
   VAP --> GW
   ACF --> GW
   SB --> GW
   DF --> GW
   OF --> GW
+  RC -.->|ThesisRole DataClass enforce| GW
   GW --> CACHE
   GW --> FIN
+  AEGIS -.->|observe ops / KPI| GW
+  AEGIS -.->|cost-per-compliant-outcome| FIN
   ACF --> AEGIS
   SB --> AEGIS
 ```

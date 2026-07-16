@@ -2,7 +2,9 @@
 
 **Status:** Draft → execute in multi-week blocks  
 **Narrative when done:** “Shipped the Enterprise LLM Gateway Plane.”  
-**Governing ADR:** [ADR-028](../../adr/ADR-028-federated-ai-control-plane-k8s-analogy.md)
+**Governing ADRs:** [ADR-028](../../adr/ADR-028-federated-ai-control-plane-k8s-analogy.md) · [ADR-029](../../adr/ADR-029-app-owned-role-aware-routing-contract.md) (apps select; gateway enforces+records)
+
+**Live (Render, stub default):** [aegis-llm-gateway-api.onrender.com](https://aegis-llm-gateway-api.onrender.com/health) · [aegis-semantic-cache-api.onrender.com](https://aegis-semantic-cache-api.onrender.com/health) · contract: [aegis-routing-contract](https://github.com/vpeetla-ai/aegis-routing-contract)
 
 ## Suggested top 3 (this flagship)
 
@@ -133,7 +135,9 @@ Wire Interview map on `aegis-llm-gateway` README when live.
 - [ ] Publish ADR-028  
 - [ ] Spike Redis vs Qdrant-for-cache on free tier; pick one  
 - [x] Canonical Mermaid: federated plane + gateway sequence  
-- [ ] Repo names finalized: `aegis-llm-gateway`, `aegis-semantic-cache`  
+- [x] Repo names finalized: `aegis-llm-gateway`, `aegis-semantic-cache`, `aegis-routing-contract`
+- [x] ADR-029 role-aware enforce+record + FinOps cost-per-compliant-outcome KPI
+- [x] Live Render health endpoints (stub/demo default; BYOK optional)  
 - [ ] Non-goals locked in README templates  
 
 ### Block 1 — Skeleton planes (1 week)

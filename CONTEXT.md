@@ -8,9 +8,9 @@ Shared vocabulary for all org repos. Agents should use these terms consistently.
 |-------|----------|------|------|
 | Orchestration | What should agents do? | venkat-ai-platform | venkat-ai-platform.vercel.app |
 | Governance | What are agents allowed? | aegisai-enterprise-agent-platform | aegisai-enterprise-agent-platform.vercel.app |
-| LLM gateway | How do we route and quota model calls? | aegis-llm-gateway | GitHub · Render next |
-| Routing contract | Shared role/tier/data-class enforce schemas | aegis-routing-contract | GitHub |
-| Semantic cache | How do we similarity-cache completions? | aegis-semantic-cache | GitHub · Render next |
+| LLM gateway | How do we route and quota model calls? | aegis-llm-gateway | aegis-llm-gateway-api.onrender.com |
+| Routing contract | Shared role/tier/data-class enforce schemas | aegis-routing-contract | GitHub (library) |
+| Semantic cache | How do we similarity-cache completions? | aegis-semantic-cache | aegis-semantic-cache-api.onrender.com |
 | Knowledge | What knowledge can they use? | enterprise_rag_platform | enterprise-rag-platform-eta.vercel.app |
 | Knowledge + MLOps | How do we adapt models to domain format? | domainforge-rag-peft | domainforge-rag-peft.vercel.app |
 | AgentOps | How do we operate fleets? | aegisloop-agentops-workbench | aegisloop-agentops-workbench.vercel.app |
