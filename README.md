@@ -197,6 +197,7 @@ Real decisions from production systems — not theoretical patterns.
 | [ADR-026](adr/ADR-026-multi-tenant-isolation.md) | Multi-tenant isolation contract | Network / data / quota / blast-radius minimum for `PRODUCTION_STRICT` |
 | [ADR-027](adr/ADR-027-omniforge-self-contained-multimodal-multi-llm.md) | OmniForge multimodal multi-LLM | Self-contained ask platform — agents + MCP + task-class routing + waterfall proof |
 | [ADR-028](adr/ADR-028-federated-ai-control-plane-k8s-analogy.md) | Federated AI control plane | LLM gateway + semantic cache as separate planes — AegisAI stays tool gateway only |
+| [ADR-029](adr/ADR-029-app-owned-role-aware-routing-contract.md) | App-owned role-aware routing | Apps select; gateway enforces+records; `aegis-routing-contract` |
 
 ---
 
