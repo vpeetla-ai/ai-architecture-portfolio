@@ -26,6 +26,7 @@ Shared vocabulary for all org repos. Agents should use these terms consistently.
 | **LLM gateway plane** | aegis-llm-gateway — OpenAI-shaped proxy, quotas, stub/BYOK; **enforces+records** role-aware decisions (ADR-028/029) — apps still **select** |
 | **Routing contract** | aegis-routing-contract — ThesisRole, DataClass, ModelTier, RoutingDecisionV2, enforce helpers |
 | **Cost / compliant outcome** | agent-finops KPI: eval pass + no policy deny + HITL when required + budget OK |
+| **Tenant identity (LLM plane)** | `X-Tenant-Id` + optional `X-Principal-Id`; allowlist via `ALLOWED_TENANT_IDS` / `TENANT_ENFORCEMENT` |
 | **Semantic cache plane** | aegis-semantic-cache — embed + similarity lookup; separate scale path |
 | **ODAEU** | Observe → Decide → Act → Evaluate → Update (outer self-improve loop) |
 | **Access-before-ranking** | Filter chunks by principal clearance before hybrid retrieval scores |
