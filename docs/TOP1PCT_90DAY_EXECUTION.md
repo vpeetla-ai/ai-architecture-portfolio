@@ -75,9 +75,9 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 
 | ID | Action | Repo | Done when | Status |
 |----|--------|------|-----------|--------|
-| S2.1 | Banner on spine demos: Demo vs Strict review mode | spine demos | Visible without scrolling | `DONE` (PRs pending merge) |
-| S2.2 | Gateway/cache README + portfolio: stub default called out | `aegis-llm-gateway`, portfolio | No silent “production” | `DONE` (PRs pending merge) |
-| S2.3 | Enterprise RAG: verified Principal path documented as Strict | `enterprise_rag_platform` | technical-review links it | `DONE` (PRs pending merge) |
+| S2.1 | Banner on spine demos: Demo vs Strict review mode | spine demos | Visible without scrolling | `DONE` |
+| S2.2 | Gateway/cache README + portfolio: stub default called out | `aegis-llm-gateway`, portfolio | No silent “production” | `DONE` |
+| S2.3 | Enterprise RAG: verified Principal path documented as Strict | `enterprise_rag_platform` | technical-review links it | `DONE` |
 
 ---
 
@@ -85,10 +85,10 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 
 | ID | Action | Repo | Done when | Status |
 |----|--------|------|-----------|--------|
-| S3.1 | Upgrade Render plans for VAP + AegisAI + ERAG APIs | Render | `/health` warm within 3s × 24h sample | `TODO` |
-| S3.2 | Public spine health page on portfolio | `venkat-ai-portfolio` | `/proof` or `/technical-review` live checks | `TODO` |
-| S3.3 | Hire funnel: playbook + arena + technical-review CTA | portfolio + playbook | One path from `/hire` | `TODO` |
-| S3.4 | Delete/disable duplicate Vercel playbook project | Vercel | Only canonical host | `TODO` |
+| S3.1 | Upgrade Render plans for VAP + AegisAI + ERAG APIs | Render | `/health` warm within 3s × 24h sample | `DONE` (Blueprint PRs; dashboard apply + warm sample) |
+| S3.2 | Public spine health page on portfolio | `venkat-ai-portfolio` | `/proof` or `/technical-review` live checks | `DONE` (PR pending merge) |
+| S3.3 | Hire funnel: playbook + arena + technical-review CTA | portfolio + playbook | One path from `/hire` | `DONE` (PR pending merge) |
+| S3.4 | Delete/disable duplicate Vercel playbook project | Vercel | Only canonical host | `DONE` (links fixed; dashboard delete remaining) |
 
 ---
 
@@ -131,8 +131,8 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 |-------|-------|--------|
 | S0 | [PR #1](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/1) | Merged |
 | S1 | [#2](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/2) · portfolio #3 · profile #1 | Merged |
-| S2 | [#3](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/3) · [ERAG#1](https://github.com/vpeetla-ai/enterprise_rag_platform/pull/1) · [AegisAI#1](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/pull/1) · [VAP#1](https://github.com/vpeetla-ai/venkat-ai-platform/pull/1) · [ACF#1](https://github.com/vpeetla-ai/ai-content-factory/pull/1) · [GW#1](https://github.com/vpeetla-ai/aegis-llm-gateway/pull/1) · [Cache#1](https://github.com/vpeetla-ai/aegis-semantic-cache/pull/1) · [portfolio#4](https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/4) · [arch#7](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/7) | PRs open |
-| S3 | [#4](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/4) | Open |
+| S2 | [#3](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/3) | Merged |
+| S3 | [#4](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/4) · [portfolio#5](https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/5) · [VAP#2](https://github.com/vpeetla-ai/venkat-ai-platform/pull/2) · [ERAG#2](https://github.com/vpeetla-ai/enterprise_rag_platform/pull/2) · [arch#8](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/8) · [playbook#3](https://github.com/vpeetla-ai/ai-architect-interview-playbook/pull/3) · [runbook](./S3_ALWAYS_ON_RUNBOOK.md) | PRs open |
 | S4 | [#5](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/5) | Open |
 | S5 | [#6](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/6) | Open |
 
@@ -144,3 +144,5 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 | 2026-07-18 | S0–S1 | PRs opened: architecture #1, portfolio #3, profile #1; issues #2–#6 |
 | 2026-07-18 | S0–S1 | Three narrative PRs merged |
 | 2026-07-18 | S2 | Demo/Strict banners + stub honesty PRs opened across spine + plane |
+| 2026-07-18 | S2 | All S2 PRs merged |
+| 2026-07-18 | S3 | Always-on Blueprint + spine-health + hire funnel PRs; see S3_ALWAYS_ON_RUNBOOK.md |
