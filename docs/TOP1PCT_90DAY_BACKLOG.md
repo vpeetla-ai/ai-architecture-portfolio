@@ -1,5 +1,8 @@
 # Top-1% Principal — 90-Day Sequenced Backlog
 
+> **Phase −1 complete (Jul 2026).** This backlog was remediation (claim hygiene, ADR sync, strict-mode foundations). It is **not** operating proof that the org is Top-1%.  
+> **Active plan:** [`TOP1PCT_90DAY_EXECUTION.md`](./TOP1PCT_90DAY_EXECUTION.md) — D1 five-spine concentration, paid always-on APIs, dual demo/strict, distribution, Staff+/Principal conversion.
+
 **Owner:** vpeetla-ai org  
 **Source review:** Principal org review (Jul 9 2026)  
 **Rule:** Fewer claims, harder gates, one always-on proof — **do not expand surface area**.
