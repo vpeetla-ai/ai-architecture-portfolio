@@ -131,7 +131,7 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 |-------|-------|--------|
 | S0 | [PR #1](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/1) | Merged |
 | S1 | [#2](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/2) · portfolio #3 · profile #1 | Merged |
-| S2 | [#3](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/3) | PRs open (this cycle) |
+| S2 | [#3](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/3) · [ERAG#1](https://github.com/vpeetla-ai/enterprise_rag_platform/pull/1) · [AegisAI#1](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/pull/1) · [VAP#1](https://github.com/vpeetla-ai/venkat-ai-platform/pull/1) · [ACF#1](https://github.com/vpeetla-ai/ai-content-factory/pull/1) · [GW#1](https://github.com/vpeetla-ai/aegis-llm-gateway/pull/1) · [Cache#1](https://github.com/vpeetla-ai/aegis-semantic-cache/pull/1) · [portfolio#4](https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/4) · [arch#7](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/7) | PRs open |
 | S3 | [#4](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/4) | Open |
 | S4 | [#5](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/5) | Open |
 | S5 | [#6](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/6) | Open |
