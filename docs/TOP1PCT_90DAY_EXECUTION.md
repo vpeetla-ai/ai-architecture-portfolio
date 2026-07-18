@@ -75,9 +75,9 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 
 | ID | Action | Repo | Done when | Status |
 |----|--------|------|-----------|--------|
-| S2.1 | Banner on spine demos: Demo vs Strict review mode | spine demos | Visible without scrolling | `TODO` |
-| S2.2 | Gateway/cache README + portfolio: stub default called out | `aegis-llm-gateway`, portfolio | No silent “production” | `TODO` |
-| S2.3 | Enterprise RAG: verified Principal path documented as Strict | `enterprise_rag_platform` | technical-review links it | `TODO` |
+| S2.1 | Banner on spine demos: Demo vs Strict review mode | spine demos | Visible without scrolling | `DONE` (PRs pending merge) |
+| S2.2 | Gateway/cache README + portfolio: stub default called out | `aegis-llm-gateway`, portfolio | No silent “production” | `DONE` (PRs pending merge) |
+| S2.3 | Enterprise RAG: verified Principal path documented as Strict | `enterprise_rag_platform` | technical-review links it | `DONE` (PRs pending merge) |
 
 ---
 
@@ -129,9 +129,9 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 
 | Stage | Issue | Status |
 |-------|-------|--------|
-| S0 | [PR #1](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/1) | Open |
-| S1 | [#2](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/2) · [portfolio PR #3](https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/3) · [profile PR #1](https://github.com/vpeetla-ai/vpeetla-ai/pull/1) | PRs open |
-| S2 | [#3](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/3) | Open |
+| S0 | [PR #1](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/1) | Merged |
+| S1 | [#2](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/2) · portfolio #3 · profile #1 | Merged |
+| S2 | [#3](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/3) | PRs open (this cycle) |
 | S3 | [#4](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/4) | Open |
 | S4 | [#5](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/5) | Open |
 | S5 | [#6](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/6) | Open |
@@ -142,3 +142,5 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 |------|-----|------|
 | 2026-07-18 | — | Decisions D1–D5 accepted; execution plan created |
 | 2026-07-18 | S0–S1 | PRs opened: architecture #1, portfolio #3, profile #1; issues #2–#6 |
+| 2026-07-18 | S0–S1 | Three narrative PRs merged |
+| 2026-07-18 | S2 | Demo/Strict banners + stub honesty PRs opened across spine + plane |
