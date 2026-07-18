@@ -3,7 +3,8 @@
 **Status:** ACTIVE  
 **Decided:** 2026-07-18  
 **Supersedes sequencing of:** [`TOP1PCT_90DAY_BACKLOG.md`](./TOP1PCT_90DAY_BACKLOG.md) (treat Jul 9 “all DONE” as Phase −1 remediation, not operating proof)  
-**Companion canvas:** Cursor `vpeetla-ai-top1pct-90day.canvas.tsx`
+**Companion canvas:** Cursor `vpeetla-ai-top1pct-90day.canvas.tsx` · gap review `top1pct-gap-assessment.canvas.tsx`
+**Gap plan (operating misses):** [`TOP1PCT_GAP_PLAN.md`](./TOP1PCT_GAP_PLAN.md)
 
 ---
 
@@ -134,7 +135,7 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 | S2 | [#3](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/3) | Merged |
 | S3 | [#4](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/4) · [runbook](./S3_ALWAYS_ON_RUNBOOK.md) | Merged |
 | S4 | [#5](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/5) · [arch#9](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/9) · [portfolio#6](https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/6) · [GOLDEN_PATH](./GOLDEN_PATH.md) | Merged |
-| S5 | [#6](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/6) · [arch#10](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/10) · [ACF#2](https://github.com/vpeetla-ai/ai-content-factory/pull/2) · [portfolio#7](https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/7) · [S5 hub](./S5_SIGNAL_CONVERSION.md) | PRs open |
+| S5 | [#6](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/6) · [arch#10](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/10) · [ACF#2](https://github.com/vpeetla-ai/ai-content-factory/pull/2) · [portfolio#7](https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/7) · [S5 hub](./S5_SIGNAL_CONVERSION.md) · [gap plan](./TOP1PCT_GAP_PLAN.md) | Pack merged; operating open |
 
 ## Progress log
 
@@ -150,3 +151,5 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 | 2026-07-18 | S4 | Golden path script + artifact + GER badge + case study |
 | 2026-07-18 | S4 | S4 PRs merged |
 | 2026-07-18 | S5 | Signal pack: ADR calendar, essay proof links, mock/outreach logs, freeze retro |
+
+| 2026-07-18 | Gap | Fresh assessment: paper ~7/10, operating ~4/10 — see TOP1PCT_GAP_PLAN.md |
