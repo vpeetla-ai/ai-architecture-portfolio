@@ -51,7 +51,7 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 | ID | Action | Repo | Done when | Status |
 |----|--------|------|-----------|--------|
 | S0.1 | Merge this execution plan + README link | `ai-architecture-portfolio` | PR opened | `DONE` (PR pending merge) |
-| S0.2 | Open tracking issues for S1–S5 | `ai-architecture-portfolio` | Issues linked from this doc | `IN_PROGRESS` |
+| S0.2 | Open tracking issues for S1–S5 | `ai-architecture-portfolio` | Issues linked from this doc | `DONE` |
 | S0.3 | Update PRIOR backlog header → Phase −1 complete | `ai-architecture-portfolio` | Note on TOP1PCT_90DAY_BACKLOG | `DONE` (PR pending merge) |
 
 ---
@@ -129,15 +129,16 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 
 | Stage | Issue | Status |
 |-------|-------|--------|
-| S1 | _(filled after `gh issue create`)_ | |
-| S2 | | |
-| S3 | | |
-| S4 | | |
-| S5 | | |
+| S0 | [PR #1](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/1) | Open |
+| S1 | [#2](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/2) · [portfolio PR #3](https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/3) · [profile PR #1](https://github.com/vpeetla-ai/vpeetla-ai/pull/1) | PRs open |
+| S2 | [#3](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/3) | Open |
+| S3 | [#4](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/4) | Open |
+| S4 | [#5](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/5) | Open |
+| S5 | [#6](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/6) | Open |
 
 ## Progress log
 
 | Date | ID | Note |
 |------|-----|------|
 | 2026-07-18 | — | Decisions D1–D5 accepted; execution plan created |
-| 2026-07-18 | S0–S1 | Implementation PRs opened for portfolio + profile + execution plan |
+| 2026-07-18 | S0–S1 | PRs opened: architecture #1, portfolio #3, profile #1; issues #2–#6 |
