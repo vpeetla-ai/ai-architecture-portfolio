@@ -132,7 +132,7 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 | S0 | [PR #1](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/1) | Merged |
 | S1 | [#2](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/2) · portfolio #3 · profile #1 | Merged |
 | S2 | [#3](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/3) | Merged |
-| S3 | [#4](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/4) · [S3 runbook](./S3_ALWAYS_ON_RUNBOOK.md) | PRs open |
+| S3 | [#4](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/4) · [portfolio#5](https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/5) · [VAP#2](https://github.com/vpeetla-ai/venkat-ai-platform/pull/2) · [ERAG#2](https://github.com/vpeetla-ai/enterprise_rag_platform/pull/2) · [arch#8](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/8) · [playbook#3](https://github.com/vpeetla-ai/ai-architect-interview-playbook/pull/3) · [runbook](./S3_ALWAYS_ON_RUNBOOK.md) | PRs open |
 | S4 | [#5](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/5) | Open |
 | S5 | [#6](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/6) | Open |
 
