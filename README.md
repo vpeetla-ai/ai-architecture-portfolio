@@ -25,17 +25,17 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 ---
 
 **Venkata Peetla** — Principal AI Architect · Lucid Motors  
-*19 years enterprise delivery · **17 live demos** · **23 open-source repos**
+*19 years enterprise delivery · **5-spine review path** · full catalog behind it
 
-[Live demos](https://venkat-ai.com/work) · [Repo index](docs/REPO_INDEX.md) · [LinkedIn launch plan](docs/LINKEDIN_LAUNCH_PLAN.md) · [Trace-linked observability](docs/TRACE_LINKED_OBSERVABILITY.md) · [README standard](docs/README_STANDARD.md) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai) · [Improvement plan 2026](docs/ORG_IMPROVEMENT_PLAN_2026.md) · [Top-1% 90-day backlog](docs/TOP1PCT_90DAY_BACKLOG.md)
+[15-min technical review](https://venkat-ai.com/technical-review) · [Live demos](https://venkat-ai.com/work) · [Repo index](docs/REPO_INDEX.md) · [Top-1% execution plan](docs/TOP1PCT_90DAY_EXECUTION.md) · [LinkedIn launch plan](docs/LINKEDIN_LAUNCH_PLAN.md) · [Trace-linked observability](docs/TRACE_LINKED_OBSERVABILITY.md) · [README standard](docs/README_STANDARD.md) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai) · [Improvement plan 2026](docs/ORG_IMPROVEMENT_PLAN_2026.md) · [Phase −1 backlog (complete)](docs/TOP1PCT_90DAY_BACKLOG.md)
 
 ---
 
 ## Impact at a Glance
 
-| **10→2** | **Multi-$M** | **17 live demos** | **8-layer stack + skills** |
+| **10→2** | **Multi-$M** | **5-spine review** | **Governed stack + skills** |
 |----------|--------------|---------------------|---------------------------|
-| Agent ops staffing reduction (targeted supply-chain flows) | Revenue & savings — payments, subscriptions, EDI | Platform + pattern demos on Vercel/Render | Wired together — [improvement plan](docs/ORG_IMPROVEMENT_PLAN_2026.md) |
+| Agent ops staffing reduction (targeted supply-chain flows) | Revenue & savings — payments, subscriptions, EDI | AegisAI · VAP · ERAG · Content Factory · ADRs | Labs/teaching demoted — [execution plan](docs/TOP1PCT_90DAY_EXECUTION.md) |
 
 ---
 
