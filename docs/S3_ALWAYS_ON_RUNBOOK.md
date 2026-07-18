@@ -1,6 +1,6 @@
 # S3 — Always-on spine APIs + interview pack
 
-**Status:** Implementation in progress (2026-07-18)  
+**Status:** Complete (2026-07-18) — PRs merged; duplicate Vercel playbook project deleted  
 **Plan:** [`TOP1PCT_90DAY_EXECUTION.md`](./TOP1PCT_90DAY_EXECUTION.md) · Decision **D2**
 
 ## S3.1 Render plan upgrades
@@ -35,16 +35,7 @@ Practice Arena: https://ai-architect-practice-arena.vercel.app
 
 ## S3.4 Duplicate Vercel playbook project
 
-Two hosts currently resolve:
-
 | Host | Role |
 |------|------|
 | `ai-architect-interview-playbook.vercel.app` | **Canonical** — keep |
-| `ai-architect-interview-playbook-9xs.vercel.app` | **Duplicate** — remove |
-
-### Cleanup (Vercel dashboard)
-
-1. Open Vercel → team projects.
-2. Delete or disconnect project `ai-architect-interview-playbook-9xss` / `*-9xs` (exact name may vary).
-3. Confirm only the canonical host remains and Git integration points at `ui/` (or root `vercel.json` that builds `ui/`).
-4. Grep org for `-9xs` and fix any remaining links (portfolio already pointed at canonical).
+| `ai-architect-interview-playbook-9xs.vercel.app` | **Deleted** (project `ai-architect-interview-playbook-9xss` removed 2026-07-18) |

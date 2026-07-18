@@ -20,6 +20,7 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Portfolio](https://img.shields.io/badge/🌐_venkat--ai.com-Portfolio_%26_Live_Demos-5eead4?style=flat-square)](https://venkat-ai.com/work)
+[![Golden Eval CI](https://github.com/vpeetla-ai/golden-eval-registry/actions/workflows/ci.yml/badge.svg)](https://github.com/vpeetla-ai/golden-eval-registry/actions/workflows/ci.yml)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Venkata_Peetla-0A66C2?style=flat-square)](https://www.linkedin.com/in/venkata-peetla/)
 
 ---
@@ -27,7 +28,7 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 **Venkata Peetla** — Principal AI Architect · Lucid Motors  
 *19 years enterprise delivery · **5-spine review path** · full catalog behind it
 
-[15-min technical review](https://venkat-ai.com/technical-review) · [Spine health](https://venkat-ai.com/spine-health) · [Live demos](https://venkat-ai.com/work) · [Repo index](docs/REPO_INDEX.md) · [Top-1% execution plan](docs/TOP1PCT_90DAY_EXECUTION.md) · [S3 always-on runbook](docs/S3_ALWAYS_ON_RUNBOOK.md) · [LinkedIn launch plan](docs/LINKEDIN_LAUNCH_PLAN.md) · [Trace-linked observability](docs/TRACE_LINKED_OBSERVABILITY.md) · [README standard](docs/README_STANDARD.md) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai) · [Improvement plan 2026](docs/ORG_IMPROVEMENT_PLAN_2026.md) · [Phase −1 backlog (complete)](docs/TOP1PCT_90DAY_BACKLOG.md)
+[15-min technical review](https://venkat-ai.com/technical-review) · [Spine health](https://venkat-ai.com/spine-health) · [Golden path](docs/GOLDEN_PATH.md) · [Live demos](https://venkat-ai.com/work) · [Repo index](docs/REPO_INDEX.md) · [Top-1% execution plan](docs/TOP1PCT_90DAY_EXECUTION.md) · [S3 always-on runbook](docs/S3_ALWAYS_ON_RUNBOOK.md) · [LinkedIn launch plan](docs/LINKEDIN_LAUNCH_PLAN.md) · [Trace-linked observability](docs/TRACE_LINKED_OBSERVABILITY.md) · [README standard](docs/README_STANDARD.md) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai) · [Improvement plan 2026](docs/ORG_IMPROVEMENT_PLAN_2026.md) · [Phase −1 backlog (complete)](docs/TOP1PCT_90DAY_BACKLOG.md)
 
 ---
 
