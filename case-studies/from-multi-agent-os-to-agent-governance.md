@@ -24,3 +24,5 @@ Most teams follow: demo → real tools → no governance → panic.
 |--------|------|
 | VAP | [venkat-ai-platform.vercel.app](https://venkat-ai-platform.vercel.app) |
 | AegisAI | [aegisai-enterprise-agent-platform.vercel.app](https://aegisai-enterprise-agent-platform.vercel.app) |
+
+**Spine golden path (S4):** [GOLDEN_PATH.md](../docs/GOLDEN_PATH.md) · [case study + run numbers](./golden-path-spine-e2e.md) · [latest artifact](../docs/artifacts/golden-path/latest.json)

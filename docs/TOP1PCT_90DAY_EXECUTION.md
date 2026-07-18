@@ -85,10 +85,10 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 
 | ID | Action | Repo | Done when | Status |
 |----|--------|------|-----------|--------|
-| S3.1 | Upgrade Render plans for VAP + AegisAI + ERAG APIs | Render | `/health` warm within 3s × 24h sample | `DONE` (Blueprint PRs; dashboard apply + warm sample) |
-| S3.2 | Public spine health page on portfolio | `venkat-ai-portfolio` | `/proof` or `/technical-review` live checks | `DONE` (PR pending merge) |
-| S3.3 | Hire funnel: playbook + arena + technical-review CTA | portfolio + playbook | One path from `/hire` | `DONE` (PR pending merge) |
-| S3.4 | Delete/disable duplicate Vercel playbook project | Vercel | Only canonical host | `DONE` (links fixed; dashboard delete remaining) |
+| S3.1 | Upgrade Render plans for VAP + AegisAI + ERAG APIs | Render | `/health` warm within 3s × 24h sample | `DONE` |
+| S3.2 | Public spine health page on portfolio | `venkat-ai-portfolio` | `/proof` or `/technical-review` live checks | `DONE` |
+| S3.3 | Hire funnel: playbook + arena + technical-review CTA | portfolio + playbook | One path from `/hire` | `DONE` |
+| S3.4 | Delete/disable duplicate Vercel playbook project | Vercel | Only canonical host | `DONE` |
 
 ---
 
@@ -96,10 +96,10 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 
 | ID | Action | Repo | Done when | Status |
 |----|--------|------|-----------|--------|
-| S4.1 | Scripted E2E: VAP ask → ERAG retrieve → AegisAI gate → ACF publish/meter | spine | `docs/GOLDEN_PATH.md` + runnable script | `TODO` |
-| S4.2 | Durable public artifact (trace/eval/cost) per run | FinOps + Langfuse/eval | Link from technical-review | `TODO` |
-| S4.3 | Weekly adversarial golden CI green | `golden-eval-registry` | Badge on portfolio | `TODO` |
-| S4.4 | Case study update with numbers from real runs | `ai-architecture-portfolio` | New or revised case study | `TODO` |
+| S4.1 | Scripted E2E: VAP ask → ERAG retrieve → AegisAI gate → ACF publish/meter | spine | `docs/GOLDEN_PATH.md` + runnable script | `DONE` (PR pending merge) |
+| S4.2 | Durable public artifact (trace/eval/cost) per run | FinOps + Langfuse/eval | Link from technical-review | `DONE` (PR pending merge) |
+| S4.3 | Weekly adversarial golden CI green | `golden-eval-registry` | Badge on portfolio | `DONE` (PR pending merge) |
+| S4.4 | Case study update with numbers from real runs | `ai-architecture-portfolio` | New or revised case study | `DONE` (PR pending merge) |
 
 ---
 
@@ -132,8 +132,8 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 | S0 | [PR #1](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/1) | Merged |
 | S1 | [#2](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/2) · portfolio #3 · profile #1 | Merged |
 | S2 | [#3](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/3) | Merged |
-| S3 | [#4](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/4) · [portfolio#5](https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/5) · [VAP#2](https://github.com/vpeetla-ai/venkat-ai-platform/pull/2) · [ERAG#2](https://github.com/vpeetla-ai/enterprise_rag_platform/pull/2) · [arch#8](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/8) · [playbook#3](https://github.com/vpeetla-ai/ai-architect-interview-playbook/pull/3) · [runbook](./S3_ALWAYS_ON_RUNBOOK.md) | PRs open |
-| S4 | [#5](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/5) | Open |
+| S3 | [#4](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/4) · [runbook](./S3_ALWAYS_ON_RUNBOOK.md) | Merged |
+| S4 | [#5](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/5) · [arch#9](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/9) · [portfolio#6](https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/6) · [GOLDEN_PATH](./GOLDEN_PATH.md) | PRs open |
 | S5 | [#6](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/6) | Open |
 
 ## Progress log
@@ -146,3 +146,5 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 | 2026-07-18 | S2 | Demo/Strict banners + stub honesty PRs opened across spine + plane |
 | 2026-07-18 | S2 | All S2 PRs merged |
 | 2026-07-18 | S3 | Always-on Blueprint + spine-health + hire funnel PRs; see S3_ALWAYS_ON_RUNBOOK.md |
+| 2026-07-18 | S3 | All S3 PRs merged; duplicate playbook Vercel project deleted |
+| 2026-07-18 | S4 | Golden path script + artifact + GER badge + case study |

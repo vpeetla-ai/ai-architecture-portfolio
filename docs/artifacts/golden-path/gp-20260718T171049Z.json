@@ -1,0 +1,228 @@
+{
+  "run_id": "gp-20260718T171049Z",
+  "started_at": "2026-07-18T17:10:49.662442+00:00",
+  "ended_at": "2026-07-18T17:10:55.949420+00:00",
+  "sequence": [
+    "health",
+    "vap_ask",
+    "erag_answer",
+    "aegisai_gate",
+    "acf_health",
+    "finops_usage"
+  ],
+  "summary": {
+    "steps_http_ok": 8,
+    "steps_total": 10,
+    "stranger_replayable_ok": true,
+    "full_ask_answer_ok": false,
+    "notes": [
+      "ACF live publish requires Clerk \u2014 golden path records /health for the application layer.",
+      "VAP/ERAG mutating routes are API-key gated on live Render (set VAP_API_KEY / RAG_API_KEY for full ask\u2192answer).",
+      "Without keys, 401 on vap_ask/erag_answer is expected and still counts as stranger-replayable honesty.",
+      "ERAG body principal is Demo mode unless PRODUCTION_STRICT=1.",
+      "AegisAI demo headers; deploy tools typically return approval_required + HITL task."
+    ],
+    "ci_proof": {
+      "golden_eval_registry_badge": "https://github.com/vpeetla-ai/golden-eval-registry/actions/workflows/ci.yml/badge.svg",
+      "adversarial_suite": "enterprise_rag_adversarial_v1",
+      "ci_url": "https://github.com/vpeetla-ai/golden-eval-registry/actions/workflows/ci.yml"
+    }
+  },
+  "steps": [
+    {
+      "step": "health_vap",
+      "ok": true,
+      "http_status": 200,
+      "latency_ms": 181,
+      "url": "https://vap-api.onrender.com/health",
+      "response_keys": [
+        "status",
+        "service"
+      ],
+      "response_snippet": "{\"status\":\"ok\",\"service\":\"venkat-ai-platform-backend\"}",
+      "ok_for_stranger": true
+    },
+    {
+      "step": "health_erag",
+      "ok": true,
+      "http_status": 200,
+      "latency_ms": 171,
+      "url": "https://enterprise-rag-api-4el1.onrender.com/health",
+      "response_keys": [
+        "status",
+        "service",
+        "retriever_backend",
+        "production_strict",
+        "principal_source",
+        "review_mode"
+      ],
+      "response_snippet": "{\"status\":\"ok\",\"service\":\"enterprise-rag-platform\",\"retriever_backend\":\"memory\",\"production_strict\":false,\"principal_source\":\"request_body\",\"review_mode\":\"demo\"}",
+      "ok_for_stranger": true
+    },
+    {
+      "step": "health_aegisai",
+      "ok": true,
+      "http_status": 200,
+      "latency_ms": 702,
+      "url": "https://aegisai-api.onrender.com/health",
+      "response_keys": [
+        "status",
+        "service",
+        "memory_documents",
+        "audit_chain_valid",
+        "persistence",
+        "policy_engine",
+        "slack_approvals",
+        "connector_registry",
+        "connector_count",
+        "audit_signing",
+        "auth",
+        "enforcement"
+      ],
+      "response_snippet": "{\"status\":\"ok\",\"service\":\"aegisai-api\",\"memory_documents\":3,\"audit_chain_valid\":true,\"persistence\":{\"mode\":\"postgres\",\"system_of_record\":\"postgresql\"},\"policy_engine\":\"builtin\",\"slack_approvals\":true,\"connector_registry\":[{\"connector_id\":\"payments_refund_connector\",\"provider\":\"stripe\",\"supported_tools\":[\"payments.issue_refund\"],\"kind\":\"builtin\"},{\"connector_id\":\"crm_case_connector\",\"provider\":\"salesforce\",\"supported_tools\":[\"crm.update_case\"],\"kind\":\"builtin\"},{\"connector_id\":\"privacy_data_ops_c",
+      "ok_for_stranger": true
+    },
+    {
+      "step": "health_acf",
+      "ok": true,
+      "http_status": 200,
+      "latency_ms": 222,
+      "url": "https://acf-api-eub4.onrender.com/health",
+      "response_keys": [
+        "status",
+        "service",
+        "version",
+        "environment",
+        "database",
+        "mock_llm",
+        "graph_ready",
+        "checkpointer",
+        "llm_keys_configured",
+        "clerk_configured",
+        "vector_backend",
+        "langsmith",
+        "langfuse",
+        "aegisai_gateway",
+        "cron_enabled"
+      ],
+      "response_snippet": "{\"status\":\"ok\",\"service\":\"ai-content-factory-api\",\"version\":\"1.0.0\",\"environment\":\"production\",\"database\":\"ok\",\"mock_llm\":false,\"graph_ready\":false,\"checkpointer\":\"pending\",\"llm_keys_configured\":true,\"clerk_configured\":true,\"vector_backend\":\"qdrant\",\"langsmith\":true,\"langfuse\":true,\"aegisai_gateway\":false,\"cron_enabled\":false}",
+      "ok_for_stranger": true
+    },
+    {
+      "step": "health_finops",
+      "ok": true,
+      "http_status": 200,
+      "latency_ms": 145,
+      "url": "https://agent-finops-api.onrender.com/health",
+      "response_keys": [
+        "status",
+        "service"
+      ],
+      "response_snippet": "{\"status\":\"ok\",\"service\":\"agent-finops\"}",
+      "ok_for_stranger": true
+    },
+    {
+      "step": "vap_ask",
+      "ok": false,
+      "http_status": 401,
+      "latency_ms": 194,
+      "url": "https://vap-api.onrender.com/chat",
+      "response_keys": [
+        "detail"
+      ],
+      "response_snippet": "{\"detail\":\"Invalid or missing X-API-Key\"}",
+      "auth_gated": true,
+      "ok_for_stranger": true,
+      "note": "Live VAP requires X-API-Key (ADR-009). Set VAP_API_KEY for full ask proof."
+    },
+    {
+      "step": "erag_answer",
+      "ok": false,
+      "http_status": 401,
+      "latency_ms": 211,
+      "url": "https://enterprise-rag-api-4el1.onrender.com/v1/answer",
+      "response_keys": [
+        "detail"
+      ],
+      "response_snippet": "{\"detail\":\"Invalid or missing X-API-Key\"}",
+      "auth_gated": true,
+      "ok_for_stranger": true,
+      "note": "Live ERAG requires X-API-Key. Set RAG_API_KEY for full answer/trace proof."
+    },
+    {
+      "step": "aegisai_gate",
+      "ok": true,
+      "http_status": 200,
+      "latency_ms": 4090,
+      "url": "https://aegisai-api.onrender.com/api/gateway/tool-request",
+      "response_keys": [
+        "product_module",
+        "gateway_decision",
+        "tool_name",
+        "agent_id",
+        "business_explanation",
+        "policy_result",
+        "authorization",
+        "enforcement_steps",
+        "execution_token",
+        "principal_id",
+        "case_id",
+        "proposal_id",
+        "hitl_task"
+      ],
+      "response_snippet": "{\"product_module\":\"Governance Gateway\",\"gateway_decision\":\"approval_required\",\"tool_name\":\"deploy.vercel_release\",\"agent_id\":\"agent-fe-builder\",\"business_explanation\":\"Production deploy tools always require human approval before execution.\",\"policy_result\":{\"simulation_id\":\"sim-c7a0bf75-3174-46b2-b638-edb8c1bb1410\",\"decision\":\"human_approval\",\"risk_score\":0,\"risk_level\":\"low\",\"approval_role\":null,\"policy_version\":\"policy-2026.05\",\"evaluation_passed\":true,\"failed_checks\":[],\"reason_codes\":[],\"exp",
+      "gateway_decision": "approval_required",
+      "ok_for_stranger": true
+    },
+    {
+      "step": "acf_health",
+      "ok": true,
+      "http_status": 200,
+      "latency_ms": 184,
+      "url": "https://acf-api-eub4.onrender.com/health",
+      "response_keys": [
+        "status",
+        "service",
+        "version",
+        "environment",
+        "database",
+        "mock_llm",
+        "graph_ready",
+        "checkpointer",
+        "llm_keys_configured",
+        "clerk_configured",
+        "vector_backend",
+        "langsmith",
+        "langfuse",
+        "aegisai_gateway",
+        "cron_enabled"
+      ],
+      "response_snippet": "{\"status\":\"ok\",\"service\":\"ai-content-factory-api\",\"version\":\"1.0.0\",\"environment\":\"production\",\"database\":\"ok\",\"mock_llm\":false,\"graph_ready\":false,\"checkpointer\":\"pending\",\"llm_keys_configured\":true,\"clerk_configured\":true,\"vector_backend\":\"qdrant\",\"langsmith\":true,\"langfuse\":true,\"aegisai_gateway\":false,\"cron_enabled\":false}",
+      "ok_for_stranger": true
+    },
+    {
+      "step": "finops_usage",
+      "ok": true,
+      "http_status": 200,
+      "latency_ms": 182,
+      "url": "https://agent-finops-api.onrender.com/v1/usage",
+      "response_keys": [
+        "scope_type",
+        "scope_value",
+        "cost_usd",
+        "total_cost_usd",
+        "budget_usd",
+        "breached"
+      ],
+      "response_snippet": "{\"scope_type\":\"agent\",\"scope_value\":\"golden-path\",\"cost_usd\":0.00027,\"total_cost_usd\":0.00054,\"budget_usd\":null,\"breached\":false}",
+      "ok_for_stranger": true
+    }
+  ],
+  "endpoints": {
+    "vap": "https://vap-api.onrender.com",
+    "erag": "https://enterprise-rag-api-4el1.onrender.com",
+    "aegisai": "https://aegisai-api.onrender.com",
+    "acf": "https://acf-api-eub4.onrender.com",
+    "finops": "https://agent-finops-api.onrender.com"
+  }
+}
