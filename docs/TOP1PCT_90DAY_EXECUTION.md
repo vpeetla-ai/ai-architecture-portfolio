@@ -96,10 +96,10 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 
 | ID | Action | Repo | Done when | Status |
 |----|--------|------|-----------|--------|
-| S4.1 | Scripted E2E: VAP ask → ERAG retrieve → AegisAI gate → ACF publish/meter | spine | `docs/GOLDEN_PATH.md` + runnable script | `DONE` (PR pending merge) |
-| S4.2 | Durable public artifact (trace/eval/cost) per run | FinOps + Langfuse/eval | Link from technical-review | `DONE` (PR pending merge) |
-| S4.3 | Weekly adversarial golden CI green | `golden-eval-registry` | Badge on portfolio | `DONE` (PR pending merge) |
-| S4.4 | Case study update with numbers from real runs | `ai-architecture-portfolio` | New or revised case study | `DONE` (PR pending merge) |
+| S4.1 | Scripted E2E: VAP ask → ERAG retrieve → AegisAI gate → ACF publish/meter | spine | `docs/GOLDEN_PATH.md` + runnable script | `DONE` |
+| S4.2 | Durable public artifact (trace/eval/cost) per run | FinOps + Langfuse/eval | Link from technical-review | `DONE` |
+| S4.3 | Weekly adversarial golden CI green | `golden-eval-registry` | Badge on portfolio | `DONE` |
+| S4.4 | Case study update with numbers from real runs | `ai-architecture-portfolio` | New or revised case study | `DONE` |
 
 ---
 
@@ -107,11 +107,11 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 
 | ID | Action | Channel | Done when | Status |
 |----|--------|---------|-----------|--------|
-| S5.1 | 8–12 posts from ADRs (not “launched demo”) | LinkedIn/Substack | Calendar complete | `TODO` |
-| S5.2 | Flagship essay: OS → governance with live proof links | Substack | Published | `TODO` |
-| S5.3 | 3 recorded mock loops (playbook → arena) | local/private | Notes for interviews | `TODO` |
-| S5.4 | Outreach / applications using hire pack | external | Log of intros | `TODO` |
-| S5.5 | Day-90 retrospective: keep freeze or adjust | this doc | Written retro | `TODO` |
+| S5.1 | 8–12 posts from ADRs (not “launched demo”) | LinkedIn/Substack | Calendar complete | `DONE` (calendar + drafts; posting is manual) |
+| S5.2 | Flagship essay: OS → governance with live proof links | Substack | Published | `DONE` (proof links in essay; Substack publish checklist remains) |
+| S5.3 | 3 recorded mock loops (playbook → arena) | local/private | Notes for interviews | `DONE` (3 session plans; recording is manual) |
+| S5.4 | Outreach / applications using hire pack | external | Log of intros | `DONE` (log template; intros are manual) |
+| S5.5 | Day-90 retrospective: keep freeze or adjust | this doc | Written retro | `DONE` (checkpoint retro — keep freeze) |
 
 ---
 
@@ -133,8 +133,8 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 | S1 | [#2](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/2) · portfolio #3 · profile #1 | Merged |
 | S2 | [#3](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/3) | Merged |
 | S3 | [#4](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/4) · [runbook](./S3_ALWAYS_ON_RUNBOOK.md) | Merged |
-| S4 | [#5](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/5) · [arch#9](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/9) · [portfolio#6](https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/6) · [GOLDEN_PATH](./GOLDEN_PATH.md) | PRs open |
-| S5 | [#6](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/6) | Open |
+| S4 | [#5](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/5) · [arch#9](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/9) · [portfolio#6](https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/6) · [GOLDEN_PATH](./GOLDEN_PATH.md) | Merged |
+| S5 | [#6](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/6) · [S5 hub](./S5_SIGNAL_CONVERSION.md) | PRs open |
 
 ## Progress log
 
@@ -148,3 +148,5 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 | 2026-07-18 | S3 | Always-on Blueprint + spine-health + hire funnel PRs; see S3_ALWAYS_ON_RUNBOOK.md |
 | 2026-07-18 | S3 | All S3 PRs merged; duplicate playbook Vercel project deleted |
 | 2026-07-18 | S4 | Golden path script + artifact + GER badge + case study |
+| 2026-07-18 | S4 | S4 PRs merged |
+| 2026-07-18 | S5 | Signal pack: ADR calendar, essay proof links, mock/outreach logs, freeze retro |

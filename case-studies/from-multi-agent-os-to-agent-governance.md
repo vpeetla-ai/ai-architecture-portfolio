@@ -26,3 +26,5 @@ Most teams follow: demo → real tools → no governance → panic.
 | AegisAI | [aegisai-enterprise-agent-platform.vercel.app](https://aegisai-enterprise-agent-platform.vercel.app) |
 
 **Spine golden path (S4):** [GOLDEN_PATH.md](../docs/GOLDEN_PATH.md) · [case study + run numbers](./golden-path-spine-e2e.md) · [latest artifact](../docs/artifacts/golden-path/latest.json)
+
+**Signal pack (S5):** [ADR post calendar](../docs/S5_ADR_POST_CALENDAR.md) · [S5 hub](../docs/S5_SIGNAL_CONVERSION.md) · Publish checklist lives in the [full essay](https://github.com/vpeetla-ai/ai-content-factory/blob/main/docs/content/from-multi-agent-os-to-agent-governance.md)
