@@ -133,7 +133,7 @@ Legend for stage rows below: `TODO` · `IN_PROGRESS` · `DONE` · `BLOCKED`
 | S1 | [#2](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/2) · portfolio #3 · profile #1 | Merged |
 | S2 | [#3](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/3) | Merged |
 | S3 | [#4](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/4) · [runbook](./S3_ALWAYS_ON_RUNBOOK.md) | Merged |
-| S4 | [#5](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/5) · [GOLDEN_PATH](./GOLDEN_PATH.md) | PRs open |
+| S4 | [#5](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/5) · [arch#9](https://github.com/vpeetla-ai/ai-architecture-portfolio/pull/9) · [portfolio#6](https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/6) · [GOLDEN_PATH](./GOLDEN_PATH.md) | PRs open |
 | S5 | [#6](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/6) | Open |
 
 ## Progress log
