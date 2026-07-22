@@ -82,6 +82,85 @@ Technical review: https://venkat-ai.com/technical-review
 
 ---
 
+## Ready-to-paste drafts (Posts 5–10)
+
+### Post 5 — ADR-014
+
+```text
+If an eval suite doesn’t gate CI, it’s a slide — not a control.
+
+Golden Eval Registry turns adversarial RAG and orchestrator invariants into merge blockers. The GER CI badge is the proof link, not a screenshot of a notebook.
+
+CI: https://github.com/vpeetla-ai/golden-eval-registry/actions/workflows/ci.yml
+Review: https://venkat-ai.com/technical-review
+
+#LLMOps #Evals #AIArchitecture
+```
+
+### Post 6 — ADR-024
+
+```text
+Demo defaults that pretend to be production are how portfolios lose Principal trust.
+
+PRODUCTION_STRICT is the honesty profile: fail closed, JWT Principal on RAG, banners that say Demo when it’s Demo.
+
+Spine health: https://venkat-ai.com/spine-health
+Strict pack: https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/STRICT_PANEL_PACK.md
+
+#AISecurity #AIArchitecture
+```
+
+### Post 7 — ADR-023
+
+```text
+Decline-to-answer is a product feature, not a model failure.
+
+Enterprise RAG reranks, then refuses when evidence is weak — better than a confident hallucination for regulated knowledge.
+
+Live: https://enterprise-rag-platform-eta.vercel.app
+
+#EnterpriseRAG #AIArchitecture
+```
+
+### Post 8 — ADR-011
+
+```text
+Cost without a meter is folklore.
+
+Agent FinOps records usage and budget breach signals as a shared service. The spine golden path meters a sample turn into a public JSON artifact.
+
+Golden path: https://github.com/vpeetla-ai/ai-architecture-portfolio/blob/main/docs/GOLDEN_PATH.md
+ROI one-pager: https://github.com/vpeetla-ai/ai-architecture-portfolio/blob/main/docs/FINOPS_ROI_ONE_PAGER.md
+
+#FinOps #AIArchitecture
+```
+
+### Post 9 — ADR-025
+
+```text
+Map agent threats to NIST AI RMF before the audit asks you to.
+
+Govern / Map / Measure / Manage — with live links to gateway HITL, Strict RAG, and golden eval CI — not a binder of policies.
+
+One-pager: https://github.com/vpeetla-ai/ai-architecture-portfolio/blob/main/docs/NIST_AI_RMF_ONE_PAGER.md
+
+#NIST #ResponsibleAI #AIArchitecture
+```
+
+### Post 10 — ADR-028 / 029
+
+```text
+Apps select the model. The gateway enforces and records.
+
+That’s the federated control-plane analogy (k8s-shaped thinking for LLM traffic): routing contract + stub/BYOK honesty + FinOps hooks.
+
+Technical review: https://venkat-ai.com/technical-review
+
+#LLMGateway #AIArchitecture
+```
+
+---
+
 ## Tracking
 
 Mark `Status` → `POSTED` with date + URL in this table when published. Close [issue #6](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/6) S5.1 checkbox when ≥8 are posted.

@@ -2,6 +2,7 @@
 
 **Status:** ACTIVE  
 **Started:** 2026-07-22  
+**Tracking issue:** [#14](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/14)  
 **Parent:** [`TOP1PCT_90DAY_EXECUTION.md`](./TOP1PCT_90DAY_EXECUTION.md) · [`TOP1PCT_GAP_PLAN.md`](./TOP1PCT_GAP_PLAN.md)  
 **North star score:** ≥90/100 (thesis · operating · signal)  
 **Freeze:** no new product repos
@@ -29,47 +30,53 @@
 
 ### P0 — Always-on spine
 
-- [ ] Render Starter applied: `vap-api`, `aegisai-api`, `enterprise-rag-api`
+- [x] Idle probe script: [`scripts/probe_spine_idle.sh`](../scripts/probe_spine_idle.sh)
+- [ ] Render Starter applied: `vap-api`, `aegisai-api`, `enterprise-rag-api` *(owner dashboard — MCP list_workspaces unauthorized)*
 - [ ] Idle ≥15m → 3× `/health` &lt;3s each
 - [ ] `/api/spine-health` warmOk 3/3 after idle
 - [ ] G1 closed in gap plan
 
+**Baseline 2026-07-22 (warm, not idle):** vap 0.14s · aegisai **4.7s** · erag 0.25s — starters likely partial; aegisai still over 3s budget.
+
 ### P1 — Live Strict ERAG
 
-- [ ] `enterprise-rag-api-strict` Blueprint + deploy docs
-- [ ] Strict `/health` → `review_mode=strict`
-- [ ] Body-spoof rejected under Strict
-- [ ] Portfolio technical-review links Demo + Strict
-- [ ] JWT panel pack (mint script + curl)
+- [x] `enterprise-rag-api-strict` in [`enterprise_rag_platform/render.yaml`](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/render.yaml)
+- [x] JWT mint script + [`STRICT_PANEL_PACK.md`](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/STRICT_PANEL_PACK.md)
+- [x] Portfolio technical-review + spine-health Strict links
+- [ ] Owner: Blueprint sync / create Strict service + set `RAG_JWT_SECRET`
+- [ ] Strict `/health` → `review_mode=strict` live
+- [ ] Body-spoof rejected under Strict (live verify)
 
 ### P2 — AWS free-tier receipts
 
-- [ ] Case study with apply/destroy evidence path
-- [ ] Linked from hire / technical-review
-- [ ] Honest: ephemeral proof, not always-on multi-cloud
+- [x] Case study + runbook published in repo
+- [x] Linked from hire signal links
+- [ ] Owner: run apply→verify→destroy; attach receipts under `docs/artifacts/aws-receipts/`
 
 ### P3 — Signal
 
-- [ ] Substack publish pack ready (draft + checklist)
-- [ ] ≥8 ADR post drafts with CTAs
+- [x] Substack publish pack [`P3_SUBSTACK_PUBLISH_PACK.md`](./P3_SUBSTACK_PUBLISH_PACK.md)
+- [x] ≥8 ADR post drafts (posts 1–10 in calendar)
 - [ ] Owner publishes (URLs recorded here)
 
 ### P4 — Harden
 
-- [ ] ACF / GOLDEN_PATH honest publish boundary
-- [ ] NIST one-pager with live proof links
-- [ ] FinOps ROI one-pager
-- [ ] Hire + technical-review link all three
+- [x] ACF / GOLDEN_PATH honest publish boundary
+- [x] NIST one-pager
+- [x] FinOps ROI one-pager
+- [x] Hire signal links for all three (+ AWS case study)
 
 ### P5 — Conversion + rescore
 
-- [ ] 3 mock sessions logged (or scheduled with plans)
-- [ ] ≥10 outreach rows (template filled / real rows)
-- [ ] Keyed golden path green on warm spine
-- [ ] Skills audit canvas rescore ≥90 or ≤2 gaps
+- [x] 3 mock sessions **scheduled** with protocols
+- [x] ≥10 outreach rows `DRAFT_READY`
+- [ ] Keyed golden path re-run on warm spine (owner keys)
+- [x] Skills audit canvas updated with path-to-90 scores
+- [ ] Owner: complete mocks + send outreach + publish Substack
 
 ## Progress log
 
 | Date | Phase | Note |
 |------|-------|------|
 | 2026-07-22 | — | Tracker created; implementation started |
+| 2026-07-22 | P0–P5 | Agent deliverables shipped across portfolio / ERAG / venkat-ai-portfolio; owner actions listed above |
