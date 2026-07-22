@@ -4,7 +4,8 @@
 **Decided:** 2026-07-18  
 **Supersedes sequencing of:** [`TOP1PCT_90DAY_BACKLOG.md`](./TOP1PCT_90DAY_BACKLOG.md) (treat Jul 9 “all DONE” as Phase −1 remediation, not operating proof)  
 **Companion canvas:** Cursor `vpeetla-ai-top1pct-90day.canvas.tsx` · gap review `top1pct-gap-assessment.canvas.tsx`
-**Gap plan (operating misses):** [`TOP1PCT_GAP_PLAN.md`](./TOP1PCT_GAP_PLAN.md)
+**Gap plan (operating misses):** [`TOP1PCT_GAP_PLAN.md`](./TOP1PCT_GAP_PLAN.md)  
+**90/100 score program (60d · ~$45/mo):** [`TOP1PCT_90SCORE_60DAY.md`](./TOP1PCT_90SCORE_60DAY.md)
 
 ---
 

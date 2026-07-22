@@ -18,7 +18,9 @@
 3. Leave FinOps / gateway / cache / labs on free unless a panel requires them warm.
 4. Verify warm path: three consecutive `/health` samples &lt; 3s with ≥15 min idle beforehand.
 
-Render MCP was unauthorized from this agent session — plan changes ship as Blueprint PRs; apply requires dashboard (or re-auth MCP + `update_web_service`).
+**90/100 P0 probe:** from `ai-architecture-portfolio` run `./scripts/probe_spine_idle.sh` (default waits 16 minutes).
+
+Render MCP may be unauthorized for `list_workspaces` — plan changes ship as Blueprint PRs; apply requires dashboard (or re-auth MCP + `update_web_service`).
 
 ## S3.2 Spine health page
 
