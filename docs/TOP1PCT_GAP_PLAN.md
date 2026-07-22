@@ -103,4 +103,5 @@ Phase −1 remediation + S0–S5 paper work ≠ Top-1% offers. Remaining work is
 | 2026-07-18 | G1 | **Blocked on Render MCP:** `list_workspaces` returns `unauthorized` after `mcp_auth` (cannot `select_workspace` / `update_web_service`). Blueprint already `plan: starter` in VAP + ERAG repos — live instance type still needs dashboard apply or working MCP. |
 | 2026-07-18 | G1 | Warm probe (post-traffic): vap ~0.12–0.16s · aegisai ~0.6–0.7s · erag first **12.4s** then ~0.11s · acf first two **30s timeout** then 0.44s. Portfolio `/api/spine-health` warmOk 3/3 after wake. **Idle ≥15m cold retest still required.** |
 | | G1 | _pending: dashboard Starter apply + idle cold probe_ |
-| | G2 | _pending keyed golden run (`VAP_API_KEY` + `RAG_API_KEY` unset in agent env)_ |
+| 2026-07-18 | G2 | Keyed run `gp-20260718T234153Z`: `full_ask_answer_ok=true` · `stranger_replayable_ok=true` · 10/10. VAP `/chat` unblocked via venkat-ai-platform#3 (ephemeral when Postgres down). |
+| | G2 | _done (artifact + case study refreshed)_ |

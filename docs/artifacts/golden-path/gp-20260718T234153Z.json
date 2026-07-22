@@ -1,7 +1,7 @@
 {
-  "run_id": "gp-20260722T194735Z",
-  "started_at": "2026-07-22T19:47:35.807618+00:00",
-  "ended_at": "2026-07-22T19:48:39.964380+00:00",
+  "run_id": "gp-20260718T234153Z",
+  "started_at": "2026-07-18T23:41:53.556158+00:00",
+  "ended_at": "2026-07-18T23:42:09.512984+00:00",
   "sequence": [
     "health",
     "vap_ask",
@@ -11,7 +11,7 @@
     "finops_usage"
   ],
   "summary": {
-    "steps_http_ok": 7,
+    "steps_http_ok": 10,
     "steps_total": 10,
     "stranger_replayable_ok": true,
     "full_ask_answer_ok": true,
@@ -33,7 +33,7 @@
       "step": "health_vap",
       "ok": true,
       "http_status": 200,
-      "latency_ms": 176,
+      "latency_ms": 137,
       "url": "https://vap-api.onrender.com/health",
       "response_keys": [
         "status",
@@ -46,7 +46,7 @@
       "step": "health_erag",
       "ok": true,
       "http_status": 200,
-      "latency_ms": 284,
+      "latency_ms": 253,
       "url": "https://enterprise-rag-api-4el1.onrender.com/health",
       "response_keys": [
         "status",
@@ -63,7 +63,7 @@
       "step": "health_aegisai",
       "ok": true,
       "http_status": 200,
-      "latency_ms": 650,
+      "latency_ms": 746,
       "url": "https://aegisai-api.onrender.com/health",
       "response_keys": [
         "status",
@@ -84,20 +84,37 @@
     },
     {
       "step": "health_acf",
-      "ok": false,
-      "http_status": 0,
-      "latency_ms": 45150,
+      "ok": true,
+      "http_status": 200,
+      "latency_ms": 462,
       "url": "https://acf-api-eub4.onrender.com/health",
-      "error": "The read operation timed out",
-      "response_keys": [],
-      "response_snippet": "",
-      "ok_for_stranger": false
+      "response_keys": [
+        "status",
+        "service",
+        "version",
+        "environment",
+        "database",
+        "mock_llm",
+        "production_strict",
+        "review_mode",
+        "graph_ready",
+        "checkpointer",
+        "llm_keys_configured",
+        "clerk_configured",
+        "vector_backend",
+        "langsmith",
+        "langfuse",
+        "aegisai_gateway",
+        "cron_enabled"
+      ],
+      "response_snippet": "{\"status\":\"degraded\",\"service\":\"ai-content-factory-api\",\"version\":\"1.0.0\",\"environment\":\"production\",\"database\":\"error\",\"mock_llm\":false,\"production_strict\":false,\"review_mode\":\"demo\",\"graph_ready\":false,\"checkpointer\":\"pending\",\"llm_keys_configured\":true,\"clerk_configured\":true,\"vector_backend\":\"qdrant\",\"langsmith\":true,\"langfuse\":true,\"aegisai_gateway\":false,\"cron_enabled\":false}",
+      "ok_for_stranger": true
     },
     {
       "step": "health_finops",
       "ok": true,
       "http_status": 200,
-      "latency_ms": 12450,
+      "latency_ms": 183,
       "url": "https://agent-finops-api.onrender.com/health",
       "response_keys": [
         "status",
@@ -108,9 +125,9 @@
     },
     {
       "step": "vap_ask",
-      "ok": false,
-      "http_status": 401,
-      "latency_ms": 162,
+      "ok": true,
+      "http_status": 200,
+      "latency_ms": 7455,
       "url": "https://vap-api.onrender.com/chat",
       "response_keys": [
         "thread_id",
@@ -126,9 +143,9 @@
     },
     {
       "step": "erag_answer",
-      "ok": false,
-      "http_status": 401,
-      "latency_ms": 286,
+      "ok": true,
+      "http_status": 200,
+      "latency_ms": 1350,
       "url": "https://enterprise-rag-api-4el1.onrender.com/v1/answer",
       "response_keys": [
         "answer",
@@ -151,7 +168,7 @@
       "step": "aegisai_gate",
       "ok": true,
       "http_status": 200,
-      "latency_ms": 4218,
+      "latency_ms": 4146,
       "url": "https://aegisai-api.onrender.com/api/gateway/tool-request",
       "response_keys": [
         "product_module",
@@ -168,7 +185,7 @@
         "proposal_id",
         "hitl_task"
       ],
-      "response_snippet": "{\"product_module\":\"Governance Gateway\",\"gateway_decision\":\"approval_required\",\"tool_name\":\"deploy.vercel_release\",\"agent_id\":\"agent-fe-builder\",\"business_explanation\":\"Production deploy tools always require human approval before execution.\",\"policy_result\":{\"simulation_id\":\"sim-e2532557-e7fa-4ddc-9d45-e7421c75b233\",\"decision\":\"human_approval\",\"risk_score\":0,\"risk_level\":\"low\",\"approval_role\":null,\"policy_version\":\"policy-2026.05\",\"evaluation_passed\":true,\"failed_checks\":[],\"reason_codes\":[],\"exp",
+      "response_snippet": "{\"product_module\":\"Governance Gateway\",\"gateway_decision\":\"approval_required\",\"tool_name\":\"deploy.vercel_release\",\"agent_id\":\"agent-fe-builder\",\"business_explanation\":\"Production deploy tools always require human approval before execution.\",\"policy_result\":{\"simulation_id\":\"sim-583a29b4-f841-468f-b786-d03e34316c1a\",\"decision\":\"human_approval\",\"risk_score\":0,\"risk_level\":\"low\",\"approval_role\":null,\"policy_version\":\"policy-2026.05\",\"evaluation_passed\":true,\"failed_checks\":[],\"reason_codes\":[],\"exp",
       "gateway_decision": "approval_required",
       "ok_for_stranger": true
     },
@@ -176,7 +193,7 @@
       "step": "acf_health",
       "ok": true,
       "http_status": 200,
-      "latency_ms": 617,
+      "latency_ms": 1002,
       "url": "https://acf-api-eub4.onrender.com/health",
       "response_keys": [
         "status",
@@ -204,7 +221,7 @@
       "step": "finops_usage",
       "ok": true,
       "http_status": 200,
-      "latency_ms": 151,
+      "latency_ms": 216,
       "url": "https://agent-finops-api.onrender.com/v1/usage",
       "response_keys": [
         "scope_type",
@@ -214,7 +231,7 @@
         "budget_usd",
         "breached"
       ],
-      "response_snippet": "{\"scope_type\":\"agent\",\"scope_value\":\"golden-path\",\"cost_usd\":0.00027,\"total_cost_usd\":0.00027,\"budget_usd\":null,\"breached\":false}",
+      "response_snippet": "{\"scope_type\":\"agent\",\"scope_value\":\"golden-path\",\"cost_usd\":0.00027,\"total_cost_usd\":0.00054,\"budget_usd\":null,\"breached\":false}",
       "ok_for_stranger": true
     }
   ],
