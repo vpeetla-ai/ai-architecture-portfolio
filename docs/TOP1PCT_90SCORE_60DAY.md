@@ -36,7 +36,7 @@
 - [ ] `/api/spine-health` warmOk 3/3 after idle
 - [ ] G1 closed in gap plan
 
-**Baseline 2026-07-22 (warm, not idle):** vap 0.14s · aegisai **4.7s** · erag 0.25s — starters likely partial; aegisai still over 3s budget.
+**Idle verify 2026-07-22T20:36Z FAIL:** sample1 vap=41s · aegisai=23s · erag=21s (then warm). Free-tier spin-down still active — confirm Render **Instance type = Starter** (not Free) on all three.
 
 ### P1 — Live Strict ERAG
 
@@ -80,3 +80,6 @@
 |------|-------|------|
 | 2026-07-22 | — | Tracker created; implementation started |
 | 2026-07-22 | P0–P5 | Agent deliverables shipped across portfolio / ERAG / venkat-ai-portfolio; owner actions listed above |
+| 2026-07-22 | P0 | **VERIFY FAIL** after owner "done": idle ≥16m sample1 vap=41.3s aegisai=22.7s erag=21.3s; samples 2–3 warm. Starter instance type not effective yet. Strict twin 404. |
+| 2026-07-22 | P1 | setup_strict_render.sh helper added; live Strict still pending dashboard create |
+| 2026-07-22 | P2 | aws-receipts/ README scaffold |
