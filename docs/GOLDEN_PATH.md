@@ -42,11 +42,16 @@ Exit code `0` when **stranger-replayable** checks pass (health + AegisAI gate + 
 | Step | Without secrets | With keys |
 |------|-----------------|-----------|
 | Spine `/health` | ✅ | ✅ |
-| VAP `/chat` | 401 expected (ADR-009) | ✅ |
+| VAP `/chat` | 401 expected (ADR-009) | ✅ (ephemeral OK if Postgres down) |
 | ERAG `/v1/answer` | 401 expected | ✅ Demo principal |
+| ERAG Strict | separate host + JWT | ✅ see [STRICT_PANEL_PACK](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/STRICT_PANEL_PACK.md) |
 | AegisAI gateway | ✅ demo headers | ✅ |
-| ACF publish | `/health` only | Local `ALLOW_DEV_AUTH` or Clerk |
+| ACF live publish | **Not in golden path** | Clerk session required — path records `/health` only (G8 honest boundary) |
 | FinOps `/v1/usage` | ✅ if key unset | ✅ |
+
+### ACF publish boundary (permanent)
+
+AI Content Factory’s end-user publish is behind Clerk HITL. The golden path **by design** does not automate a public publish side effect. Reviewers should open the ACF demo, read the Demo/Strict banner, and treat `/health` (+ optional authenticated dashboard) as application-layer proof. Claiming unauthenticated “live publish” would violate ADR-008 / hitl-side-effects.
 
 ## Artifact schema
 

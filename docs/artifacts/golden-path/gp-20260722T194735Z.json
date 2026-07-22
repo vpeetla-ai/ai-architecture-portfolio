@@ -14,7 +14,7 @@
     "steps_http_ok": 7,
     "steps_total": 10,
     "stranger_replayable_ok": true,
-    "full_ask_answer_ok": true,
+    "full_ask_answer_ok": false,
     "notes": [
       "ACF live publish requires Clerk \u2014 golden path records /health for the application layer.",
       "VAP/ERAG mutating routes are API-key gated on live Render (set VAP_API_KEY / RAG_API_KEY for full ask\u2192answer).",
@@ -113,16 +113,12 @@
       "latency_ms": 162,
       "url": "https://vap-api.onrender.com/chat",
       "response_keys": [
-        "thread_id",
-        "run_id",
-        "intent",
-        "plan",
-        "outputs",
-        "final",
-        "delivery"
+        "detail"
       ],
-      "response_snippet": "{\"thread_id\":null,\"run_id\":null,\"intent\":\"general\",\"plan\":\"[stub:openai/gpt-4o-mini] Deterministic reply for: Intent=general\\nUser:\\nWhat is access-before-ranking in enterprise RAG? Keep the answer under 120 words. (7e5cce15)\",\"outputs\":{\"web\":\"[stub:meta-llama/llama-3.3-70b-instruct] Deterministic reply for: SNIPPETS:\\n(no live web results \u2014 add TAVILY_API_KEY)\\n\\nUSER:\\nWhat is access-before-ranking in enterprise RAG? Keep the an (0d255ed3)\",\"knowledge\":\"(agent error: 'QdrantClient' object has",
-      "ok_for_stranger": true
+      "response_snippet": "{\"detail\":\"Invalid or missing X-API-Key\"}",
+      "auth_gated": true,
+      "ok_for_stranger": true,
+      "note": "Live VAP requires X-API-Key (ADR-009). Set VAP_API_KEY for full ask proof."
     },
     {
       "step": "erag_answer",
@@ -131,21 +127,12 @@
       "latency_ms": 286,
       "url": "https://enterprise-rag-api-4el1.onrender.com/v1/answer",
       "response_keys": [
-        "answer",
-        "grounded",
-        "declined",
-        "risk_flags",
-        "principal_source",
-        "citations",
-        "trace",
-        "gateway",
-        "langfuse_export"
+        "detail"
       ],
-      "response_snippet": "{\"answer\":\"Zephyr Corporation requires all production deployments to pass AegisAI gateway approval before email or Slack notifications. The mandatory rotation period for API keys is 90 days. Engineering teams must enable hybrid retrieval with citation grounding for customer-facing answers. Incident response playbooks require human approval for restricted documents. [S1]\",\"grounded\":true,\"declined\":false,\"risk_flags\":[],\"principal_source\":\"request_body\",\"citations\":[{\"id\":\"S1\",\"document_id\":\"zeph",
-      "erag_declined": false,
-      "erag_grounded": true,
-      "answer_preview": "Zephyr Corporation requires all production deployments to pass AegisAI gateway approval before email or Slack notifications. The mandatory rotation period for API keys is 90 days. Engineering teams must enable hybrid retrieval with citation",
-      "ok_for_stranger": true
+      "response_snippet": "{\"detail\":\"Invalid or missing X-API-Key\"}",
+      "auth_gated": true,
+      "ok_for_stranger": true,
+      "note": "Live ERAG requires X-API-Key. Set RAG_API_KEY for full answer/trace proof."
     },
     {
       "step": "aegisai_gate",

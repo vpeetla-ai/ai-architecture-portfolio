@@ -2,7 +2,8 @@
 
 **Assessed:** 2026-07-18  
 **Companion canvas:** Cursor `top1pct-gap-assessment.canvas.tsx`  
-**Parent plan:** [`TOP1PCT_90DAY_EXECUTION.md`](./TOP1PCT_90DAY_EXECUTION.md)
+**Parent plan:** [`TOP1PCT_90DAY_EXECUTION.md`](./TOP1PCT_90DAY_EXECUTION.md)  
+**90/100 score program:** [`TOP1PCT_90SCORE_60DAY.md`](./TOP1PCT_90SCORE_60DAY.md)
 
 ---
 
