@@ -13,7 +13,7 @@
 |----------|--------|
 | Timeline | 60 days |
 | Budget | ~$45/mo total |
-| Cloud | AWS free-tier receipts (tear-down), not always-on EKS |
+| Cloud | **Dual split:** AWS = AegisAI ephemeral control plane; GCP = FinOps + ERAG Cloud Run (Always Free–friendly). Render = warm spine. [CLOUD_FREE_TIER_SPLIT.md](./CLOUD_FREE_TIER_SPLIT.md) |
 | Strict ERAG | Dual URL: Demo Starter + Strict Starter |
 | Signal | Agent drafts; owner publishes within 48h |
 
@@ -23,7 +23,8 @@
 |------|------:|
 | vap-api + aegisai-api + enterprise-rag-api Starter | 21 |
 | enterprise-rag-api-strict Starter | 7 |
-| AWS free-tier evidence (tear down) | 0–10 |
+| GCP Cloud Run ERAG lite (idle scale-to-zero) | ~0 |
+| AWS/GCP receipt-day spike (destroy same day) | 0–10 |
 | LLM keys remainder | rest |
 
 ## Phase checklist (strike when exit met)
@@ -47,11 +48,13 @@
 - [ ] Strict `/health` → `review_mode=strict` live
 - [ ] Body-spoof rejected under Strict (live verify)
 
-### P2 — AWS free-tier receipts
+### P2 — Dual-cloud free-tier receipts
 
-- [x] Case study + runbook published in repo
-- [x] Linked from hire signal links
-- [ ] Owner: run apply→verify→destroy; attach receipts under `docs/artifacts/aws-receipts/`
+- [x] [CLOUD_FREE_TIER_SPLIT.md](./CLOUD_FREE_TIER_SPLIT.md) — AWS vs GCP assignment
+- [x] AWS case study + runbook; GCP case study + runbook
+- [x] ERAG `deploy/gcp/cloudrun` Always Free–friendly path
+- [x] Hire links for AWS + GCP + split doc
+- [ ] Owner: one AWS **or** GCP receipt day; files under `docs/artifacts/aws-receipts/` or `gcp-receipts/`
 
 ### P3 — Signal
 
@@ -64,7 +67,7 @@
 - [x] ACF / GOLDEN_PATH honest publish boundary
 - [x] NIST one-pager
 - [x] FinOps ROI one-pager
-- [x] Hire signal links for all three (+ AWS case study)
+- [x] Hire signal links (NIST · FinOps ROI · AWS · GCP · cloud split)
 
 ### P5 — Conversion + rescore
 
@@ -83,3 +86,4 @@
 | 2026-07-22 | P0 | **VERIFY FAIL** after owner "done": idle ≥16m sample1 vap=41.3s aegisai=22.7s erag=21.3s; samples 2–3 warm. Starter instance type not effective yet. Strict twin 404. |
 | 2026-07-22 | P1 | setup_strict_render.sh helper added; live Strict still pending dashboard create |
 | 2026-07-22 | P2 | aws-receipts/ README scaffold |
+| 2026-07-22 | P2 | Dual-cloud split: AWS=AegisAI ephemeral; GCP=FinOps+ERAG Cloud Run; plan updated |

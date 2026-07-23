@@ -5,7 +5,10 @@
 
 ## Decision
 
+**AWS owns the enterprise control-plane story** in the org cloud split ([CLOUD_FREE_TIER_SPLIT.md](../docs/CLOUD_FREE_TIER_SPLIT.md)).  
 Use the existing AegisAI Terraform path ([deploy/terraform/aws](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/tree/main/deploy/terraform/aws)) as a **stand-up → verify → tear-down** exercise so Principal panels can see real AWS VPC/ECS/ALB/RDS wiring without leaving a $36+/mo ALB bill running.
+
+GCP owns serverless FinOps + ERAG Cloud Run — see [gcp-serverless-ai-platform-receipt.md](./gcp-serverless-ai-platform-receipt.md).
 
 ## Why not always-on EKS?
 
