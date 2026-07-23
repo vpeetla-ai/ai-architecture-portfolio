@@ -7,11 +7,13 @@
 
 | ID | Artifact | Done when |
 |----|----------|-----------|
-| S5.1 | [ADR post calendar](./S5_ADR_POST_CALENDAR.md) — 10 posts | Calendar complete; post weekly |
-| S5.2 | Flagship essay + proof links | Publish Substack checklist; essay updated in ACF + portfolio case study |
+| S5.1 | [ADR post calendar](./S5_ADR_POST_CALENDAR.md) — 10 posts · [LinkedIn week pack](./P3_LINKEDIN_WEEK_PACK.md) | Calendar complete; post weekly |
+| S5.2 | Flagship essay + [Substack publish pack](./P3_SUBSTACK_PUBLISH_PACK.md) | Publish Substack checklist; essay updated in ACF + portfolio case study |
 | S5.3 | [Mock loop log](./interview/MOCK_LOOP_LOG.md) | 3 sessions planned (record privately) |
 | S5.4 | [Outreach log](./outreach/OUTREACH_LOG.md) | Intros logged as they happen |
 | S5.5 | [Day-90 checkpoint retro](./S5_DAY90_RETROSPECTIVE.md) | Written; freeze decision recorded |
+
+**Render Free interim:** do not claim always-on in posts — see [RENDER_FREE_INTERIM.md](./RENDER_FREE_INTERIM.md). CTA stays `/technical-review` + golden path.
 
 ## Conversion funnel (use in every post CTA)
 

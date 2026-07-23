@@ -2,6 +2,13 @@
 
 **Budget rule:** do not leave ALB + RDS running overnight. Target wall-clock &lt; 2 hours apply→verify→destroy.
 
+## Start a dated checklist
+
+```bash
+./scripts/init_cloud_receipt.sh aws
+# → docs/artifacts/aws-receipts/YYYYMMDD-checklist.md
+```
+
 ## Prerequisites
 
 ```bash

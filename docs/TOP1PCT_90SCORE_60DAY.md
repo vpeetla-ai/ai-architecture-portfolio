@@ -5,7 +5,8 @@
 **Tracking issue:** [#14](https://github.com/vpeetla-ai/ai-architecture-portfolio/issues/14)  
 **Parent:** [`TOP1PCT_90DAY_EXECUTION.md`](./TOP1PCT_90DAY_EXECUTION.md) · [`TOP1PCT_GAP_PLAN.md`](./TOP1PCT_GAP_PLAN.md)  
 **North star score:** ≥90/100 (thesis · operating · signal)  
-**Freeze:** no new product repos
+**Freeze:** no new product repos  
+**Interim:** [RENDER_FREE_INTERIM.md](./RENDER_FREE_INTERIM.md) — Starters deferred ~1–2 days
 
 ## Locked decisions
 
@@ -13,77 +14,64 @@
 |----------|--------|
 | Timeline | 60 days |
 | Budget | ~$45/mo total |
-| Cloud | **Dual split:** AWS = AegisAI ephemeral control plane; GCP = FinOps + ERAG Cloud Run (Always Free–friendly). Render = warm spine. [CLOUD_FREE_TIER_SPLIT.md](./CLOUD_FREE_TIER_SPLIT.md) |
-| Strict ERAG | Dual URL: Demo Starter + Strict Starter |
+| Cloud | **Dual split:** AWS = AegisAI ephemeral; GCP = FinOps + ERAG Cloud Run. [CLOUD_FREE_TIER_SPLIT.md](./CLOUD_FREE_TIER_SPLIT.md) |
+| Render | **Free for now** — Starter later (owner) |
+| Strict ERAG | Local Docker / GCP Cloud Run now; Render Strict twin after Starter |
 | Signal | Agent drafts; owner publishes within 48h |
 
-## Budget
+## Budget (interim)
 
 | Item | ~$/mo |
 |------|------:|
-| vap-api + aegisai-api + enterprise-rag-api Starter | 21 |
-| enterprise-rag-api-strict Starter | 7 |
-| GCP Cloud Run ERAG lite (idle scale-to-zero) | ~0 |
-| AWS/GCP receipt-day spike (destroy same day) | 0–10 |
-| LLM keys remainder | rest |
+| Render Free spine | 0 |
+| GCP Cloud Run ERAG lite (idle) | ~0 |
+| AWS/GCP receipt-day spike | 0–10 |
+| Render Starters (later) | +21–28 |
 
-## Phase checklist (strike when exit met)
+## Phase checklist
 
-### P0 — Always-on spine
+### P0 — Always-on spine — **PARKED** (Starter deferred)
 
-- [x] Idle probe script: [`scripts/probe_spine_idle.sh`](../scripts/probe_spine_idle.sh)
-- [ ] Render Starter applied: `vap-api`, `aegisai-api`, `enterprise-rag-api` *(owner dashboard — MCP list_workspaces unauthorized)*
-- [ ] Idle ≥15m → 3× `/health` &lt;3s each
-- [ ] `/api/spine-health` warmOk 3/3 after idle
-- [ ] G1 closed in gap plan
+- [x] Idle probe script
+- [x] Free-tier honesty docs ([RENDER_FREE_INTERIM.md](./RENDER_FREE_INTERIM.md))
+- [ ] Render Starter applied *(owner in 1–2 days)*
+- [ ] Idle ≥15m → 3× `/health` &lt;3s
+- [ ] G1 closed
 
-**Idle verify 2026-07-22T20:36Z FAIL:** sample1 vap=41s · aegisai=23s · erag=21s (then warm). Free-tier spin-down still active — confirm Render **Instance type = Starter** (not Free) on all three.
+### P1 — Strict ERAG
 
-### P1 — Live Strict ERAG
+- [x] Render Blueprint twin + panel pack
+- [x] **Local Strict** `scripts/run_strict_local.sh`
+- [x] **GCP Strict** vars in `deploy/gcp/cloudrun`
+- [ ] Owner: run local or GCP Strict once; paste health snippet in receipts
+- [ ] Later: Render Strict Starter URL live
 
-- [x] `enterprise-rag-api-strict` in [`enterprise_rag_platform/render.yaml`](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/render.yaml)
-- [x] JWT mint script + [`STRICT_PANEL_PACK.md`](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/STRICT_PANEL_PACK.md)
-- [x] Portfolio technical-review + spine-health Strict links
-- [ ] Owner: Blueprint sync / create Strict service + set `RAG_JWT_SECRET`
-- [ ] Strict `/health` → `review_mode=strict` live
-- [ ] Body-spoof rejected under Strict (live verify)
+### P2 — Dual-cloud receipts — **ACTIVE THIS WEEK**
 
-### P2 — Dual-cloud free-tier receipts
+- [x] Split doc + AWS/GCP case studies + ERAG Cloud Run path
+- [x] `scripts/init_cloud_receipt.sh`
+- [ ] Owner: one AWS **or** GCP receipt day
 
-- [x] [CLOUD_FREE_TIER_SPLIT.md](./CLOUD_FREE_TIER_SPLIT.md) — AWS vs GCP assignment
-- [x] AWS case study + runbook; GCP case study + runbook
-- [x] ERAG `deploy/gcp/cloudrun` Always Free–friendly path
-- [x] Hire links for AWS + GCP + split doc
-- [ ] Owner: one AWS **or** GCP receipt day; files under `docs/artifacts/aws-receipts/` or `gcp-receipts/`
+### P3 — Signal — **ACTIVE**
 
-### P3 — Signal
+- [x] Substack pack + LinkedIn week pack + 10 ADR drafts
+- [ ] Owner publishes
 
-- [x] Substack publish pack [`P3_SUBSTACK_PUBLISH_PACK.md`](./P3_SUBSTACK_PUBLISH_PACK.md)
-- [x] ≥8 ADR post drafts (posts 1–10 in calendar)
-- [ ] Owner publishes (URLs recorded here)
+### P4 — Harden — **DONE (agent)**
 
-### P4 — Harden
+- [x] ACF honesty · NIST · FinOps ROI · hire links
 
-- [x] ACF / GOLDEN_PATH honest publish boundary
-- [x] NIST one-pager
-- [x] FinOps ROI one-pager
-- [x] Hire signal links (NIST · FinOps ROI · AWS · GCP · cloud split)
+### P5 — Conversion
 
-### P5 — Conversion + rescore
-
-- [x] 3 mock sessions **scheduled** with protocols
-- [x] ≥10 outreach rows `DRAFT_READY`
-- [ ] Keyed golden path re-run on warm spine (owner keys)
-- [x] Skills audit canvas updated with path-to-90 scores
-- [ ] Owner: complete mocks + send outreach + publish Substack
+- [x] Mocks scheduled · outreach DRAFT_READY
+- [ ] Owner: mocks + send outreach
+- [ ] Keyed golden path after warm spine (or with patience on Free)
 
 ## Progress log
 
 | Date | Phase | Note |
 |------|-------|------|
-| 2026-07-22 | — | Tracker created; implementation started |
-| 2026-07-22 | P0–P5 | Agent deliverables shipped across portfolio / ERAG / venkat-ai-portfolio; owner actions listed above |
-| 2026-07-22 | P0 | **VERIFY FAIL** after owner "done": idle ≥16m sample1 vap=41.3s aegisai=22.7s erag=21.3s; samples 2–3 warm. Starter instance type not effective yet. Strict twin 404. |
-| 2026-07-22 | P1 | setup_strict_render.sh helper added; live Strict still pending dashboard create |
-| 2026-07-22 | P2 | aws-receipts/ README scaffold |
-| 2026-07-22 | P2 | Dual-cloud split: AWS=AegisAI ephemeral; GCP=FinOps+ERAG Cloud Run; plan updated |
+| 2026-07-22 | — | Tracker created |
+| 2026-07-22 | P0 | Idle verify FAIL on Free cold starts |
+| 2026-07-22 | P2 | Dual-cloud split shipped |
+| 2026-07-22 | — | **Owner: keep Render Free for now; Starter in 1–2 days** — P0 parked; cloud+Strict local/GCP+signal active |

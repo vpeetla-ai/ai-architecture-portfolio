@@ -2,7 +2,9 @@
 
 **Status:** ACTIVE · 2026-07-22  
 **Parent:** [TOP1PCT_90SCORE_60DAY.md](./TOP1PCT_90SCORE_60DAY.md) · [ADR-015](../adr/ADR-015-real-aws-gcp-infra-phase-c.md)  
-**Budget rule:** Render Starters (~$21–28) buy **warm panel spine**; cloud free tiers buy **infra skill proof** — not a second always-on fleet.
+**Budget rule:** Render Starters (~$21–28) buy **warm panel spine** (deferred 1–2 days — see [RENDER_FREE_INTERIM.md](./RENDER_FREE_INTERIM.md)); cloud free tiers buy **infra skill proof** — not a second always-on fleet.
+
+**Interim (owner choice 2026-07-22):** stay on **Render Free** for now; prioritize AWS/GCP receipt labs + Strict local/GCP + signal.
 
 ## Principle
 
@@ -42,12 +44,13 @@
 ## Operating modes (say out loud in interviews)
 
 ```text
-Mode A — Panel day (warm):     Render Starters for VAP + AegisAI + ERAG (+ Strict)
-Mode B — Cloud receipts day:   AWS AegisAI apply→destroy  OR  GCP FinOps/ERAG apply→verify→(destroy|scale-0)
-Mode C — Idle Always Free:     GCP Cloud Run min_instances=0 for ERAG lite / FinOps without SQL
+Mode A0 — Panel day (Free interim): Render Free + labeled cold starts; Strict via local or GCP
+Mode A  — Panel day (warm):         Render Starters for VAP + AegisAI + ERAG (+ Strict)  ← after upgrade
+Mode B  — Cloud receipts day:       AWS AegisAI apply→destroy  OR  GCP FinOps/ERAG apply→verify→(destroy|scale-0)
+Mode C  — Idle Always Free:         GCP Cloud Run min_instances=0 for ERAG lite / FinOps without SQL
 ```
 
-Never claim Mode B/C are “production multi-cloud always-on.”
+Never claim Mode A0/B/C are “production multi-cloud always-on.” Mode A0 is honest Free-tier demoing until Starters land ([RENDER_FREE_INTERIM.md](./RENDER_FREE_INTERIM.md)).
 
 ## Cost envelopes
 
@@ -60,10 +63,11 @@ Never claim Mode B/C are “production multi-cloud always-on.”
 
 ## Reviewer talking points (30 seconds)
 
-1. “Live demos are warm on Render Starter — that’s the 15‑minute path.”  
-2. “AWS owns the governance control-plane IaC story (AegisAI ECS) — stand up, prove, tear down.”  
-3. “GCP owns serverless FinOps + RAG Cloud Run — Always Free friendly when SQL stays off.”  
-4. “Split is intentional: enterprise pattern on AWS, serverless AI platform on GCP — not accidental sprawl.”
+1. **Until Starter:** “Spine is on Render Free — cold starts labeled on spine-health; Strict JWT is local or GCP Cloud Run.”  
+2. **After Starter:** “Live demos are warm on Render Starter — that’s the 15‑minute path.”  
+3. “AWS owns the governance control-plane IaC story (AegisAI ECS) — stand up, prove, tear down.”  
+4. “GCP owns serverless FinOps + RAG Cloud Run — Always Free friendly when SQL stays off.”  
+5. “Split is intentional: enterprise pattern on AWS, serverless AI platform on GCP — not accidental sprawl.”
 
 ## Exit criteria (P2 dual-cloud)
 
