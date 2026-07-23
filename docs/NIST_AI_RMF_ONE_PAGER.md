@@ -15,9 +15,11 @@
 
 ## Panel script (90 seconds)
 
+Full Free-tier day script: [PANEL_DAY_FREE_RUNBOOK.md](./PANEL_DAY_FREE_RUNBOOK.md)
+
 1. Open technical-review → AegisAI (Govern/Manage).  
 2. Show golden-path artifact gateway decision.  
-3. Show ERAG Strict health `review_mode=strict` (when deployed).  
+3. Show ERAG Strict health `review_mode=strict` (local/GCP while Render Free).  
 4. Point at GER CI badge (Measure).  
 
 ## Out of scope (say out loud)
