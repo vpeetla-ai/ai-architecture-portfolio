@@ -26,6 +26,8 @@ ENDPOINTS = {
     "acf": os.environ.get("ACF_API", "https://acf-api-eub4.onrender.com"),
     "finops": os.environ.get("FINOPS_API", "https://agent-finops-api.onrender.com"),
 }
+# Optional Strict ERAG (local Docker / GCP Cloud Run). Not required for stranger_ok.
+ERAG_STRICT_URL = (os.environ.get("ERAG_STRICT_URL") or "").rstrip("/")
 
 # Always required for a green stranger run (no secrets).
 STRANGER_CRITICAL = {
@@ -114,6 +116,10 @@ def request_json(
             item["reply_preview"] = parsed["response"][:240]
         if isinstance(parsed.get("message"), str) and "reply_preview" not in item:
             item["reply_preview"] = parsed["message"][:240]
+        if "review_mode" in parsed:
+            item["review_mode"] = parsed.get("review_mode")
+        if "principal_source" in parsed:
+            item["principal_source"] = parsed.get("principal_source")
     return item
 
 
@@ -230,6 +236,44 @@ def main() -> int:
         )
     )
 
+    strict_ok: bool | None = None
+    if ERAG_STRICT_URL:
+        log("6) optional Strict ERAG health (ERAG_STRICT_URL)")
+        strict_health = request_json(
+            "health_erag_strict",
+            "GET",
+            f"{ERAG_STRICT_URL}/health",
+            timeout=60,
+        )
+        strict_ok = bool(strict_health.get("ok")) and strict_health.get("review_mode") == "strict"
+        strict_health["ok_for_stranger"] = True  # optional; never fails stranger gate
+        strict_health["strict_erag_ok"] = strict_ok
+        if not strict_ok:
+            strict_health["note"] = (
+                "ERAG_STRICT_URL set but review_mode!=strict or health failed. "
+                "Start local/GCP Strict per STRICT_PANEL_PACK."
+            )
+        steps.append(strict_health)
+        if os.environ.get("RAG_JWT_SECRET"):
+            # Spoof without Bearer — expect non-2xx under Strict
+            spoof = request_json(
+                "erag_strict_spoof_noauth",
+                "POST",
+                f"{ERAG_STRICT_URL}/v1/answer",
+                body={
+                    "query": "ping",
+                    "tenant_id": "attacker",
+                    "user_id": "attacker",
+                    "groups": ["executives"],
+                    "mode": "hybrid",
+                },
+                timeout=60,
+            )
+            spoof["ok_for_stranger"] = True
+            spoof["expected_reject"] = spoof.get("http_status", 0) in {401, 403, 503}
+            spoof["ok"] = bool(spoof.get("expected_reject"))
+            steps.append(spoof)
+
     ended_at = datetime.now(timezone.utc).isoformat()
     by_step = {s["step"]: s for s in steps}
     for s in steps:
@@ -241,29 +285,36 @@ def main() -> int:
     )
     full_ask_ok = all(by_step.get(k, {}).get("ok") for k in AUTH_GATED)
 
+    sequence = [
+        "health",
+        "vap_ask",
+        "erag_answer",
+        "aegisai_gate",
+        "acf_health",
+        "finops_usage",
+    ]
+    if ERAG_STRICT_URL:
+        sequence.append("health_erag_strict")
+
     artifact = {
         "run_id": run_id,
         "started_at": started_at,
         "ended_at": ended_at,
-        "sequence": [
-            "health",
-            "vap_ask",
-            "erag_answer",
-            "aegisai_gate",
-            "acf_health",
-            "finops_usage",
-        ],
+        "sequence": sequence,
         "summary": {
             "steps_http_ok": ok_count,
             "steps_total": len(steps),
             "stranger_replayable_ok": stranger_ok,
             "full_ask_answer_ok": full_ask_ok,
+            "strict_erag_ok": strict_ok,
             "notes": [
                 "ACF live publish requires Clerk — golden path records /health for the application layer.",
                 "VAP/ERAG mutating routes are API-key gated on live Render (set VAP_API_KEY / RAG_API_KEY for full ask→answer).",
                 "Without keys, 401 on vap_ask/erag_answer is expected and still counts as stranger-replayable honesty.",
                 "ERAG body principal is Demo mode unless PRODUCTION_STRICT=1.",
+                "Optional ERAG_STRICT_URL probes local/GCP Strict; unset skips (Free interim).",
                 "AegisAI demo headers; deploy tools typically return approval_required + HITL task.",
+                "Render Free: cold starts 15–40s possible — not always-on until Starter.",
             ],
             "ci_proof": {
                 "golden_eval_registry_badge": (
@@ -274,7 +325,7 @@ def main() -> int:
             },
         },
         "steps": steps,
-        "endpoints": ENDPOINTS,
+        "endpoints": {**ENDPOINTS, **({"erag_strict": ERAG_STRICT_URL} if ERAG_STRICT_URL else {})},
     }
 
     out_path = OUT_DIR / f"{run_id}.json"

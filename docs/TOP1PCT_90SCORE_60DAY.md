@@ -43,6 +43,8 @@
 - [x] Render Blueprint twin + panel pack
 - [x] **Local Strict** `scripts/run_strict_local.sh`
 - [x] **GCP Strict** vars in `deploy/gcp/cloudrun`
+- [x] `capture_strict_panel_receipt.sh` + golden-path `ERAG_STRICT_URL`
+- [x] [PANEL_DAY_FREE_RUNBOOK.md](./PANEL_DAY_FREE_RUNBOOK.md)
 - [ ] Owner: run local or GCP Strict once; paste health snippet in receipts
 - [ ] Later: Render Strict Starter URL live
 
@@ -50,6 +52,7 @@
 
 - [x] Split doc + AWS/GCP case studies + ERAG Cloud Run path
 - [x] `scripts/init_cloud_receipt.sh`
+- [x] AegisAI AWS + FinOps GCP `capture_receipt.sh` helpers
 - [ ] Owner: one AWS **or** GCP receipt day
 
 ### P3 — Signal — **ACTIVE**
@@ -59,13 +62,14 @@
 
 ### P4 — Harden — **DONE (agent)**
 
-- [x] ACF honesty · NIST · FinOps ROI · hire links
+- [x] ACF honesty · NIST · FinOps ROI · hire links · Free panel runbook
 
 ### P5 — Conversion
 
 - [x] Mocks scheduled · outreach DRAFT_READY
 - [ ] Owner: mocks + send outreach
 - [ ] Keyed golden path after warm spine (or with patience on Free)
+- [ ] Optional: `ERAG_STRICT_URL=… python3 scripts/run_golden_path.py` → `strict_erag_ok`
 
 ## Progress log
 
@@ -75,3 +79,4 @@
 | 2026-07-22 | P0 | Idle verify FAIL on Free cold starts |
 | 2026-07-22 | P2 | Dual-cloud split shipped |
 | 2026-07-22 | — | **Owner: keep Render Free for now; Starter in 1–2 days** — P0 parked; cloud+Strict local/GCP+signal active |
+| 2026-07-22 | P1/P2/P4 | Panel Free runbook · Strict golden-path probe · AWS/GCP/ERAG receipt capture scripts |

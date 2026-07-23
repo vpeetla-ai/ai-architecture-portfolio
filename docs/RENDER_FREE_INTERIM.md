@@ -15,6 +15,8 @@
 
 ## Panel script while on Free
 
+Full checklist: **[PANEL_DAY_FREE_RUNBOOK.md](./PANEL_DAY_FREE_RUNBOOK.md)**
+
 1. Open `/spine-health` — if cold, wait one retry (honesty: Free spin-down).  
 2. Prefer GCP ERAG Strict URL (after you deploy) or local Strict recipe in STRICT_PANEL_PACK.  
 3. Do not tell interviewers the Render free APIs are “production always-on.”

@@ -35,7 +35,17 @@ export AGENTFINOPS_API_KEY=...
 python3 scripts/run_golden_path.py
 ```
 
-Exit code `0` when **stranger-replayable** checks pass (health + AegisAI gate + FinOps meter; VAP/ERAG may honestly return 401 without keys).
+Optional Strict ERAG probe (local Docker or GCP — Free interim):
+
+```bash
+export ERAG_STRICT_URL=http://127.0.0.1:8080   # or Cloud Run Strict URL
+# optional spoof reject check:
+export RAG_JWT_SECRET=…   # same secret as Strict process
+python3 scripts/run_golden_path.py
+# summary.strict_erag_ok → true when /health review_mode=strict
+```
+
+Exit code `0` when **stranger-replayable** checks pass (health + AegisAI gate + FinOps meter; VAP/ERAG may honestly return 401 without keys). `ERAG_STRICT_URL` is optional and never fails the stranger gate when unset.
 
 ## Honesty
 
@@ -44,7 +54,7 @@ Exit code `0` when **stranger-replayable** checks pass (health + AegisAI gate + 
 | Spine `/health` | ✅ | ✅ |
 | VAP `/chat` | 401 expected (ADR-009) | ✅ (ephemeral OK if Postgres down) |
 | ERAG `/v1/answer` | 401 expected | ✅ Demo principal |
-| ERAG Strict | separate host + JWT | ✅ see [STRICT_PANEL_PACK](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/STRICT_PANEL_PACK.md) |
+| ERAG Strict | unset = skipped | ✅ set `ERAG_STRICT_URL` (+ optional `RAG_JWT_SECRET`) — [STRICT_PANEL_PACK](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/STRICT_PANEL_PACK.md) · [panel Free runbook](./PANEL_DAY_FREE_RUNBOOK.md) |
 | AegisAI gateway | ✅ demo headers | ✅ |
 | ACF live publish | **Not in golden path** | Clerk session required — path records `/health` only (G8 honest boundary) |
 | FinOps `/v1/usage` | ✅ if key unset | ✅ |
@@ -59,6 +69,7 @@ Each run writes `docs/artifacts/golden-path/gp-<UTC>.json` and updates `latest.j
 
 - `summary.stranger_replayable_ok`
 - `summary.full_ask_answer_ok`
+- `summary.strict_erag_ok` (`null` if `ERAG_STRICT_URL` unset)
 - per-step `latency_ms`, `http_status`, proof fields (`gateway_decision`, `auth_gated`, …)
 - `summary.ci_proof` links the adversarial golden CI badge
 
