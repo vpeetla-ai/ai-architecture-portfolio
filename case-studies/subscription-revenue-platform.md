@@ -7,20 +7,27 @@
 
 ## Problem
 
-Core product lines needed recurring revenue capabilities rather than relying only on transactional commerce patterns.
+Product lines needed recurring revenue, but the stack thought in transactional commerce. The scar is bolting “subscribe” onto checkout: renewals, exceptions, and finance reconciliation become edge cases that multiply in production.
+
+## What we decided
+
+1. **Subscriptions as a platform domain** — lifecycle, not a feature flag on the cart.
+2. **State management for renewals and exceptions first** — design the unhappy path before volume.
+3. **Explicit billing boundaries** — downstream analytics and finance need clean events, not scraped UI state.
+4. **Operational support paths with the domain** — renewals fail in the real world; own the tools to fix them.
 
 ## Architecture
 
-Subscription lifecycle capabilities across billing, renewal, state management, integration boundaries, and operational support paths.
+Subscription lifecycle across billing, renewal, state management, integration boundaries, and support paths.
 
-## Trade-offs
+## Live proof
 
-- Treated subscriptions as a platform domain, not a feature bolt-on
-- Designed state management for renewals and exceptions before edge cases multiplied
-- Kept billing boundaries explicit for downstream analytics and finance
+Employer systems are private. Public claim: durable recurring revenue growth with stronger platform control over subscription lifecycle — no invented ARR figures here.
 
-## Impact
+## Limitations / what we'd do differently
 
-Durable recurring revenue growth with stronger platform control over subscription lifecycle operations.
+- Exact commercial metrics stay with the employer; this write-up stays qualitative on purpose.
+- I’d still separate “billing truth” from “product entitlement” earlier when a new line asks for subscriptions.
+- Edge-case catalogs grow; invest in fixture-like renewal scenarios before the second market launches.
 
 *Employer-specific details generalized where required.*

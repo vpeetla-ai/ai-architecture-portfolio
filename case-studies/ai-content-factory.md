@@ -6,9 +6,15 @@
 
 ## Problem
 
-Marketing and content teams need **one topic → many platforms** without losing brand control. Single-prompt tools skip research depth, skip human approval, and create compliance risk when agents post autonomously.
+One topic should become many platform drafts — without an agent posting to LinkedIn while you’re asleep. The scar is autonomous publish: research skipped, brand voice lost, and no human in the irreversible step. Marketing ops won’t trust that, and neither should a platform engineer.
 
-**Who we serve:** Content leads, marketing ops, and platform engineers building governed publish pipelines.
+## What we decided
+
+1. **HITL interrupt before publish** — LangGraph `interrupt_before=["hitl"]`; overnight-autonomous was an explicit refusal.
+2. **AegisAI `authorize_publish()` before OAuth adapters** — the graph drafts; the gateway owns the side effect ([ADR-004](../adr/ADR-004-gateway-hitl-side-effects.md)).
+3. **Real OAuth + PKCE for LinkedIn/X only** — only those two have a viable public posting API; Medium/Substack/Instagram stay copy-draft export ([ADR-008](../adr/ADR-008-real-publish-scope-and-invite-gating.md)).
+4. **Invite-gated signup, no billing yet** — ship to real users before monetization theater.
+5. **pytest on graph, HITL, and gateway paths** — regression where the irreversible step lives.
 
 ## Architecture
 
@@ -28,22 +34,17 @@ flowchart LR
   R & C & E -.-> LF[Langfuse<br/>trace-linked evals]
 ```
 
-## Key decisions
+## Live proof
 
-- LangGraph with `interrupt_before=["hitl"]` — irreversible step gated by humans
-- AegisAI `authorize_publish()` before OAuth adapters
-- In-process MCP bridge for read-only research tools; publish via `PublisherService`
-- pytest on graph, HITL, and gateway paths
+- UI: [ai-content-factory-iota.vercel.app](https://ai-content-factory-iota.vercel.app)
+- Product brief: [PRODUCT.md](https://github.com/vpeetla-ai/ai-content-factory/blob/main/docs/PRODUCT.md)
+- Golden path uses `/health` for the app layer (live publish needs Clerk).
 
-## Trade-offs
+## Limitations / what we'd do differently
 
-| Decision | Rationale | Cost |
-|----------|-----------|------|
-| HITL mandatory | Trust + policy | Not overnight-autonomous (by design) |
-| Real OAuth + PKCE for LinkedIn/X only ([ADR-008](../adr/ADR-008-real-publish-scope-and-invite-gating.md)) | Only two platforms have a viable public posting API | Medium/Substack/Instagram are copy-draft export, not auto-publish |
-| Invite-gated signup, no billing yet | Ship to real users without building billing prematurely | Revisit monetization once there's usage data |
-| Redis checkpointer | Resume long pipelines | Ops dependency |
-| Gateway fail-open dev | Local velocity | Fail-closed required in prod |
+- Gateway fail-open is fine for local velocity; fail-closed is required before any real OAuth credentials sit in a shared env.
+- Redis checkpointer adds an ops dependency — worth it for resume, painful on free tier.
+- I’d add billing only after invite usage data exists, and I’d keep “copy-draft export” platforms labeled so nobody thinks Instagram auto-posts.
 
 ## Stack
 
@@ -51,7 +52,6 @@ FastAPI · LangGraph · Next.js · Clerk · Redis · Vercel · Render
 
 ## Related
 
-- [PRODUCT.md](https://github.com/vpeetla-ai/ai-content-factory/blob/main/docs/PRODUCT.md) in repo
 - [ADR-008: Real publish scope and invite-gating](../adr/ADR-008-real-publish-scope-and-invite-gating.md)
-- [AegisAI case study](./aegisai-agent-governance.md) — gateway layer
+- [AegisAI case study](./aegisai-agent-governance.md)
 - Essay: [2026 Agent Protocol Stack](https://github.com/vpeetla-ai/ai-content-factory/blob/main/docs/content/2026-agent-protocol-stack.md)

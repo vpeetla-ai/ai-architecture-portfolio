@@ -7,33 +7,34 @@
 
 ## Problem
 
-Enterprise teams needed AI automation beyond demos — repeatable operational work with governance, evaluation, and observability in supply chain and operations flows.
+Ops teams don’t need another chat demo. They need repeatable supply-chain work — intake, validation, exceptions, routing — with governance, evaluation, and a human on the irreversible steps. The scar of “fully autonomous” on those flows is silent wrong actions at production volume.
 
-## Context
+## What we decided
 
-Supply chain and operations teams faced high manual intensity in repeatable workflows: intake, validation, exception handling, and routing.
+1. **Separate orchestration from retrieval** — model and tool layers evolve independently; RAG isn’t glued inside every agent prompt.
+2. **Human approval on high-risk actions** — velocity elsewhere; gates where irreversible.
+3. **Evaluation harnesses early** — anecdotal QA doesn’t survive shift handoffs.
+4. **Policy and observability as first-class** — not bolted on after the first incident.
+5. **Open reference ≠ employer binary** — public VAP / AegisAI / AegisLoop illustrate the *shape*; they are not Lucid production runtimes (P vs O).
 
 ## Architecture
-
-Multi-agent, multi-LLM architecture with retrieval, task routing, evaluation checkpoints, human review paths, and production monitoring.
 
 ```text
 User/Ops → Policy & Guardrails → Orchestrator → Agents → Hybrid RAG → Tools/APIs
                               → Evaluation → Observability & Audit
 ```
 
-## Trade-offs
+## Live proof (portfolio reference — O)
 
-- Separated orchestration from retrieval so model and tool layers evolve independently
-- Added human approval gates for high-risk actions instead of fully autonomous execution
-- Invested in evaluation harnesses early rather than relying on anecdotal QA
+Employer systems stay private. The public spine that mirrors the architecture thesis:
 
-## Impact
+- [Venkat AI Platform](./venkat-ai-platform.md) · [AegisAI](./aegisai-agent-governance.md) · [AegisLoop](./aegisloop-agentops.md)
+- Essay stub → full essay: [From Multi-Agent OS to Agent Governance](./from-multi-agent-os-to-agent-governance.md)
 
-Foundation for automating targeted supply chain workflows — **staffing intensity reduced from 10 to 2** in repeatable flows.
+## Limitations / what we'd do differently
 
-## Portfolio connection
-
-Reference implementations published as open source: [VAP](./venkat-ai-platform.md) · [AegisAI](./aegisai-agent-governance.md) · [AegisLoop](./aegisloop-agentops.md)
+- Impact claim is scoped: **staffing intensity 10→2 in targeted, repeatable flows** — not “all of supply chain.”
+- Employer-specific tooling, data, and SLOs stay generalized here on purpose.
+- I’d still push earlier eval gates on any new flow before expanding autonomy.
 
 *Employer-specific details generalized where required.*

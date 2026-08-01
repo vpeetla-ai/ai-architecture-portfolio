@@ -6,7 +6,15 @@
 
 ## Problem
 
-Orchestration demos do not model how agent **fleets** operate in production: bounded missions, specialist handoffs, trace observability, cost visibility, and human-gated ship.
+Orchestration demos don’t model fleets. The scar was a “FinOps” number that was character-count theater while the LLM client already returned real tokens — and mission-run endpoints that called a real model with zero caller auth, twice (FastAPI *and* Netlify). Fleets die without bounded missions, eval gates, and a halt that actually refuses dispatch.
+
+## What we decided
+
+1. **Mission-based AgentOps** — brief → orchestrator → specialists → eval gate → ship via AegisAI ([ADR-003](../adr/ADR-003-mission-based-agentops.md)).
+2. **API-key on mission-run/stream in both entry points** — closed independently in backend and Netlify ([ADR-010](../adr/ADR-010-aegisloop-auth-gate.md)).
+3. **Real FinOps metering** — token counts into agent-finops; budget breach refuses further dispatch (no persistent kill-switch here) ([ADR-012](../adr/ADR-012-aegisloop-finops-metering.md)).
+4. **Real A2A before VAP invoke** — discover `agent-card` first; stop guessing the orchestrator from a local map ([ADR-013](../adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md)).
+5. **golden-eval-registry gates CI** — `aegisloop_mission_gates_v1` against real `runtime.evaluate()` ([ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)).
 
 ## Architecture
 
@@ -18,26 +26,21 @@ flowchart LR
     OR -.-> LF[Langfuse<br/>trace-linked evals]
 ```
 
-## Key capabilities
+## Live proof
 
-- Mission orchestrator with specialist routing
-- Langfuse spans and replayable traces
-- Real FinOps metering per mission (agent-finops), not an estimate
-- VAP delegation for complex sub-tasks
+- UI: [aegisloop-agentops-workbench.vercel.app](https://aegisloop-agentops-workbench.vercel.app)
+- FinOps consumer wiring: [agent-finops.md](./agent-finops.md)
 
-## Trade-offs
+## Limitations / what we'd do differently
 
-| Choice | Rationale |
-|--------|-----------|
-| API-key gate on mission-run/stream, both backend and Netlify function ([ADR-010](../adr/ADR-010-aegisloop-auth-gate.md)) | Both entry points called a real LLM with zero caller auth — closed independently in each |
-| Real usage metering + mission budget guard via agent-finops ([ADR-012](../adr/ADR-012-aegisloop-finops-metering.md)) | Replaced a character-count cost guess with real token counts and a real halt condition — no kill-switch here, so enforcement is refusing further dispatch, not a persistent block |
-| VAP delegation now performs real A2A discovery before invoking ([ADR-013](../adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md)) | Previously guessed the target orchestrator from a local map and POSTed straight to `/run`; now calls VAP's real `GET /orchestrators/{id}/agent-card` first — AegisLoop is the org's first real A2A client, VAP its first real A2A server actually being called |
-| golden-eval-registry as a real CI gate ([ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)) | CI now checks out golden-eval-registry and runs the shared `aegisloop_mission_gates_v1` suite against the real `runtime.evaluate()` function, failing the build on regression — not just fixture validation |
-
-## Related ADR
-
-[ADR-003: Mission-based AgentOps](../adr/ADR-003-mission-based-agentops.md) · [ADR-010: Auth gate on mission-run routes](../adr/ADR-010-aegisloop-auth-gate.md) · [ADR-012: Real FinOps metering](../adr/ADR-012-aegisloop-finops-metering.md) · [ADR-013: MCP exposure + real A2A delegation](../adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md) · [ADR-014: golden-eval-registry real CI gate](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)
+- Enforcement here is “refuse dispatch,” not a persistent kill-switch — AegisAI owns that shape. Dual semantics across consumers is honest but easy to mis-explain in a panel.
+- Langfuse is the observability story; don’t imply always-on enterprise fleet SLOs on free tier.
+- I’d unify budget-halt UX so operators see one vocabulary across AegisAI and AegisLoop.
 
 ## Stack
 
 FastAPI · Vercel · Render · Langfuse
+
+## Related ADR
+
+[ADR-003](../adr/ADR-003-mission-based-agentops.md) · [ADR-010](../adr/ADR-010-aegisloop-auth-gate.md) · [ADR-012](../adr/ADR-012-aegisloop-finops-metering.md) · [ADR-013](../adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md) · [ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)

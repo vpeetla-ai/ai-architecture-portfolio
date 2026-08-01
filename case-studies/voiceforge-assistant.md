@@ -7,13 +7,21 @@
 
 ## Problem
 
-Voice assistants must meet **sub-30s end-to-end latency** with visible phase breakdowns and fallbacks when ASR, LLM, or TTS fail. Chat-only demos do not prove multimodal production discipline.
+Chat demos don’t prove voice. A triage assistant has to meet a **sub-30s end-to-end budget** with a visible phase waterfall — and degrade when ASR, LLM, or TTS fails. The scar is a “multimodal” demo that silently hangs on one slow phase with no fallback.
+
+## What we decided
+
+1. **Browser-first ASR on free tier** — honest multimodal without a GPU bill ([ADR-021](../adr/ADR-021-voiceforge-multimodal-pipeline.md)).
+2. **Phase latency budgets** — ASR / LLM / TTS measured in the UI; breach triggers `DegradationReason`.
+3. **Pluggable LLM** — Mock / Ollama / DomainForge `/v1/query` so voice can land on triage JSON.
+4. **Dual transport** — REST + WebSocket phase events for the waterfall.
+5. **Refused:** claiming cloud ASR/TTS SLOs on a free-tier stack.
 
 ## Architecture
 
 Canonical: [docs/diagrams/canonical-architecture.mmd](https://github.com/vpeetla-ai/voiceforge-assistant/blob/main/docs/diagrams/canonical-architecture.mmd)
 
-## Latency budgets (default)
+### Latency budgets (default)
 
 | Phase | Budget (ms) | Measured in UI |
 |-------|-------------|----------------|
@@ -23,18 +31,19 @@ Canonical: [docs/diagrams/canonical-architecture.mmd](https://github.com/vpeetla
 | TTS | 10,000 | `tts_ms` |
 | **Total** | **30,000** | waterfall + degradation |
 
-When a phase exceeds budget, `DegradationReason` triggers text input, browser TTS, or cached reply.
+When a phase exceeds budget: text input, browser TTS, or cached reply.
 
-## Key decisions
+## Live proof
 
-- **Browser-first ASR on free tier** — [ADR-021](../adr/ADR-021-voiceforge-multimodal-pipeline.md)
-- **Pluggable LLM** — Mock / Ollama / DomainForge `/v1/query`
-- **Dual transport** — REST + WebSocket phase events
+- UI: [voiceforge-assistant.vercel.app](https://voiceforge-assistant.vercel.app)
+- API: [voiceforge-api-eysb.onrender.com](https://voiceforge-api-eysb.onrender.com)
+- Pairs with [DomainForge](./domainforge-rag-peft.md) (voice → triage JSON)
 
-## Impact
+## Limitations / what we'd do differently
 
-- **Closes Portfolio Pillar 5** — measurable multimodal latency
-- Pairs with [DomainForge](domainforge-rag-peft.md) (voice → triage JSON)
+- Browser ASR quality varies; that’s the free-tier trade, not a Whisper replacement claim.
+- edge-tts and cold starts can eat the budget — degradation path must stay visible.
+- Next: optional server Whisper when a panel needs cleaner ASR; keep budgets first-class.
 
 ## Related ADR
 

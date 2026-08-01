@@ -4,9 +4,16 @@
 **Artifact:** [docs/artifacts/golden-path/latest.json](../docs/artifacts/golden-path/latest.json)  
 **How to replay:** [docs/GOLDEN_PATH.md](../docs/GOLDEN_PATH.md)
 
-## Decision
+## Problem
 
-Ship a **stranger-replayable** script that walks the Principal spine (ask → RAG → govern → app health → meter) and persists a public JSON artifact — instead of slide-deck claims about “wired platforms.”
+Slide decks say the platforms are wired. Strangers can’t replay slides. The scar is a portfolio that claims “ask → RAG → govern → meter” without a public JSON artifact anyone can re-run.
+
+## What we decided
+
+1. **Ship a stranger-replayable script** — walk the Principal spine and persist `latest.json`.
+2. **Keyed private mutating calls** — `VAP_API_KEY` + `RAG_API_KEY` local only; never commit secrets. Without keys, record 401 honestly.
+3. **Health + real ask/answer/gateway/meter steps** — not health-only theater.
+4. **Keep free-tier honesty** — cold starts and degraded deps show up in the artifact.
 
 ## Measured signal (this run)
 
@@ -26,21 +33,22 @@ Keyed private run (`VAP_API_KEY` + `RAG_API_KEY` in local env only — never com
 
 **Summary flags:** `stranger_replayable_ok=true` · `full_ask_answer_ok=true` · `steps_http_ok=10/10`.
 
-## Eval / CI proof
+## Live proof
 
-[![GER CI](https://github.com/vpeetla-ai/golden-eval-registry/actions/workflows/ci.yml/badge.svg)](https://github.com/vpeetla-ai/golden-eval-registry/actions/workflows/ci.yml)
+- Artifact: [latest.json](../docs/artifacts/golden-path/latest.json)
+- Eval / CI: [![GER CI](https://github.com/vpeetla-ai/golden-eval-registry/actions/workflows/ci.yml/badge.svg)](https://github.com/vpeetla-ai/golden-eval-registry/actions/workflows/ci.yml)
+- Adversarial suite: `enterprise_rag_adversarial_v1` (principal spoof / injection gates)
 
-Adversarial suite: `enterprise_rag_adversarial_v1` (principal spoof / injection gates).
+## Limitations / what we'd do differently
 
-## Boundaries
-
-- Live VAP/ERAG mutating routes require API keys (ADR-009 / RAG API key). Without keys, the artifact records 401 honestly and still counts as stranger-replayable.
-- VAP `/chat` persistence is best-effort: if Postgres is unavailable, the graph still returns an ephemeral 200 (see venkat-ai-platform PR #3).
-- ACF live publish requires Clerk; golden path uses `/health` for the application layer. This run saw ACF `database=error` (degraded) — separate from ask→answer.
-- Free-tier services may cold-start; spine APIs target starter plans (S3 / G1).
+- Live VAP/ERAG mutating routes need API keys (ADR-009 / RAG API key).
+- VAP `/chat` persistence is best-effort if Postgres is down (ephemeral 200).
+- ACF live publish needs Clerk; golden path uses `/health` for the app layer — this run saw `database=error` (degraded).
+- Free-tier cold starts happen; spine APIs target starter plans (S3 / G1).
+- Re-run and refresh the artifact after meaningful spine changes — stale numbers are worse than an honest miss.
 
 ## Related
 
 - Essay: [From Multi-Agent OS to Agent Governance](./from-multi-agent-os-to-agent-governance.md)
-- ADR-001 orchestration vs governance · ADR-009 VAP auth gate · ADR-014 golden-eval CI · ADR-024 PRODUCTION_STRICT
+- ADR-001 · ADR-009 · ADR-014 · ADR-024
 - Gap plan: [TOP1PCT_GAP_PLAN.md](../docs/TOP1PCT_GAP_PLAN.md)

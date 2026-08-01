@@ -7,7 +7,15 @@
 
 ## Problem
 
-Static RAG configs and one-shot agents do not improve. Teams need agents that **fix real codebases** — with eval gates, memory, and governance-friendly PR workflow (never direct push to `main`).
+Static RAG configs and one-shot agents don’t improve. The scar I’d refuse to ship again: an agent that “fixes” a repo by pushing straight to `main`, or a `/api/repo-fix` that clones and runs arbitrary code with nobody authenticated. Self-improvement without a harness, eval gate, and PR path is just unsupervised vandalism.
+
+## What we decided
+
+1. **Harness separate from the agent** — Agent → Harness → Loops → Memory ([org ADR-006](../adr/ADR-006-loop-harness-self-improving-agents.md) · [repo ADR-001](https://github.com/vpeetla-ai/loop-engine-agent-platform/blob/main/docs/ADR-001-loop-harness-memory.md)).
+2. **PR-based ship only** — branch `loopforge/fix-{run_id}`, never push to `main`.
+3. **RAG config as evolvable state** — `top_k`, `hybrid_alpha`, `rerank_threshold` version with the loop, not hardcoded forever.
+4. **API-key on repo-fix first** — close “who can trigger it” before container isolation ([repo ADR-002](https://github.com/vpeetla-ai/loop-engine-agent-platform/blob/main/docs/ADR-002-repo-fix-auth-and-isolation.md)).
+5. **Three live loops** — ODAEU harness, LangGraph coding loop, repo-fix → GitHub PR.
 
 ## Architecture
 
@@ -23,43 +31,24 @@ flowchart LR
     H -.-> LF[Langfuse<br/>eval scores on trace_id]
 ```
 
-Three production loops:
-
 | Loop | Flow | API |
 |------|------|-----|
 | **ODAEU harness** | RAG retrieve → ReAct → eval → evolve config | `POST /api/run` |
 | **LangGraph coding** | Orchestrator → Code → Review → Quality → retry/HITL | `POST /api/agent-loop` |
 | **Repo fix → PR** | clone → pytest → patch → branch → GitHub PR | `POST /api/repo-fix` |
 
-| Component | Role |
-|-----------|------|
-| **Harness** | ODAEU scheduler, iteration budget, trace export |
-| **LangGraph** | Multi-agent coding loop with conditional routing |
-| **Workspace** | Git clone, pytest, branch, GitHub PR API |
-| **Memory** | Procedural lessons + RAG config version tree |
-| **MCP** | Corpus tools — extensible to stdio MCP servers |
+## Live proof
 
-## Key decisions
+- UI: [demo-omega-taupe.vercel.app](https://demo-omega-taupe.vercel.app)
+- API health: [loopforge-api.onrender.com](https://loopforge-api.onrender.com)
+- Architecture: [docs/ARCHITECTURE.md](https://github.com/vpeetla-ai/loop-engine-agent-platform/blob/main/docs/ARCHITECTURE.md)
 
-- Separate harness from agent — MemPro, MUSE, Harness Engineering
-- **PR-based ship path** — `loopforge/fix-{run_id}` branch, never push to `main`
-- RAG pipeline as evolvable config (`top_k`, `hybrid_alpha`, `rerank_threshold`)
-- Groq LLM + GitHub token on Render for live repo fixes
+## Limitations / what we'd do differently
 
-## Trade-offs
-
-| Choice | Why | Cost |
-|--------|-----|------|
-| JSON file memory (v1) | Zero-infra demo on free tier | Not multi-tenant |
-| pytest-only quality gate (v1) | Works on Python repos today | Node/Rust need adapters |
-| Render free tier | $0 API hosting | Cold start ~30–60s |
-| API-key gate on repo-fix, no sandboxing yet ([ADR-002](https://github.com/vpeetla-ai/loop-engine-agent-platform/blob/main/docs/ADR-002-repo-fix-auth-and-isolation.md)) | `/api/repo-fix` runs arbitrary cloned code — closing "who can trigger it" was the tractable fix; container isolation is a bigger follow-up | Requires `LOOPFORGE_API_KEY` actually set on the live Render deployment, or it remains open |
-
-## Impact
-
-- Sixth layer of governed AI reference stack: **How do agents improve?**
-- Live demo recruiters can click: paste repo URL → open PR
-- Portfolio flagship for loop engineering + applied AI at frontier labs
+- JSON file memory (v1) is fine for free-tier demo, not multi-tenant.
+- pytest-only quality gate — Node/Rust need adapters.
+- Render cold start ~30–60s; if `LOOPFORGE_API_KEY` isn’t set on the live deploy, repo-fix stays open — that’s operator debt, not a solved security claim.
+- Next: container isolation for cloned code; don’t pretend API-key alone is enough.
 
 ## Stack
 
@@ -67,6 +56,5 @@ Python · LangGraph · FastAPI · MCP · Groq · GitHub API · Vercel · Render
 
 ## Related
 
-- [Architecture](https://github.com/vpeetla-ai/loop-engine-agent-platform/blob/main/docs/ARCHITECTURE.md)
-- [ADR-001](https://github.com/vpeetla-ai/loop-engine-agent-platform/blob/main/docs/ADR-001-loop-harness-memory.md) · [ADR-002](https://github.com/vpeetla-ai/loop-engine-agent-platform/blob/main/docs/ADR-002-repo-fix-auth-and-isolation.md)
-- Pairs with [VAP](https://github.com/vpeetla-ai/venkat-ai-platform), [Enterprise RAG](https://github.com/vpeetla-ai/enterprise_rag_platform), [AegisAI](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform)
+- [repo ADR-001](https://github.com/vpeetla-ai/loop-engine-agent-platform/blob/main/docs/ADR-001-loop-harness-memory.md) · [repo ADR-002](https://github.com/vpeetla-ai/loop-engine-agent-platform/blob/main/docs/ADR-002-repo-fix-auth-and-isolation.md)
+- Pairs with [VAP](./venkat-ai-platform.md), [Enterprise RAG](./enterprise-rag-platform.md), [AegisAI](./aegisai-agent-governance.md)

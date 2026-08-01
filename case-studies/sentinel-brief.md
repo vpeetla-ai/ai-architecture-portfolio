@@ -1,11 +1,20 @@
 # Sentinel Brief — Governed Overnight Intelligence
 
 **Domain:** Governed autonomy · Overnight agents · Intelligence brief  
+**Live demo:** [sentinel-brief-ruddy.vercel.app](https://sentinel-brief-ruddy.vercel.app)  
 **Source:** [github.com/vpeetla-ai/sentinel-brief](https://github.com/vpeetla-ai/sentinel-brief)
 
 ## Problem
 
-Principal architects track AI signal across Hacker News, arXiv, industry press, and newsletters — nine tabs every morning. An overnight agent can fetch and summarize, but **email is a side effect** and must stay governed.
+Nine tabs every morning — HN, arXiv, press, newsletters. An overnight agent can fetch and summarize. The scar is treating **email as just another node**: once you send, you can’t un-send a bad brief into someone’s inbox. Fetch is read-only; `email.send` is the side effect that must stay governed.
+
+## What we decided
+
+1. **LangGraph linear pipeline** — fetch → diff → brief → eval → gateway+email → archive; testable nodes ([repo ADR-0001](https://github.com/vpeetla-ai/sentinel-brief/blob/main/docs/adr/0001-governed-overnight-brief.md)).
+2. **Allowlisted RSS/API only (MVP)** — Playwright deferred; stable ingest over scrapers that break weekly.
+3. **Eval before email** — autonomous inner loop; block low-quality or no-delta sends.
+4. **Gateway only on `email.send`** — don’t tax read-only fetch with policy overhead.
+5. **API-key on `POST /runs`** — archive stays browsable; triggering a run doesn’t ([repo ADR-0002](https://github.com/vpeetla-ai/sentinel-brief/blob/main/docs/adr/0002-runs-auth-and-llm-synthesis.md)).
 
 ## Architecture
 
@@ -37,38 +46,20 @@ flowchart TB
   FETCH & DIFF & BRIEF & EVAL -.-> OBS["TraceRecorder → Langfuse"]
 ```
 
-## Key decisions
+## Live proof
 
-| Decision | Rationale |
-|----------|-----------|
-| LangGraph linear pipeline | Testable nodes, matches org orchestration pattern |
-| RSS/API only (MVP) | Stable ingest; Playwright deferred per ADR-0001 |
-| Eval before email | Autonomous inner loop; block low-quality sends |
-| Gateway on `email.send` only | Fetch is read-only — no gateway overhead |
-| Paywalled = headline only | Honest access for The Information |
+- UI: [sentinel-brief-ruddy.vercel.app](https://sentinel-brief-ruddy.vercel.app)
+- Complements [AI Content Factory](./ai-content-factory.md) (publish) with a **notify** pattern.
 
-## Trade-offs
+## Limitations / what we'd do differently
 
-| Choice | Upside | Downside |
-|--------|--------|----------|
-| LLM brief (Groq/OpenAI), template fallback ([ADR-0002](https://github.com/vpeetla-ai/sentinel-brief/blob/main/docs/adr/0002-runs-auth-and-llm-synthesis.md)) | Real narrative synthesis, never hard-fails | Slightly higher latency/cost when a key is set |
-| JSON snapshots | Portable, simple | No cross-source dedup yet |
-| Min-delta eval | Reduces noise emails | Quiet news days may skip send |
-| Fail-open gateway (dev) | Fast iteration | Must disable in production |
-| API-key gate on `POST /runs` only | Archive stays publicly browsable; run-triggering doesn't | Must set `SENTINEL_API_KEY` on Render before this is a production deployment |
-
-## Sources (v1)
-
-HN top, HN AI (Algolia), arXiv cs.AI, VentureBeat AI, MIT Technology Review, The Information (partial), Paper Digest, The Batch, Towards Data Science.
-
-## Impact
-
-- Seventeenth org repo — proof of **LOOPS overnight harness** with governance boundary
-- Complements Content Factory (publish) with **notify** pattern
-- Portfolio demo: architecture tabs + report archive API
+- Paywalled sources (The Information) are headline-only — honest access, thinner signal.
+- JSON snapshots are portable; cross-source dedup isn’t there yet.
+- Fail-open gateway is fine for iteration; must be disabled before any production Resend key.
+- Quiet news days may skip send by design (min-delta) — that’s a product choice, not a bug.
+- Set `SENTINEL_API_KEY` on Render before calling this a production deployment.
 
 ## Related
 
-- [ADR-0001 Governed overnight brief](https://github.com/vpeetla-ai/sentinel-brief/blob/main/docs/adr/0001-governed-overnight-brief.md) · [ADR-0002 Runs auth + LLM synthesis](https://github.com/vpeetla-ai/sentinel-brief/blob/main/docs/adr/0002-runs-auth-and-llm-synthesis.md)
-- [agents-that-run-for-days skill](https://github.com/vpeetla-ai/vpeetla-ai-skills)
-- [Golden Eval Registry](golden-eval-registry.md)
+- [ADR-0001](https://github.com/vpeetla-ai/sentinel-brief/blob/main/docs/adr/0001-governed-overnight-brief.md) · [ADR-0002](https://github.com/vpeetla-ai/sentinel-brief/blob/main/docs/adr/0002-runs-auth-and-llm-synthesis.md)
+- [Golden Eval Registry](./golden-eval-registry.md)
