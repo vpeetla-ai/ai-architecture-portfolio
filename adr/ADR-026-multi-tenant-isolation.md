@@ -4,16 +4,17 @@
 **Date:** 2026-07-09  
 **Systems:** Enterprise RAG (first), AegisAI gateway, Agent FinOps, org-wide API keys
 
+## In one breath (panel)
+
+I'd enforce Network / Data / Quota / Blast-radius tenant boundaries under `PRODUCTION_STRICT` — soft multi-tenancy via prompt prefixes is security theater.
+
 ## Context
 
-Portfolio demos historically use a single tenant string (`acme`, `bank-demo`) with
-client-asserted or weakly keyed boundaries. Enterprise reviewers ask for blast-radius,
-quota, and data isolation before trusting access-before-ranking or FinOps meters.
+Portfolio demos historically use a single tenant string (`acme`, `bank-demo`) with client-asserted or weakly keyed boundaries. Enterprise reviewers ask for blast-radius, quota, and data isolation before trusting access-before-ranking or FinOps meters. Shared org keys on write paths and body-level `tenant_id` claims are how one noisy tenant becomes everyone's incident.
 
 ## Decision
 
-Define a **minimum multi-tenant contract** for production profiles
-(`PRODUCTION_STRICT=true`):
+Define a **minimum multi-tenant contract** for production profiles (`PRODUCTION_STRICT=true`):
 
 | Boundary | Rule |
 |----------|------|
@@ -24,13 +25,11 @@ Define a **minimum multi-tenant contract** for production profiles
 
 ### First wiring (demo-honest)
 
-1. **Enterprise RAG** — JWT Principal (ADR-0006) already supplies `tenant_id`; document that
-   ingest writers in strict mode should match JWT tenant to body tenant (follow-up enforcement).
-2. **Thin demo header** — Accept `X-Tenant-Id` only when it matches verified Principal tenant;
-   mismatch → 403.
-3. **FinOps** — Prefer `scope_type=tenant` budgets in consumer wiring docs (AegisLoop / AegisAI).
+1. **Enterprise RAG** — JWT Principal (ADR-0006) already supplies `tenant_id`; strict-mode ingest writers should match JWT tenant to body tenant (follow-up enforcement)
+2. **Thin demo header** — Accept `X-Tenant-Id` only when it matches verified Principal tenant; mismatch → 403
+3. **FinOps** — Prefer `scope_type=tenant` budgets in consumer wiring docs (AegisLoop / AegisAI)
 
-## Alternatives
+### Alternatives refused
 
 | Option | Why rejected (for now) |
 |--------|------------------------|
@@ -40,10 +39,16 @@ Define a **minimum multi-tenant contract** for production profiles
 
 ## Consequences
 
-- Positive: Interview and review answers map cleanly to Network / Data / Quota / Blast-radius.
-- Positive: Aligns with ADR-002 (access-before-ranking) and ADR-024 (`PRODUCTION_STRICT`).
-- Negative: Demo mode still allows shared keys and body tenants — must stay labeled demo.
-- Follow-up: Enforce ingest tenant=JWT tenant under strict; per-tenant rate limits in AegisAI.
+**Positive**
+
+- Interview and review answers map cleanly to Network / Data / Quota / Blast-radius
+- Aligns with [ADR-002](./ADR-002-authorization-before-ranking-rag.md) and [ADR-024](./ADR-024-production-strict-fail-closed.md)
+
+**Negative**
+
+- Demo mode still allows shared keys and body tenants — must stay labeled **Demo**, never marketed as strict isolation
+
+**Follow-up (Planned):** Enforce ingest tenant = JWT tenant under strict; per-tenant rate limits in AegisAI
 
 ## Related
 

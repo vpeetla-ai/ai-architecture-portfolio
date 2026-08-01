@@ -7,20 +7,27 @@
 
 ## Problem
 
-License-heavy SAP and TrueCommerce EDI workflows created recurring cost, integration friction, and limited engineering ownership.
+License-heavy SAP and TrueCommerce EDI workflows burned recurring cost and left engineering with thin ownership. The scar is paying for a vendor path you can’t adapt when operations change — integration friction becomes a tax on every new trading partner.
+
+## What we decided
+
+1. **Move critical EDI flows behind owned services** — accept migration complexity to kill license drag.
+2. **Domain ownership over vendor-coupled flows** — clearer boundaries, clearer on-call.
+3. **Adaptability for operations over short-term migration speed** — don’t “finish” a cutover that locks the next change.
+4. **Full-stack control where it mattered** — modernization path the team could actually ship against.
 
 ## Architecture
 
-Moved critical EDI flows into owned full-stack architecture with clearer domain ownership, integration control, and modernization pathways.
+Critical EDI flows into owned full-stack architecture with clearer domain ownership, integration control, and a path off license-heavy middleware.
 
-## Trade-offs
+## Live proof
 
-- Accepted migration complexity to eliminate recurring license drag
-- Moved workflows behind owned service boundaries instead of vendor-coupled flows
-- Prioritized adaptability for operations over short-term migration speed
+Employer systems are private. Public claim: **multi-million-dollar annualized savings** with better adaptability for supply-chain operations — figures not invented beyond that language.
 
-## Impact
+## Limitations / what we'd do differently
 
-**Multi-million-dollar annualized savings** while improving adaptability for supply chain operations.
+- Migration complexity is real; I’d still sequence partner cohorts more aggressively to show value before the last long-tail flow.
+- Vendor exit isn’t free — keep a rollback story for the first cohorts.
+- Details stay generalized where contracts and partner IDs require it.
 
 *Employer-specific details generalized where required.*

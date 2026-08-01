@@ -7,7 +7,15 @@
 
 ## Problem
 
-Building agents is easy. Governing them is the product. Enterprise programs need to answer: who is this agent, what tools may it call, when must a human approve, and can we prove what happened?
+I can stand up an agent that calls tools in an afternoon. The scar shows up the first time something irreversible happens and nobody can answer: who was this agent, what was it allowed to do, did a human approve, and where’s the signed record? Building agents is easy. Governing them is the product.
+
+## What we decided
+
+1. **Governance stays out of the graph** — VAP orchestrates; AegisAI is the control plane. Merge them and every demo becomes an un-auditable back door ([ADR-001](../adr/ADR-001-orchestration-vs-governance-split.md)).
+2. **Side effects go through the gateway** — policy first, optional HITL on the scary ones, signed audit always ([ADR-004](../adr/ADR-004-gateway-hitl-side-effects.md)).
+3. **Agent registry with real lifecycle** — Postgres-backed identity and state, not a YAML wish list.
+4. **Auth on cron/orchestrator routes** — those endpoints previously had no auth while every other mutating path did ([repo ADR-0003](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/blob/main/adr/0003-orchestrator-auth-gate.md)).
+5. **MCP both ways** — gate outbound calls *and* expose governed tools so clients hit the same core ([ADR-013](../adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md) · [repo ADR-0005](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/blob/main/adr/0005-mcp-tool-exposure.md)).
 
 ## Architecture
 
@@ -28,28 +36,22 @@ flowchart LR
     AG -.-> LF[Langfuse export<br/>LANGFUSE_*]
 ```
 
-**Monitor → Govern → Remediate** — not another agent builder, but a runtime control plane in front of production agents.
+Monitor → Govern → Remediate. Not another agent builder — a runtime control plane in front of production agents.
 
-## Key decisions
+## Live proof
 
-- Separate governance from orchestration (see [ADR-001](../adr/ADR-001-orchestration-vs-governance-split.md))
-- Side-effecting calls require gateway + optional HITL ([ADR-004](../adr/ADR-004-gateway-hitl-side-effects.md))
-- Agent registry with persistent lifecycle state
+- UI: [aegisai-enterprise-agent-platform.vercel.app](https://aegisai-enterprise-agent-platform.vercel.app)
+- Always-on spine is Render/Vercel. Real AWS (VPC/ECS/ALB/RDS) was stand-up → verify → tear-down ([ADR-015](../adr/ADR-015-real-aws-gcp-infra-phase-c.md) · [receipt case study](./aws-ephemeral-control-plane-receipt.md)).
 
-## Trade-offs
+## Limitations / what we'd do differently
 
-| Decision | Rationale |
-|----------|-----------|
-| Gateway SDK vs inline checks | Central policy enforcement across all integrated systems |
-| HITL for high-risk only | Balance velocity vs safety |
-| OPA for policy | Declarative, auditable rules — but advisory: fails open (allow) when OPA itself is unavailable, defaulting to a builtin simulator rather than a hard block |
-| Cron orchestrator endpoints now require `AuthRequired` ([ADR-0003](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/blob/main/adr/0003-orchestrator-auth-gate.md)) | They previously had no auth dependency at all, unlike every other mutating route — closes that inconsistency |
-| MCP exposed outbound, not just gated inbound ([ADR-0005](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/blob/main/adr/0005-mcp-tool-exposure.md) · [ADR-013](../adr/ADR-013-mcp-exposure-and-real-a2a-delegation.md)) | `McpGovernanceProxy` already gated outbound MCP calls; a real `interfaces/mcp/server.py` now exposes registry/budget/kill-switch/website-build as MCP tools any client can call, through the same governed core |
-| Real AWS deploy alongside Render ([ADR-0006](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/blob/main/adr/0006-paas-vs-iac-deploy-tradeoffs.md) · [ADR-015](../adr/ADR-015-real-aws-gcp-infra-phase-c.md)) | Chosen as the AWS target because this is the flagship control plane — real VPC/ECS Fargate/ALB/RDS/IAM, verified with a real orchestrator run against real RDS-backed persistence, then torn down |
+- OPA is advisory here: when OPA itself is down, the stack falls back to a builtin simulator rather than a hard block. Demo velocity won; `PRODUCTION_STRICT` is the honesty flag for panels ([ADR-024](../adr/ADR-024-production-strict-fail-closed.md)).
+- Free-tier cold starts are real — don’t sell this as an enterprise SLO.
+- I’d tighten fail-closed defaults for anything that looks like a production deploy path, and keep the simulator labeled as demo theater.
 
 ## Stack
 
-FastAPI · Next.js · Vercel · Render · Supabase/Postgres · AWS ECS/RDS/ALB (alternative deploy)
+FastAPI · Next.js · Vercel · Render · Supabase/Postgres · AWS ECS/RDS/ALB (ephemeral IaC path)
 
 ## Related
 

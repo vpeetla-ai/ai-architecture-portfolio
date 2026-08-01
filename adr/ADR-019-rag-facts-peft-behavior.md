@@ -5,45 +5,41 @@
 **System:** DomainForge (`domainforge-rag-peft`)  
 **Live demo:** [domainforge-rag-peft.vercel.app](https://domainforge-rag-peft.vercel.app) · [API](https://domainforge-api.onrender.com/health)
 
+## In one breath (panel)
+
+I'd put facts in RAG and format/behavior in PEFT — fine-tuning policies into weights is how you ship stale SOPs and hallucinated `chunk_id`s.
+
 ## Context
 
-Customer support triage needs two things at once:
+Customer support triage needs two things at once: grounded facts from SOPs (with real citation `chunk_id`s), and reliable JSON for downstream agents (`intent`, `suggested_action`, schema discipline).
 
-1. **Grounded facts** from SOP documents (policies, procedures, citation `chunk_id`s)
-2. **Reliable JSON** for downstream agents (`intent`, `suggested_action`, schema discipline)
-
-Full fine-tuning memorizes stale policies and drifts when SOPs change. RAG-only models hallucinate field names and invent `chunk_id`s. Enterprise RAG (ADR-002) solves access-aware retrieval — but does not teach strict output grammar.
+Full fine-tuning memorizes policies that then drift when SOPs change. RAG-only models invent field names and cite chunks that never existed. Enterprise RAG ([ADR-002](ADR-002-authorization-before-ranking-rag.md)) solves access-aware retrieval — it does not teach strict output grammar. One-model shortcuts fail both planes.
 
 ## Decision
 
-Split the problem into two planes with separate data prep, eval metrics, and promotion gates:
+Split the problem into two planes with separate data prep, eval metrics, and promotion gates.
 
 | Plane | Responsibility | Data source | Mechanism |
 |-------|----------------|-------------|-----------|
 | **RAG** | Facts, policies, citations | 13 capstone SOP markdown docs | Chroma index → S1 naive → S2 hybrid BM25+lexical |
 | **PEFT (QLoRA)** | JSON envelope, intent codes, action grammar | Bitext customer-support SFT (~27 intents) | TRL + PEFT adapter registry |
 
-**Bitext SFT pairs are labels only** — not copied into the vector store as memorization targets.
-
-**Solution ladder** for eval: S0 baseline → S1 naive RAG → S2 hybrid RAG → S3 PEFT+S2.
-
-**Adapter promotion** (`POST /v1/adapters/promote`) remains API-key gated; blocked if faithfulness or format adherence regresses.
-
-## Trade-offs
-
-| Choice | Rationale | Cost |
-|--------|-----------|------|
-| Two pipelines | Each plane optimizes for what it does best | Two manifests, two prep CLIs |
-| Capstone SOP corpus | Portfolio-safe, no employer supply-chain data | Not enterprise-scale doc count |
-| Bitext public SFT | Realistic intent distribution without proprietary tickets | Domain mismatch vs SOP wording |
-| `MOCK_LLM=true` on Render free tier | Demo RAG + eval without GPU | Production inference requires CUDA + Ollama/vLLM |
-| Separate eval dimensions | Faithfulness (citations) ≠ format adherence | More golden fixtures to maintain |
+- **Bitext SFT pairs are labels only** — not copied into the vector store as memorization targets
+- **Solution ladder:** S0 baseline → S1 naive RAG → S2 hybrid RAG → S3 PEFT+S2
+- **Adapter promotion** (`POST /v1/adapters/promote`) stays API-key gated; blocked if faithfulness or format adherence regresses
+- Refused: stuffing SOP text into the fine-tune corpus "for better recall"
 
 ## Consequences
 
-- DomainForge complements [Enterprise RAG](https://github.com/vpeetla-ai/enterprise_rag_platform) (access-before-ranking) with an **MLOps adaptation layer**
-- Interview narrative: "RAG for facts, fine-tune for behavior" — a Principal AI Architect decision, not a single-model shortcut
-- Golden eval must score hallucination frequency and JSON schema separately
+| Choice | Why | Cost |
+|--------|-----|------|
+| Two pipelines | Each plane optimizes what it's good at | Two manifests, two prep CLIs |
+| Capstone SOP corpus | Portfolio-safe, no employer supply-chain data | Not enterprise-scale doc count |
+| Bitext public SFT | Realistic intent distribution without proprietary tickets | Domain mismatch vs SOP wording |
+| `MOCK_LLM=true` on Render free tier | Demo RAG + eval without GPU | Production inference needs CUDA + Ollama/vLLM |
+| Separate eval dimensions | Faithfulness ≠ format adherence | More golden fixtures |
+
+DomainForge complements [Enterprise RAG](https://github.com/vpeetla-ai/enterprise_rag_platform) (access-before-ranking) with an MLOps adaptation layer. Golden eval must score hallucination frequency and JSON schema separately — lumping them into one "accuracy" number is how regressions hide.
 
 ## Links
 

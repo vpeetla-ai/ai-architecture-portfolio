@@ -7,7 +7,15 @@
 
 ## Problem
 
-Production RAG is not "connect a vector DB." Enterprise PDF Q&A needs page-specific citations, hybrid retrieval that is not lexical theater, access control before ranking, and decline when evidence is weak — plus Demo vs Strict principal trust for panels.
+“Connect a vector DB” is how demos look smart and prod leaks. The scar is ranking unauthorized neighbors into the context window — or inventing `citations[0]` when evidence is weak. Enterprise PDF Q&A needs page cites, real hybrid recall, access *before* ranking, and the spine to decline.
+
+## What we decided
+
+1. **Authorization before ranking** — filter by who the caller is, then retrieve ([ADR-002](../adr/ADR-002-authorization-before-ranking-rag.md)).
+2. **Page-aware server ingest** — client flatten destroys page numbers ([ERAG ADR-0007](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/adr/0007-page-aware-ingest-and-citations.md)).
+3. **BM25 + dense + RRF, then rerank** — dual-signal recall; cross-encoder on Strict, ScoreBoost on slim Demo ([ADR-023](../adr/ADR-023-enterprise-rag-rerank-decline.md) · [ERAG ADR-0008](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/adr/0008-dual-demo-strict-retrieval-profiles.md)).
+4. **Decline beats fake cites** — empty citations over spoofed ones when confidence or faithfulness fails.
+5. **Golden eval as a real CI gate** — `enterprise_rag_golden_v1` against an isolated `RagPipeline`; first run found a real fixture bug ([ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)).
 
 ## Architecture
 
@@ -30,33 +38,22 @@ flowchart LR
     ING --> RET
 ```
 
-## Key outcome
+## Live proof
 
-Authorization **before** semantic ranking — page structure preserved through ingest — RRF fusion — then **decline** (score or faithfulness) instead of inventing citations.
+- UI: [enterprise-rag-platform-eta.vercel.app](https://enterprise-rag-platform-eta.vercel.app)
+- Spine answer step: [golden-path-spine-e2e.md](./golden-path-spine-e2e.md)
+- Interview drills: [02 RAG at scale](https://ai-architect-interview-playbook.vercel.app/q/ai-system-design/02-rag-platform-at-scale/) · [22 PDF Q&A](https://ai-architect-interview-playbook.vercel.app/q/ai-system-design/22-enterprise-pdf-qa-citations-and-grounding/) · [23 Hybrid RRF](https://ai-architect-interview-playbook.vercel.app/q/ai-system-design/23-enterprise-hybrid-retrieval-and-access-aware-ranking/)
 
-## Trade-offs
+## Limitations / what we'd do differently
 
-| Decision | Rationale |
-|----------|-----------|
-| Access filter first | Prevent unauthorized content in context window |
-| Server PDF ingest | Client flatten destroys page numbers (ADR-0007) |
-| BM25 + dense + RRF | Real dual-signal; not Jaccard-as-semantic |
-| Cross-encoder on Strict image | ScoreBoost only for slim Demo |
-| Decline + no cite spoof | Empty citations beat fake `citations[0]` |
-| Demo vs Strict dual posture | Cheap Demo; JWT+exp Strict for panels (ADR-0006/0009) |
-| AegisAI HITL bridge | High-risk ingest and answer paths |
-| golden-eval-registry CI gate | Real regression on isolated `RagPipeline` |
-
-## Interview drill
-
-- [02 RAG at scale](https://ai-architect-interview-playbook.vercel.app/q/ai-system-design/02-rag-platform-at-scale/)
-- [22 PDF Q&A citations](https://ai-architect-interview-playbook.vercel.app/q/ai-system-design/22-enterprise-pdf-qa-citations-and-grounding/)
-- [23 Hybrid RRF](https://ai-architect-interview-playbook.vercel.app/q/ai-system-design/23-enterprise-hybrid-retrieval-and-access-aware-ranking/)
-
-## Related ADR
-
-[ADR-002: Authorization before ranking](../adr/ADR-002-authorization-before-ranking-rag.md) · [ADR-023: Rerank + decline](../adr/ADR-023-enterprise-rag-rerank-decline.md) · [ADR-014: Golden eval CI gate](../adr/ADR-014-golden-eval-registry-real-ci-gate.md) · ERAG [ADR-0007](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/adr/0007-page-aware-ingest-and-citations.md) · [ADR-0008](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/adr/0008-dual-demo-strict-retrieval-profiles.md)
+- Demo vs Strict is intentional dual posture — cheap Demo; JWT+exp Strict for panels. Don’t confuse Demo recall with Strict trust.
+- Qdrant and sentence-transformers are optional / Strict-image; free-tier memory backends are for receipts, not always-on enterprise search.
+- I’d push more adversarial principal-spoof cases into every consumer CI, not only the registry suite.
 
 ## Stack
 
 FastAPI · PyMuPDF · Docker · Vercel · Render · Qdrant (optional) · sentence-transformers (Strict image)
+
+## Related ADR
+
+[ADR-002](../adr/ADR-002-authorization-before-ranking-rag.md) · [ADR-023](../adr/ADR-023-enterprise-rag-rerank-decline.md) · [ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md) · ERAG [ADR-0007](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/adr/0007-page-aware-ingest-and-citations.md) · [ADR-0008](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/adr/0008-dual-demo-strict-retrieval-profiles.md)

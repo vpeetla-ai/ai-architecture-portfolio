@@ -4,43 +4,44 @@
 
 Accepted — 2026-07-03
 
+## In one breath (panel)
+
+I'd gate both AegisLoop entry points that burn LLM — FastAPI and the Netlify function — with the same API key, because fixing one and leaving the other open is how you fake a security story.
+
 ## Context
 
 `POST /api/missions/run` and `POST /api/missions/stream`
-(`aegisloop-agentops-workbench/services/api/src/agent_loop/main.py`) had no caller
-authentication at all, despite invoking a real LLM per hit. The same gap existed
-independently in the standalone Netlify serverless function
-(`infra/netlify/functions/mission-run.ts`), which calls OpenAI directly in `gateway` mode and
-also proxies to the FastAPI backend when `AGENT_LOOP_API_URL` is configured — two separate
-unauthenticated entry points to the same cost surface, matching the pattern found and fixed in
-5 other org repos this session (loop-engine-agent-platform ADR-002, sentinel-brief ADR-0002,
-aegisai-enterprise-agent-platform ADR-0003, VAP ADR-009, enterprise_rag_platform ADR-0004).
+(`aegisloop-agentops-workbench/services/api/src/agent_loop/main.py`) had no caller auth despite
+invoking a real LLM per hit. The same gap lived independently in the Netlify serverless
+function (`infra/netlify/functions/mission-run.ts`), which calls OpenAI directly in `gateway`
+mode and also proxies to FastAPI when `AGENT_LOOP_API_URL` is set — two unauthenticated doors
+onto the same cost surface. Same scar pattern already fixed in five other org repos that
+session (LoopForge ADR-002, sentinel-brief ADR-0002, aegisai ADR-0003, VAP ADR-009, enterprise
+RAG ADR-0004).
+
+I refused "we secured the Python path" while the Netlify function stayed public.
 
 ## Decision
 
-1. Add an `AEGISLOOP_API_KEY`-gated check to both entry points — `_require_api_key` in the
-   FastAPI backend's `main.py`, and an equivalent header check in the Netlify function — each
-   enforced only when the env var is set (dev/demo defaults stay open).
-2. When the Netlify function proxies to the FastAPI backend, it now forwards the same key as
-   an `X-API-Key` header, so turning on enforcement on the backend doesn't silently break the
-   proxy path.
-3. Add an optional, browser-local API-key field to the static demo UI
-   (`app/index.html`/`app/app.js`), sent only if filled in — never baked into the deployed
-   static bundle.
+1. Add an `AEGISLOOP_API_KEY`-gated check to both entry points — `_require_api_key` in FastAPI
+   `main.py`, and an equivalent header check in the Netlify function — each enforced only when
+   the env var is set (dev/demo stays open).
+2. When Netlify proxies to FastAPI, forward the same key as `X-API-Key` so turning on backend
+   enforcement doesn't silently break the proxy.
+3. Optional browser-local API-key field in the static demo UI (`app/index.html` / `app/app.js`),
+   sent only if filled in — never baked into the static bundle.
 
 ## Consequences
 
 ### Positive
-- Closes a real gap present in *two* independent code paths (Python backend and TypeScript
-  serverless function) that both reach the same underlying cost surface.
-- Consistent with the identical fix pattern now applied across 6 repos in the org.
+- Closes a real gap in *two* independent code paths that share one cost surface.
+- Same fix pattern now across six repos.
 
 ### Negative
-- `AEGISLOOP_API_KEY` must be set on both Render (backend) and Netlify (function) — and kept
-  in sync between them — for enforcement to actually take effect; unset on either side leaves
-  that entry point open.
-- `/health`, `/api/missions`, and `/api/runs` remain intentionally open (read-only, low cost,
-  meant to be publicly browsable per this repo's portfolio-demo positioning).
+- `AEGISLOOP_API_KEY` must be set on **both** Render and Netlify — and kept in sync — or one
+  door stays open. **Demo vs Strict:** unset = open; set = gated.
+- `/health`, `/api/missions`, and `/api/runs` stay intentionally open (read-only, low cost,
+  portfolio-demo browsing). That's a product choice, not an oversight — label it.
 
 ## References
 - `aegisloop-agentops-workbench/services/api/src/agent_loop/main.py::_require_api_key`

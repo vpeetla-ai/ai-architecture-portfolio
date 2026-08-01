@@ -4,67 +4,63 @@
 
 Accepted — 2026-07-05
 
+## In one breath (panel)
+
+I'd prove AWS and GCP ownership with real `terraform apply`, live endpoint checks, then `terraform destroy` — Terraform that never ran isn't platform evidence, and free-tier PaaS stays the default demo host.
+
 ## Context
 
-Every repo in this org deploys to Vercel/Render PaaS ([ADR-005](./ADR-005-reference-stack-free-tier.md)),
-which is the right default for iteration speed — but a full org-wide audit found zero
-Terraform, Kubernetes, or any cloud-infrastructure-as-code evidence anywhere. This directly
-undercut the portfolio's own career narrative, which claims "AWS, OCI, DevOps — platform
-ownership" 2015–2020, with no corresponding GitHub evidence today. Phase C of the top-1% AI
-Architect program closed this gap with genuinely operated infrastructure — real
-`terraform apply`, real verification against live endpoints, real `terraform destroy` — not
-Terraform written and never run.
+Every repo here deploys to Vercel/Render PaaS ([ADR-005](./ADR-005-reference-stack-free-tier.md))
+— right default for iteration speed. An org-wide audit found zero Terraform, Kubernetes, or
+cloud-IaC evidence anywhere. That undercut the portfolio career narrative ("AWS, OCI, DevOps —
+platform ownership" 2015–2020) with no matching GitHub proof today. Phase C closed the gap with
+genuinely operated infrastructure — real apply, real verification against live endpoints, real
+destroy — not Terraform written and never run.
+
+I refused leaving `.tf` files as decoration, and refused making expensive always-on cloud the
+new default when free-tier PaaS already serves demos.
 
 ## Decision
 
-Two repos got a real, alternative deploy path alongside (not replacing) their existing Render
-PaaS deployment:
+Two repos got a real alternate deploy path alongside (not replacing) their Render PaaS deploy:
 - **`agent-finops` → GCP**: Cloud Run (scale-to-zero) + Cloud SQL (`db-f1-micro`, no HA) +
-  Artifact Registry + Secret Manager + a least-privilege service account. See
+  Artifact Registry + Secret Manager + least-privilege service account. See
   [agent-finops ADR-0002](https://github.com/vpeetla-ai/agent-finops/blob/main/docs/adr/0002-paas-vs-iac-deploy-tradeoffs.md).
 - **`aegisai-enterprise-agent-platform` → AWS**: VPC (public subnets only, no NAT Gateway) +
-  ECS Fargate + Application Load Balancer + RDS Postgres (`db.t4g.micro`, single-AZ) + IAM
-  execution/task roles + Secrets Manager. Chosen as the AWS target because it's the flagship
-  governance control plane — the most narratively important service to show on a classic
-  enterprise AWS pattern. See [aegisai ADR-0006](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/blob/main/adr/0006-paas-vs-iac-deploy-tradeoffs.md).
+  ECS Fargate + ALB + RDS Postgres (`db.t4g.micro`, single-AZ) + IAM execution/task roles +
+  Secrets Manager. Chosen because it's the flagship governance control plane — the most
+  narratively important service to show on a classic enterprise AWS pattern. See
+  [aegisai ADR-0006](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform/blob/main/adr/0006-paas-vs-iac-deploy-tradeoffs.md).
 
-Both were built for lowest cost on purpose (scale-to-zero / smallest burstable tiers / no HA /
-no NAT Gateway) and operated as **stand up → verify → tear down**, not left running — real
-cloud spend is temporary and disclosed, not a permanent second deployment of either service.
+Both built for lowest cost on purpose (scale-to-zero / smallest burstable tiers / no HA / no
+NAT) and operated as **stand up → verify → tear down** — temporary disclosed spend, not a
+permanent second deployment.
 
 ## Consequences
 
 ### Positive
-- **Both clouds fully verified working, then fully torn down**, confirmed via each provider's
-  own CLI (`gcloud run services list`, `aws rds describe-db-instances`, etc. all returned
-  empty after teardown):
-  - GCP: real budget breach detected against a real Cloud SQL-backed ledger through a live
-    Cloud Run URL.
-  - AWS: a real `POST /api/orchestrators/website-build/run` completed successfully against a
-    live ECS Fargate task, with `/health` confirming genuine RDS-backed persistence
-    (`"mode":"postgres"`, not a SQLite fallback).
-- **Real deployment surfaced real bugs neither code review nor local testing had caught**,
-  each disclosed and fixed rather than worked around: agent-finops's Dockerfile ignored Cloud
-  Run's injected `PORT`; its API key secret defaulted to the guessable placeholder string
-  `"unset"` for a publicly-invokable service; aegisai's Dockerfile couldn't build at all (no
-  `git` in the base image, needed for the `agent-finops` git+https dependency — this had
-  apparently never been built as a real container image before); its ECR repo needed
-  `force_delete` to actually tear down. Two additional operational gotchas were hit and
-  resolved live: Cloud Run doesn't roll a new revision just because a referenced secret's
-  "latest" version changes, and both providers showed a brief eventual-consistency delay
-  between creating a secret and a compute resource successfully reading it.
-- Now genuine, checkable evidence of AWS + GCP infrastructure ownership (VPC design, IAM,
-  container orchestration, load balancing, managed database provisioning) backing the
-  portfolio's career claims, not just Terraform files that were never run.
+- **Both clouds verified working, then fully torn down**, confirmed via each provider's CLI
+  (`gcloud run services list`, `aws rds describe-db-instances`, etc. empty after teardown):
+  - GCP: real budget breach against a real Cloud SQL-backed ledger through a live Cloud Run URL.
+  - AWS: real `POST /api/orchestrators/website-build/run` completed on live ECS Fargate; `/health`
+    confirmed RDS-backed persistence (`"mode":"postgres"`, not SQLite fallback).
+- **Real deployment surfaced real bugs** neither code review nor local testing caught — fixed,
+  not worked around: agent-finops Dockerfile ignored Cloud Run's `PORT`; API key secret defaulted
+  to guessable `"unset"` on a publicly invokable service; aegisai Dockerfile couldn't build (no
+  `git` in base image, needed for `agent-finops` git+https dep — apparently never built as a real
+  container before); ECR needed `force_delete` to tear down. Live gotchas: Cloud Run doesn't roll
+  a new revision just because a referenced secret's "latest" version changed; both providers had
+  brief eventual-consistency delay between creating a secret and compute reading it.
+- Checkable evidence of AWS + GCP ownership (VPC, IAM, containers, LB, managed DB) backing the
+  career claims — not `.tf` that never ran.
 
 ### Negative
-- Both deploy paths are alternates to the existing Render setup, not the new default — running
-  either continuously would cost real money (~$7–10/mo GCP, ~$20–46/mo AWS) for no operational
-  benefit over the existing free-tier PaaS deployments; the value here is demonstrated
-  capability and a real trade-off ADR, not a permanent infrastructure change.
-- AWS's public-subnets-only topology (no NAT Gateway) is a deliberate cost trade-off, not the
-  default enterprise pattern — documented explicitly in ADR-0006 rather than presented as
-  unqualified best practice.
+- Both paths are alternates to Render, not the new default — continuous run costs real money
+  (~$7–10/mo GCP, ~$20–46/mo AWS) for no operational benefit over free-tier PaaS. Value is
+  demonstrated capability and a real trade-off ADR, not a permanent infra change. **P vs O:**
+  operated once as proof; not "always-on production on AWS/GCP."
+- AWS public-subnets-only (no NAT) is a deliberate cost trade-off, not the default enterprise
+  pattern — documented in ADR-0006, not sold as unqualified best practice.
 
 ## References
 - `agent-finops/deploy/terraform/gcp/`, `agent-finops/docs/adr/0002-paas-vs-iac-deploy-tradeoffs.md`

@@ -4,21 +4,25 @@
 **Date:** 2026-07-13  
 **Systems:** aegis-llm-gateway (new), aegis-semantic-cache (new), aegisai-enterprise-agent-platform, agent-finops, golden-eval-registry, venkat-ai-platform, ai-content-factory, and consumers
 
+## In one breath (panel)
+
+I'd build a federated control plane — tool gateway, LLM gateway, cache, FinOps, eval — and refuse stuffing it into one AegisAI monolith or claiming 99.9% SLOs on free tiers.
+
 ## Context
 
-LinkedIn / portfolio narrative compares an **AI Control Plane** to what Kubernetes did for cloud: operate and govern many workloads without replacing the underlying compute (here: foundation models).
+Portfolio narrative compares an **AI Control Plane** to what Kubernetes did for cloud: operate and govern many workloads without replacing the underlying compute (here: foundation models).
 
-Risks if unconstrained:
+Unconstrained, that line goes wrong three ways:
 
-1. **Overclaim** — implying a single product with 99.9% SLO, full SSO federation, and WORM compliance.
-2. **AegisAI monolith** — stuffing LLM proxy, semantic cache, registries, and FinOps into the tool-gateway repo until it becomes unmaintainable.
-3. **Loose side projects** — per-repo demos without a shared plane look disconnected.
+1. **Overclaim** — implying one product with 99.9% SLO, full SSO federation, and WORM compliance
+2. **AegisAI monolith** — stuffing LLM proxy, semantic cache, registries, and FinOps into the tool-gateway repo until it can't move
+3. **Loose side projects** — per-repo demos with no shared plane look disconnected
 
-Prior art in-org: ADR-001 (orchestration vs governance), ADR-004 (tool gateway + HITL), ADR-011 (FinOps standalone), ADR-024 (`PRODUCTION_STRICT`), ADR-026 (multi-tenant isolation).
+Prior art: ADR-001 (orchestration vs governance), ADR-004 (tool gateway + HITL), ADR-011 (FinOps standalone), ADR-024 (`PRODUCTION_STRICT`), ADR-026 (multi-tenant isolation).
 
 ## Decision
 
-### What “Kubernetes of AI” means for vpeetla-ai
+### What “Kubernetes of AI” means here
 
 | Means | Does **not** mean |
 |-------|-------------------|
@@ -46,28 +50,33 @@ Ship narrative when ready: *“Shipped the Enterprise LLM Gateway Plane.”* —
 
 ### Posture flag
 
-- Architecture defaults to **fail-closed** semantics (deny when policy/metering/cache dependency required and unavailable).
-- Runtime flag (e.g. `CONTROL_PLANE_MODE=strict|demo`) may **fail-open** for standard demo performance — documented, never silent.
+- Architecture defaults to **fail-closed** semantics (deny when policy/metering/cache dependency is required and unavailable)
+- Runtime flag (e.g. `CONTROL_PLANE_MODE=strict|demo`) may **fail-open** for standard demo performance — documented, never silent
 
 ### Identity & audit (portfolio bar)
 
-- Service API keys + human JWT (Clerk free tier expand) — enough for this phase.
-- Signed audit packets remain the audit story (no WORM requirement this phase).
+- Service API keys + human JWT (Clerk free tier expand) — enough for this phase
+- Signed audit packets remain the audit story (no WORM requirement this phase)
 
 ### UX
 
-- Keep per-repo demos.
-- Add a **Control Room** (extend AegisAI control UI or thin `aegis-control-room`) with tabs: gateway latency, cache hit/miss, tenant namespaces, registry self-serve.
-- Self-serve form creates **real** agent registry entries (AegisAI registry API).
+- Keep per-repo demos
+- Add a **Control Room** (extend AegisAI control UI or thin `aegis-control-room`) with tabs: gateway latency, cache hit/miss, tenant namespaces, registry self-serve
+- Self-serve form creates **real** agent registry entries (AegisAI registry API)
 
 ## Consequences
 
-- Clear ownership stops AegisAI from becoming unmaintainable.
-- All LLM-calling apps migrate behind `aegis-llm-gateway` over multi-week blocks.
-- Interview playbook gains an SD entry on **gateway vs sidecar** and **cache-as-service** tradeoffs.
-- Honest LinkedIn: gateway plane shipped; full “K8s of AI” remains a multi-plane journey.
+**Positive**
+
+- Clear ownership stops AegisAI from becoming unmaintainable
+- Interview playbook gains SD entries on gateway vs sidecar and cache-as-service
+
+**Negative / work ahead**
+
+- LLM-calling apps migrate behind `aegis-llm-gateway` over multi-week blocks — not a one-PR flip
+- Honest LinkedIn: gateway plane shipped when it ships; full “K8s of AI” remains a multi-plane journey
 
 ## Links
 
 - Plan: [docs/plans/LLM_GATEWAY_PLANE.md](../docs/plans/LLM_GATEWAY_PLANE.md)
-- Related: ADR-001, ADR-004, ADR-011, ADR-024, ADR-026
+- Related: [ADR-001](./ADR-001-orchestration-vs-governance-split.md), [ADR-004](./ADR-004-gateway-hitl-side-effects.md), [ADR-011](./ADR-011-agent-finops-standalone-service.md), [ADR-024](./ADR-024-production-strict-fail-closed.md), [ADR-026](./ADR-026-multi-tenant-isolation.md)

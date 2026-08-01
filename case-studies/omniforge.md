@@ -1,23 +1,23 @@
 # Case study: OmniForge — multimodal multi-LLM answer platform
 
+**Live demo:** [omniforge-flame.vercel.app](https://omniforge-flame.vercel.app) · [API](https://omniforge-api.onrender.com)  
+**Source:** [github.com/vpeetla-ai/omniforge](https://github.com/vpeetla-ai/omniforge)
+
 ## Problem
 
-“Multi-agent” demos often hide a single hardcoded model. Multimodal asks (text + screenshot + voice) need specialized agents, tools, and **task-class model routing** with proof — or the architecture claim is empty.
+“Multi-agent” demos often hide a single hardcoded model. Ask with text + screenshot + voice and you need specialized agents, tools, and **task-class routing with proof** — or the architecture claim is empty. The scar is an A/B that can’t show whether routing actually changed the model.
 
-## Decision
+## What we decided
 
-Ship **OmniForge** as a self-contained monorepo (ADR-027):
-
-- Multimodal ingest → planner → parallel agents + MCP tools → synthesizer
-- Multi-LLM Brain with buckets (`fast` / `structured` / `reasoning` / `vision`)
-- Every call emits a `RoutingDecision` (waterfall); A/B single vs routed is first-class
-- In-repo FinOps budget + export gate — **no** runtime dependency on sibling vpeetla-ai services
+1. **Self-contained monorepo** — one inspectable flagship; no runtime dependency on sibling vpeetla-ai services for the core ask path ([ADR-027](../adr/ADR-027-omniforge-self-contained-multimodal-multi-llm.md)).
+2. **Multimodal ingest → planner → parallel agents + MCP → synthesizer**.
+3. **Multi-LLM Brain with buckets** — `fast` / `structured` / `reasoning` / `vision`.
+4. **Every call emits a `RoutingDecision`** — waterfall proof; A/B single vs routed is first-class.
+5. **In-repo FinOps budget + export gate** — refuse to invent cross-service coupling for a demo.
 
 ## Architecture
 
-See the full diagram and write-up:
-
-- https://github.com/vpeetla-ai/omniforge/blob/main/docs/ARCHITECTURE.md
+Full diagram: [omniforge/docs/ARCHITECTURE.md](https://github.com/vpeetla-ai/omniforge/blob/main/docs/ARCHITECTURE.md)
 
 ## Live proof
 
@@ -27,18 +27,9 @@ See the full diagram and write-up:
 | API | https://omniforge-api.onrender.com/health |
 | Source | https://github.com/vpeetla-ai/omniforge |
 
-## Trade-offs
+## Limitations / what we'd do differently
 
-| Choice | Gain | Cost |
-|--------|------|------|
-| Self-contained monorepo | One inspectable flagship | Duplicates some org patterns |
-| Task-class routing | Honest multi-LLM story | Cascade complexity + provider keys |
-| Mock fallback | Demos always work | Must label mock vs live clearly |
-| Browser ASR | Zero GPU for voice-in | Quality varies by browser |
-
-## What we'd do next
-
-- Public clean domain without SSO (`omniforge.vercel.app`)
-- Optional server Whisper / TTS
-- External MCP server adapters
-- Golden eval suite for routing invariants in CI across providers
+- Self-contained means some org patterns are duplicated — intentional for inspectability, not for long-term DRY.
+- Mock fallback keeps demos alive; must stay labeled mock vs live.
+- Browser ASR is zero-GPU voice-in; quality varies by browser.
+- Next: clean public domain without SSO, optional server Whisper/TTS, external MCP adapters, golden eval suite for routing invariants across providers.

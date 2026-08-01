@@ -7,7 +7,14 @@
 
 ## Problem
 
-Platform engineers need to reason about **PagedAttention, continuous batching, and KV memory budgets** before tuning production inference — and understand how **multi-LoRA serving** changes fine-tune economics.
+Platform engineers tune production inference before they can reason about PagedAttention, continuous batching, and KV budgets — then wonder why multi-LoRA economics don’t show up. The scar is treating vLLM as a black box and “learning” from vendor slides.
+
+## What we decided
+
+1. **Simulator-first** — teach block allocation, eviction, and batching without an H100 cluster.
+2. **Honest scope** — educational lab, **not** a production vLLM fork.
+3. **Pair with DomainForge** — adapters come from the MLOps layer; serve path is the ADR-022 target ([ADR-022](../adr/ADR-022-domainforge-vllm-multi-lora-serving.md)).
+4. **UI surfaces the mechanics** — Architecture · KV · Batching · Memory · FDE Relevance.
 
 ## Architecture
 
@@ -20,21 +27,22 @@ Canonical: [docs/diagrams/canonical-architecture.mmd](https://github.com/vpeetla
 | `LLMEngine` | End-to-end request lifecycle |
 | Demo UI | Architecture · KV · Batching · Memory · FDE Relevance |
 
-## Train → serve economics (portfolio narrative)
-
 ```text
 DomainForge (train adapters) → Ollama path (today) → vLLM multi-LoRA (target ADR-022)
 vLLM Lab (understand WHY serving works) — educational simulator, not production fork
 ```
 
-vLLM 0.15+ multi-LoRA enables hundreds of adapters per GPU with per-request swap — this lab teaches the **underlying mechanics** (PagedAttention, batching) that make those economics possible.
+## Live proof
 
-## Key decisions
+- UI: [vllm-architecture-lab.vercel.app](https://vllm-architecture-lab.vercel.app)
+- API: [vllm-architecture-lab-api.onrender.com](https://vllm-architecture-lab-api.onrender.com)
 
-- **Simulator-first** — teach without H100 cluster cost
-- **Honest scope** — not a production vLLM fork
-- **Pairs with DomainForge** — adapters come from MLOps layer; serve path in [ADR-022](../adr/ADR-022-domainforge-vllm-multi-lora-serving.md)
+## Limitations / what we'd do differently
+
+- This does not serve real CUDA multi-LoRA. Don’t imply DomainForge adapters are already swapped per-request on GPU here.
+- Simulator numbers are for intuition; they’re not a load-test of a production cluster.
+- Next: keep Path B (ADR-022) clearly labeled Accepted — educational until a real multi-LoRA serve receipt exists.
 
 ## Related
 
-[ADR-022: DomainForge → vLLM multi-LoRA target](../adr/ADR-022-domainforge-vllm-multi-lora-serving.md) · [DomainForge case study](domainforge-rag-peft.md)
+[ADR-022](../adr/ADR-022-domainforge-vllm-multi-lora-serving.md) · [DomainForge case study](./domainforge-rag-peft.md)

@@ -16,7 +16,9 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 
 ---
 
-### Production-grade governed agent systems — architecture, decisions, and measurable outcomes
+### What this repo is for
+
+I’d put a governed agent stack in front of a hiring panel in fifteen minutes: orchestration, gateway, access-aware RAG, publish, and the receipts that prove it — not a brochure of seventeen platforms.
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Portfolio](https://img.shields.io/badge/🌐_venkat--ai.com-Portfolio_%26_Live_Demos-5eead4?style=flat-square)](https://venkat-ai.com/work)
@@ -26,13 +28,17 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 ---
 
 **Venkata Peetla** — Principal AI Architect · Lucid Motors  
-*19 years enterprise delivery · **5-spine review path** · full catalog behind it
+*19 years shipping enterprise systems. The **5-spine review path** is the job interview; the catalog below is the warehouse behind it.*
 
-[15-min technical review](https://venkat-ai.com/technical-review) · [Spine health](https://venkat-ai.com/spine-health) · [Golden path](docs/GOLDEN_PATH.md) · [S5 signal pack](docs/S5_SIGNAL_CONVERSION.md) · [Gap plan](docs/TOP1PCT_GAP_PLAN.md) · [90/100 score plan](docs/TOP1PCT_90SCORE_60DAY.md) · [Cloud free-tier split](docs/CLOUD_FREE_TIER_SPLIT.md) · [Live demos](https://venkat-ai.com/work) · [Repo index](docs/REPO_INDEX.md) · [Top-1% execution plan](docs/TOP1PCT_90DAY_EXECUTION.md) · [S3 always-on runbook](docs/S3_ALWAYS_ON_RUNBOOK.md) · [LinkedIn launch plan](docs/LINKEDIN_LAUNCH_PLAN.md) · [Trace-linked observability](docs/TRACE_LINKED_OBSERVABILITY.md) · [README standard](docs/README_STANDARD.md) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai) · [Improvement plan 2026](docs/ORG_IMPROVEMENT_PLAN_2026.md) · [Phase −1 backlog (complete)](docs/TOP1PCT_90DAY_BACKLOG.md)
+**Start here:** [15-min technical review](https://venkat-ai.com/technical-review) · [Spine health](https://venkat-ai.com/spine-health) · [Golden path](docs/GOLDEN_PATH.md) · [Live demos](https://venkat-ai.com/work) · [Repo index](docs/REPO_INDEX.md) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai)
+
+**Plans & ops (when you need them):** [S5 signal pack](docs/S5_SIGNAL_CONVERSION.md) · [Gap plan](docs/TOP1PCT_GAP_PLAN.md) · [90/100 score plan](docs/TOP1PCT_90SCORE_60DAY.md) · [Cloud free-tier split](docs/CLOUD_FREE_TIER_SPLIT.md) · [Top-1% execution plan](docs/TOP1PCT_90DAY_EXECUTION.md) · [S3 always-on runbook](docs/S3_ALWAYS_ON_RUNBOOK.md) · [LinkedIn launch plan](docs/LINKEDIN_LAUNCH_PLAN.md) · [Trace-linked observability](docs/TRACE_LINKED_OBSERVABILITY.md) · [README standard](docs/README_STANDARD.md) · [Improvement plan 2026](docs/ORG_IMPROVEMENT_PLAN_2026.md) · [Phase −1 backlog (complete)](docs/TOP1PCT_90DAY_BACKLOG.md)
 
 ---
 
 ## Impact at a Glance
+
+Scoped outcomes — not “we transformed AI.”
 
 | **10→2** | **Multi-$M** | **5-spine review** | **Governed stack + skills** |
 |----------|--------------|---------------------|---------------------------|
@@ -42,7 +48,7 @@ git clone https://github.com/vpeetla-ai/vpeetla-ai-skills.git
 
 ## Governed AI Reference Stack
 
-Questions every enterprise agent program must answer — each mapped to a live repo and demo.
+Enterprise agent programs keep asking the same questions. Each row is a live repo + demo that answers one of them — Demo vs Strict and free-tier limits stay honest in the case studies.
 
 | # | Question | System | Live demo | Source |
 |---|----------|--------|-----------|--------|
@@ -64,11 +70,11 @@ Questions every enterprise agent program must answer — each mapped to a live r
 | 11 | **Right model for this step?** | **OmniForge** — multimodal ask · multi-agent · multi-LLM waterfall | [omniforge-flame.vercel.app](https://omniforge-flame.vercel.app) · [API](https://omniforge-api.onrender.com) | [omniforge](https://github.com/vpeetla-ai/omniforge) |
 | — | **How do we know it worked?** | **Trace-linked LLMOps** — system / trace / node evals → Langfuse or OTLP | [TRACE_LINKED_OBSERVABILITY.md](docs/TRACE_LINKED_OBSERVABILITY.md) | All platform APIs |
 
-**Canonical essay:** [From Multi-Agent OS to Agent Governance](case-studies/from-multi-agent-os-to-agent-governance.md)
+**Canonical essay (stub → full piece):** [From Multi-Agent OS to Agent Governance](case-studies/from-multi-agent-os-to-agent-governance.md)
 
 ### Federated LLM plane (ADR-028 + ADR-029)
 
-Apps **select** models (local Multi-LLM brains / buckets). `aegis-llm-gateway` **enforces + records** via `aegis-routing-contract`. AegisAI stays tool governance only. Live default is **stub** (`GATEWAY_MODE=stub`); BYOK is an explicit Render override.
+I’d keep tool governance and model routing in separate planes. Apps **select** models (local Multi-LLM brains / buckets); `aegis-llm-gateway` **enforces + records** via `aegis-routing-contract`. AegisAI stays tool gateway + HITL — it doesn’t become a second model router. Live default is **stub** (`GATEWAY_MODE=stub`); BYOK is an explicit Render override, not the brochure default.
 
 ```mermaid
 flowchart TB
@@ -110,7 +116,7 @@ flowchart TB
 
 ## Trace-linked LLMOps (observability layer)
 
-Observability tells you **what happened**. Trace-linked evaluation tells you **whether it was good** — on the same `trace_id` as the agent run.
+Traces without scores are a diary. I’d bind eval to the same `trace_id` as the run: observability says **what happened**; trace-linked evaluation says **whether it was good**.
 
 ```mermaid
 flowchart TB
@@ -142,7 +148,7 @@ Spec: [docs/TRACE_LINKED_OBSERVABILITY.md](docs/TRACE_LINKED_OBSERVABILITY.md) �
 
 ## Featured Case Studies
 
-Each includes architecture context, key decisions, trade-offs, and links to live demos + source code.
+Human-voice write-ups: problem with a scar → decisions (ADR-linked) → live proof → limitations. Stubs point at the canonical essay or runbook.
 
 ### AI Reference Systems (open source)
 
@@ -175,7 +181,7 @@ Each includes architecture context, key decisions, trade-offs, and links to live
 
 ## Architecture Decision Records
 
-Real decisions from production systems — not theoretical patterns.
+Decisions I’d defend in a panel — context, what we refused, Demo vs Strict where it matters. Not pattern catalogs.
 
 | ADR | Topic | Key insight |
 |-----|-------|-------------|
@@ -213,7 +219,7 @@ Real decisions from production systems — not theoretical patterns.
 
 ## Curriculum Agent Patterns (teaching stubs)
 
-Five MIT-licensed **teaching stubs** with live trace viewers — compose into VAP for production graphs. Not fleets; status tables mark gateway ❌ / LangGraph production 🟡.
+Teaching stubs with live trace viewers — useful for interviews, **not** production fleets. Compose the ideas into VAP; don’t confuse these with the spine. Status tables mark gateway ❌ / LangGraph production 🟡.
 
 | Pattern | Live demo | Repository |
 |---------|-----------|------------|
@@ -248,4 +254,4 @@ Five MIT-licensed **teaching stubs** with live trace viewers — compose into VA
 
 ---
 
-*This repository is the canonical architecture narrative for the governed AI reference stack. Implementation code lives in [vpeetla-ai](https://github.com/vpeetla-ai) org repos; live demos at [venkat-ai.com/work](https://venkat-ai.com/work).*
+*Narrative and ADRs live here. Implementation code is in [vpeetla-ai](https://github.com/vpeetla-ai) org repos; clickable demos at [venkat-ai.com/work](https://venkat-ai.com/work).*

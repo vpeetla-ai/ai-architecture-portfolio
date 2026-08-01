@@ -4,21 +4,25 @@
 
 Accepted — 2026-06-29
 
+## In one breath (panel)
+
+I'd standardize the org on four layers — skills, MCP, gateway, observability — and refuse prompt-only guardrails or "we have A2A somewhere" without a real discover-then-call loop.
+
 ## Context
 
-Production agent systems in 2026 standardize on:
+Production agent systems in 2026 converge on a few boring truths:
 
 - **MCP** for agent-to-tool and agent-to-context connectivity
-- **Agent Skills** (`SKILL.md`) for engineering discipline across Cursor, Codex, Claude Code
+- **Agent Skills** (`SKILL.md`) for how we build across Cursor, Codex, Claude Code
 - **Gateway + HITL** for side-effect governance (not prompt-only guardrails)
 - **OpenTelemetry / Langfuse** for non-deterministic trace replay
 - **A2A** (emerging) for inter-agent coordination at scale
 
-The vpeetla-ai org already implements orchestration (VAP), governance (AegisAI), and skills (`vpeetla-ai-skills`). Gaps: inconsistent MCP exposure, LoopForge git side effects without gateway, portfolio metric drift.
+We already had orchestration (VAP), governance (AegisAI), and skills (`vpeetla-ai-skills`). The scars were inconsistent MCP exposure, LoopForge git side effects without a gateway, and portfolio metric drift that made recruiters trust us less. I refused papering that over with brochure language.
 
 ## Decision
 
-Adopt a **four-layer protocol stack** across all platform repos:
+Adopt a **four-layer protocol stack** across platform repos:
 
 ```text
 1. Skills layer    → vpeetla-ai-skills (how we build)
@@ -27,7 +31,7 @@ Adopt a **four-layer protocol stack** across all platform repos:
 4. Observability   → Langfuse/OTel + trace-linked evals on every production API path
 ```
 
-**Trace-linked evaluation** links three levels on one `trace_id`:
+**Trace-linked evaluation** ties three levels on one `trace_id`:
 
 | Level | Question | Example |
 |-------|----------|---------|
@@ -37,28 +41,27 @@ Adopt a **four-layer protocol stack** across all platform repos:
 
 Canonical package: `packages/vpeetla_observability/` · [TRACE_LINKED_OBSERVABILITY.md](../docs/TRACE_LINKED_OBSERVABILITY.md)
 
-**A2A** (updated 2026-07-03): VAP now exposes a real external A2A discovery surface
-(`backend/app/api/routes/a2a.py` — `.well-known/agent.json` + per-orchestrator agent cards, see
-[ADR-009](./ADR-009-vap-auth-gate.md)), so other systems can discover and call VAP's
-orchestrators via the A2A spec. Internally, VAP's own specialist agents still delegate via
-in-process LangGraph, not A2A between themselves — that distinction (external discovery via
-A2A, internal delegation via LangGraph) still holds and is acceptable for reference
-implementations.
+**A2A** (updated 2026-07-03): VAP exposes a real external A2A discovery surface
+(`backend/app/api/routes/a2a.py` — `.well-known/agent.json` + per-orchestrator agent cards; see
+[ADR-009](./ADR-009-vap-auth-gate.md)). Other systems can discover and call VAP orchestrators via
+the A2A spec. Internally, VAP specialists still hand off via in-process LangGraph — not A2A
+between themselves. That split (external discovery via A2A, internal via LangGraph) is honest
+for a reference implementation; ADR-013 closes the client side of the loop.
 
 ## Consequences
 
 ### Positive
-- Aligns portfolio with [2026 production patterns](https://internative.net/insights/blog/agentic-ai-architecture-2026)
-- Skills repo becomes first-class org capability (not just dev convenience)
-- Honest status tables prevent recruiter/engineer trust erosion
+- Matches [2026 production patterns](https://internative.net/insights/blog/agentic-ai-architecture-2026) without overselling
+- Skills repo is a first-class org capability, not just "dev convenience"
+- Honest status tables stop the trust erosion from metric theater
 
 ### Negative
 - More documentation burden per repo
 - Gateway wrapping adds latency on git push / publish paths
 
 ### Follow-ups
-- ADR-009 (proposed): LoopForge gateway on PR workflow
-- ADR-010 (proposed): MCP tool registry in VAP
+- ADR-009 (proposed at write time): LoopForge gateway on PR workflow — auth gates landed first; gateway follow-ups continue elsewhere
+- ADR-010 (proposed at write time): MCP tool registry in VAP — MCP exposure landed in AegisAI (ADR-013)
 
 ## Links
 

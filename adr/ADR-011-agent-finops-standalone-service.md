@@ -4,67 +4,67 @@
 
 Accepted — 2026-07-04
 
+## In one breath (panel)
+
+I'd put cost truth in its own ledger service and refuse per-repo "FinOps" dashboards that invent numbers from character counts — report cost here; let each product enforce its own halt.
+
 ## Context
 
-The 2026-07-03 security/architecture audit found `aegisai-enterprise-agent-platform` and
-`aegisloop-agentops-workbench` both ship a "FinOps" module computing cost from fabricated data —
-AegisAI's `RegisteredAgent.monthly_cost_usd` is a static seed value that never updates from real
-usage; AegisLoop's `estimate_mission_cost` guesses tokens from output character count even when a
-real, metered API call is made. Both repos' own LLM clients already receive real token usage from
-their provider responses (`usage`/`usageMetadata` fields) and discard it. This was logged as the
-top Phase 6 item in `docs/ORG_IMPROVEMENT_PLAN_2026.md` and is referenced from the portfolio
-site's FinOps thesis card as the concrete proof behind the Substack piece "Enterprise AI FinOps
-Architecture" (2026-06-09).
+The 2026-07-03 audit found `aegisai-enterprise-agent-platform` and
+`aegisloop-agentops-workbench` both shipping "FinOps" from fabricated data — AegisAI's
+`RegisteredAgent.monthly_cost_usd` is a static seed that never updates from usage; AegisLoop's
+`estimate_mission_cost` guesses tokens from output character count even when a real, metered
+API call already returned `usage`/`usageMetadata` and we discarded it. Logged as the top Phase
+6 item in `docs/ORG_IMPROVEMENT_PLAN_2026.md`, and referenced from the portfolio FinOps thesis
+card behind the Substack piece "Enterprise AI FinOps Architecture" (2026-06-09).
 
-The initial plan was to fix this inside each of the two repos directly. Reconsidered in favor of
-a standalone repo, for two reasons: (1) it matches how every other capability in this org is
-already structured — VAP (orchestration), AegisAI (governance), Enterprise RAG (knowledge),
-AegisLoop (fleet ops), LoopForge (self-improvement) are each their own single-purpose repo, not
-shared modules bolted onto each other; (2) a shared ledger is the only way to get a real
-cross-repo/cross-tenant budget total, which per-repo FinOps modules structurally cannot provide.
+First instinct was to patch both repos in place. I reconsidered for two reasons: (1) every other
+capability here is already a single-purpose repo — VAP, AegisAI, Enterprise RAG, AegisLoop,
+LoopForge — not shared modules bolted sideways; (2) a shared ledger is the only way to get a
+real cross-repo / cross-tenant budget total, which siloed per-repo modules structurally cannot
+provide. I refused leaving the fake dashboards as the story.
 
 ## Decision
 
-New repo: [`agent-finops`](https://github.com/vpeetla-ai/agent-finops). Mirrors AegisAI's own
-`sdk/python/aegisai_gateway` + service split — the org's established "shared capability + thin
-client" pattern:
+New repo: [`agent-finops`](https://github.com/vpeetla-ai/agent-finops). Mirrors AegisAI's
+`sdk/python/aegisai_gateway` + service split — shared capability, thin client:
 
-1. A FastAPI service with its own ledger (SQLite dev / Postgres prod) recording real usage events
+1. FastAPI service with its own ledger (SQLite dev / Postgres prod) recording real usage events
    and detecting budget breaches (`POST /v1/usage`, `GET`/`PUT /v1/budget/{scope_type}/{scope_value}`).
-2. A Python SDK (`agent_finops_client`) with graceful local-fallback when unconfigured — a
-   consumer never hard-fails just because this service isn't deployed or wired yet.
+2. Python SDK (`agent_finops_client`) with graceful local fallback when unconfigured — consumers
+   never hard-fail just because this service isn't wired yet.
 3. **This service reports cost truth; it does not enforce.** AegisAI's kill-switch and
-   AegisLoop's mission-dispatch guard remain each repo's own responsibility — consistent with
-   ADR-001's orchestration-vs-governance split, extended here to cost-truth-vs-enforcement.
+   AegisLoop's mission-dispatch guard stay each repo's job — ADR-001's split extended to
+   cost-truth vs enforcement.
 
-Built in stages: the service itself first (this ADR — 22 tests, verified against a live running
-instance, not just mocks), consumer wiring in AegisAI and AegisLoop as a tracked follow-up.
+Built in stages: service first (this ADR — 22 tests, verified against a live running instance,
+not just mocks); consumer wiring in AegisAI and AegisLoop as follow-up (AegisLoop landed in
+ADR-012).
 
 ## Consequences
 
 ### Positive
-- One canonical pricing table (`agent_finops.pricing.RATES`) instead of drifting per-repo copies.
-- Schema supports `scope_type="tenant"` for real cross-platform budget totals once more than one
-  consumer is wired — impossible with siloed per-repo FinOps modules.
-- Adds an 18th repo to the org with the same documentation discipline as the other 17: honest
-  status table, ADR, architecture/product docs, demo, CI.
+- One canonical pricing table (`agent_finops.pricing.RATES`) instead of drifting copies.
+- Schema supports `scope_type="tenant"` for real cross-platform budget totals once more than
+  one consumer is wired — impossible with siloed modules.
+- Adds another org repo with the same documentation discipline: honest status table, ADR,
+  architecture/product docs, demo, CI.
 
 ### Negative
-- A new service to deploy and keep available; the SDK's local-fallback mode exists specifically
-  so this is non-fatal.
-- Doesn't fix the two fake dashboards by itself — that's Stage 2, not yet done. Until AegisAI and
-  AegisLoop are wired as consumers, this ADR closes the "what should replace them" architecture
-  question but not the "are they actually replaced" product question.
+- Another service to deploy; SDK local-fallback exists so that's non-fatal.
+- Doesn't fix the two fake dashboards by itself — that's Stage 2. Until consumers wire in,
+  this ADR answers "what should replace them," not "are they replaced." Label Planned vs
+  Implemented accordingly on the portfolio card.
 
 ### Follow-ups
-- Wire `aegisai-enterprise-agent-platform`'s `WebsiteBuildOrchestrator` (5 agents map 1:1 to
-  existing registry entries) as the first consumer, budget breach → existing `KillSwitchService`.
-- Wire `aegisloop-agentops-workbench`'s mission runtime as the second consumer.
-- Update both repos' README FinOps rows and the portfolio's FinOps thesis card once real.
+- Wire `aegisai-enterprise-agent-platform`'s `WebsiteBuildOrchestrator` as first consumer,
+  budget breach → existing `KillSwitchService`.
+- Wire `aegisloop-agentops-workbench` mission runtime as second consumer (done in ADR-012).
+- Update both README FinOps rows and the portfolio FinOps thesis card once real.
 
 ## References
 - [agent-finops](https://github.com/vpeetla-ai/agent-finops), specifically
   [ADR-0001](https://github.com/vpeetla-ai/agent-finops/blob/main/docs/adr/0001-standalone-cost-governance-service.md)
-  (the repo-local decision record this ADR summarizes at the org level)
+  (repo-local decision this ADR summarizes at org level)
 - [ORG_IMPROVEMENT_PLAN_2026.md](../docs/ORG_IMPROVEMENT_PLAN_2026.md) Phase 6
 - [ADR-001: Orchestration vs governance split](./ADR-001-orchestration-vs-governance-split.md)

@@ -1,13 +1,20 @@
 # Golden Eval Registry — Cross-Repo Regression Contracts
 
 **Domain:** Agent evals · Regression safety · Portfolio proof  
-**Source:** [github.com/vpeetla-ai/golden-eval-registry](https://github.com/vpeetla-ai/golden-eval-registry)
+**Source:** [github.com/vpeetla-ai/golden-eval-registry](https://github.com/vpeetla-ai/golden-eval-registry)  
+**CI:** [![GER CI](https://github.com/vpeetla-ai/golden-eval-registry/actions/workflows/ci.yml/badge.svg)](https://github.com/vpeetla-ai/golden-eval-registry/actions/workflows/ci.yml)
 
 ## Problem
 
-The org had strong local tests, but the evaluation contracts were scattered: Enterprise RAG golden queries, LoopForge benchmark items, AegisLoop mission gates, and Content Factory HITL states lived in separate repos.
+Local tests were strong; the *contracts* were scattered. Enterprise RAG goldens, LoopForge benches, AegisLoop mission gates, Content Factory HITL states — each repo owned a private idea of “must not regress.” Hiring panels can’t inspect that by clicking demos. The scar: fixture existence ≠ fixture correctness — the first real RAG suite run found a bug in its own corpus.
 
-Hiring panels and platform reviewers need to inspect **what must not regress** across the whole stack, not just click live demos.
+## What we decided
+
+1. **Registry owns shape + versioning; consumers own execution** — clean repo boundaries.
+2. **JSON/JSONL fixtures** — readable diffs, no heavy runtime deps in the registry.
+3. **`locked: true`** — agents don’t silently edit the metrics they’re trying to pass.
+4. **Fixture registry first, then real scorers** — safe cross-repo value, then gate CI ([repo ADR-0002](https://github.com/vpeetla-ai/golden-eval-registry/blob/main/docs/adr/0002-real-scorer-and-first-ci-gate.md) · [ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)).
+5. **No live LLM calls inside the registry** — deterministic; live health stays each consumer’s job.
 
 ## Architecture
 
@@ -35,35 +42,18 @@ flowchart LR
   GER --> PF
 ```
 
-## Key decisions
+## Live proof
 
-- Registry owns fixture shape and versioning; consumer repos own execution.
-- JSON/JSONL avoids runtime dependencies and keeps diffs readable.
-- `locked: true` mirrors Karpathy's eval-harness rule: agents must not silently edit metrics they are trying to pass.
+- Repo + CI: [golden-eval-registry](https://github.com/vpeetla-ai/golden-eval-registry)
+- Real CI gates today: `enterprise_rag_golden_v1` → isolated `RagPipeline`; `aegisloop_mission_gates_v1` → real `runtime.evaluate()`
 
-## Trade-offs
+## Limitations / what we'd do differently
 
-| Choice | Why | Cost |
-|--------|-----|------|
-| Fixture registry first, then real scorers ([ADR-0002](https://github.com/vpeetla-ai/golden-eval-registry/blob/main/docs/adr/0002-real-scorer-and-first-ci-gate.md)) | Safe cross-repo value first; real execution once the shape proved out | 4 of 6 suite kinds are still fixture-validation only |
-| No live LLM/API calls in the registry itself | Deterministic, dependency-light scoring logic | The registry can't prove live service health on its own — that's each consumer's job |
-| Consumer-owned execution | Keeps repo boundaries clean; registry never gains provider-specific client code | Requires adapter work per repo |
-
-## Impact
-
-- Fifth proof surface after live demos, ADRs, honest status tables, and skills.
-- Makes "evals as product" concrete across the governed agent stack.
-- Provides importable suites for Enterprise RAG, LoopForge, AegisLoop, and Content Factory.
-- **Two suites now gate real CI builds**, not just validate fixtures: `enterprise_rag_golden_v1`
-  runs against `enterprise_rag_platform`'s real, isolated `RagPipeline`; `aegisloop_mission_gates_v1`
-  runs against `aegisloop-agentops-workbench`'s real `runtime.evaluate()` gate. Running the RAG
-  suite for the first time immediately surfaced a real bug in its own corpus fixture — direct
-  proof that fixture existence and fixture correctness are different claims (see ADR-0002 above
-  and [ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)).
+- Four of six suite kinds are still fixture-validation only — don’t oversell “every suite gates production behavior.”
+- Adapter work per consumer is the tax for clean boundaries.
+- Next: promote more suites from validate-only to real scorer gates without bloating the registry with provider clients.
 
 ## Related
 
+- [ADR-007](../adr/ADR-007-2026-agent-protocol-stack.md) · [ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)
 - [ORG_REVIEW_2026](../docs/ORG_REVIEW_2026.md)
-- [ADR-007 Agent Protocol Stack](../adr/ADR-007-2026-agent-protocol-stack.md)
-- [ADR-014: Real scorer + first CI gates](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)
-- [golden-eval-registry](https://github.com/vpeetla-ai/golden-eval-registry)
