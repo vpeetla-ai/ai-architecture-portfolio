@@ -23,7 +23,7 @@ skills/*/SKILL.md  →  scripts/install.sh  →  .cursor/skills/ + AGENTS.md + C
 
 | Component | Role |
 |-----------|------|
-| **19 skills** | Governed stack, MCP, observability, loop engineering, enterprise architect, … |
+| **21 skills** | Governed stack, MCP, observability, loop engineering, git-commit-author, … |
 | `install.sh` | `--cursor`, `--codex`, `--global`, `--project` |
 | `CONTEXT.md` | Repo map for Codex root context |
 | CI smoke test | Validates install into temp project |
@@ -33,7 +33,7 @@ skills/*/SKILL.md  →  scripts/install.sh  →  .cursor/skills/ + AGENTS.md + C
 | Stack | `governed-ai-stack`, `agent-protocol-stack-2026` |
 | Implementation | `langgraph-orchestration`, `aegis-gateway`, `mcp-tool-exposure` |
 | Quality | `honest-status-table`, `production-observability`, `tdd-agent-loops` |
-| Role | `enterprise-ai-architect` |
+| Role | `enterprise-ai-architect`, `git-commit-author` |
 
 ## Live proof
 
