@@ -8,7 +8,7 @@
 
 The highest ROI improvements are now sequenced in:
 
-→ **[Top-1% 90-day backlog](./TOP1PCT_90DAY_BACKLOG.md)** · **[Implementation plan](./TOP1PCT_IMPLEMENTATION_PLAN.md)**
+→ **[6-month platform plan (active, C+C)](./SIX_MONTH_PLATFORM_PLAN_2026.md)** · **[Top-1% 90-day backlog](./TOP1PCT_90DAY_BACKLOG.md)** · **[Implementation plan](./TOP1PCT_IMPLEMENTATION_PLAN.md)**
 
 Legacy trend alignment below remains useful context; prefer the sequenced backlog for execution order.
 
