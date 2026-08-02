@@ -55,9 +55,9 @@ Phase −1 remediation + S0–S5 paper work ≠ Top-1% offers. Remaining work is
 
 | ID | Miss | Evidence | Exit criteria | Owner |
 |----|------|----------|---------------|--------|
-| **G7** | No live Strict ERAG path for panels | Live default Demo principal; Strict is docs-only | Dual URL **or** documented one-command Strict review env | ERAG + portfolio |
-| **G8** | ACF publish not in golden path | `/health` only; Clerk for live publish | Public demo publish **or** permanent honest boundary in GOLDEN_PATH | ACF |
-| **G9** | Stale tracking issues | #2 still OPEN; #6 open after S5 pack merge | Close #2; retarget #6 to “operating S5” checkboxes | GitHub |
+| **G7** | No live Strict ERAG path for panels | **Mitigated (coding):** one-command Strict via [STRICT_PANEL_PACK](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/STRICT_PANEL_PACK.md) + UI `?api=` / Strict host paste; Render twin still owner/Starter | Dual URL **or** documented one-command Strict review env | ERAG + portfolio |
+| **G8** | ACF publish not in golden path | **Closed (honest boundary):** GOLDEN_PATH permanently records `/health` only; Clerk for live publish (ADR-008) | Public demo publish **or** permanent honest boundary in GOLDEN_PATH | ACF |
+| **G9** | Stale tracking issues | **#2 CLOSED**; **#6** retargeted to M6 owner checklist (G3–G6 signal) — freeze retro S5.5 already shipped | Close #2; retarget #6 to “operating S5” checkboxes | GitHub |
 
 ---
 
@@ -105,3 +105,7 @@ Phase −1 remediation + S0–S5 paper work ≠ Top-1% offers. Remaining work is
 | | G1 | _PARKED — owner keeping Render Free ~1–2 days; see RENDER_FREE_INTERIM.md_ |
 | 2026-07-18 | G2 | Keyed run `gp-20260718T234153Z`: `full_ask_answer_ok=true` · `stranger_replayable_ok=true` · 10/10. VAP `/chat` unblocked via venkat-ai-platform#3 (ephemeral when Postgres down). |
 | | G2 | _done (artifact + case study refreshed)_ |
+| 2026-08-02 | G7 | Documented one-command Strict + glass-box Strict host; Render twin remains owner after Starter |
+| 2026-08-02 | G8 | Permanent honest ACF `/health` boundary affirmed in GOLDEN_PATH |
+| 2026-08-02 | G9 | #2 already closed; #6 retargeted to M6 owner signal checklist (G3–G6) |
+| 2026-08-02 | — | venkat-ai.com spine-health probes `observability/status` (honesty-only; does not gate warm SLO) |

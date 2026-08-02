@@ -42,6 +42,8 @@ Proof links for sample chapters should cite live spine demos + ADRs (gateway, ac
 - [x] Skills catalog sync (21 skills, `git-commit-author`)
 - [x] This freeze retro + owner checklist
 - [x] Handbook flagship chapters: platform-proof tables + empty part-shell cleanup
+- [x] Observability status parity (spine + AgentOps + LLM plane) + golden-path / GER gates
+- [x] Public spine-health honesty probes for `observability/status`
 
 ## Freeze reminder
 
