@@ -4,6 +4,26 @@ Canonical package: `packages/vpeetla_observability/`
 
 **Org spec:** three evaluation levels linked to one `trace_id` — export to Langfuse when `LANGFUSE_*` keys are set.
 
+I’d keep two stories straight for a panel: **traces** (what the run did) and **compose honesty** (what’s actually wired vs theater). Langfuse is an adapter. The ledger for HITL, publish, or budgets still lives in the product control planes.
+
+## Compose-plane honesty (`/…/observability/status`)
+
+Public GET on each live API. It does **not** replace `/health` or ops metrics. It answers: what’s the source of truth, which exporters are live, and what I’d trust in a review.
+
+| Surface | Path |
+|---------|------|
+| AegisAI | `GET /api/observability/status` |
+| VAP | `GET /api/v1/ops/observability/status` |
+| Enterprise RAG | `GET /v1/observability/status` |
+| AI Content Factory | `GET /api/v1/ops/observability/status` |
+| Agent FinOps | `GET /v1/observability/status` |
+| LLM gateway / semantic cache | `GET /v1/observability/status` |
+| LoopForge | `GET /api/observability/status` |
+| AegisLoop | `GET /api/observability/status` |
+| Sentinel Brief | `GET /api/v1/ops/observability/status` |
+
+Spine-health on [venkat-ai.com/spine-health](https://venkat-ai.com/spine-health) probes these for VAP · AegisAI · ERAG (honesty-only — never fails the warm `/health` budget). Golden path does the same and never fails `stranger_replayable_ok` on a cold miss.
+
 ## Three evaluation levels
 
 | Level | Question | Examples |
@@ -71,4 +91,4 @@ Per-repo deploy notes: `ai-content-factory/docs/DEPLOYMENT.md` §8, `sentinel-br
 
 ## Leadership takeaway
 
-Observability tells you **what happened**. Trace-linked evaluation tells you **whether it was good, why it failed, and what to fix next**.
+Observability tells you **what happened**. Trace-linked evaluation tells you **whether it was good, why it failed, and what to fix next**. Compose status tells you **what to trust on a free-tier demo day** — without pretending Langfuse is the audit ledger.
