@@ -55,6 +55,10 @@
 | — | 1 | Owner: Render Starter always-on (G1) | `OWNER` |
 | — | 1–2 | Owner: Substack/LinkedIn/mocks/outreach (G3–G6) | `OWNER` |
 | 2026-08-02 | 3–5 | AegisAI content-pipeline FinOps; ACF quality_scores API; VAP HITL deep-link; LoopForge sandbox honesty | `DONE` |
+| 2026-08-02 | 3 | ACF R2 PNG + native LinkedIn/X attach; HITL media UI; schedule UI + ERAG compose meta | `DONE` |
+| 2026-08-02 | 2–4 | AegisAI HITL deep-link sync; VAP/FinOps ops compose planes | `DONE` |
+| 2026-08-02 | 5 | LoopForge/AegisLoop observability status; Sentinel schedule surface; GER scraper depth | `DONE` |
+| 2026-08-02 | 6 | DomainForge + VoiceForge ops honesty (labs depth kickoff) | `IN_PROGRESS` |
 
 ---
 
