@@ -12,6 +12,7 @@
 | S5.3 | [Mock loop log](./interview/MOCK_LOOP_LOG.md) | 3 sessions planned (record privately) |
 | S5.4 | [Outreach log](./outreach/OUTREACH_LOG.md) | Intros logged as they happen |
 | S5.5 | [Day-90 checkpoint retro](./S5_DAY90_RETROSPECTIVE.md) | Written; freeze decision recorded |
+| M6 | [Freeze retro](./M6_FREEZE_RETROSPECTIVE.md) · [Owner checklist](./M6_OWNER_CHECKLIST.md) | Coding depth closed; owner signal/always-on remain |
 
 **Render Free interim:** do not claim always-on in posts — see [RENDER_FREE_INTERIM.md](./RENDER_FREE_INTERIM.md). CTA stays `/technical-review` + golden path.
 
