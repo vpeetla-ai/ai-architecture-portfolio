@@ -58,7 +58,8 @@
 | 2026-08-02 | 3 | ACF R2 PNG + native LinkedIn/X attach; HITL media UI; schedule UI + ERAG compose meta | `DONE` |
 | 2026-08-02 | 2–4 | AegisAI HITL deep-link sync; VAP/FinOps ops compose planes | `DONE` |
 | 2026-08-02 | 5 | LoopForge/AegisLoop observability status; Sentinel schedule surface; GER scraper depth | `DONE` |
-| 2026-08-02 | 6 | DomainForge + VoiceForge ops honesty (labs depth kickoff) | `IN_PROGRESS` |
+| 2026-08-02 | 6 | DomainForge + VoiceForge ops honesty (labs depth kickoff) | `DONE` |
+| 2026-08-02 | 6 | vLLM Architecture Lab + Practice Arena ops / BYOK honesty | `DONE` |
 
 ---
 
