@@ -66,6 +66,7 @@
 | 2026-08-02 | 6 | Handbook: flagship ch. proofs + manuscript path cleanup | `DONE` |
 | 2026-08-02 | 6 | Handbook flagship diagrams D-004/D-007/D-018 (mermaid) | `DONE` |
 | 2026-08-02 | 2–4 | VAP + LLM gateway + semantic cache observability status; golden-path certifi | `DONE` |
+| 2026-08-02 | 2–4 | ERAG + FinOps + ACF observability status (corpus SoT / meter-vs-enforce / compose planes) | `DONE` |
 
 ---
 
