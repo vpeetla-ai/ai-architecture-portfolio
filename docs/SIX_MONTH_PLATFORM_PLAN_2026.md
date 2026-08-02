@@ -1,9 +1,9 @@
 # Six-Month Platform Depth & Breadth Plan (2026)
 
-**Status:** ACTIVE — Implementation started 2026-08-02  
+**Status:** ACTIVE — Coding depth pass closed 2026-08-02; owner signal/always-on remain  
 **Decisions:** Success = **C** (conversion then product depth). Scope = **C** (full catalog).  
 **Supersedes sequencing of:** ad-hoc feature work outside this plan.  
-**Companions:** [TOP1PCT_GAP_PLAN](./TOP1PCT_GAP_PLAN.md) · [TOP1PCT_90DAY_EXECUTION](./TOP1PCT_90DAY_EXECUTION.md) · [ORG_IMPROVEMENT_PLAN_2026](./ORG_IMPROVEMENT_PLAN_2026.md)
+**Companions:** [TOP1PCT_GAP_PLAN](./TOP1PCT_GAP_PLAN.md) · [TOP1PCT_90DAY_EXECUTION](./TOP1PCT_90DAY_EXECUTION.md) · [ORG_IMPROVEMENT_PLAN_2026](./ORG_IMPROVEMENT_PLAN_2026.md) · [M6_FREEZE_RETROSPECTIVE](./M6_FREEZE_RETROSPECTIVE.md) · [M6_OWNER_CHECKLIST](./M6_OWNER_CHECKLIST.md)
 
 ---
 
@@ -62,6 +62,7 @@
 | 2026-08-02 | 6 | vLLM Architecture Lab + Practice Arena ops / BYOK honesty | `DONE` |
 | 2026-08-02 | 6 | Practice Arena CI: mermaid Data Flow fallback + category sync | `DONE` |
 | 2026-08-02 | 6 | Skills: catalog sync for git-commit-author + human-voice land | `DONE` |
+| 2026-08-02 | 6 | Freeze retro + M6 owner checklist (career/signal) | `DONE` |
 
 ---
 
@@ -79,4 +80,6 @@
 
 - Technical review: https://venkat-ai.com/technical-review  
 - Golden path: [GOLDEN_PATH.md](./GOLDEN_PATH.md)  
-- Gap plan (operating): [TOP1PCT_GAP_PLAN.md](./TOP1PCT_GAP_PLAN.md)
+- Gap plan (operating): [TOP1PCT_GAP_PLAN.md](./TOP1PCT_GAP_PLAN.md)  
+- M6 freeze retro: [M6_FREEZE_RETROSPECTIVE.md](./M6_FREEZE_RETROSPECTIVE.md)  
+- M6 owner checklist: [M6_OWNER_CHECKLIST.md](./M6_OWNER_CHECKLIST.md)

@@ -18,6 +18,8 @@
 | [aegis-routing-contract](https://github.com/vpeetla-ai/aegis-routing-contract) | Routing contract | Shared schemas/policy | — (library) | [ADR-029](../adr/ADR-029-app-owned-role-aware-routing-contract.md) |
 | [aegis-semantic-cache](https://github.com/vpeetla-ai/aegis-semantic-cache) | Semantic cache plane | Hit/miss metrics | [API](https://aegis-semantic-cache-api.onrender.com/health) | [ADR-028](../adr/ADR-028-federated-ai-control-plane-k8s-analogy.md) |
 | [vpeetla-ai-skills](https://github.com/vpeetla-ai/vpeetla-ai-skills) | Skills / MCP | — | — | [skills](../case-studies/vpeetla-ai-skills.md) |
+| [ai-architect-practice-arena](https://github.com/vpeetla-ai/ai-architect-practice-arena) | Career / BYOK judge | — | [demo](https://ai-architect-practice-arena.vercel.app) | [REPO_INTERVIEW_MAP](./REPO_INTERVIEW_MAP.md) |
+| [enterprise-ai-architecture-handbook](https://github.com/vpeetla-ai/enterprise-ai-architecture-handbook) | Career / handbook (private) | — | — | [M6_OWNER_CHECKLIST](./M6_OWNER_CHECKLIST.md) |
 | *-agent-pattern (×5) | Patterns | JSON trace export | [work#demos](https://venkat-ai.com/work) | Ecosystem essay |
 
 **LLM Gateway Plane plan:** [LLM_GATEWAY_PLANE.md](./plans/LLM_GATEWAY_PLANE.md) · [ADR-028](../adr/ADR-028-federated-ai-control-plane-k8s-analogy.md) · **Observability spec:** [TRACE_LINKED_OBSERVABILITY.md](./TRACE_LINKED_OBSERVABILITY.md) · **Interview crosswalk:** [REPO_INTERVIEW_MAP.md](./REPO_INTERVIEW_MAP.md) · **Portfolio site:** [venkat-ai.com/work](https://venkat-ai.com/work) · **Metrics:** `venkat-ai-portfolio/data/metrics.ts`
