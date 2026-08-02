@@ -68,7 +68,7 @@ Enterprise agent programs keep asking the same questions. Each row is a live rep
 | 9 | **Overnight signal?** | **Sentinel Brief** — allowlisted sources → eval gate → governed email | [sentinel-brief-ruddy.vercel.app](https://sentinel-brief-ruddy.vercel.app) | [sentinel-brief](https://github.com/vpeetla-ai/sentinel-brief) |
 | 10 | **Interview proof?** | **Practice Arena** — 35/35 playbook · 139/140 dual-judge calibration | [ai-architect-practice-arena.vercel.app](https://ai-architect-practice-arena.vercel.app) | [ai-architect-practice-arena](https://github.com/vpeetla-ai/ai-architect-practice-arena) |
 | 11 | **Right model for this step?** | **OmniForge** — multimodal ask · multi-agent · multi-LLM waterfall | [omniforge-flame.vercel.app](https://omniforge-flame.vercel.app) · [API](https://omniforge-api.onrender.com) | [omniforge](https://github.com/vpeetla-ai/omniforge) |
-| — | **How do we know it worked?** | **Trace-linked LLMOps** — system / trace / node evals → Langfuse or OTLP | [TRACE_LINKED_OBSERVABILITY.md](docs/TRACE_LINKED_OBSERVABILITY.md) | All platform APIs |
+| — | **How do we know it worked?** | **Trace-linked LLMOps** + public `observability/status` honesty | [TRACE_LINKED_OBSERVABILITY.md](docs/TRACE_LINKED_OBSERVABILITY.md) · [spine-health](https://venkat-ai.com/spine-health) | All platform APIs |
 
 **Canonical essay (stub → full piece):** [From Multi-Agent OS to Agent Governance](case-studies/from-multi-agent-os-to-agent-governance.md)
 
@@ -118,6 +118,8 @@ flowchart TB
 
 Traces without scores are a diary. I’d bind eval to the same `trace_id` as the run: observability says **what happened**; trace-linked evaluation says **whether it was good**.
 
+Every spine/AgentOps API also exposes a public **compose honesty** endpoint (`/…/observability/status`) — source of truth, exporters, recommendation. That’s what [spine-health](https://venkat-ai.com/spine-health) and the [golden path](docs/GOLDEN_PATH.md) probe after `/health`. Coding depth for that pass is closed; cold starts and distribution are still owner work ([M6 owner checklist](docs/M6_OWNER_CHECKLIST.md)).
+
 ```mermaid
 flowchart TB
     subgraph Levels["Three evaluation levels"]
@@ -135,10 +137,14 @@ flowchart TB
         ER["enterprise_rag"]
         DF["domainforge"]
     end
-    subgraph Export["Export adapters"]
+    subgraph Honesty["Compose honesty — public GET"]
+        ST["/…/observability/status<br/>SoT · exporters · recommendation"]
+    end
+    subgraph Export["Export adapters — not the ledger"]
         LANG["Langfuse Cloud"]
     end
     Platforms --> Levels
+    Platforms --> ST
     Levels -.-> LANG
 ```
 

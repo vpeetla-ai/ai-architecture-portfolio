@@ -12,7 +12,7 @@ Slide decks say the platforms are wired. Strangers can’t replay slides. The sc
 
 1. **Ship a stranger-replayable script** — walk the Principal spine and persist `latest.json`.
 2. **Keyed private mutating calls** — `VAP_API_KEY` + `RAG_API_KEY` local only; never commit secrets. Without keys, record 401 honestly.
-3. **Health + real ask/answer/gateway/meter steps** — not health-only theater.
+3. **Health + real ask/answer/gateway/meter steps** — not health-only theater. The script also probes `observability/status` compose honesty; those steps never fail the stranger gate on a cold miss.
 4. **Keep free-tier honesty** — cold starts and degraded deps show up in the artifact.
 
 ## Measured signal (this run)
