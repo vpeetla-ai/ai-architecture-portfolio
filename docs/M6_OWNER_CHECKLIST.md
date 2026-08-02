@@ -20,9 +20,9 @@ Private repo: [enterprise-ai-architecture-handbook](https://github.com/vpeetla-a
 | ID | Action | Done when |
 |----|--------|-----------|
 | C1 | Confirm TOC still matches `CANONICAL_TOC.md` | Owner sign-off in handbook `reviews/` |
-| C2 | Draft sample chapter 4 — Enterprise AI Control Plane | PR merged on handbook `develop` or `main` |
-| C3 | Draft sample chapter 7 — Agent Runtime Architecture | Same |
-| C4 | Draft sample chapter 18 — Evaluation Architecture | Same |
+| C2 | Technical review of ch. 4 Draft (v1) + platform proofs | Reviewer notes in handbook `reviews/` |
+| C3 | Technical review of ch. 7 Draft (v1) + platform proofs | Same |
+| C4 | Technical review of ch. 18 Draft (v1) + platform proofs | Same |
 | C5 | Publisher proposal package complete | Tracker in handbook `proposal/` updated |
 
 Proof links for sample chapters should cite live spine demos + ADRs (gateway, access-before-ranking, golden eval) — not invented metrics.
@@ -41,6 +41,7 @@ Proof links for sample chapters should cite live spine demos + ADRs (gateway, ac
 - [x] Arena CI (mermaid Data Flow + private-submodule-safe jobs)
 - [x] Skills catalog sync (21 skills, `git-commit-author`)
 - [x] This freeze retro + owner checklist
+- [x] Handbook flagship chapters: platform-proof tables + empty part-shell cleanup
 
 ## Freeze reminder
 

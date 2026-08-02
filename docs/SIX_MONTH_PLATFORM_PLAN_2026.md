@@ -63,6 +63,7 @@
 | 2026-08-02 | 6 | Practice Arena CI: mermaid Data Flow fallback + category sync | `DONE` |
 | 2026-08-02 | 6 | Skills: catalog sync for git-commit-author + human-voice land | `DONE` |
 | 2026-08-02 | 6 | Freeze retro + M6 owner checklist (career/signal) | `DONE` |
+| 2026-08-02 | 6 | Handbook: flagship ch. proofs + manuscript path cleanup | `DONE` |
 
 ---
 
