@@ -64,6 +64,7 @@
 | 2026-08-02 | 6 | Skills: catalog sync for git-commit-author + human-voice land | `DONE` |
 | 2026-08-02 | 6 | Freeze retro + M6 owner checklist (career/signal) | `DONE` |
 | 2026-08-02 | 6 | Handbook: flagship ch. proofs + manuscript path cleanup | `DONE` |
+| 2026-08-02 | 6 | Handbook flagship diagrams D-004/D-007/D-018 (mermaid) | `DONE` |
 
 ---
 
