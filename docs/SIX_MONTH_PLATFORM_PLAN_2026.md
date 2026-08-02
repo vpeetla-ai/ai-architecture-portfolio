@@ -71,6 +71,7 @@
 | 2026-08-02 | 2 | Portfolio spine-health observability probes; GER LLM-plane scrape; G7–G9 hygiene | `DONE` |
 | 2026-08-02 | 6 | Human-voice docs pass: TRACE/REPO_INDEX + spine ARCHITECTURE diagrams for compose honesty | `DONE` |
 | 2026-08-02 | 6 | Human-voice labs pass: DomainForge · VoiceForge · vLLM Lab · Practice Arena | `DONE` |
+| 2026-08-02 | 5 | Aegis PR Review tooling repo + advisory CI on spine/AgentOps; LoopForge CLI hook; labs enablement | `DONE` |
 
 ---
 
