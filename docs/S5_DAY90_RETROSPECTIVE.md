@@ -46,3 +46,5 @@
 5. Log ≥10 outreach rows  
 
 Re-run `python3 scripts/run_golden_path.py` weekly; refresh case study numbers when `full_ask_answer_ok` flips true.
+
+**Successor (2026-08-02):** [M6_FREEZE_RETROSPECTIVE.md](./M6_FREEZE_RETROSPECTIVE.md) — coding depth closeout; freeze reaffirmed.
