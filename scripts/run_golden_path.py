@@ -29,6 +29,15 @@ ENDPOINTS = {
 # Optional Strict ERAG (local Docker / GCP Cloud Run). Not required for stranger_ok.
 ERAG_STRICT_URL = (os.environ.get("ERAG_STRICT_URL") or "").rstrip("/")
 
+# Public compose-plane honesty probes (never fail stranger_ok; cold starts may 0).
+OBSERVABILITY_PATHS = {
+    "vap": "/api/v1/ops/observability/status",
+    "erag": "/v1/observability/status",
+    "aegisai": "/api/observability/status",
+    "acf": "/api/v1/ops/observability/status",
+    "finops": "/v1/observability/status",
+}
+
 # Always required for a green stranger run (no secrets).
 STRANGER_CRITICAL = {
     "health_vap",
@@ -144,6 +153,29 @@ def main() -> int:
     log("0) health probes")
     for name, base in ENDPOINTS.items():
         steps.append(request_json(f"health_{name}", "GET", f"{base.rstrip('/')}/health", timeout=45))
+
+    log("0b) observability status probes (optional honesty; never fail stranger gate)")
+    for name, path in OBSERVABILITY_PATHS.items():
+        base = ENDPOINTS[name]
+        obs = request_json(
+            f"observability_{name}",
+            "GET",
+            f"{base.rstrip('/')}{path}",
+            timeout=45,
+        )
+        obs["ok_for_stranger"] = True
+        if obs.get("ok"):
+            keys = set(obs.get("response_keys") or [])
+            obs["compose_shape_ok"] = {"source_of_truth", "exporters", "recommendation"} <= keys or (
+                "source_of_truth" in keys and "exporters" in keys
+            )
+        else:
+            obs["compose_shape_ok"] = False
+            obs["note"] = (
+                obs.get("note")
+                or "Observability status optional — cold start / undeployed path does not fail stranger_ok."
+            )
+        steps.append(obs)
 
     log("1) VAP ask")
     vap_headers: dict[str, str] = {}
@@ -297,6 +329,7 @@ def main() -> int:
 
     sequence = [
         "health",
+        "observability_status",
         "vap_ask",
         "erag_answer",
         "aegisai_gate",
@@ -305,6 +338,11 @@ def main() -> int:
     ]
     if ERAG_STRICT_URL:
         sequence.append("health_erag_strict")
+
+    observability_ok = sum(
+        1 for s in steps if str(s.get("step", "")).startswith("observability_") and s.get("ok")
+    )
+    observability_total = len(OBSERVABILITY_PATHS)
 
     artifact = {
         "run_id": run_id,
@@ -317,12 +355,15 @@ def main() -> int:
             "stranger_replayable_ok": stranger_ok,
             "full_ask_answer_ok": full_ask_ok,
             "strict_erag_ok": strict_ok,
+            "observability_status_ok": observability_ok,
+            "observability_status_total": observability_total,
             "notes": [
                 "ACF live publish requires Clerk — golden path records /health for the application layer.",
                 "VAP/ERAG mutating routes are API-key gated on live Render (set VAP_API_KEY / RAG_API_KEY for full ask→answer).",
                 "Without keys, 401 on vap_ask/erag_answer is expected and still counts as stranger-replayable honesty.",
                 "ERAG body principal is Demo mode unless PRODUCTION_STRICT=1.",
                 "Optional ERAG_STRICT_URL probes local/GCP Strict; unset skips (Free interim).",
+                "Observability status probes are honesty-only and never fail stranger_replayable_ok.",
                 "AegisAI demo headers; deploy tools typically return approval_required + HITL task.",
                 "Render Free: cold starts 15–40s possible — not always-on until Starter.",
             ],

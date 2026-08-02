@@ -9,12 +9,13 @@
 A cold reviewer can run one script and see the governed stack respond:
 
 1. **Health** — VAP · ERAG · AegisAI · ACF · FinOps  
-2. **Ask** — VAP `/chat` (API-key gated on live — see honesty)  
-3. **Retrieve/answer** — ERAG `/v1/answer` (API-key gated on live)  
-4. **Govern** — AegisAI `/api/gateway/tool-request` → typically `approval_required` + HITL  
-5. **Application** — ACF `/health` (Clerk required for live publish)  
-6. **Meter** — FinOps `/v1/usage`  
-7. **Eval proof** — golden-eval-registry CI badge + `enterprise_rag_adversarial_v1`
+2. **Observability status** — compose-plane honesty probes (optional; never fail stranger gate)  
+3. **Ask** — VAP `/chat` (API-key gated on live — see honesty)  
+4. **Retrieve/answer** — ERAG `/v1/answer` (API-key gated on live)  
+5. **Govern** — AegisAI `/api/gateway/tool-request` → typically `approval_required` + HITL  
+6. **Application** — ACF `/health` (Clerk required for live publish)  
+7. **Meter** — FinOps `/v1/usage`  
+8. **Eval proof** — golden-eval-registry CI badge + `enterprise_rag_adversarial_v1`
 
 ## Run
 
@@ -54,6 +55,7 @@ Exit code `0` when **stranger-replayable** checks pass (health + AegisAI gate + 
 | Step | Without secrets | With keys |
 |------|-----------------|-----------|
 | Spine `/health` | ✅ | ✅ |
+| Observability `/…/observability/status` | ✅ honesty-only (cold start may miss) | ✅ counted in `observability_status_ok` |
 | VAP `/chat` | 401 expected (ADR-009) | ✅ (ephemeral OK if Postgres down) |
 | ERAG `/v1/answer` | 401 expected | ✅ Demo principal |
 | ERAG Strict | unset = skipped | ✅ set `ERAG_STRICT_URL` (+ optional `RAG_JWT_SECRET`) — [STRICT_PANEL_PACK](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/STRICT_PANEL_PACK.md) · [panel Free runbook](./PANEL_DAY_FREE_RUNBOOK.md) |
@@ -72,6 +74,7 @@ Each run writes `docs/artifacts/golden-path/gp-<UTC>.json` and updates `latest.j
 - `summary.stranger_replayable_ok`
 - `summary.full_ask_answer_ok`
 - `summary.strict_erag_ok` (`null` if `ERAG_STRICT_URL` unset)
+- `summary.observability_status_ok` / `observability_status_total` (honesty probes; never fail stranger gate)
 - per-step `latency_ms`, `http_status`, proof fields (`gateway_decision`, `auth_gated`, …)
 - `summary.ci_proof` links the adversarial golden CI badge
 
