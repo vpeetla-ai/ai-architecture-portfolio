@@ -99,7 +99,7 @@ Patterns (×5)                  → composable units    [stub-first traces]
 | 2026 trend | Current strength | Gap |
 |------------|------------------|-----|
 | MCP tool standardization | Bidirectional in AegisAI — gate inbound + expose outbound (ADR-013) | Stdio MCP server packaging org-wide (Phase 3) |
-| Agent skills (SKILL.md) | vpeetla-ai-skills org-wide (19 skills) | Versioning semver |
+| Agent skills (SKILL.md) | vpeetla-ai-skills org-wide (21 skills) | Versioning semver |
 | Gateway governance | AegisAI + Content Factory + LoopForge git | Pattern repos N/A (honest ❌) |
 | HITL before side effects | AegisAI + Content Factory + LoopForge | VAP notify partial |
 | Evals + regression | Enterprise RAG, AegisLoop, Content Factory pytest | Pattern golden cross-repo; golden-eval-registry fixtures not yet wired as a live CI gate (Phase 7) |
@@ -126,7 +126,7 @@ canonical on its own.**
 | **Total live demos** | **13** | All on Vercel free tier (+ Render APIs) |
 | Open-source repos | **19** | Per GitHub org, excluding the private portfolio repo — adds `agent-finops` (2026-07-04) and `ai-architect-interview-playbook` (2026-07-05) |
 | Documented ADRs | **17** | ADR-001 through ADR-017, incl. the 2026-07-03 auth-gate fixes (008/009/010), the AgentFinOps standalone-service decision (011) and its consumer-wiring in AegisLoop (012 — AegisAI's consumer wiring is ADR-0004 in its own repo-local sequence), bidirectional MCP + real A2A discovery (013), golden-eval-registry becoming a real CI gate (014), genuine hands-on AWS + GCP infra (015), ingestion data contracts (016), and the interview playbook as a standalone repo (017) |
-| Agent skills | **20** | Per `vpeetla-ai-skills` |
+| Agent skills | **21** | Per `vpeetla-ai-skills` |
 
 ---
 
