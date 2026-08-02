@@ -60,6 +60,7 @@
 | 2026-08-02 | 5 | LoopForge/AegisLoop observability status; Sentinel schedule surface; GER scraper depth | `DONE` |
 | 2026-08-02 | 6 | DomainForge + VoiceForge ops honesty (labs depth kickoff) | `DONE` |
 | 2026-08-02 | 6 | vLLM Architecture Lab + Practice Arena ops / BYOK honesty | `DONE` |
+| 2026-08-02 | 6 | Practice Arena CI: mermaid Data Flow fallback + category sync | `DONE` |
 
 ---
 
