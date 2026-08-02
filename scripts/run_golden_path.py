@@ -61,8 +61,18 @@ def request_json(
         hdrs["Content-Type"] = "application/json"
     req = urllib.request.Request(url, data=data, headers=hdrs, method=method)
     started = time.perf_counter()
+    # Prefer certifi CA bundle when installed (macOS system Python often lacks roots).
+    context = None
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
+        import ssl
+
+        import certifi
+
+        context = ssl.create_default_context(cafile=certifi.where())
+    except Exception:  # noqa: BLE001 — fall back to platform defaults
+        context = None
+    try:
+        with urllib.request.urlopen(req, timeout=timeout, context=context) as resp:
             raw = resp.read().decode("utf-8", errors="replace")
             status = resp.status
     except urllib.error.HTTPError as exc:

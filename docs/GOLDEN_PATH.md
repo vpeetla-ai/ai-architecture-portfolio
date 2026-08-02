@@ -20,6 +20,8 @@ A cold reviewer can run one script and see the governed stack respond:
 
 ```bash
 cd ai-architecture-portfolio
+# Optional but recommended on macOS system Python (fixes CERTIFICATE_VERIFY_FAILED):
+#   pip install certifi
 python3 scripts/run_golden_path.py
 # or
 ./scripts/run_golden_path.sh
