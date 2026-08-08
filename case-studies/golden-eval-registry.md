@@ -14,7 +14,8 @@ Local tests were strong; the *contracts* were scattered. Enterprise RAG goldens,
 2. **JSON/JSONL fixtures** — readable diffs, no heavy runtime deps in the registry.
 3. **`locked: true`** — agents don’t silently edit the metrics they’re trying to pass.
 4. **Fixture registry first, then real scorers** — safe cross-repo value, then gate CI ([repo ADR-0002](https://github.com/vpeetla-ai/golden-eval-registry/blob/main/docs/adr/0002-real-scorer-and-first-ci-gate.md) · [ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)).
-5. **No live LLM calls inside the registry** — deterministic; live health stays each consumer’s job.
+5. **Collaboration scorecard as a suite kind** — CSS / TUE / hard gates / multi-trial fixtures; AegisLoop hands live trajectories ([ADR-031](../adr/ADR-031-multi-agent-collaboration-scorecard.md)).
+6. **No live LLM calls inside the registry** — deterministic; live health stays each consumer’s job.
 
 ## Architecture
 
@@ -45,15 +46,16 @@ flowchart LR
 ## Live proof
 
 - Repo + CI: [golden-eval-registry](https://github.com/vpeetla-ai/golden-eval-registry)
-- Real CI gates today: `enterprise_rag_golden_v1` → isolated `RagPipeline`; `aegisloop_mission_gates_v1` → real `runtime.evaluate()`
+- **10 suite kinds** with real consumer (or registry self-score) CI gates — see GER README Suite kinds table
+- Flagship examples: `enterprise_rag_golden_v1` → isolated `RagPipeline`; `aegisloop_mission_gates_v1` → `runtime.evaluate()`; `multi_agent_collaboration_v1` → collaboration scorecard
 
 ## Limitations / what we'd do differently
 
-- Four of six suite kinds are still fixture-validation only — don’t oversell “every suite gates production behavior.”
+- Not every suite gates every platform — coverage is stated per consumer; don’t imply a global matrix badge.
 - Adapter work per consumer is the tax for clean boundaries.
-- Next: promote more suites from validate-only to real scorer gates without bloating the registry with provider clients.
+- Failure→golden promotion and drift alarms exist for collaboration; other kinds still need the same ops loop.
 
 ## Related
 
-- [ADR-007](../adr/ADR-007-2026-agent-protocol-stack.md) · [ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md)
+- [ADR-007](../adr/ADR-007-2026-agent-protocol-stack.md) · [ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md) · [ADR-031](../adr/ADR-031-multi-agent-collaboration-scorecard.md)
 - [ORG_REVIEW_2026](../docs/ORG_REVIEW_2026.md)

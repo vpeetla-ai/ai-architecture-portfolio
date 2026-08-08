@@ -4,6 +4,8 @@
 
 Accepted — 2026-07-05
 
+> **Status footnote (2026-08-08):** The "2 of 6" count was true at acceptance. Suite kinds with real CI gates later grew to **10** (including `collaboration_scorecard` — see [ADR-031](./ADR-031-multi-agent-collaboration-scorecard.md)). Keep the historical title; do not restate "2 of 6" as current org metrics.
+
 ## In one breath (panel)
 
 I'd rather run two suite kinds against real consumer output in CI than claim six golden suites when `validate.py` only checked that the JSONL was well-formed.
@@ -53,9 +55,9 @@ Also fixed while wiring: `/v1/answer` never included `document_id` on citations,
   gate does work, not theater.
 
 ### Negative
-- Only **2 of 6** suite kinds (`rag_answer`, `mission_gate`) have a real scorer and gate;
-  `harness_qa`, `repo_fix`, `graph_hitl`, `brief_gate` remain fixture-validation only. Say
-  Planned vs Implemented out loud.
+- At acceptance, only **2 of 6** suite kinds (`rag_answer`, `mission_gate`) had a real scorer
+  and gate; the rest were fixture-validation only. Say Planned vs Implemented out loud.
+  *(Superseded count: see Status footnote + [ADR-031](./ADR-031-multi-agent-collaboration-scorecard.md).)*
 - `actions/checkout`'s `path:` lands the sibling repo *inside* the workspace — both consumer
   workflows set `GOLDEN_EVAL_REGISTRY_PATH` explicitly; caught only by pushing and reading the
   real Actions run, not local testing alone.
