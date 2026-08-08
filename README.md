@@ -220,6 +220,8 @@ Decisions I’d defend in a panel — context, what we refused, Demo vs Strict w
 | [ADR-027](adr/ADR-027-omniforge-self-contained-multimodal-multi-llm.md) | OmniForge multimodal multi-LLM | Self-contained ask platform — agents + MCP + task-class routing + waterfall proof |
 | [ADR-028](adr/ADR-028-federated-ai-control-plane-k8s-analogy.md) | Federated AI control plane | LLM gateway + semantic cache as separate planes — AegisAI stays tool gateway only |
 | [ADR-029](adr/ADR-029-app-owned-role-aware-routing-contract.md) | App-owned role-aware routing | Apps select; gateway enforces+records; `aegis-routing-contract` |
+| [ADR-030](adr/ADR-030-fde-field-method-portfolio-proof.md) | FDE Field Method as portfolio proof | Dual-fit Architect + FDE without a sixth platform or logo fiction |
+| [ADR-031](adr/ADR-031-multi-agent-collaboration-scorecard.md) | Multi-agent collaboration scorecard | CSS / TUE / hard gates / multi-trial in GER + AegisLoop — refuse trace-length quality |
 
 ---
 
