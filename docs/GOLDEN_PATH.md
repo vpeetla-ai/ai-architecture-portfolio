@@ -13,9 +13,10 @@ A cold reviewer can run one script and see the governed stack respond:
 3. **Ask** — VAP `/chat` (API-key gated on live — see honesty)  
 4. **Retrieve/answer** — ERAG `/v1/answer` (API-key gated on live)  
 5. **Govern** — AegisAI `/api/gateway/tool-request` → typically `approval_required` + HITL  
-6. **Application** — ACF `/health` (Clerk required for live publish)  
-7. **Meter** — FinOps `/v1/usage`  
-8. **Eval proof** — golden-eval-registry CI badge + `enterprise_rag_adversarial_v1`
+6. **Principal P0 (honesty-only)** — policy_plane on `/health` · MCP discover poison block · evidence pack · token revoke  
+7. **Application** — ACF `/health` (Clerk required for live publish)  
+8. **Meter** — FinOps `/v1/usage`  
+9. **Eval proof** — golden-eval-registry CI badge + `enterprise_rag_adversarial_v1`
 
 ## Run
 
@@ -60,6 +61,7 @@ Exit code `0` when **stranger-replayable** checks pass (health + AegisAI gate + 
 | ERAG `/v1/answer` | 401 expected | ✅ Demo principal |
 | ERAG Strict | unset = skipped | ✅ set `ERAG_STRICT_URL` (+ optional `RAG_JWT_SECRET`) — [STRICT_PANEL_PACK](https://github.com/vpeetla-ai/enterprise_rag_platform/blob/main/docs/STRICT_PANEL_PACK.md) · [panel Free runbook](./PANEL_DAY_FREE_RUNBOOK.md) |
 | AegisAI gateway | ✅ demo headers | ✅ |
+| AegisAI Principal P0 | honesty-only until deploy (404 OK) | ✅ policy_plane · MCP discover · evidence pack · revoke |
 | ACF live publish | **Not in golden path** | Clerk session required — path records `/health` only (G8 honest boundary) |
 | FinOps `/v1/usage` | ✅ if key unset | ✅ |
 
@@ -75,6 +77,7 @@ Each run writes `docs/artifacts/golden-path/gp-<UTC>.json` and updates `latest.j
 - `summary.full_ask_answer_ok`
 - `summary.strict_erag_ok` (`null` if `ERAG_STRICT_URL` unset)
 - `summary.observability_status_ok` / `observability_status_total` (honesty probes; never fail stranger gate)
+- `summary.principal_p0_probes_live` / `principal_p0_probes_total` (AegisAI ADR-0007/0008; never fail stranger gate)
 - per-step `latency_ms`, `http_status`, proof fields (`gateway_decision`, `auth_gated`, …)
 - `summary.ci_proof` links the adversarial golden CI badge
 
