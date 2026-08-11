@@ -36,3 +36,17 @@
 ## Exit
 
 If any break test is theater, stop and fix before claiming Demonstrated on the FDE checklist map.
+
+## Automated harness (CI)
+
+Consumer gate: `aegisai-enterprise-agent-platform` runs `acme.embed_invariant_v1` via
+`collect_acme_embed_invariants()` → GER `router_invariant` scorer.
+
+```bash
+# From AegisAI (sibling golden-eval-registry checked out)
+GOLDEN_EVAL_REGISTRY_PATH=../golden-eval-registry \
+  python scripts/run_acme_embed_harness.py --score
+pytest -q services/api/tests/test_acme_embed_invariant_gate.py
+```
+
+Suite: `golden-eval-registry/suites/acme_embed_invariant_v1/` (ADR-032).
