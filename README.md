@@ -222,6 +222,7 @@ Decisions I’d defend in a panel — context, what we refused, Demo vs Strict w
 | [ADR-029](adr/ADR-029-app-owned-role-aware-routing-contract.md) | App-owned role-aware routing | Apps select; gateway enforces+records; `aegis-routing-contract` |
 | [ADR-030](adr/ADR-030-fde-field-method-portfolio-proof.md) | FDE Field Method as portfolio proof | Dual-fit Architect + FDE without a sixth platform or logo fiction |
 | [ADR-031](adr/ADR-031-multi-agent-collaboration-scorecard.md) | Multi-agent collaboration scorecard | CSS / TUE / hard gates / multi-trial in GER + AegisLoop — refuse trace-length quality |
+| [ADR-032](adr/ADR-032-acme-support-agent-embed.md) | Acme Support Agent Embed | FDE wedge on the spine — SSO/SCIM, webhooks, connectors, tenant health, Stripe test |
 
 ---
 

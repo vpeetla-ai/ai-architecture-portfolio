@@ -4,6 +4,8 @@
 
 Accepted — 2026-07-31
 
+> **Footnote (2026-08-11):** The field method now has a named embed wedge — **Acme Support Agent** ([ADR-032](./ADR-032-acme-support-agent-embed.md)) — still on the existing spine, still not a sixth platform.
+
 ## In one breath (panel)
 
 I'd prove FDE fit with a discovery→handoff field method on the existing five spines — not by inventing a sixth platform or fake customer logos.
