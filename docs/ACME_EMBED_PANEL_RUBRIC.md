@@ -37,6 +37,12 @@
 
 If any break test is theater, stop and fix before claiming Demonstrated on the FDE checklist map.
 
+## Operator wiring (live IdP / Slack / SFDC / Stripe / Strict)
+
+Step-by-step where to click and which env vars to set:
+
+→ **[ACME_EMBED_OPERATOR_WIRING.md](./ACME_EMBED_OPERATOR_WIRING.md)**
+
 ## Automated harness (CI)
 
 Consumer gate: `aegisai-enterprise-agent-platform` runs `acme.embed_invariant_v1` via

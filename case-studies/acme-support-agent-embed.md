@@ -50,6 +50,7 @@ flowchart LR
 ## Live proof
 
 - Panel rubric: [ACME_EMBED_PANEL_RUBRIC.md](../docs/ACME_EMBED_PANEL_RUBRIC.md)
+- **Operator wiring:** [ACME_EMBED_OPERATOR_WIRING.md](../docs/ACME_EMBED_OPERATOR_WIRING.md)
 - Deploy: `aegisai-enterprise-agent-platform/scripts/embed_acme_up.sh`
 - Adapter contract (refusals): `docs/ADAPTER_CONTRACT_HUBSPOT_GWS.md`
 - IR drill: `docs/artifacts/acme-ir-drill-webhook-budget.md`

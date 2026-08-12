@@ -63,5 +63,6 @@ Ship a **90-day Acme Support Agent Embed** as an inspectable wedge:
 - ADR-026, ADR-030, ADR-031
 - Case study: [acme-support-agent-embed.md](../case-studies/acme-support-agent-embed.md)
 - Panel rubric: [ACME_EMBED_PANEL_RUBRIC.md](../docs/ACME_EMBED_PANEL_RUBRIC.md)
+- **Operator wiring (IdP / Slack / SFDC / Stripe / Strict):** [ACME_EMBED_OPERATOR_WIRING.md](../docs/ACME_EMBED_OPERATOR_WIRING.md)
 - Prior: [ADR-026](./ADR-026-multi-tenant-isolation.md) · [ADR-030](./ADR-030-fde-field-method-portfolio-proof.md)
 - Live: https://venkat-ai.com/fde
