@@ -1,7 +1,11 @@
 # S3 — Always-on spine APIs + interview pack
 
-**Status:** Complete (2026-07-18) — PRs merged; duplicate Vercel playbook project deleted  
-**Plan:** [`TOP1PCT_90DAY_EXECUTION.md`](./TOP1PCT_90DAY_EXECUTION.md) · Decision **D2**
+**Status:** Blueprint shipped (2026-07-18); **warm SLO is owner-gated** — Free-tier cold starts remain until Starter is applied in the Render dashboard  
+**Plan:** [`TOP1PCT_90DAY_EXECUTION.md`](./TOP1PCT_90DAY_EXECUTION.md) · Decision **D2** · Interim: [`RENDER_FREE_INTERIM.md`](./RENDER_FREE_INTERIM.md) · Panel day: [`PANEL_DAY_FREE_RUNBOOK.md`](./PANEL_DAY_FREE_RUNBOOK.md)
+
+## Honesty
+
+`render.yaml` targets **Starter** for spine APIs. That is **not** the same as “always warm in production today.” Confirm instance type in the dashboard; until then treat spine health as Free-tier wake (~15–30s) and use the Free panel runbook.
 
 ## S3.1 Render plan upgrades
 
