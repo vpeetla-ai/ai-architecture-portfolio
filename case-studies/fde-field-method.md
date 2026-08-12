@@ -11,6 +11,7 @@ AI Architect portfolios often look like platform catalogs. FDE interviews fail c
 3. **Week-1 questions before architecture** — jobs, systems of record, SSO/ACLs, irreversibility, change windows, exit owner
 4. **Wedge scoring** — value × feasibility × risk × reuse × named sponsor
 5. **Playbook dual track** — `fde-deployment/` covers Why FDE, decomposition, discovery→MVP, client simulation
+6. **Named wedge on the spine** — [ADR-032](../adr/ADR-032-acme-support-agent-embed.md) Acme Support Agent Embed (SSO/SCIM, webhooks, connectors, tenant health, Stripe test) — still not a CustomerOS repo
 
 ## Architecture (method, not another service)
 
@@ -22,16 +23,21 @@ flowchart LR
   G --> E[Eval gate]
   E --> H[Handoff ownership]
   W --> Spine[AegisAI / VAP / RAG / Publish]
+  W --> Acme[Acme embed ADR-032]
 ```
 
 ## Live proof
 
-- Method page: https://venkat-ai.com/fde
+- Method page: https://venkat-ai.com/fde (Embed lab + operator wiring)
+- Named wedge: [acme-support-agent-embed.md](./acme-support-agent-embed.md) · [ADR-032](../adr/ADR-032-acme-support-agent-embed.md)
+- Operator wiring: [ACME_EMBED_OPERATOR_WIRING.md](../docs/ACME_EMBED_OPERATOR_WIRING.md)
+- Panel harness: `acme.embed_invariant_v1` in golden-eval-registry
 - Spine review: https://venkat-ai.com/technical-review
 - Playbook FDE pack: https://github.com/vpeetla-ai/ai-architect-interview-playbook/blob/main/release/fde_pack.json
 
 ## Limitations / what we'd do differently
 
-- **Implemented** as portfolio + curriculum method; candidate voice practice is still the readiness gate.
+- **Implemented** as portfolio + curriculum method + Acme spine wedge; candidate voice practice is still the readiness gate.
+- Live IdP/Slack/SFDC/Stripe twin wiring is operator work — see operator guide (Demo vs Strict labeled).
 - Add a take-home-style public artifact (tiny RAG + eval notes) once coding mocks are weekly habit.
 - Publish one anonymized discovery-notes template after a real FDE loop (with legal review).

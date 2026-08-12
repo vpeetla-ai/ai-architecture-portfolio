@@ -173,6 +173,8 @@ Human-voice write-ups: problem with a scar → decisions (ADR-linked) → live p
 | **Sentinel Brief** | Overnight intelligence | Allowlisted sources → snapshot diff → eval gate → governed email | [case-studies/sentinel-brief.md](case-studies/sentinel-brief.md) |
 | **OmniForge** | Multimodal multi-LLM | Ask anything · agents + MCP · model waterfall proof | [case-studies/omniforge.md](case-studies/omniforge.md) |
 | **Golden Eval Registry** | Evaluation | Cross-repo golden eval contracts | [case-studies/golden-eval-registry.md](case-studies/golden-eval-registry.md) |
+| **FDE Field Method** | Forward Deployed proof | Discovery→wedge→handoff on the spine (not a 6th platform) | [case-studies/fde-field-method.md](case-studies/fde-field-method.md) |
+| **Acme Support Agent Embed** | FDE wedge (ADR-032) | SSO/SCIM · webhooks · Slack/SFDC · tenant health · Stripe test · GER harness | [case-studies/acme-support-agent-embed.md](case-studies/acme-support-agent-embed.md) |
 
 ### Enterprise Delivery (employer context)
 

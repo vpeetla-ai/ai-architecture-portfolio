@@ -46,8 +46,8 @@ flowchart LR
 ## Live proof
 
 - Repo + CI: [golden-eval-registry](https://github.com/vpeetla-ai/golden-eval-registry)
-- **10 suite kinds** with real consumer (or registry self-score) CI gates — see GER README Suite kinds table
-- Flagship examples: `enterprise_rag_golden_v1` → isolated `RagPipeline`; `aegisloop_mission_gates_v1` → `runtime.evaluate()`; `multi_agent_collaboration_v1` → collaboration scorecard
+- **Suite kinds** with real consumer (or registry self-score) CI gates — see GER README Suite kinds table
+- Flagship examples: `enterprise_rag_golden_v1` → isolated `RagPipeline`; `aegisloop_mission_gates_v1` → `runtime.evaluate()`; `multi_agent_collaboration_v1` → collaboration scorecard; **`acme.embed_invariant_v1`** → AegisAI panel break tests (ADR-032)
 
 ## Limitations / what we'd do differently
 
@@ -57,5 +57,5 @@ flowchart LR
 
 ## Related
 
-- [ADR-007](../adr/ADR-007-2026-agent-protocol-stack.md) · [ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md) · [ADR-031](../adr/ADR-031-multi-agent-collaboration-scorecard.md)
+- [ADR-007](../adr/ADR-007-2026-agent-protocol-stack.md) · [ADR-014](../adr/ADR-014-golden-eval-registry-real-ci-gate.md) · [ADR-031](../adr/ADR-031-multi-agent-collaboration-scorecard.md) · [ADR-032](../adr/ADR-032-acme-support-agent-embed.md)
 - [ORG_REVIEW_2026](../docs/ORG_REVIEW_2026.md)
