@@ -56,7 +56,7 @@ Enterprise agent programs keep asking the same questions. Each row is a live rep
 | 2 | What are agents allowed to do? | **AegisAI** — tool gateway, policy, HITL, audit | [aegisai-enterprise-agent-platform.vercel.app](https://aegisai-enterprise-agent-platform.vercel.app) | [aegisai](https://github.com/vpeetla-ai/aegisai-enterprise-agent-platform) |
 | 2a | How do we route model calls? | **Aegis LLM Gateway** — apps select; GW enforces+records (ADR-028/029) | [API](https://aegis-llm-gateway-api.onrender.com/health) · **stub + `CONTROL_PLANE_MODE=demo` default** ([posture](https://aegis-llm-gateway-api.onrender.com/v1/posture)) | [aegis-llm-gateway](https://github.com/vpeetla-ai/aegis-llm-gateway) |
 | 2b | How do we cache completions? | **Aegis Semantic Cache** — tenant-scoped similarity | [API](https://aegis-semantic-cache-api.onrender.com/health) · **stub + demo default** (not production) | [aegis-semantic-cache](https://github.com/vpeetla-ai/aegis-semantic-cache) |
-| 2c | Shared role/tier/data-class schemas? | **aegis-routing-contract** — ThesisRole · ModelTier · enforce helpers | GitHub (library) | [aegis-routing-contract](https://github.com/vpeetla-ai/aegis-routing-contract) |
+| 2c | Shared role/tier/data-class + thin geo schemas? | **aegis-routing-contract** — ThesisRole · ModelTier · InferenceGeo · enforce helpers (ADR-029/033) | GitHub (library) | [aegis-routing-contract](https://github.com/vpeetla-ai/aegis-routing-contract) |
 | 3 | What knowledge can they use? | **Enterprise RAG** — access-before-ranking · page cites · BM25+dense RRF | [enterprise-rag-platform-eta.vercel.app](https://enterprise-rag-platform-eta.vercel.app) | [enterprise_rag_platform](https://github.com/vpeetla-ai/enterprise_rag_platform) |
 | 3b | How do we adapt domain format? | **DomainForge** — RAG facts + PEFT behavior | [domainforge-rag-peft.vercel.app](https://domainforge-rag-peft.vercel.app) · [API](https://domainforge-api.onrender.com) | [domainforge-rag-peft](https://github.com/vpeetla-ai/domainforge-rag-peft) |
 | 3c | How do we run voice triage? | **VoiceForge** — ASR → LLM → TTS | [voiceforge-assistant.vercel.app](https://voiceforge-assistant.vercel.app) · [API](https://voiceforge-api-eysb.onrender.com) | [voiceforge-assistant](https://github.com/vpeetla-ai/voiceforge-assistant) |
@@ -225,6 +225,7 @@ Decisions I’d defend in a panel — context, what we refused, Demo vs Strict w
 | [ADR-030](adr/ADR-030-fde-field-method-portfolio-proof.md) | FDE Field Method as portfolio proof | Dual-fit Architect + FDE without a sixth platform or logo fiction |
 | [ADR-031](adr/ADR-031-multi-agent-collaboration-scorecard.md) | Multi-agent collaboration scorecard | CSS / TUE / hard gates / multi-trial in GER + AegisLoop — refuse trace-length quality |
 | [ADR-032](adr/ADR-032-acme-support-agent-embed.md) | Acme Support Agent Embed | FDE wedge on the spine — SSO/SCIM, webhooks, connectors, tenant health, Stripe test |
+| [ADR-033](adr/ADR-033-thin-geo-routing-enforce.md) | Thin geo enforce dimension | Optional X-Allowed-Regions on ADR-029 plane — not a residency envelope |
 
 ---
 

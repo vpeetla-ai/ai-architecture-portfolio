@@ -8,6 +8,21 @@
 
 ---
 
+
+## Zero-narration probe (code path)
+
+Against a running AegisAI API:
+
+```bash
+export AEGISAI_URL=https://aegisai-api.onrender.com  # or local
+./scripts/probe_acme_embed_panel.sh
+# expect: acme_embed_probe_ok=true
+```
+
+Script lives in `aegisai-enterprise-agent-platform/scripts/`. Env templates: `./scripts/embed_acme_up.sh` (not live vendor wiring).
+
+Model-plane deny theater (separate from tool glass-box): AegisAI Control Room → LLM metrics → Model routing → **Run deny probes** (ADR-029 + ADR-033).
+
 ## Where secrets live
 
 | Concern | Put secrets in | Repo / surface |
