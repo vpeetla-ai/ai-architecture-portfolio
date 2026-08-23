@@ -29,7 +29,7 @@
 | 0.2 | This tracker | ✅ | `docs/MODEL_PLANE_100_TRACKER.md` |
 | 0.3 | ADR-034 ModelForge decision | ✅ | `adr/ADR-034-modelforge-model-plane.md` |
 | 0.4 | GitHub profile Model track | ✅ | https://github.com/vpeetla-ai/vpeetla-ai (6-spine) |
-| 0.5 | venkat-ai.com ecosystem + hire copy | ⬜ | `venkat-ai-portfolio` |
+| 0.5 | venkat-ai.com ecosystem + hire copy | 🔄 | PR https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/30 |
 | 0.6 | Scaffold `modelforge-llmops` | ✅ | https://github.com/vpeetla-ai/modelforge-llmops |
 
 ---
