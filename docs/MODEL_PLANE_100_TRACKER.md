@@ -13,13 +13,14 @@
 |-------|------|--------|---|
 | 0 | Plan + narrative + ADR | ✅ | 100% |
 | 1 | ModelForge MVP | ✅ | 100% |
-| 2 | PEFT GPU receipt | 🔄 | 25% |
-| 3 | CUDA vLLM receipt | 🔄 | 35% |
+| 2 | PEFT GPU receipt | 🔄 | 40% |
+| 3 | CUDA vLLM receipt | 🔄 | 45% |
 | 4 | SLM bake-off + LLMOps | 🔄 | 85% |
 | 5 | Profile perfection + panel | 🔄 | 80% |
 
 **Program complete when all phases are ✅ and DoD checklist below is green.**  
-**Hard blockers remaining:** real CUDA PEFT run (`peft_gpu.json`), real vLLM metrics (`vllm_cuda.json`), executed SLM bake-off (`slm_bakeoff.md`).
+**Hard blockers remaining:** real CUDA PEFT run (`peft_gpu.json`), real vLLM metrics (`vllm_cuda.json`).  
+**Operator path:** [modelforge `docs/RUNPOD_ONE_SHOT.md`](https://github.com/vpeetla-ai/modelforge-llmops/blob/main/docs/RUNPOD_ONE_SHOT.md) + `scripts/one_shot_gpu_receipts.sh` (requires NVIDIA host / RunPod API credit — not available on this Mac).
 
 ---
 
@@ -118,3 +119,4 @@
 | 2026-08-23 | Gateway RoutingDecision sample published; live demo URL on site/profile |
 | 2026-08-23 | SLM bake-off executed (ollama/llama3.2:1b CPU, 3/3); gateway sample ready |
 | 2026-08-23 | E2E gap pass: UI panel/decision/FinOps; interview map; mock Loop 4; quant note; site signal honesty |
+| 2026-08-23 | GPU path hardened: `one_shot_gpu_receipts.sh` + `RUNPOD_ONE_SHOT.md` + CUDA-gated export/validate; SLM removed from hard-blocker list |
