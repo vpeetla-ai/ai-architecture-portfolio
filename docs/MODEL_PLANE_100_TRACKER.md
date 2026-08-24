@@ -15,8 +15,8 @@
 | 1 | ModelForge MVP | ✅ | 100% |
 | 2 | PEFT GPU receipt | 🔄 | 25% |
 | 3 | CUDA vLLM receipt | 🔄 | 35% |
-| 4 | SLM bake-off + LLMOps | 🔄 | 70% |
-| 5 | Profile perfection + panel | 🔄 | 65% |
+| 4 | SLM bake-off + LLMOps | 🔄 | 85% |
+| 5 | Profile perfection + panel | 🔄 | 80% |
 
 **Program complete when all phases are ✅ and DoD checklist below is green.**  
 **Hard blockers remaining:** real CUDA PEFT run (`peft_gpu.json`), real vLLM metrics (`vllm_cuda.json`), executed SLM bake-off (`slm_bakeoff.md`).
@@ -80,7 +80,7 @@
 | 4.2 | Public bake-off table | ✅ | `docs/receipts/slm_bakeoff.md` |
 | 4.3 | Decision memo published | ✅ | Executed memo (API comparator deferred) |
 | 4.4 | Gateway RoutingDecision sample | ✅ | `docs/receipts/gateway_routing_sample.json` |
-| 4.5 | FinOps meter link | ⬜ | |
+| 4.5 | FinOps meter link | ✅ | SLM memo FinOps bridge + agent-finops link on ModelForge UI |
 
 ---
 
@@ -90,20 +90,20 @@
 |----|------|--------|----------|
 | 5.1 | Hire page Agents + Models | 🔄 | 6-spine metrics/copy on site |
 | 5.2 | Technical-review includes ModelForge | 🔄 | Spine IDs include modelforge |
-| 5.3 | Interview map PEFT/vLLM/SLM | ⬜ | |
-| 5.4 | Mock CAIO loop log | ⬜ | |
+| 5.3 | Interview map PEFT/vLLM/SLM | ✅ | REPO_INTERVIEW_MAP ModelForge row + DomainForge PEFT note |
+| 5.4 | Mock CAIO loop log | ✅ | Loop 4 Model Plane in docs/interview/MOCK_LOOP_LOG.md |
 | 5.5 | Freeze note (no extra repos) | ✅ | ADR-034 freeze exception = ModelForge only |
 
 ---
 
 ## Definition of Done (program)
 
-- [x] ModelForge live with honest posture (`/api/v1/posture` — PEFT=`smoke`, vLLM/SLM=`planned`)
+- [x] ModelForge live with honest posture (`/api/v1/posture` — PEFT=`smoke`, SLM/gateway=`ready`, vLLM=`planned`)
 - [x] Profile + site show Model track as spine peer
 - [ ] Receipts: **GPU** PEFT · **CUDA** vLLM  
 - [x] Receipts: **executed** SLM bake-off (`slm_bakeoff.md`, Ollama CPU 3/3)
 - [x] ADR-034 merged
-- [ ] Panel 30s + 60s scripts rehearsed (scripts in plan; loop log pending)
+- [x] Panel 30s + 60s scripts published ([PANEL_SCRIPTS_MODEL_PLANE.md](./PANEL_SCRIPTS_MODEL_PLANE.md)); Loop 4 draft logged
 - [x] “Agents only” objection closable with three links (&lt;30s): ModelForge · DomainForge · ADR-034
 
 ---
@@ -117,3 +117,4 @@
 | 2026-08-23 | Tracker sync to verified live evidence; GPU receipts remain hard blockers |
 | 2026-08-23 | Gateway RoutingDecision sample published; live demo URL on site/profile |
 | 2026-08-23 | SLM bake-off executed (ollama/llama3.2:1b CPU, 3/3); gateway sample ready |
+| 2026-08-23 | E2E gap pass: UI panel/decision/FinOps; interview map; mock Loop 4; quant note; site signal honesty |
