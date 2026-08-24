@@ -58,4 +58,18 @@
 
 ---
 
-After each loop: update Status to `DONE`, add score, and one remediation link. P5 exit needs all three `DONE` with scores.
+## Loop 4 — Model Plane (CAIO “agents only” grill)
+
+| Field | Plan |
+|-------|------|
+| Date | **2026-08-23** (self-run draft) |
+| Focus | Buy vs RAG vs PEFT vs self-host · honest smoke vs CUDA · 30s rebuttal |
+| Playbook entries | `01 inference serving` · `07 LLM gateway` · trade-off cost/quality |
+| Live proof | [ModelForge](https://modelforge-gamma.vercel.app) posture + SLM/gateway receipts · [panel scripts](../PANEL_SCRIPTS_MODEL_PLANE.md) · ADR-034 |
+| Status | `DRAFT_RUN` |
+| Self-run protocol | Cold open ModelForge → say posture statuses aloud → click SLM receipt → name GPU blockers without hedging → close with decision tree |
+| Notes | Do **not** claim peft_smoke as GPU. CUDA PEFT + vLLM still hard blockers on tracker. |
+
+---
+
+After each loop: update Status to `DONE`, add score, and one remediation link. P5 exit needs Loops 1–3 `DONE` with scores; Loop 4 is Model Plane rehearsal.
