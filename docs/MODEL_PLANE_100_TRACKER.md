@@ -16,7 +16,7 @@
 | 2 | PEFT GPU receipt | 🔄 | 40% |
 | 3 | CUDA vLLM receipt | 🔄 | 45% |
 | 4 | SLM bake-off + LLMOps | 🔄 | 85% |
-| 5 | Profile perfection + panel | 🔄 | 80% |
+| 5 | Profile perfection + panel | 🔄 | 90% |
 
 **Program complete when all phases are ✅ and DoD checklist below is green.**  
 **Hard blockers remaining:** real CUDA PEFT run (`peft_gpu.json`), real vLLM metrics (`vllm_cuda.json`).  
@@ -89,8 +89,8 @@
 
 | ID | Task | Status | Evidence |
 |----|------|--------|----------|
-| 5.1 | Hire page Agents + Models | 🔄 | 6-spine metrics/copy on site |
-| 5.2 | Technical-review includes ModelForge | 🔄 | Spine IDs include modelforge |
+| 5.1 | Hire page Agents + Models | ✅ | 6-spine hire + ModelForge measuredSignal |
+| 5.2 | Technical-review includes ModelForge | ✅ | Step 4 Models — ModelForge; spine-health probes posture |
 | 5.3 | Interview map PEFT/vLLM/SLM | ✅ | REPO_INTERVIEW_MAP ModelForge row + DomainForge PEFT note |
 | 5.4 | Mock CAIO loop log | ✅ | Loop 4 Model Plane in docs/interview/MOCK_LOOP_LOG.md |
 | 5.5 | Freeze note (no extra repos) | ✅ | ADR-034 freeze exception = ModelForge only |
@@ -120,3 +120,4 @@
 | 2026-08-23 | SLM bake-off executed (ollama/llama3.2:1b CPU, 3/3); gateway sample ready |
 | 2026-08-23 | E2E gap pass: UI panel/decision/FinOps; interview map; mock Loop 4; quant note; site signal honesty |
 | 2026-08-23 | GPU path hardened: `one_shot_gpu_receipts.sh` + `RUNPOD_ONE_SHOT.md` + CUDA-gated export/validate; SLM removed from hard-blocker list |
+| 2026-08-23 | Site 6-spine copy pass (hire/tech-review/spine-health); DomainForge CUDA-gate PR merged; GPU still needs RunPod |
