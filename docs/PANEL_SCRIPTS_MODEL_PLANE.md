@@ -26,4 +26,5 @@
 - [ ] Open posture API — say smoke vs ready aloud
 - [ ] Click PEFT + vLLM CUDA receipts (T4 micro honesty)
 - [ ] Click SLM + gateway receipts
+- [ ] Drill [Model Plane question bank](https://github.com/vpeetla-ai/ai-architect-interview-playbook/blob/main/model-plane/MODEL_PLANE_PANEL_QUESTION_BANK.md) — A1, B2, C3, D1 aloud
 - [ ] Close with buy/RAG/PEFT/self-host tree
