@@ -2,6 +2,7 @@
 
 **Plan:** [MODEL_PLANE_100_PLAN.md](./MODEL_PLANE_100_PLAN.md)  
 **Updated:** 2026-08-23  
+**Live ModelForge:** https://modelforge-gamma.vercel.app  
 **Rule:** Only mark ✅ when the artifact is mergeable/public and honesty table matches reality.
 
 ---
@@ -10,14 +11,15 @@
 
 | Phase | Name | Status | % |
 |-------|------|--------|---|
-| 0 | Plan + narrative + ADR | 🔄 In progress | 85% |
-| 1 | ModelForge MVP | 🔄 Scaffolded | 35% |
-| 2 | PEFT GPU receipt | ⬜ Not started | 0% |
-| 3 | CUDA vLLM receipt | ⬜ Not started | 0% |
-| 4 | SLM bake-off + LLMOps | ⬜ Not started | 0% |
-| 5 | Profile perfection + panel | 🔄 Profile draft | 20% |
+| 0 | Plan + narrative + ADR | ✅ | 100% |
+| 1 | ModelForge MVP | ✅ | 100% |
+| 2 | PEFT GPU receipt | 🔄 | 25% |
+| 3 | CUDA vLLM receipt | 🔄 | 35% |
+| 4 | SLM bake-off + LLMOps | 🔄 | 70% |
+| 5 | Profile perfection + panel | 🔄 | 65% |
 
-**Program complete when all phases are ✅ and DoD checklist below is green.**
+**Program complete when all phases are ✅ and DoD checklist below is green.**  
+**Hard blockers remaining:** real CUDA PEFT run (`peft_gpu.json`), real vLLM metrics (`vllm_cuda.json`), executed SLM bake-off (`slm_bakeoff.md`).
 
 ---
 
@@ -27,9 +29,9 @@
 |----|------|--------|----------|
 | 0.1 | MODEL_PLANE_100_PLAN.md | ✅ | `docs/MODEL_PLANE_100_PLAN.md` |
 | 0.2 | This tracker | ✅ | `docs/MODEL_PLANE_100_TRACKER.md` |
-| 0.3 | ADR-034 ModelForge decision | ✅ | `adr/ADR-034-modelforge-model-plane.md` |
-| 0.4 | GitHub profile Model track | ✅ | https://github.com/vpeetla-ai/vpeetla-ai (6-spine) |
-| 0.5 | venkat-ai.com ecosystem + hire copy | 🔄 | PR https://github.com/vpeetla-ai/venkat-ai-portfolio/pull/30 |
+| 0.3 | ADR-034 ModelForge decision | ✅ | `adr/ADR-034-modelforge-model-plane.md` (merged) |
+| 0.4 | GitHub profile Model track | ✅ | https://github.com/vpeetla-ai (6-spine) |
+| 0.5 | venkat-ai.com ecosystem + hire copy | ✅ | PR #30 merged; live URL follow-up PR |
 | 0.6 | Scaffold `modelforge-llmops` | ✅ | https://github.com/vpeetla-ai/modelforge-llmops |
 
 ---
@@ -38,11 +40,11 @@
 
 | ID | Task | Status | Evidence |
 |----|------|--------|----------|
-| 1.1 | FastAPI health + posture + receipts API | ✅ | pytest 4 passed |
-| 1.2 | Next.js Model Plane UI (5 tabs) | 🔄 | MVP single page + receipts table |
-| 1.3 | DomainForge status card | ⬜ | |
-| 1.4 | LLM gateway posture card | ⬜ | |
-| 1.5 | Deploy UI + API (honest cold-start) | ⬜ | Render blueprint present |
+| 1.1 | Posture + receipts API | ✅ | Live `/api/v1/posture` + Python FastAPI tests |
+| 1.2 | Model Plane UI | ✅ | https://modelforge-gamma.vercel.app |
+| 1.3 | DomainForge status / PEFT card | ✅ | Posture component; smoke vs GPU honesty |
+| 1.4 | LLM gateway posture card | ✅ | Sample `gateway_routing_sample.json` in gallery |
+| 1.5 | Deploy UI + API | ✅ | Same Vercel app (Next.js routes); Render Dockerfile kept as alt |
 
 ---
 
@@ -50,11 +52,11 @@
 
 | ID | Task | Status | Evidence |
 |----|------|--------|----------|
-| 2.1 | Documented dataset sizes (SFT + DPO) | ⬜ | |
-| 2.2 | CUDA QLoRA run → adapter artifact | ⬜ | |
+| 2.1 | Documented dataset sizes (SFT + DPO) | 🔄 | Smoke fixture documents 128/64; GPU sizes TBD on RunPod |
+| 2.2 | CUDA QLoRA run → adapter artifact | ⬜ | Needs GPU host — `domainforge` `pipeline-gpu` |
 | 2.3 | Eval Δ S0/S3/S4 published | ⬜ | |
-| 2.4 | Receipt JSON in ModelForge gallery | ⬜ | |
-| 2.5 | Promote-gate documented | ⬜ | |
+| 2.4 | Receipt JSON in ModelForge gallery | 🔄 | `peft_smoke.json` live (status=`smoke`, NOT GPU) |
+| 2.5 | Promote-gate / export path | ✅ | DomainForge `export_modelforge_receipt.py` + Makefile |
 
 ---
 
@@ -62,11 +64,11 @@
 
 | ID | Task | Status | Evidence |
 |----|------|--------|----------|
-| 3.1 | Upstream vLLM docker-compose | ⬜ | |
-| 3.2 | Base + LoRA serve path | ⬜ | |
-| 3.3 | TTFT / tok/s / VRAM receipt | ⬜ | |
-| 3.4 | ADR-022 Path A note + Serve tab | ⬜ | |
-| 3.5 | Lab clearly labeled concepts-only | ⬜ | |
+| 3.1 | Upstream vLLM docker-compose | ✅ | `modelforge-llmops/docker-compose.vllm.yml` |
+| 3.2 | Base + LoRA serve path | 🔄 | Compose `--enable-lora`; needs GPU host |
+| 3.3 | TTFT / tok/s / VRAM receipt | 🔄 | Template + `scripts/capture_vllm_metrics.py` |
+| 3.4 | ADR-022 Path A note | ✅ | ADR-022 + honesty in posture non_goals |
+| 3.5 | Lab labeled concepts-only | ✅ | Posture + README |
 
 ---
 
@@ -74,10 +76,10 @@
 
 | ID | Task | Status | Evidence |
 |----|------|--------|----------|
-| 4.1 | Golden suite multi-model run | ⬜ | |
-| 4.2 | Public bake-off table | ⬜ | |
-| 4.3 | Decision memo published | ⬜ | |
-| 4.4 | Gateway RoutingDecision sample | ⬜ | |
+| 4.1 | Golden suite multi-model run | ✅ | Executed `llama3.2:1b` Ollama CPU — 3/3 schema pass |
+| 4.2 | Public bake-off table | ✅ | `docs/receipts/slm_bakeoff.md` |
+| 4.3 | Decision memo published | ✅ | Executed memo (API comparator deferred) |
+| 4.4 | Gateway RoutingDecision sample | ✅ | `docs/receipts/gateway_routing_sample.json` |
 | 4.5 | FinOps meter link | ⬜ | |
 
 ---
@@ -86,22 +88,23 @@
 
 | ID | Task | Status | Evidence |
 |----|------|--------|----------|
-| 5.1 | Hire page Agents + Models | ⬜ | |
-| 5.2 | Technical-review includes ModelForge | ⬜ | |
+| 5.1 | Hire page Agents + Models | 🔄 | 6-spine metrics/copy on site |
+| 5.2 | Technical-review includes ModelForge | 🔄 | Spine IDs include modelforge |
 | 5.3 | Interview map PEFT/vLLM/SLM | ⬜ | |
 | 5.4 | Mock CAIO loop log | ⬜ | |
-| 5.5 | Freeze note (no extra repos) | ⬜ | |
+| 5.5 | Freeze note (no extra repos) | ✅ | ADR-034 freeze exception = ModelForge only |
 
 ---
 
 ## Definition of Done (program)
 
-- [ ] ModelForge live with honest `/v1/posture`
-- [ ] Profile + site show Model track as spine peer (not teaching drawer)
-- [ ] Receipts: PEFT · CUDA vLLM · SLM bake-off
-- [ ] ADR-034 + case study merged
-- [ ] Panel 30s + 60s scripts rehearsed
-- [ ] “Agents only” objection closable with three links in &lt;30s
+- [x] ModelForge live with honest posture (`/api/v1/posture` — PEFT=`smoke`, vLLM/SLM=`planned`)
+- [x] Profile + site show Model track as spine peer
+- [ ] Receipts: **GPU** PEFT · **CUDA** vLLM  
+- [x] Receipts: **executed** SLM bake-off (`slm_bakeoff.md`, Ollama CPU 3/3)
+- [x] ADR-034 merged
+- [ ] Panel 30s + 60s scripts rehearsed (scripts in plan; loop log pending)
+- [x] “Agents only” objection closable with three links (&lt;30s): ModelForge · DomainForge · ADR-034
 
 ---
 
@@ -109,5 +112,8 @@
 
 | Date | Note |
 |------|------|
-| 2026-08-23 | Plan + tracker created; Phase 0 started |
-| 2026-08-23 | ADR-034 written; modelforge-llmops scaffolded + pushed; profile README rewritten for 6-spine |
+| 2026-08-23 | Plan + tracker + ADR-034 + ModelForge scaffold + profile 6-spine |
+| 2026-08-23 | ModelForge live on Vercel with same-origin API; peft_smoke honesty; vLLM compose + capture script; SLM templates |
+| 2026-08-23 | Tracker sync to verified live evidence; GPU receipts remain hard blockers |
+| 2026-08-23 | Gateway RoutingDecision sample published; live demo URL on site/profile |
+| 2026-08-23 | SLM bake-off executed (ollama/llama3.2:1b CPU, 3/3); gateway sample ready |
