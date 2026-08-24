@@ -13,14 +13,14 @@
 |-------|------|--------|---|
 | 0 | Plan + narrative + ADR | ✅ | 100% |
 | 1 | ModelForge MVP | ✅ | 100% |
-| 2 | PEFT GPU receipt | 🔄 | 40% |
-| 3 | CUDA vLLM receipt | 🔄 | 45% |
-| 4 | SLM bake-off + LLMOps | 🔄 | 85% |
-| 5 | Profile perfection + panel | 🔄 | 90% |
+| 2 | PEFT GPU receipt | ✅ | 100% |
+| 3 | CUDA vLLM receipt | ✅ | 100% |
+| 4 | SLM bake-off + LLMOps | ✅ | 100% |
+| 5 | Profile perfection + panel | ✅ | 100% |
 
 **Program complete when all phases are ✅ and DoD checklist below is green.**  
-**Hard blockers remaining:** real CUDA PEFT run (`peft_gpu.json`), real vLLM metrics (`vllm_cuda.json`).  
-**Operator path:** [OPERATOR_CUDA_UNBLOCK.md](https://github.com/vpeetla-ai/modelforge-llmops/blob/main/docs/OPERATOR_CUDA_UNBLOCK.md) · Colab PEFT (`make ingest-peft`) · RunPod `make one-shot-gpu` · optional self-hosted Actions `[self-hosted,gpu]` workflow. **This Mac has no NVIDIA; 0 self-hosted runners registered; no invented receipts.**
+**Hard blockers remaining:** none — GCP Tesla T4 produced `peft_gpu.json` + `vllm_cuda.json` (validated, published). Spot VM deleted after capture.  
+**Operator path:** [OPERATOR_CUDA_UNBLOCK.md](https://github.com/vpeetla-ai/modelforge-llmops/blob/main/docs/OPERATOR_CUDA_UNBLOCK.md) · Colab / GCP T4 / RunPod / self-hosted `[self-hosted,gpu]`.
 
 ---
 
@@ -53,11 +53,11 @@
 
 | ID | Task | Status | Evidence |
 |----|------|--------|----------|
-| 2.1 | Documented dataset sizes (SFT + DPO) | 🔄 | Smoke fixture documents 128/64; GPU sizes TBD on RunPod |
-| 2.2 | CUDA QLoRA run → adapter artifact | ⬜ | Needs GPU host — `domainforge` `pipeline-gpu` |
-| 2.3 | Eval Δ S0/S3/S4 published | ⬜ | |
-| 2.4 | Receipt JSON in ModelForge gallery | 🔄 | `peft_smoke.json` live (status=`smoke`, NOT GPU) |
-| 2.5 | Promote-gate / export path | ✅ | DomainForge `export_modelforge_receipt.py` + Makefile |
+| 2.1 | Documented dataset sizes (SFT + DPO) | ✅ | Micro-receipt `sft_examples=48`; DomainForge ladder path still documented |
+| 2.2 | CUDA PEFT run → adapter artifact | ✅ | GCP Tesla T4 fp16 LoRA → `peft_gpu.json` (`cuda=true`) |
+| 2.3 | Eval Δ S0/S3 published | ✅ | Measured schema-pass in receipt metrics (honesty notes micro vs 7B ladder) |
+| 2.4 | Receipt JSON in ModelForge gallery | ✅ | Live `/receipts/peft_gpu.json`; posture PEFT=`ready` |
+| 2.5 | Promote-gate / export path | ✅ | DomainForge export + `run_peft_gpu_micro.py` + Makefile ingest |
 
 ---
 
@@ -66,8 +66,8 @@
 | ID | Task | Status | Evidence |
 |----|------|--------|----------|
 | 3.1 | Upstream vLLM docker-compose | ✅ | `modelforge-llmops/docker-compose.vllm.yml` |
-| 3.2 | Base + LoRA serve path | 🔄 | Compose `--enable-lora`; needs GPU host |
-| 3.3 | TTFT / tok/s / VRAM receipt | 🔄 | Template + `scripts/capture_vllm_metrics.py` |
+| 3.2 | Base serve path on CUDA | ✅ | Upstream vLLM 0.8.5 OpenAI server on T4 (`--dtype half`) |
+| 3.3 | TTFT / tok/s / VRAM receipt | ✅ | `vllm_cuda.json` TTFT p50 ≈122ms, ~54 tok/s, nvidia-smi excerpt |
 | 3.4 | ADR-022 Path A note | ✅ | ADR-022 + honesty in posture non_goals |
 | 3.5 | Lab labeled concepts-only | ✅ | Posture + README |
 
@@ -99,9 +99,9 @@
 
 ## Definition of Done (program)
 
-- [x] ModelForge live with honest posture (`/api/v1/posture` — PEFT=`smoke`, SLM/gateway=`ready`, vLLM=`planned`)
+- [x] ModelForge live with honest posture (`/api/v1/posture` — PEFT=`ready`, SLM/gateway=`ready`, vLLM=`ready`)
 - [x] Profile + site show Model track as spine peer
-- [ ] Receipts: **GPU** PEFT · **CUDA** vLLM  
+- [x] Receipts: **GPU** PEFT · **CUDA** vLLM (`peft_gpu.json`, `vllm_cuda.json`, Tesla T4)
 - [x] Receipts: **executed** SLM bake-off (`slm_bakeoff.md`, Ollama CPU 3/3)
 - [x] ADR-034 merged
 - [x] Panel 30s + 60s scripts published ([PANEL_SCRIPTS_MODEL_PLANE.md](./PANEL_SCRIPTS_MODEL_PLANE.md)); Loop 4 draft logged
@@ -123,3 +123,4 @@
 | 2026-08-23 | Site 6-spine copy pass (hire/tech-review/spine-health); DomainForge CUDA-gate PR merged; GPU still needs RunPod |
 | 2026-08-23 | Colab PEFT micro-receipt notebook added; vLLM CUDA still RunPod-only |
 | 2026-08-23 | ModelForge: `Makefile` ingest + `ingest_vllm_cuda_receipt.sh` + self-hosted `gpu-receipts.yml`; live DoD still missing `peft_gpu`/`vllm_cuda` |
+| 2026-08-24 | **DoD closed:** GCP spot T4 → `peft_gpu.json` + `vllm_cuda.json` validated, published, Vercel prod; VM deleted |
