@@ -9,7 +9,7 @@
 
 ## North star (month 6)
 
-1. Hostile Principal finishes the **5-spine** panel path in ≤15 minutes (warm APIs, Strict ERAG, audit/eval/cost artifacts).
+1. Hostile Principal finishes the **6-spine** panel path in ≤15 minutes (warm APIs incl. ModelForge posture, Strict ERAG, audit/eval/cost artifacts).
 2. Any catalog layer shows Demo vs Strict honesty, a golden eval gate, and one non-theater depth claim.
 3. Distribution is real (≥8 ADR posts, flagship essay live, outreach log).
 
@@ -21,7 +21,7 @@
 
 | ID | Decision |
 |----|----------|
-| **L1** | Panel hero = 5-spine; labs stay Teaching drawer |
+| **L1** | Panel hero = 6-spine (incl. ModelForge); labs stay Teaching drawer |
 | **L2** | Medium/Substack/IG stay copy-draft (ADR-008) |
 | **L3** | ACF publish stays out of unauthenticated golden path (G8) |
 | **L4** | ACF research deepens by composing Enterprise RAG when configured |
