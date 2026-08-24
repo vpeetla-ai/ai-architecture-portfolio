@@ -121,3 +121,4 @@
 | 2026-08-23 | E2E gap pass: UI panel/decision/FinOps; interview map; mock Loop 4; quant note; site signal honesty |
 | 2026-08-23 | GPU path hardened: `one_shot_gpu_receipts.sh` + `RUNPOD_ONE_SHOT.md` + CUDA-gated export/validate; SLM removed from hard-blocker list |
 | 2026-08-23 | Site 6-spine copy pass (hire/tech-review/spine-health); DomainForge CUDA-gate PR merged; GPU still needs RunPod |
+| 2026-08-23 | Colab PEFT micro-receipt notebook added; vLLM CUDA still RunPod-only |
