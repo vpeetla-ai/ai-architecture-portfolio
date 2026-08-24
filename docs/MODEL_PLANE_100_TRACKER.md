@@ -20,7 +20,7 @@
 
 **Program complete when all phases are ✅ and DoD checklist below is green.**  
 **Hard blockers remaining:** real CUDA PEFT run (`peft_gpu.json`), real vLLM metrics (`vllm_cuda.json`).  
-**Operator path:** [modelforge `docs/RUNPOD_ONE_SHOT.md`](https://github.com/vpeetla-ai/modelforge-llmops/blob/main/docs/RUNPOD_ONE_SHOT.md) + `scripts/one_shot_gpu_receipts.sh` (requires NVIDIA host / RunPod API credit — not available on this Mac).
+**Operator path:** [OPERATOR_CUDA_UNBLOCK.md](https://github.com/vpeetla-ai/modelforge-llmops/blob/main/docs/OPERATOR_CUDA_UNBLOCK.md) · Colab PEFT (`make ingest-peft`) · RunPod `make one-shot-gpu` · optional self-hosted Actions `[self-hosted,gpu]` workflow. **This Mac has no NVIDIA; 0 self-hosted runners registered; no invented receipts.**
 
 ---
 
@@ -122,3 +122,4 @@
 | 2026-08-23 | GPU path hardened: `one_shot_gpu_receipts.sh` + `RUNPOD_ONE_SHOT.md` + CUDA-gated export/validate; SLM removed from hard-blocker list |
 | 2026-08-23 | Site 6-spine copy pass (hire/tech-review/spine-health); DomainForge CUDA-gate PR merged; GPU still needs RunPod |
 | 2026-08-23 | Colab PEFT micro-receipt notebook added; vLLM CUDA still RunPod-only |
+| 2026-08-23 | ModelForge: `Makefile` ingest + `ingest_vllm_cuda_receipt.sh` + self-hosted `gpu-receipts.yml`; live DoD still missing `peft_gpu`/`vllm_cuda` |
