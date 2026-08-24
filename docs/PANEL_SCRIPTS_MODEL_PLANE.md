@@ -24,6 +24,6 @@
 ## Rehearsal checklist
 
 - [ ] Open posture API — say smoke vs ready aloud
+- [ ] Click PEFT + vLLM CUDA receipts (T4 micro honesty)
 - [ ] Click SLM + gateway receipts
-- [ ] Name GPU blockers without apology theater
 - [ ] Close with buy/RAG/PEFT/self-host tree

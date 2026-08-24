@@ -67,8 +67,8 @@
 | Playbook entries | `01 inference serving` · `07 LLM gateway` · trade-off cost/quality |
 | Live proof | [ModelForge](https://modelforge-gamma.vercel.app) posture + SLM/gateway receipts · [panel scripts](../PANEL_SCRIPTS_MODEL_PLANE.md) · ADR-034 |
 | Status | `DRAFT_RUN` |
-| Self-run protocol | Cold open ModelForge → say posture statuses aloud → click SLM receipt → name GPU blockers without hedging → close with decision tree |
-| Notes | Do **not** claim peft_smoke as GPU. CUDA PEFT + vLLM still hard blockers on tracker. |
+| Self-run protocol | Cold open ModelForge → say posture statuses aloud → open peft_gpu.json + vllm_cuda.json → close with buy/RAG/PEFT/self-host tree |
+| Notes | Do **not** claim peft_smoke as GPU. CUDA PEFT + vLLM receipts **published** (T4 micro — honest limits in ADR-034). DomainForge 7B ladder is depth, not the homepage receipt. |
 
 ---
 

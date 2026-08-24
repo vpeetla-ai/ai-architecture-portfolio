@@ -28,7 +28,7 @@ I’d put a governed agent stack in front of a hiring panel in fifteen minutes: 
 ---
 
 **Venkata Peetla** — Principal AI Architect · Lucid Motors  
-*19 years shipping enterprise systems. The **5-spine review path** is the job interview; the catalog below is the warehouse behind it.*
+*19 years shipping enterprise systems. The **6-spine review path** (incl. ModelForge) is the job interview; the catalog below is the warehouse behind it.*
 
 **Start here:** [15-min technical review](https://venkat-ai.com/technical-review) · [Spine health](https://venkat-ai.com/spine-health) · [Golden path](docs/GOLDEN_PATH.md) · [Live demos](https://venkat-ai.com/work) · [Repo index](docs/REPO_INDEX.md) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai)
 
@@ -40,9 +40,9 @@ I’d put a governed agent stack in front of a hiring panel in fifteen minutes: 
 
 Scoped outcomes — not “we transformed AI.”
 
-| **10→2** | **Multi-$M** | **5-spine review** | **Governed stack + skills** |
+| **10→2** | **Multi-$M** | **6-spine review** | **Governed stack + skills** |
 |----------|--------------|---------------------|---------------------------|
-| Agent ops staffing reduction (targeted supply-chain flows) | Revenue & savings — payments, subscriptions, EDI | AegisAI · VAP · ERAG · Content Factory · ADRs | Labs/teaching demoted — [execution plan](docs/TOP1PCT_90DAY_EXECUTION.md) |
+| Agent ops staffing reduction (targeted supply-chain flows) | Revenue & savings — payments, subscriptions, EDI | AegisAI · VAP · ERAG · ModelForge · Content Factory · ADRs | Labs/teaching demoted — [execution plan](docs/TOP1PCT_90DAY_EXECUTION.md) |
 
 ---
 
@@ -59,6 +59,7 @@ Enterprise agent programs keep asking the same questions. Each row is a live rep
 | 2c | Shared role/tier/data-class + thin geo schemas? | **aegis-routing-contract** — ThesisRole · ModelTier · InferenceGeo · enforce helpers (ADR-029/033) | GitHub (library) | [aegis-routing-contract](https://github.com/vpeetla-ai/aegis-routing-contract) |
 | 3 | What knowledge can they use? | **Enterprise RAG** — access-before-ranking · page cites · BM25+dense RRF | [enterprise-rag-platform-eta.vercel.app](https://enterprise-rag-platform-eta.vercel.app) | [enterprise_rag_platform](https://github.com/vpeetla-ai/enterprise_rag_platform) |
 | 3b | How do we adapt domain format? | **DomainForge** — RAG facts + PEFT behavior | [domainforge-rag-peft.vercel.app](https://domainforge-rag-peft.vercel.app) · [API](https://domainforge-api.onrender.com) | [domainforge-rag-peft](https://github.com/vpeetla-ai/domainforge-rag-peft) |
+| 3d | **Which weights, where, with proof?** | **ModelForge** — Model Plane flagship: SLM · PEFT · CUDA vLLM · gateway (ADR-034) | [modelforge-gamma.vercel.app](https://modelforge-gamma.vercel.app) | [modelforge-llmops](https://github.com/vpeetla-ai/modelforge-llmops) |
 | 3c | How do we run voice triage? | **VoiceForge** — ASR → LLM → TTS | [voiceforge-assistant.vercel.app](https://voiceforge-assistant.vercel.app) · [API](https://voiceforge-api-eysb.onrender.com) | [voiceforge-assistant](https://github.com/vpeetla-ai/voiceforge-assistant) |
 | 4 | How do we operate agent fleets? | **AegisLoop** — missions, traces, eval gates | [aegisloop-agentops-workbench.vercel.app](https://aegisloop-agentops-workbench.vercel.app) | [aegisloop](https://github.com/vpeetla-ai/aegisloop-agentops-workbench) |
 | 5 | What do they produce? | **AI Content Factory** — governed publish pipeline | [ai-content-factory-iota.vercel.app](https://ai-content-factory-iota.vercel.app) | [ai-content-factory](https://github.com/vpeetla-ai/ai-content-factory) |
