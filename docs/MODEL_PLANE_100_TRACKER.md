@@ -101,7 +101,7 @@
 
 - [x] ModelForge live with honest posture (`/api/v1/posture` — PEFT=`ready`, SLM/gateway=`ready`, vLLM=`ready`)
 - [x] Profile + site show Model track as spine peer
-- [x] Receipts: **GPU** PEFT · **CUDA** vLLM (`peft_gpu.json`, `vllm_cuda.json`, Tesla T4)
+- [x] Receipts: **GPU** PEFT · **CUDA** vLLM (`peft_gpu.json`, `vllm_cuda.json`) — originally Tesla T4/TinyLlama (2026-08-24), upgraded 2026-09-03 to the pipeline's actual model (Mistral-7B) on an L4 — see ADR-037
 - [x] Receipts: **executed** SLM bake-off (`slm_bakeoff.md`, Ollama CPU 3/3)
 - [x] ADR-034 merged
 - [x] Panel 30s + 60s scripts published ([PANEL_SCRIPTS_MODEL_PLANE.md](./PANEL_SCRIPTS_MODEL_PLANE.md)); Loop 4 draft logged
@@ -124,3 +124,4 @@
 | 2026-08-23 | Colab PEFT micro-receipt notebook added; vLLM CUDA still RunPod-only |
 | 2026-08-23 | ModelForge: `Makefile` ingest + `ingest_vllm_cuda_receipt.sh` + self-hosted `gpu-receipts.yml`; live DoD still missing `peft_gpu`/`vllm_cuda` |
 | 2026-08-24 | **DoD closed:** GCP spot T4 → `peft_gpu.json` + `vllm_cuda.json` validated, published, Vercel prod; VM deleted |
+| 2026-09-03 | **Receipts upgraded to the pipeline's actual model:** GCP spot L4 → real DomainForge QLoRA SFT (378 ex, 200 steps) + DPO (16 pairs, 100 steps) on `mistralai/Mistral-7B-Instruct-v0.3` (root-caused and fixed a real DPO CUDA-OOM bug — unquantized fp32 load, see ADR-035); real upstream vLLM serving the same Mistral-7B checkpoint, `vllm_cuda.json` replaced (run `vllm-20260903T225117Z`, 13.74 tok/s, TTFT p50 371.67ms) — see ADR-035/ADR-037. `aegis-llm-gateway` real load-test receipt added (1022.75 req/s, 0 failures) |
