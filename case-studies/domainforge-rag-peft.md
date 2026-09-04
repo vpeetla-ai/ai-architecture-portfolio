@@ -39,16 +39,30 @@ Both → FastAPI /v1/query → golden eval S0→S4 → optional Ollama / vLLM se
 |-------|--------|-------|
 | llama3.2:3b | P50/P95 ms, tokens/s | Run via `/bench` when Ollama local |
 | mistral:7b | P50/P95 ms, tokens/s | Same golden triage JSON prompt |
-| GPU pipeline | Real S3/S4 adapters | `scripts/gpu_pipeline.sh` on RunPod |
 
-*Populate after GPU run — honest empty until measured.*
+### GPU pipeline — real, 2026-09-04
+
+Real S3/S4 adapters, trained on a rented GCP L4 (`scripts/gpu_pipeline.sh`), receipt committed in
+[modelforge-llmops](./modelforge-llmops.md) (`docs/receipts/peft_gpu.json`, run
+`peft-20260904T055541Z`):
+
+| Stage | Real numbers |
+|-------|--------------|
+| S3 QLoRA SFT | 378 train examples, 27 val, 200 steps, 829.01s wall, 4-bit QLoRA |
+| S4 DPO | 16 preference pairs, 3 val, 100 steps, 1018.11s wall, beta=0.1 |
+
+**What this does not yet claim:** a quality or preference-win-rate score for the trained adapter.
+`domainforge/generation/baseline.py`'s `generate_triage_json()` — the function every S0-S4 "solution"
+runs through, S3/S4 included — is a template/keyword simulator, not live inference through the trained
+adapter (its own docstring says so). Scoring the real adapter's actual generations against the golden
+suite is open work, not silently assumed. See [ADR-035](../adr/ADR-035-real-gpu-receipt-methodology.md).
 
 ## Limitations / what we'd do differently
 
 - ADR-022 Path B is educational / planned — don’t sell OpenAI-compatible adapter chat as CUDA multi-LoRA already shipping.
-- GPU pipeline numbers stay blank until measured; inventing tokens/s would break the honesty rule.
+- The GPU pipeline numbers above are real training config/timing, not a quality score — don't read "training completed" as "adapter quality verified."
 - I’d tighten promotion UX so regression blocks are obvious in the UI, not only in API responses.
 
 ## Related ADR
 
-[ADR-019](../adr/ADR-019-rag-facts-peft-behavior.md) · [ADR-020](../adr/ADR-020-dpo-after-sft-alignment.md) · [ADR-022](../adr/ADR-022-domainforge-vllm-multi-lora-serving.md) · [Enterprise RAG](./enterprise-rag-platform.md) · [vLLM Lab](./vllm-architecture-lab.md) · [VoiceForge](./voiceforge-assistant.md)
+[ADR-019](../adr/ADR-019-rag-facts-peft-behavior.md) · [ADR-020](../adr/ADR-020-dpo-after-sft-alignment.md) · [ADR-022](../adr/ADR-022-domainforge-vllm-multi-lora-serving.md) · [ADR-035](../adr/ADR-035-real-gpu-receipt-methodology.md) · [Enterprise RAG](./enterprise-rag-platform.md) · [vLLM Lab](./vllm-architecture-lab.md) · [VoiceForge](./voiceforge-assistant.md) · [ModelForge](./modelforge-llmops.md)
