@@ -53,12 +53,17 @@ Next.js UI (posture + receipt gallery)
 |---|---|---|
 | `vllm_cuda.json` | Upstream `vllm/vllm-openai:v0.8.5` serving `mistralai/Mistral-7B-Instruct-v0.3` — **13.74 tok/s, TTFT p50 371.67ms/p95 372.75ms**, `nvidia-smi` proof of ~20.4GB VRAM held by a live server process | Always-on production serving — one dated benchmark run |
 | `slm_bakeoff.md` | Local Ollama (`llama3.2:1b`, 3/3 schema-pass, 3.415s mean) vs cloud (Groq `openai/gpt-oss-20b`, 3/3 schema-pass, **0.386s mean**) — same 3 golden cases, both real | A statement about model quality beyond this narrow schema-pass suite |
-| `peft_gpu.json` | Real QLoRA SFT (378 examples/200 steps) + DPO (16 pairs/100 steps) training on Mistral-7B completed for real on the rented L4 | A quality/win-rate score — DomainForge's S0-S4 eval harness isn't wired to real adapter inference yet (see `known_gaps` in the receipt) |
+| `peft_gpu.json` | Real QLoRA SFT (378 examples, 200 steps, 829s wall) + DPO (16 pairs, 100 steps, 1018s wall, beta=0.1) training on Mistral-7B on the rented L4 (run `peft-20260904T055541Z`) | A quality/win-rate score — DomainForge's S0-S4 eval harness isn't wired to real adapter inference yet (see `known_gaps` in the receipt) |
 
-Getting the first real GPU run to complete meant fixing a real chain of infrastructure bugs — driver/
-kernel mismatch, PEP 668, host RAM exhaustion, and a genuine DPO code bug (loading the model
-unquantized in fp32 where SFT correctly used 4-bit QLoRA) — documented in
-[ADR-035](../adr/ADR-035-real-gpu-receipt-methodology.md).
+Getting a real GPU run to complete — and its receipt actually committed — took three attempts, not
+one, each a genuine cost in GPU time. The first real chain of infrastructure bugs (driver/kernel
+mismatch, PEP 668, host RAM exhaustion, and a genuine DPO code bug loading the model unquantized in
+fp32 where SFT correctly used 4-bit QLoRA) is documented in
+[ADR-035](../adr/ADR-035-real-gpu-receipt-methodology.md). Two more real training runs completed
+successfully but were then destroyed before their receipts could be committed — a workflow checkout
+step's default `git clean` silently deleting the sibling training checkout, then a leftover Docker
+container starving the next run's VRAM — both root-caused and fixed, documented in
+[ADR-037](../adr/ADR-037-modelforge-phase2-close-out.md). The third attempt landed cleanly.
 
 ## Limitations / what we'd do differently
 
