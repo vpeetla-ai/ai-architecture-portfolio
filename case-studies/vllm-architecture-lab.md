@@ -37,12 +37,25 @@ vLLM Lab (understand WHY serving works) — educational simulator, not productio
 - UI: [vllm-architecture-lab.vercel.app](https://vllm-architecture-lab.vercel.app)
 - API: [vllm-architecture-lab-api.onrender.com](https://vllm-architecture-lab-api.onrender.com)
 
+### Real Path A receipt (2026-09-03) — lives in ModelForge, not here
+
+This lab is Path B (the simulator, above) on purpose — it stays that way. The real Path A serving
+receipt this case study used to gesture at as future work now exists for real, in
+[modelforge-llmops](./modelforge-llmops.md): upstream `vllm/vllm-openai:v0.8.5` serving
+`mistralai/Mistral-7B-Instruct-v0.3` on a rented NVIDIA L4 — **13.74 tok/s, TTFT p50 371.67ms**,
+captured via `capture_vllm_metrics.py` with an `nvidia-smi` proof
+([`vllm_cuda.json`](https://github.com/vpeetla-ai/modelforge-llmops/blob/main/docs/receipts/vllm_cuda.json),
+[ADR-035](../adr/ADR-035-real-gpu-receipt-methodology.md)). Be precise about what this closes and
+what it doesn't: it's a real base-model CUDA serving receipt — it does **not** demonstrate multi-LoRA
+adapter swapping per request, which is still this lab's Path B territory until a real multi-LoRA
+serve receipt exists.
+
 ## Limitations / what we'd do differently
 
-- This does not serve real CUDA multi-LoRA. Don’t imply DomainForge adapters are already swapped per-request on GPU here.
-- Simulator numbers are for intuition; they’re not a load-test of a production cluster.
-- Next: keep Path B (ADR-022) clearly labeled Accepted — educational until a real multi-LoRA serve receipt exists.
+- This does not serve real CUDA multi-LoRA. Don't imply DomainForge adapters are already swapped per-request on GPU here — that gap is still open even with the real Path A base-model receipt above.
+- Simulator numbers are for intuition; they're not a load-test of a production cluster.
+- Next: keep Path B (ADR-022) clearly labeled Accepted — educational until a real multi-LoRA serve receipt exists (base-model serving is now real; multi-LoRA specifically is not).
 
 ## Related
 
-[ADR-022](../adr/ADR-022-domainforge-vllm-multi-lora-serving.md) · [DomainForge case study](./domainforge-rag-peft.md)
+[ADR-022](../adr/ADR-022-domainforge-vllm-multi-lora-serving.md) · [ADR-035](../adr/ADR-035-real-gpu-receipt-methodology.md) · [DomainForge case study](./domainforge-rag-peft.md) · [ModelForge case study](./modelforge-llmops.md)
