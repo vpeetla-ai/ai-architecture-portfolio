@@ -7,13 +7,13 @@
 One scar, three altitudes. Do not become three different people on the site.
 
 ```text
-Lucid supply chain / commerce embed
+One through-line
         ├── Principal — control plane and standards
         ├── FDE / Applied — discovery → wedge → HITL → handoff
         └── Staff LLMOps — weights, evals, serve, meter
 ```
 
-Public spine is **O** (inspectable pattern). Lucid/Volvo/Kaiser is **P** (employer work). Apple/Google is Sparity client work. Those three sentences do not get mashed.
+Public spine is personal work you can inspect. Employer programs stay on the resume and LinkedIn. Apple/Google is Sparity client work. Do not mash those sentences — and do not name an employer on a personal repo.
 
 This file is the org source of truth for the 90-day pass. Interview format lives in [ai-architect-interview-playbook](https://github.com/vpeetla-ai/ai-architect-interview-playbook). Hire copy lives on [venkat-ai.com](https://venkat-ai.com/hire).
 
@@ -29,7 +29,7 @@ Same bar as [HUMAN_VOICE_PASS.md](./HUMAN_VOICE_PASS.md):
 
 - Decision first, scar second, proof third
 - At most one public-repo cite in a spoken/hero path
-- No “incl. Google,” no catalog-as-excellence, no blending O into Lucid P
+- No “incl. Google,” no catalog-as-excellence, no naming an employer next to personal repos
 - Soften draft STAR dollars that are not locked. Do not invent CONFIRM fields
 - Spoken `$10M / $7M` only where already locked — two numbers, not mashed with Kafka `$1M+`
 
@@ -49,7 +49,7 @@ Same bar as [HUMAN_VOICE_PASS.md](./HUMAN_VOICE_PASS.md):
 
 ### C — Hire surfaces + spine README openers
 
-AegisAI · VAP · Enterprise RAG · ModelForge · Content Factory. Same P/O sentence on each: the public repo is the pattern, not Lucid’s binary.
+AegisAI · VAP · Enterprise RAG · ModelForge · Content Factory. Same sentence on each: this is personal work — a public reference you can inspect. Do not name an employer.
 
 ModelForge stays on the 15-minute path. First breath: PEFT/vLLM receipts are real L4 runs; they are not adapter quality scores.
 
@@ -71,7 +71,7 @@ Lakehouse-for-AI design · knowledge-graph retrieval · offer/leveling negotiati
 ## Kill criteria (stop the pass if)
 
 - A new product / Forge / pattern repo appears
-- Lucid SLOs, HITL rates, or finance windows get invented
+- Employer SLOs, HITL rates, or finance windows get invented
 - Mocks get marked practiced without a dated score
 - The scorecard goes back to all-A
 - “incl. Google” reappears on a recruiter-visible surface
