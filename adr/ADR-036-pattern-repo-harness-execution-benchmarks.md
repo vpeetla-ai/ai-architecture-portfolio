@@ -11,11 +11,11 @@ I benchmark what each pattern's control-flow actually guarantees under real tria
 
 ## Context
 
-Closing Critical Gap #2 (harness execution) meant the five curriculum agent-pattern repos needed genuinely differentiated, real evidence — the earlier review found all five pushed within 9 seconds of each other with near-identical boilerplate and no proof of what each pattern specifically buys you over a naive baseline.
+Critical Gap #2 was harness execution. The five curriculum agent-pattern repos were the evidence: pushed within 9 seconds of each other, near-identical boilerplate, no proof any one pattern actually buys you anything over a naive baseline.
 
-Each repo's README already discloses its architecture honestly: "Deterministic model stub — pytest without API keys," "Curriculum stub... not a production agent fleet." The `ReasoningModel`/`Generator`/`Critic`/`Planner`/`Agent` interfaces in every one of the five are pluggable stub interfaces by design, with no LLM API call anywhere in the source. This is a deliberate, disclosed choice, consistent across all five siblings — not an oversight to "fix" by bolting on a Groq/OpenAI dependency.
+Each repo already discloses its architecture honestly — "Deterministic model stub — pytest without API keys," "Curriculum stub... not a production agent fleet." Every `ReasoningModel`/`Generator`/`Critic`/`Planner`/`Agent` interface is a pluggable stub, no LLM call anywhere in the source. Deliberate, disclosed, consistent across all five. Not an oversight to fix by bolting on a Groq key.
 
-That meant a real benchmark here could not be "run the pattern against a real LLM and score output quality" — that would either require adding a new external dependency this org's own conventions explicitly avoided for these repos, or it would fabricate a claim to sound plausible. The honest question these repos can actually answer for real is a **harness-execution** question: does the pattern's control flow do what it claims, under real, varied trial conditions, measured against a real (if simple) baseline?
+So "run it against a real LLM and score output quality" was off the table — that either adds a dependency these repos deliberately don't have, or fakes a number to look plausible. The question these repos can actually answer for real is a harness-execution one: does the control flow do what it claims, under real trials, against a real baseline?
 
 ## Decision
 
@@ -31,25 +31,25 @@ Each of the five repos got one real, executed benchmark measuring its own specif
 
 Every benchmark is backed by a real script (`scripts/benchmark_*.py`) that executes the trials and generates `docs/receipts/benchmark.md` — never hand-written — plus a real pytest asserting invariants on the output, and a real CI gate: a new suite in `golden-eval-registry` (kind `router_invariant`, `mission_gate`, or the newly-added `critique_delta_gate`) checked out fresh each CI run and scored against the repo's actual benchmark output, failing the build on regression — the same pattern already proven in `aegisloop-agentops-workbench`'s `test_golden_eval_gate.py`.
 
-Where a benchmark's real result was unflattering, it was reported as-is rather than reframed: plan-execute mode scored *lower* execution-success (75%) than the reactive baseline (87.5%) on its 8-task set — a genuine finding about the cost of a hard-stop-on-failure design with no replanning, not smoothed over. Swarm fan-out's real advantage turned out to be coverage-per-round, not invocation-efficiency (it used *more* total invocations on average to win under an equal-round budget) — reported both ways rather than picking the flattering framing. React's bounded-loop benchmark found neither bounded nor unbounded mode protects against a malformed-tool-args failure mode — also reported plainly.
+Where a result was unflattering, it stayed unflattering. Plan-execute scored *lower* execution-success (75%) than its own reactive baseline (87.5%) on the 8-task set — a real cost of hard-stop-on-failure with no replanning, not smoothed over. Swarm fan-out's real edge turned out to be coverage-per-round, not efficiency — it used *more* total invocations on average — reported both ways. React's bounded loop protects against neither bounded nor unbounded malformed-tool-args failure. Left in.
 
 ## Consequences
 
 ### Positive
 
-- Five previously-identical repos now each have one number a reviewer can independently reproduce (`python scripts/benchmark_*.py`) and a CI gate that would catch a regression in that pattern's core guarantee.
-- The deterministic-stub architecture — the thing that made these repos look thin — turned out to be exactly what made a zero-cost, zero-API-key, fully-reproducible real benchmark possible.
-- Unflattering real results (plan-execute losing to reactive on one task set) are left in, which is stronger evidence of rigor than five uniformly flattering numbers would have been.
+- Five identical-looking repos now each have one number a reviewer can reproduce (`python scripts/benchmark_*.py`) and a CI gate that catches a regression in that pattern's core guarantee.
+- The deterministic-stub design — the thing that made these repos look thin — is exactly what made a zero-cost, zero-API-key, reproducible benchmark possible.
+- Keeping the unflattering results in is stronger evidence of rigor than five flattering numbers would have been.
 
 ### Trade-offs
 
-- These benchmarks say nothing about LLM output quality — a reviewer expecting "how good are the agent's answers" needs to look at DomainForge/ModelForge (ADR-035) instead, not these five repos.
-- `golden-eval-registry`'s own hardcoded suite/case-count assertions (`tests/test_registry.py`) needed reconciling after five parallel suite additions landed concurrently — a real coordination cost of running this work in parallel, resolved in one follow-up commit rather than left broken.
+- None of this says anything about LLM output quality. For "how good are the agent's answers," look at DomainForge/ModelForge (ADR-035), not these five.
+- `golden-eval-registry`'s hardcoded suite/case counts (`tests/test_registry.py`) drifted when five suites landed in parallel — a real cost of parallel work, fixed in one follow-up commit.
 
 ### Refused
 
-- Adding a real LLM API dependency to any of the five repos to manufacture an output-quality number, which would have contradicted their own disclosed "no API keys" design.
-- Papering over an unflattering real result (plan-execute vs reactive, swarm's invocation cost) to make every repo's number look uniformly positive.
+- Adding an LLM API dependency to manufacture an output-quality number — contradicts the repos' own disclosed "no API keys" design.
+- Papering over an unflattering result to make every number look positive.
 
 ## Links
 
