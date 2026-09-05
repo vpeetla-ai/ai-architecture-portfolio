@@ -6,9 +6,9 @@
 
 ## Problem
 
-A CAIO skimming this org's agent-pattern repos and orchestration platforms reasonably concludes
-"agents only" — even though real PEFT training, CUDA serving, and SLM-economics work existed,
-scattered and under-evidenced across DomainForge and vLLM Architecture Lab, with no single surface
+A CAIO skimming the agent-pattern repos and orchestration platforms reasonably concludes "agents
+only." Real PEFT training, CUDA serving, and SLM-economics work existed the whole time — just
+scattered across DomainForge and vLLM Architecture Lab, under-evidenced, with no single surface
 answering "which weights, running where, and how do you prove it?"
 
 ## What we decided
@@ -55,15 +55,12 @@ Next.js UI (posture + receipt gallery)
 | `slm_bakeoff.md` | Local Ollama (`llama3.2:1b`, 3/3 schema-pass, 3.415s mean) vs cloud (Groq `openai/gpt-oss-20b`, 3/3 schema-pass, **0.386s mean**) — same 3 golden cases, both real | A statement about model quality beyond this narrow schema-pass suite |
 | `peft_gpu.json` | Real QLoRA SFT (378 examples, 200 steps, 829s wall) + DPO (16 pairs, 100 steps, 1018s wall, beta=0.1) training on Mistral-7B on the rented L4 (run `peft-20260904T055541Z`) | A quality/win-rate score — DomainForge's S0-S4 eval harness isn't wired to real adapter inference yet (see `known_gaps` in the receipt) |
 
-Getting a real GPU run to complete — and its receipt actually committed — took three attempts, not
-one, each a genuine cost in GPU time. The first real chain of infrastructure bugs (driver/kernel
-mismatch, PEP 668, host RAM exhaustion, and a genuine DPO code bug loading the model unquantized in
-fp32 where SFT correctly used 4-bit QLoRA) is documented in
-[ADR-035](../adr/ADR-035-real-gpu-receipt-methodology.md). Two more real training runs completed
-successfully but were then destroyed before their receipts could be committed — a workflow checkout
-step's default `git clean` silently deleting the sibling training checkout, then a leftover Docker
-container starving the next run's VRAM — both root-caused and fixed, documented in
-[ADR-037](../adr/ADR-037-modelforge-phase2-close-out.md). The third attempt landed cleanly.
+Three attempts to land this receipt, not one — each a real GPU bill. First round of bugs (driver/
+kernel mismatch, PEP 668, RAM exhaustion, DPO loading the model unquantized where SFT correctly used
+4-bit QLoRA) is in [ADR-035](../adr/ADR-035-real-gpu-receipt-methodology.md). The next two runs
+trained fine and then got destroyed before their receipts committed — a checkout step's `git clean`
+wiping the sibling checkout, then a leftover Docker container starving the next run's VRAM. Both
+fixed, both documented in [ADR-037](../adr/ADR-037-modelforge-phase2-close-out.md). Third attempt landed.
 
 ## Limitations / what we'd do differently
 
