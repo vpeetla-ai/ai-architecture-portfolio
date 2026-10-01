@@ -27,8 +27,8 @@ I’d put a governed agent stack in front of a hiring panel in fifteen minutes: 
 
 ---
 
-**Venkata Peetla** — Principal AI Architect · Lucid Motors  
-*19 years shipping enterprise systems. The **6-spine review path** (incl. ModelForge) is the job interview; the catalog below is the warehouse behind it.*
+**Venkata Peetla** — Principal AI Architect · [SNH AI](https://www.snh-ai.com/)  
+*Architecting governed digital employees for regulated operations. Prior: Sr. Staff Engineer, Lucid Motors (Nov 2023–Sep 2026). The **6-spine review path** (incl. ModelForge) is the reference pattern, not the production runtime.*
 
 **Start here:** [15-min technical review](https://venkat-ai.com/technical-review) · [Hire](https://venkat-ai.com/hire) · [Spine health](https://venkat-ai.com/spine-health) · [Golden path](docs/GOLDEN_PATH.md) · [Three-track 90-day](docs/THREE_TRACK_90DAY.md) · [Honest scorecard](docs/ORG_HONEST_SCORECARD.md) · [GitHub org](https://github.com/vpeetla-ai)
 
@@ -250,7 +250,7 @@ Teaching stubs with live trace viewers — useful for interviews, **not** produc
 
 **RAG + MLOps** — RAG-for-facts / PEFT-for-behavior separation, QLoRA training, adapter registry, solution-ladder eval (DomainForge)
 
-**Platform & Delivery** — FastAPI · Next.js · Postgres · Qdrant · AWS/OCI · 19 years across Google · Kaiser · Volvo · Lucid
+**Platform & Delivery** — FastAPI · Next.js · Postgres · Qdrant · AWS/OCI · 19 years across Sparity (Apple/Google clients) · Kaiser · Volvo · Lucid · SNH AI
 
 **Leadership** — Kaiser Platform Lead · Volvo Staff Engineer · 20+ engineers led · multi-$M enterprise outcomes
 
@@ -259,7 +259,7 @@ Teaching stubs with live trace viewers — useful for interviews, **not** produc
 ## Connect
 
 - **Portfolio:** [venkat-ai.com](https://venkat-ai.com)
-- **Hiring overview:** [venkat-ai.com/hire](https://venkat-ai.com/hire)
+- **Current role:** [venkat-ai.com/hire](https://venkat-ai.com/hire)
 - **Writing:** [Substack](https://venkatapeetla.substack.com) · [Medium](https://medium.com/@vpeetla.ai)
 - **Email:** vpeetla.ai@gmail.com
 
