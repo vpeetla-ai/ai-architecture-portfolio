@@ -28,7 +28,7 @@ I’d put a governed agent stack in front of a hiring panel in fifteen minutes: 
 ---
 
 **Venkata Peetla** — Principal AI Architect · [SNH AI](https://www.snh-ai.com/)  
-*Principal AI Architect at [SNH AI](https://www.snh-ai.com/), architecting digital employees for verification, public-records research, and adjudication inside a customer’s existing systems. Prior: Sr. Staff Engineer, Lucid Motors (Nov 2023–Sep 2026). The **6-spine review path** (incl. ModelForge) is the reference pattern, not the production runtime.*
+*Architecting governed digital employees for regulated operations. Prior: Sr. Staff Engineer, Lucid Motors (Nov 2023–Sep 2026). The **6-spine review path** (incl. ModelForge) is the reference pattern, not the production runtime.*
 
 **Start here:** [15-min technical review](https://venkat-ai.com/technical-review) · [Spine health](https://venkat-ai.com/spine-health) · [Golden path](docs/GOLDEN_PATH.md) · [Live demos](https://venkat-ai.com/work) · [Repo index](docs/REPO_INDEX.md) · [Executive brief](https://venkat-ai.com/profile/executive-brief) · [GitHub org](https://github.com/vpeetla-ai)
 
@@ -250,7 +250,7 @@ Teaching stubs with live trace viewers — useful for interviews, **not** produc
 
 **RAG + MLOps** — RAG-for-facts / PEFT-for-behavior separation, QLoRA training, adapter registry, solution-ladder eval (DomainForge)
 
-**Platform & Delivery** — FastAPI · Next.js · Postgres · Qdrant · AWS/OCI · 19 years across Kaiser · Volvo · Lucid · now SNH AI (Apple/Google client work via Sparity)
+**Platform & Delivery** — FastAPI · Next.js · Postgres · Qdrant · AWS/OCI · 19 years across Sparity (Apple/Google clients) · Kaiser · Volvo · Lucid · SNH AI
 
 **Leadership** — Kaiser Platform Lead · Volvo Staff Engineer · 20+ engineers led · multi-$M enterprise outcomes
 
