@@ -259,7 +259,7 @@ Teaching stubs with live trace viewers — useful for interviews, **not** produc
 ## Connect
 
 - **Portfolio:** [venkat-ai.com](https://venkat-ai.com)
-- **Hiring overview:** [venkat-ai.com/hire](https://venkat-ai.com/hire)
+- **Current role:** [venkat-ai.com/hire](https://venkat-ai.com/hire)
 - **Writing:** [Substack](https://venkatapeetla.substack.com) · [Medium](https://medium.com/@vpeetla.ai)
 - **Email:** vpeetla.ai@gmail.com
 
