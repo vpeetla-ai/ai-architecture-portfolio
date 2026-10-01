@@ -3,7 +3,7 @@
 **Domain:** Agentic AI · Supply chain automation · MLOps  
 **Organization:** Lucid Motors · Automotive Manufacturing  
 **Role:** Sr. Staff Engineer — Software Architecture  
-**Period:** 2023–Present
+**Period:** Nov 2023–Sep 2026
 
 ## Problem
 
